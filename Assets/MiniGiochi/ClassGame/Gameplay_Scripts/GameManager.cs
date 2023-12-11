@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,12 +21,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string className;
 
     //[SerializeField] public HashSet<string[]> coppie;
-    [SerializeField] public Dictionary<string, string> coppie = new Dictionary<string, string>();
+    [SerializeField] public Dictionary<string, string> coppie;
 
     
     // Start is called before the first frame update
     void Start()
     {
+        className = PlayerPrefs.GetString("ClassName", "Default");
+        methods = DatiPersistenti.istanza.methods;
+        attributes = DatiPersistenti.istanza.attributes;
+        coppie = DatiPersistenti.istanza.coppie;
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+
         attributes_GO = new List<GameObject>();
         text_className.text = className;
 
@@ -54,8 +63,7 @@ public class GameManager : MonoBehaviour
             oggettoIstanziato.transform.SetParent(VerticalBox_Attributes.transform);
         }
 
-        coppie.Add("Età", "GetEtà()");
-        coppie.Add("Nome", "GetNome()");
+       
         foreach (var coppia in coppie)
         {
             Debug.Log("Chiave: " + coppia.Key + ", Valore: " + coppia.Value);
@@ -79,5 +87,6 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log("Compilazione avvenuta correttamente");
+        SceneManager.LoadScene("Playground");
     }
 }
