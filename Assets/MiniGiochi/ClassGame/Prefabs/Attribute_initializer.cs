@@ -7,7 +7,7 @@ public class Attribute_initializer : MonoBehaviour
 {
     public string attribute_name;
 
-    // Start is called before the first frame update
+    // Inizializzi i valori dell'attributo in attribute_connection
     public void initialize()
     {
         Attribute_Connection ac = GetComponentInChildren<Attribute_Connection>();

@@ -297,7 +297,7 @@ Transform:
   m_GameObject: {fileID: 1906437802062608496}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.81, y: -0.017, z: 0}
+  m_LocalPosition: {x: -1.8, y: 0.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 7510467851938618845}
   - component: {fileID: 642240709104486514}
   - component: {fileID: 1343471604361718770}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Attribute_istance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,10 +532,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attribute_name: DataDiNascita
   is_public: 1
-  method_name: 
+  method_names: []
+  method_lines: []
   connection_point: {fileID: 4540340893154048405}
   text_attribute: {fileID: 5558586993417179279}
   text_visibility: {fileID: 219199817026598693}
+  attribute_boxImage: {fileID: 4109737019516660361}
 --- !u!61 &1343471604361718770
 BoxCollider2D:
   m_ObjectHideFlags: 0

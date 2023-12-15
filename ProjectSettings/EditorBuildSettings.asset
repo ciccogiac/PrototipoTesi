@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/StarterAssets/FirstPersonController/Scenes/Playground.unity
+    path: Assets/Escape/Playground.unity
     guid: 707acc8dffb72b144bb1ffbe1c965f3d
   - enabled: 1
     path: Assets/MiniGiochi/ClassGame/ClassGame.unity

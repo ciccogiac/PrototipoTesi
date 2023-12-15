@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - Arrow_Pointer
+  - CinemachineTarget
   layers:
   - Default
   - TransparentFX

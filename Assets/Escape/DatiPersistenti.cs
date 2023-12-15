@@ -7,7 +7,11 @@ public class DatiPersistenti : MonoBehaviour
     public static DatiPersistenti istanza;
     public string[] methods;
     public string[] attributes;
-    public Dictionary<string, string> coppie;
+    public Dictionary<string, (bool visibility,List<string>)> coppie;
+
+    public Vector3 lastCharacterEscapePosition;
+
+    //Rappresenta l'istanza unica dei dati che si condividono tra le varie scene. Tra cui i valori dell'inventario , il dizionario di ogni minigioco classe, ecc..
 
     void Awake()
     {
