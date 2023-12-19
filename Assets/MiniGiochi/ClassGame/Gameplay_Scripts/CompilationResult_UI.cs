@@ -59,7 +59,7 @@ public class CompilationResult_UI : MonoBehaviour
         yield return new WaitForSeconds(time);
         compilationText.text = "";
         compilerImage.color = hideColor;
-        if (compiled) gameManager.ReturnToescape();
+        if (compiled) gameManager.ReturnToescape(true);
 
     }
 }

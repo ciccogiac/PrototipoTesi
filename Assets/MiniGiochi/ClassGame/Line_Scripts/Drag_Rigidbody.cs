@@ -53,8 +53,20 @@ public class Drag_Rigidbody : MonoBehaviour
             Vector3 posizioneMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             posizioneMouse.z = 0f; // Assicurati che la coordinata Z sia zero poiché stiamo lavorando in 2D
 
+
+            Transform p = lc.nodes[lc.nodes.Count - 2].transform;
+            Vector2 dir =  p.position  - posizioneMouse ;
+            int layerMask = LayerMask.GetMask("Obstacle");
+            RaycastHit2D hit = Physics2D.Raycast(posizioneMouse, dir.normalized, dir.magnitude, layerMask);
+            Debug.DrawRay(posizioneMouse, dir.normalized * dir.magnitude, Color.red, 1f);
+
+            if (hit.collider == null)
+            {
+                rb.MovePosition(posizioneMouse);
+            }
+
             // Applica la forza al Rigidbody2D per muovere l'oggetto
-            rb.MovePosition(posizioneMouse);
+            //rb.MovePosition(posizioneMouse);
             
         }
         else

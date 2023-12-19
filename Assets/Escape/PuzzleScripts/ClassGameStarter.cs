@@ -64,7 +64,8 @@ public class ClassGameStarter : MonoBehaviour
             {
                 _input.interact = false;
 
-                PlayerPrefs.SetString("ClassName", className);
+                //PlayerPrefs.SetString("ClassName", className);
+                DatiPersistenti.istanza.className = className;
                 DatiPersistenti.istanza.methods = inventary.methods;
                 DatiPersistenti.istanza.attributes = inventary.attributes;
                 DatiPersistenti.istanza.coppie = coppie;

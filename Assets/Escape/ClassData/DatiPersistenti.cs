@@ -5,6 +5,7 @@ using UnityEngine;
 public class DatiPersistenti : MonoBehaviour
 {
     public static DatiPersistenti istanza;
+    public string className;
     public string[] methods;
     public string[] attributes;
     public Dictionary<string, (bool visibility,List<string>)> coppie;

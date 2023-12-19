@@ -27,15 +27,17 @@ public class GameManager_ClassGame : MonoBehaviour
     [SerializeField] public Dictionary<string, (bool ,List<string>)> coppie;
 
     [SerializeField] CompilationResult_UI compilationResult_UI;
-    
+
     // Start is called before the first frame update
     void Start()
     {
         //Legge i valori dei datipersistenti e li assegna alle variabili locali della scena
-        className = PlayerPrefs.GetString("ClassName", "Default");
-        methods = DatiPersistenti.istanza.methods;
-        attributes = DatiPersistenti.istanza.attributes;
-        coppie = DatiPersistenti.istanza.coppie;
+        if (DatiPersistenti.istanza != null) { 
+            className = DatiPersistenti.istanza.className;
+            methods = DatiPersistenti.istanza.methods;
+            attributes = DatiPersistenti.istanza.attributes;
+            coppie = DatiPersistenti.istanza.coppie;
+        }
 
         attributesConnections = new List<Attribute_Connection>();   //crea nuova lista di attribui vuota
         text_className.text = className;                            //imposta il nome della classe
@@ -72,6 +74,7 @@ public class GameManager_ClassGame : MonoBehaviour
         //rende il cursore visibile e bloccati ai limite della finestra , per il minigioco 2D
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+        
 
     }
 
@@ -109,9 +112,11 @@ public class GameManager_ClassGame : MonoBehaviour
         return true;
     }
 
-    public void ReturnToescape()
+    public void ReturnToescape(bool is_game_won)
     {
         Cursor.visible = false;
-        SceneManager.LoadScene("Playground");
+        if (is_game_won) { SceneManager.LoadScene("Playground"); }
+        else { SceneManager.LoadScene("Playground"); }
+        
     }
 }

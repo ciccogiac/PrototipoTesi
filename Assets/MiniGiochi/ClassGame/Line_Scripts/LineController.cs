@@ -9,8 +9,7 @@ public class LineController : MonoBehaviour
     public LineRenderer lr;
 
     public  float last_m=0;
-    public bool isObjectUnder = false;
-    private bool isObjectOnRight= false;
+
 
     public  List<CreatePointLine> PointLines;
     private int point_counter = 0;
@@ -39,6 +38,7 @@ public class LineController : MonoBehaviour
 
     private bool canDeleteNodes()
     {
+        /*
         Transform pm3 = nodes[nodes.Count - 3].transform;
         Transform pm2 = nodes[nodes.Count - 2].transform;
         Transform pm1 = nodes[nodes.Count - 1].transform;
@@ -49,6 +49,7 @@ public class LineController : MonoBehaviour
        // Debug.Log("m= "+ m + " last_m= " + last_m + "  dir_x= " + dir_m.x + "  dir_y= " + dir_m.y);
         float offset = 0.1f;
 
+        
         switch (PointLines[point_counter - 1].collider_pos)
         {
             case CreatePointLine.position_collider.UP_sx:
@@ -160,20 +161,30 @@ public class LineController : MonoBehaviour
          
         }
         
-        
-        Transform p1 = nodes[nodes.Count - 3].transform;
-        Transform p2 = nodes[nodes.Count - 1].transform;
-        Vector2 dir = p1.position - p2.position;
-        int layerMask = LayerMask.GetMask("Obstacle");
-        RaycastHit2D hit = Physics2D.Raycast(p2.position,dir.normalized, dir.magnitude, layerMask);
-        Debug.DrawRay(p2.position, dir.normalized * dir.magnitude, Color.red,5f);
+        */
 
-        if (hit.collider != null)
+        float offset = 0.2f;
+        Transform pm2 = nodes[nodes.Count - 2].transform;
+        Transform pm1 = nodes[nodes.Count - 1].transform;
+        if (pm1.position.x < (pm2.position.x-offset))
         {
+
+            Transform p1 = nodes[nodes.Count - 3].transform;
+            Transform p2 = nodes[nodes.Count - 1].transform;
+            Vector2 dir = p1.position - p2.position;
+            int layerMask = LayerMask.GetMask("Obstacle");
+            RaycastHit2D hit = Physics2D.Raycast(p2.position, dir.normalized, dir.magnitude, layerMask);
+            Debug.DrawRay(p2.position, dir.normalized * dir.magnitude, Color.red, 5f);
+
+            if (hit.collider != null)
+            {
                 return false;
+            }
+
+            return true;
         }
 
-        return true;
+        return false;
 
     }
 
@@ -185,9 +196,9 @@ public class LineController : MonoBehaviour
             Destroy(t.gameObject);
             lr.positionCount = lr.positionCount - 1;
 
-           
 
-            PointLines[point_counter - 1].isAlreadyANode = false;
+
+            PointLines[point_counter - 1].RemoveLine(this);
             PointLines.RemoveAt(point_counter - 1);
             point_counter--;
 
@@ -217,32 +228,10 @@ public class LineController : MonoBehaviour
 
     private float calculate_m(Vector3 p1, Vector3 p2){ return ((p2.y - p1.y) / (p2.x - p1.x));}
 
-    public void setObstaclePos(bool b, bool d)
-    {
-        isObjectUnder = b;
-        isObjectOnRight = d;
-    }
-
-    private void isNodeToDelete()
-    {
-        Transform p1 = nodes[nodes.Count - 2].transform;
-        Transform p2 = nodes[nodes.Count - 1].transform;
-        float m = calculate_m(p1.position,p2.position);
-        Debug.Log(m);
-
-        if ((isObjectUnder && m > last_m) || (!isObjectUnder && m < last_m))
-        {
-                deleteNodes();
-
-        }
-
-    }
-
     // Update is called once per frame
     void Update()
     {
         lr.SetPositions(nodes.ConvertAll(n => n.position).ToArray()); 
-
 
         if(nodes.Count>2  ) { 
            // if (Input.GetMouseButtonDown(1))

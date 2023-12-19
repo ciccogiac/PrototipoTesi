@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec642610e9db0ff48b491532060cc658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  className: 
   methods: []
   attributes: []
   lastCharacterEscapePosition: {x: 0, y: 0, z: 0}
@@ -182,7 +183,7 @@ GameObject:
   - component: {fileID: 373311161}
   - component: {fileID: 373311164}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Inventario
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
