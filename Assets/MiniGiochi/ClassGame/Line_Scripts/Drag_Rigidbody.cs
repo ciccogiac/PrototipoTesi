@@ -18,6 +18,8 @@ public class Drag_Rigidbody : MonoBehaviour
     [SerializeField] Gradient line_connection_color;
     public LineController lc;
 
+    public bool isConnected = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -35,6 +37,7 @@ public class Drag_Rigidbody : MonoBehaviour
         dragging = false;
         transform.position = connection_position;
         line.colorGradient = line_connection_color ;
+        isConnected = true;
 
     }
 
@@ -42,6 +45,7 @@ public class Drag_Rigidbody : MonoBehaviour
     public void disconnect()
     {
         line.colorGradient = line_color;
+        isConnected = false;
     }
     void FixedUpdate()
     {

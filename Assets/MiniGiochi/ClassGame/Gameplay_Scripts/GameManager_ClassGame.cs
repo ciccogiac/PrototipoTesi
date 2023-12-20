@@ -28,16 +28,31 @@ public class GameManager_ClassGame : MonoBehaviour
 
     [SerializeField] CompilationResult_UI compilationResult_UI;
 
+
+    [SerializeField] float secondToShowGameover = 5f;
+    [SerializeField] GameObject canvas_Gameover;
+
+
+    public float tempoIniziale = 20f; // Tempo iniziale del timer in secondi
+    private float tempoRimanente; // Tempo rimanente nel timer
+    [SerializeField] TextMeshProUGUI text_timer;
+    [SerializeField] bool useTimer = true;
+
+    [SerializeField] GameObject levels;
+
     // Start is called before the first frame update
     void Start()
     {
         //Legge i valori dei datipersistenti e li assegna alle variabili locali della scena
         if (DatiPersistenti.istanza != null) { 
             className = DatiPersistenti.istanza.className;
+            tempoIniziale = DatiPersistenti.istanza.timer;
             methods = DatiPersistenti.istanza.methods;
             attributes = DatiPersistenti.istanza.attributes;
             coppie = DatiPersistenti.istanza.coppie;
         }
+
+        LoadLevel();
 
         attributesConnections = new List<Attribute_Connection>();   //crea nuova lista di attribui vuota
         text_className.text = className;                            //imposta il nome della classe
@@ -74,8 +89,57 @@ public class GameManager_ClassGame : MonoBehaviour
         //rende il cursore visibile e bloccati ai limite della finestra , per il minigioco 2D
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
-        
 
+        tempoRimanente = tempoIniziale; // Imposta il tempo rimanente al valore iniziale
+
+    }
+
+    private void LoadLevel()
+    {
+        Transform livelloTrovato = levels.transform.Find(className);
+
+        if (livelloTrovato != null)
+        {
+            // Fai qualcosa con l'oggetto trovato
+            Debug.Log("Livello trovato: " + livelloTrovato.name);
+            livelloTrovato.gameObject.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("Nessun livello trovato con il nome specificato.");
+        }
+    }
+
+    void Update()
+    {
+        if (useTimer) { TimerCount(); }
+    }
+
+    private void TimerCount()
+    {
+
+
+        // Controlla se il timer è scaduto
+        if (tempoRimanente < 0f)
+        {
+            tempoRimanente = 0f; // Imposta il timer a zero per evitare valori negativi
+            text_timer.text = "0";
+            TimeOut(); // Esegui qualche azione quando il timer scade
+        }
+
+        else
+        {
+            // Decrementa il timer
+            text_timer.text = Mathf.FloorToInt(tempoRimanente).ToString();
+            tempoRimanente -= Time.deltaTime;
+            
+        }
+    }
+
+    void TimeOut()
+    {
+        // Puoi eseguire azioni specifiche quando il timer raggiunge zero
+        GameOver();
     }
 
 
@@ -118,5 +182,20 @@ public class GameManager_ClassGame : MonoBehaviour
         if (is_game_won) { SceneManager.LoadScene("Playground"); }
         else { SceneManager.LoadScene("Playground"); }
         
+    }
+
+
+    public void GameOver()
+    {
+        StartCoroutine(GameoverCoroutine(secondToShowGameover));
+    }
+
+    IEnumerator GameoverCoroutine(float time)
+    {
+        canvas_Gameover.SetActive(true);
+        yield return new WaitForSeconds(time);
+
+        string nomeScenaCorrente = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(nomeScenaCorrente);
     }
 }

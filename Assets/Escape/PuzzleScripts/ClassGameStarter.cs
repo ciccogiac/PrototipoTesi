@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class ClassGameStarter : MonoBehaviour
 {
     [SerializeField] string className;
+    [SerializeField] float timer=60f;
     [SerializeField] GameObject text_active;
     public StarterAssetsInputs _input;
 
@@ -66,6 +67,7 @@ public class ClassGameStarter : MonoBehaviour
 
                 //PlayerPrefs.SetString("ClassName", className);
                 DatiPersistenti.istanza.className = className;
+                DatiPersistenti.istanza.timer = timer;
                 DatiPersistenti.istanza.methods = inventary.methods;
                 DatiPersistenti.istanza.attributes = inventary.attributes;
                 DatiPersistenti.istanza.coppie = coppie;

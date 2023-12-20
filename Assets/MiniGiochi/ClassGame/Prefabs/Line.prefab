@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 5660285383179566343}
   - component: {fileID: 4420359584164210679}
   - component: {fileID: 1812831546381541558}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LineRenderer
   m_TagString: Line
   m_Icon: {fileID: 0}
