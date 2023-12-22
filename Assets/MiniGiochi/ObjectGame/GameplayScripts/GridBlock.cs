@@ -9,8 +9,12 @@ public class GridBlock : MonoBehaviour
     private Color imageColor;
     [SerializeField]  Color temporaryColor ;
 
-    public bool isSelected = false;
+    private bool isSelected = false;
     [SerializeField] GameManager_ObjectGame gameManager;
+
+    public bool isConnected=false;
+    [SerializeField] Color connectColor;
+    private Color previousColor;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,17 +31,17 @@ public class GridBlock : MonoBehaviour
     public void DeselectBlock()
     {
         isSelected = false;
+        image.color = imageColor;
     }
 
     public void RotateBlock(bool isLeftRotation)
     {
-        if (!isLeftRotation) { transform.Rotate(0, 0, 90); }
-        else { transform.Rotate(0, 0, -90); }
+        if (!isLeftRotation) { transform.Rotate(0, 0, -90); }
+        else { transform.Rotate(0, 0, 90); }
     }
 
     private void OnMouseDown()
     {
-        Debug.Log("premuto" + " z rotation = " + transform.rotation.z);
         image.color = temporaryColor;
 
         gameManager.SelectBlock(this);
@@ -45,17 +49,24 @@ public class GridBlock : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (!isSelected) { image.color = temporaryColor; }
+        if (!isSelected && !gameManager.isABlockSelected) { image.color = temporaryColor; }
     }
 
     private void OnMouseExit()
     {
-        if (!isSelected) { image.color = imageColor; }
+        if (!isSelected && !gameManager.isABlockSelected) { image.color = imageColor; }
     }
 
-    private void OnMouseUp()
+    public void ConnectBlock()
     {
-        Debug.Log("rilasciato");
-        //image.color = imageColor;
+        previousColor = image.color;
+        isConnected = true;
+        image.color = connectColor;
+    }
+
+    public void DisconnectBlock()
+    {
+        isConnected = false;
+        image.color = previousColor;
     }
 }

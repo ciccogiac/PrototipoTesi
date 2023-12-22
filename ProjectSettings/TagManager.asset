@@ -18,8 +18,8 @@ TagManager:
   - Arrow_Pointer
   - Obstacle
   - Line
-  - 
-  - 
+  - ConnectionReceive
+  - ConnectionGive
   - 
   - 
   - 

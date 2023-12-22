@@ -5,7 +5,10 @@ using UnityEngine;
 public class GameManager_ObjectGame : MonoBehaviour
 {
     public GridBlock selectedBlock;
-    private bool isABlockSelected = false;
+    public bool isABlockSelected = false;
+
+    [SerializeField] GameObject ButtonDeselectBlock;
+    [SerializeField] GameObject ButtonsRotation;
 
     public void Left_BlockRotation()
     {
@@ -21,6 +24,29 @@ public class GameManager_ObjectGame : MonoBehaviour
     {
         selectedBlock = block;
         isABlockSelected = true;
-        block.isSelected = true;
+        block.SelectBlock();
+
+        ButtonDeselectBlock.SetActive(true);
+        ButtonsRotation.SetActive(true);
+    }
+
+    public void DeselectBlock()
+    {
+        selectedBlock.DeselectBlock();
+        selectedBlock = null;
+        isABlockSelected = false;
+       
+        ButtonDeselectBlock.SetActive(false);
+        ButtonsRotation.SetActive(false);
+    }
+
+    public void ResetPath()
+    {
+
+    }
+
+    public void CloseGame()
+    {
+
     }
 }
