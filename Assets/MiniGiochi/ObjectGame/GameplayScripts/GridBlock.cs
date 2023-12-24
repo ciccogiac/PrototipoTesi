@@ -11,7 +11,7 @@ public class GridBlock : MonoBehaviour
     [SerializeField]  Color temporaryConnectionColor;
 
     public bool isSelected = false;
-    [SerializeField] GameManager_ObjectGame gameManager;
+    public GameManager_ObjectGame gameManager;
 
     public bool isConnected=false;
     [SerializeField] Color connectColor;
@@ -75,16 +75,16 @@ public class GridBlock : MonoBehaviour
         if (!isStartingBlock && !isEndingBlock &&  !isSelected && !gameManager.isABlockSelected) { if (isConnected) { image.color = connectColor; } else { image.color = imageColor; } }
     }
 
-    public void ConnectBlock()
+    public virtual void ConnectBlock()
     {
         isConnected = true;
         if (isSelected) image.color = temporaryConnectionColor;
         else image.color = connectColor;
 
-        if(isEndingBlock) { Debug.Log("Percorso completato"); }
+        if(isEndingBlock) { gameManager.VerifyAttributeValue(); }
     }
 
-    public void DisconnectBlock()
+    public virtual void DisconnectBlock()
     {
         isConnected = false;
         if (isSelected) { image.color = temporaryColor; }

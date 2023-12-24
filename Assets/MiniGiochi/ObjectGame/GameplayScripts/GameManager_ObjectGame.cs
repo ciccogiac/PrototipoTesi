@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager_ObjectGame : MonoBehaviour
@@ -9,6 +10,22 @@ public class GameManager_ObjectGame : MonoBehaviour
 
     [SerializeField] GameObject ButtonDeselectBlock;
     [SerializeField] GameObject ButtonsRotation;
+
+    private int attributeValue=0;
+    public int AttributeTarget=0;
+    [SerializeField] TextMeshProUGUI attributeValue_text;
+    [SerializeField] TextMeshProUGUI attributeTarget_text;
+
+
+    private void Start()
+    {
+        attributeTarget_text.text = attributeValue.ToString();
+        attributeTarget_text.text = AttributeTarget.ToString();
+    }
+
+    public void CalculateAttributeValue(int value) { attributeValue += value; attributeValue_text.text = attributeValue.ToString(); }
+
+    public void VerifyAttributeValue() { if(attributeValue == AttributeTarget) { Debug.Log("Raggiunto il valore target"); } }
 
     public void Left_BlockRotation()
     {

@@ -11,16 +11,6 @@ public class ConnectionBlock : MonoBehaviour
         block = GetComponentInParent<GridBlock>();
     }
 
-    /*
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("ConnectionBlock" + block.gameObject.name);
-
-        if (collision.CompareTag("ConnectionGive") && collision.GetComponentInParent<GridBlock>().isConnected && !block.isConnected)
-        { block.ConnectBlock(); }
-    }
-    */
-
     private void OnTriggerStay2D(Collider2D collision)
     {
         Debug.Log("ConnectionBlock" + block.gameObject.name);
