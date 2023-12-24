@@ -8,19 +8,23 @@ public class GridBlock : MonoBehaviour
     private  Image image;
     private Color imageColor;
     [SerializeField]  Color temporaryColor ;
+    [SerializeField]  Color temporaryConnectionColor;
 
-    private bool isSelected = false;
+    public bool isSelected = false;
     [SerializeField] GameManager_ObjectGame gameManager;
 
     public bool isConnected=false;
     [SerializeField] Color connectColor;
-    private Color previousColor;
+
+    public bool isStartingBlock;
+    public bool isEndingBlock;
     // Start is called before the first frame update
     void Start()
     {
         image = GetComponent<Image>();
         imageColor = image.color;
         gameManager = FindObjectOfType<GameManager_ObjectGame>();
+        if(isStartingBlock) { isConnected = true; }
     }
 
     public void SelectBlock()
@@ -30,8 +34,16 @@ public class GridBlock : MonoBehaviour
 
     public void DeselectBlock()
     {
-        isSelected = false;
-        image.color = imageColor;
+        if (!isConnected)
+        {
+            isSelected = false;
+            image.color = imageColor;
+        }
+        else
+        {
+            isSelected = false;
+            image.color = connectColor;
+        }
     }
 
     public void RotateBlock(bool isLeftRotation)
@@ -42,31 +54,40 @@ public class GridBlock : MonoBehaviour
 
     private void OnMouseDown()
     {
-        image.color = temporaryColor;
+        if (!isStartingBlock && !isEndingBlock && !isSelected && !gameManager.isABlockSelected)
+        {
+            if (!isConnected)
+                image.color = temporaryColor;
+            else
+                image.color = temporaryConnectionColor;
 
-        gameManager.SelectBlock(this);
+            gameManager.SelectBlock(this);
+        }
     }
 
     private void OnMouseEnter()
     {
-        if (!isSelected && !gameManager.isABlockSelected) { image.color = temporaryColor; }
+        if (!isStartingBlock &&  !isEndingBlock && !isSelected && !gameManager.isABlockSelected) { if (isConnected) { image.color = temporaryConnectionColor; } else { image.color = temporaryColor; } }
     }
 
     private void OnMouseExit()
     {
-        if (!isSelected && !gameManager.isABlockSelected) { image.color = imageColor; }
+        if (!isStartingBlock && !isEndingBlock &&  !isSelected && !gameManager.isABlockSelected) { if (isConnected) { image.color = connectColor; } else { image.color = imageColor; } }
     }
 
     public void ConnectBlock()
     {
-        previousColor = image.color;
         isConnected = true;
-        image.color = connectColor;
+        if (isSelected) image.color = temporaryConnectionColor;
+        else image.color = connectColor;
+
+        if(isEndingBlock) { Debug.Log("Percorso completato"); }
     }
 
     public void DisconnectBlock()
     {
         isConnected = false;
-        image.color = previousColor;
+        if (isSelected) { image.color = temporaryColor; }
+        else { image.color = imageColor; }
     }
 }

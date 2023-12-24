@@ -8,6 +8,7 @@ TagManager:
   - Arrow_Pointer
   - CinemachineTarget
   - Line
+  - ConnectionGive
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - Arrow_Pointer
   - Obstacle
   - Line
-  - ConnectionReceive
-  - ConnectionGive
+  - 
+  - 
   - 
   - 
   - 
