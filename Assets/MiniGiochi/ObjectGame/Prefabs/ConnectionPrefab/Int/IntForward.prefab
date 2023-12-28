@@ -291,6 +291,7 @@ MonoBehaviour:
   isEndingBlock: 0
   value: 3
   attributeValue_text: {fileID: 3719108271960412928}
+  gameObject_Value: {fileID: 5432871018907744189}
 --- !u!1 &5052813771736218731
 GameObject:
   m_ObjectHideFlags: 0

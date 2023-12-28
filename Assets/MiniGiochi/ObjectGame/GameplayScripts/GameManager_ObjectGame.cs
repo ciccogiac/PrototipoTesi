@@ -7,8 +7,10 @@ public class GameManager_ObjectGame : MonoBehaviour
 {
     public GridBlock selectedBlock;
     public bool isABlockSelected = false;
+    [SerializeField] GameObject emptyBlock;
 
     [SerializeField] GameObject ButtonDeselectBlock;
+    [SerializeField] GameObject ButtonRemoveBlock;
     [SerializeField] GameObject ButtonsRotation;
 
     private int attributeValue=0;
@@ -16,11 +18,17 @@ public class GameManager_ObjectGame : MonoBehaviour
     [SerializeField] TextMeshProUGUI attributeValue_text;
     [SerializeField] TextMeshProUGUI attributeTarget_text;
 
+    public bool isTemporaryItemDragging = false;
+    public GameObject trash;
+
 
     private void Start()
     {
         attributeTarget_text.text = attributeValue.ToString();
         attributeTarget_text.text = AttributeTarget.ToString();
+
+        trash = FindObjectOfType<TrashTemporaryItem>().gameObject;
+        trash.SetActive(false);
     }
 
     public void CalculateAttributeValue(int value) { attributeValue += value; attributeValue_text.text = attributeValue.ToString(); }
@@ -44,6 +52,7 @@ public class GameManager_ObjectGame : MonoBehaviour
         block.SelectBlock();
 
         ButtonDeselectBlock.SetActive(true);
+        ButtonRemoveBlock.SetActive(true);
         ButtonsRotation.SetActive(true);
     }
 
@@ -55,6 +64,7 @@ public class GameManager_ObjectGame : MonoBehaviour
        
         ButtonDeselectBlock.SetActive(false);
         ButtonsRotation.SetActive(false);
+        ButtonRemoveBlock.SetActive(false);
     }
 
     public void ResetPath()
@@ -62,6 +72,22 @@ public class GameManager_ObjectGame : MonoBehaviour
 
     }
 
+    public void RemoveGridBlock()
+    {
+        GameObject g = Instantiate(emptyBlock, new Vector3(0f, 0f, 0f), Quaternion.identity);
+        g.transform.parent = selectedBlock.gameObject.transform.parent;
+        selectedBlock.gameObject.GetComponent<GridBlock>().inventoryReference.CancelDeleteItem();
+        Destroy(selectedBlock.gameObject);
+        g.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+        g.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+
+        selectedBlock = null;
+        isABlockSelected = false;
+
+        ButtonDeselectBlock.SetActive(false);
+        ButtonRemoveBlock.SetActive(false);
+        ButtonsRotation.SetActive(false);
+    }
     public void CloseGame()
     {
 

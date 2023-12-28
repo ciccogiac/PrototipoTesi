@@ -173,8 +173,8 @@ RectTransform:
   - {fileID: 2363239818917107505}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -291,6 +291,7 @@ MonoBehaviour:
   isEndingBlock: 0
   value: 0
   attributeValue_text: {fileID: 6118762697290665632}
+  gameObject_Value: {fileID: 3476372906061862164}
 --- !u!1 &3476372906061862164
 GameObject:
   m_ObjectHideFlags: 0

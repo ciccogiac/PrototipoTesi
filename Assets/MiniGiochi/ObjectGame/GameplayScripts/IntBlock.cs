@@ -8,9 +8,12 @@ public class IntBlock : GridBlock
     [SerializeField] int value;
     [SerializeField] TextMeshProUGUI attributeValue_text;
 
+    [SerializeField] GameObject gameObject_Value;
+
     private void OnValidate()
     {
         attributeValue_text.text = value.ToString();
+
     }
 
     public override void ConnectBlock()
@@ -23,5 +26,14 @@ public class IntBlock : GridBlock
     {
         base.DisconnectBlock();
         base.gameManager.CalculateAttributeValue(-value);
+    }
+
+    public override void RotateBlock(bool isLeftRotation)
+    {
+        
+        gameObject_Value.transform.parent = null;
+        base.RotateBlock(isLeftRotation);
+        gameObject_Value.transform.parent = transform;
+        gameObject_Value.transform.localPosition = Vector3.zero;
     }
 }

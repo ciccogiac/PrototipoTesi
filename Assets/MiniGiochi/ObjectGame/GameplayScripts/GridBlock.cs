@@ -18,6 +18,9 @@ public class GridBlock : MonoBehaviour
 
     public bool isStartingBlock;
     public bool isEndingBlock;
+
+    public InventorySelection inventoryReference;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +49,7 @@ public class GridBlock : MonoBehaviour
         }
     }
 
-    public void RotateBlock(bool isLeftRotation)
+    public virtual void RotateBlock(bool isLeftRotation)
     {
         if (!isLeftRotation) { transform.Rotate(0, 0, -90); }
         else { transform.Rotate(0, 0, 90); }
@@ -54,7 +57,7 @@ public class GridBlock : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!isStartingBlock && !isEndingBlock && !isSelected && !gameManager.isABlockSelected)
+        if (!gameManager.isTemporaryItemDragging && !isStartingBlock && !isEndingBlock && !isSelected && !gameManager.isABlockSelected)
         {
             if (!isConnected)
                 image.color = temporaryColor;
@@ -67,12 +70,12 @@ public class GridBlock : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (!isStartingBlock &&  !isEndingBlock && !isSelected && !gameManager.isABlockSelected) { if (isConnected) { image.color = temporaryConnectionColor; } else { image.color = temporaryColor; } }
+        if (!gameManager.isTemporaryItemDragging && !isStartingBlock &&  !isEndingBlock && !isSelected && !gameManager.isABlockSelected) { if (isConnected) { image.color = temporaryConnectionColor; } else { image.color = temporaryColor; } }
     }
 
     private void OnMouseExit()
     {
-        if (!isStartingBlock && !isEndingBlock &&  !isSelected && !gameManager.isABlockSelected) { if (isConnected) { image.color = connectColor; } else { image.color = imageColor; } }
+        if (!gameManager.isTemporaryItemDragging && !isStartingBlock && !isEndingBlock &&  !isSelected && !gameManager.isABlockSelected) { if (isConnected) { image.color = connectColor; } else { image.color = imageColor; } }
     }
 
     public virtual void ConnectBlock()
