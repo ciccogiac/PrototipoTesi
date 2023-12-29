@@ -21,6 +21,9 @@ public class GridBlock : MonoBehaviour
 
     public InventorySelection inventoryReference;
 
+    [SerializeField] LineRenderer line;
+    private LineObject lineObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +31,15 @@ public class GridBlock : MonoBehaviour
         imageColor = image.color;
         gameManager = FindObjectOfType<GameManager_ObjectGame>();
         if(isStartingBlock) { isConnected = true; }
+
+        if (!isStartingBlock && !isEndingBlock)
+        {
+            line = GetComponentInChildren<LineRenderer>();
+            lineObject = line.gameObject.GetComponent<LineObject>();
+            line.gameObject.SetActive(false);
+        }
+
+       
     }
 
     public void SelectBlock()
@@ -81,6 +93,8 @@ public class GridBlock : MonoBehaviour
     public virtual void ConnectBlock()
     {
         isConnected = true;
+        
+        if (!isStartingBlock && !isEndingBlock) {line.gameObject.SetActive(true); lineObject.LineSetPosition(); }
         if (isSelected) image.color = temporaryConnectionColor;
         else image.color = connectColor;
 
@@ -90,6 +104,7 @@ public class GridBlock : MonoBehaviour
     public virtual void DisconnectBlock()
     {
         isConnected = false;
+        if (!isStartingBlock && !isEndingBlock) line.gameObject.SetActive(false);
         if (isSelected) { image.color = temporaryColor; }
         else { image.color = imageColor; }
     }

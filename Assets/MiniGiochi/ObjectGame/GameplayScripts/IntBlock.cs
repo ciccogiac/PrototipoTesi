@@ -12,7 +12,8 @@ public class IntBlock : GridBlock
 
     private void OnValidate()
     {
-        attributeValue_text.text = value.ToString();
+        if (value > 0) { attributeValue_text.text = "+" + value.ToString(); }
+        else { attributeValue_text.text = value.ToString(); }
 
     }
 

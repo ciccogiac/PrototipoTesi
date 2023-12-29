@@ -21,6 +21,8 @@ public class GameManager_ObjectGame : MonoBehaviour
     public bool isTemporaryItemDragging = false;
     public GameObject trash;
 
+    [SerializeField] Block[] blocks;
+
 
     private void Start()
     {
@@ -29,6 +31,8 @@ public class GameManager_ObjectGame : MonoBehaviour
 
         trash = FindObjectOfType<TrashTemporaryItem>().gameObject;
         trash.SetActive(false);
+
+        blocks = FindObjectsOfType<Block>();
     }
 
     public void CalculateAttributeValue(int value) { attributeValue += value; attributeValue_text.text = attributeValue.ToString(); }
@@ -69,7 +73,20 @@ public class GameManager_ObjectGame : MonoBehaviour
 
     public void ResetPath()
     {
+        if (!isTemporaryItemDragging)
+        {
+            foreach (var block in blocks)
+            {
+                block.RestoreEmptyBlock();
+            }
 
+            selectedBlock = null;
+            isABlockSelected = false;
+
+            ButtonDeselectBlock.SetActive(false);
+            ButtonRemoveBlock.SetActive(false);
+            ButtonsRotation.SetActive(false);
+        }
     }
 
     public void RemoveGridBlock()
@@ -90,6 +107,8 @@ public class GameManager_ObjectGame : MonoBehaviour
     }
     public void CloseGame()
     {
-
+        if (!isTemporaryItemDragging)
+        {
+        }
     }
 }
