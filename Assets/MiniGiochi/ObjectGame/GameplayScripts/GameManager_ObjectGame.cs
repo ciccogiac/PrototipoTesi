@@ -13,31 +13,119 @@ public class GameManager_ObjectGame : MonoBehaviour
     [SerializeField] GameObject ButtonRemoveBlock;
     [SerializeField] GameObject ButtonsRotation;
 
-    private int attributeValue=0;
-    public int AttributeTarget=0;
+    public enum AttributeType
+    {
+        intero,
+        booleano,
+        stringa
+    }
+    public AttributeType attributeType;
+
+    private int attributeIntValue=0;
+    public int AttributeIntTarget=0;
+
+    private bool attributeBoolValue = false;
+    public bool AttributeBoolTarget = false;
+
+    private string attributeStringValue = "";
+    public string AttributeStringTarget = "";
+
     [SerializeField] TextMeshProUGUI attributeValue_text;
     [SerializeField] TextMeshProUGUI attributeTarget_text;
+
+    [SerializeField] TextMeshProUGUI attributeName_text;
 
     public bool isTemporaryItemDragging = false;
     public GameObject trash;
 
     [SerializeField] Block[] blocks;
 
+    [SerializeField] float secondToShowCompleted = 5f;
+    [SerializeField] GameObject canvas_AttributeComplete;
+
+    private int level = 0;
+    [SerializeField] Level[] levels;
+
+    private void ReadLevel()
+    {
+        if (level > 0) { levels[level - 1].gameObject.SetActive(false);}
+        levels[level].gameObject.SetActive(true);
+        
+
+        attributeType = levels[level].attributeType;
+        attributeName_text.text = levels[level].attributeName;
+        AttributeIntTarget = levels[level].AttributeIntTarget;
+        AttributeBoolTarget = levels[level].AttributeBoolTarget;
+        AttributeStringTarget = levels[level].AttributeStringTarget;
+
+        level++;
+
+
+    }
+    private void LoadLevel()
+    {
+        if (level >= levels.Length) { Debug.Log("EndGame"); }
+        else
+        {
+            ReadLevel();
+
+            switch (attributeType)
+            {
+                case AttributeType.intero:
+                    attributeValue_text.text = attributeIntValue.ToString();
+                    attributeTarget_text.text = AttributeIntTarget.ToString();
+                    break;
+
+                case AttributeType.booleano:
+                    attributeValue_text.text = attributeBoolValue.ToString();
+                    attributeTarget_text.text = AttributeBoolTarget.ToString();
+                    break;
+
+                case AttributeType.stringa:
+                    attributeValue_text.text = attributeStringValue;
+                    attributeTarget_text.text = AttributeStringTarget;
+                    break;
+
+            }
+          
+        }
+      
+    }
+
 
     private void Start()
     {
-        attributeTarget_text.text = attributeValue.ToString();
-        attributeTarget_text.text = AttributeTarget.ToString();
 
         trash = FindObjectOfType<TrashTemporaryItem>().gameObject;
         trash.SetActive(false);
 
         blocks = FindObjectsOfType<Block>();
+
+        LoadLevel();
     }
 
-    public void CalculateAttributeValue(int value) { attributeValue += value; attributeValue_text.text = attributeValue.ToString(); }
+    public void CalculateAttributeValue(int value) { attributeIntValue += value; attributeValue_text.text = attributeIntValue.ToString(); }
+    public void CalculateAttributeValue(bool value) { attributeBoolValue = value; attributeValue_text.text = attributeBoolValue.ToString(); }
+    public void CalculateAttributeValue(char value) { attributeStringValue += value; attributeValue_text.text = attributeStringValue; }
+    public void RemoveLastCharAttributeValue() {attributeStringValue = attributeStringValue.Substring(0, attributeStringValue.Length - 1); attributeValue_text.text = attributeStringValue; }
 
-    public void VerifyAttributeValue() { if(attributeValue == AttributeTarget) { Debug.Log("Raggiunto il valore target"); } }
+    public void VerifyAttributeValue() { 
+        
+        switch (attributeType) {
+            case AttributeType.intero:
+                if (attributeIntValue == AttributeIntTarget) { Debug.Log("Raggiunto il valore target"); AttributeComplete(); }
+                break;
+
+            case AttributeType.booleano:
+                if (attributeBoolValue == AttributeBoolTarget) { Debug.Log("Raggiunto il valore target"); AttributeComplete(); }
+                break;
+
+            case AttributeType.stringa:
+                if (attributeStringValue == AttributeStringTarget) { Debug.Log("Raggiunto il valore target"); AttributeComplete(); }
+                break;
+
+        }
+    }
 
     public void Left_BlockRotation()
     {
@@ -110,5 +198,19 @@ public class GameManager_ObjectGame : MonoBehaviour
         if (!isTemporaryItemDragging)
         {
         }
+    }
+
+    public void AttributeComplete()
+    {
+        StartCoroutine(AttributeCompletedCoroutine(secondToShowCompleted));
+    }
+
+    IEnumerator AttributeCompletedCoroutine(float time)
+    {
+        canvas_AttributeComplete.SetActive(true);
+        yield return new WaitForSeconds(time);
+
+        canvas_AttributeComplete.SetActive(false);
+        LoadLevel();
     }
 }
