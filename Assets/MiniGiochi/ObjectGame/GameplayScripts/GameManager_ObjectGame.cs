@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager_ObjectGame : MonoBehaviour
 {
@@ -46,6 +47,8 @@ public class GameManager_ObjectGame : MonoBehaviour
     private int level = 0;
     [SerializeField] Level[] levels;
 
+    private bool is_game_won = false;
+
     private void ReadLevel()
     {
         if (level > 0) { levels[level - 1].gameObject.SetActive(false);}
@@ -68,6 +71,8 @@ public class GameManager_ObjectGame : MonoBehaviour
         else
         {
             ReadLevel();
+            blocks = null;
+            blocks = FindObjectsOfType<Block>();
 
             switch (attributeType)
             {
@@ -99,7 +104,7 @@ public class GameManager_ObjectGame : MonoBehaviour
         trash = FindObjectOfType<TrashTemporaryItem>().gameObject;
         trash.SetActive(false);
 
-        blocks = FindObjectsOfType<Block>();
+        
 
         LoadLevel();
     }
@@ -143,9 +148,10 @@ public class GameManager_ObjectGame : MonoBehaviour
         isABlockSelected = true;
         block.SelectBlock();
 
-        ButtonDeselectBlock.SetActive(true);
-        ButtonRemoveBlock.SetActive(true);
+        ButtonDeselectBlock.SetActive(true);  
         ButtonsRotation.SetActive(true);
+        if(!selectedBlock.isStationary)
+            ButtonRemoveBlock.SetActive(true);
     }
 
     public void DeselectBlock()
@@ -197,6 +203,9 @@ public class GameManager_ObjectGame : MonoBehaviour
     {
         if (!isTemporaryItemDragging)
         {
+            Cursor.visible = false;
+            if (is_game_won) { SceneManager.LoadScene("Playground"); }
+            else { SceneManager.LoadScene("Playground"); }
         }
     }
 

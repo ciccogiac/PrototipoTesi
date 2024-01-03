@@ -138,6 +138,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2736051533490931968, guid: 11bf2f1adfc46374ea11126d8582d189, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3204180426805973859, guid: 11bf2f1adfc46374ea11126d8582d189, type: 3}
       propertyPath: m_Name
       value: EmptyBlock

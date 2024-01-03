@@ -12,11 +12,15 @@ public class IntBlock : GridBlock
 
     private void OnValidate()
     {
-        if (value > 0) { attributeValue_text.text = "+" + value.ToString(); }
-        else { attributeValue_text.text = value.ToString(); }
+        WriteIntValue();
 
     }
-
+    private void WriteIntValue()
+    {
+        if (value > 0) { attributeValue_text.text = "+" + value.ToString(); }
+        else { attributeValue_text.text = value.ToString(); }
+    }
+    public void SetIntValue(int _value) { value = _value; WriteIntValue(); }
     public override void ConnectBlock()
     {
         base.ConnectBlock();

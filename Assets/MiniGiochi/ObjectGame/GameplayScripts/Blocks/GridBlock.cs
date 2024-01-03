@@ -24,6 +24,8 @@ public class GridBlock : MonoBehaviour
     [SerializeField] LineRenderer line;
     private LineObject lineObject;
 
+    public bool isStationary = false;
+
     // Start is called before the first frame update
     void Start()
     {

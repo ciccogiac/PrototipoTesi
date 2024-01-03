@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class TrashTemporaryItem : MonoBehaviour
 {
-    private bool isOnTrash = false;
-    private bool canDelete = false;
+    public bool isOnTrash = false;
+    public bool canDelete = false;
 
     private Image image;
     private Color imageColor;
@@ -36,6 +36,7 @@ public class TrashTemporaryItem : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
+        
         if (collision.CompareTag("TemporaryItem"))
         {
             if (canDelete) {
@@ -52,6 +53,6 @@ public class TrashTemporaryItem : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (isOnTrash) { canDelete = true;  }
+       // if (isOnTrash) {  canDelete = true;  }
     }
 }

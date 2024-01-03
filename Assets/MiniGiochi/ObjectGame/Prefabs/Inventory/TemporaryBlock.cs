@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TemporaryBlock : MonoBehaviour
@@ -10,14 +11,26 @@ public class TemporaryBlock : MonoBehaviour
     [SerializeField] GameObject[] directions = new GameObject[3];
 
     public int dir = 0;
-    
+
+    private SpriteRenderer image;
+    [SerializeField] Color intColor;
+
+    [SerializeField] GameObject valueImage;
+    [SerializeField] TextMeshProUGUI value_text;
+
+    private TrashTemporaryItem trash;
+    public EmptyBlock emptyBlock;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        image = GetComponent<SpriteRenderer>();
+        trash = FindObjectOfType<TrashTemporaryItem>();
 
-        switch( inventoryReference.direction)
+        switch ( inventoryReference.direction)
         {
             case InventorySelection.BlockDirection.Forward:
                 dir = 0;
@@ -33,6 +46,39 @@ public class TemporaryBlock : MonoBehaviour
                 break;
         }
 
+        switch (inventoryReference.blockType)
+        {
+            case InventorySelection.BlockType.Connection:
+                valueImage.SetActive(false);
+                break;
+
+            case InventorySelection.BlockType.Integer:
+                valueImage.SetActive(true);
+                image.color = intColor;
+                if (inventoryReference.intValue > 0) { value_text.text = "+" + inventoryReference.intValue.ToString(); }
+                else { value_text.text = inventoryReference.intValue.ToString(); }    
+                break;
+
+            case InventorySelection.BlockType.Boolean:
+                valueImage.SetActive(true);
+                image.color = intColor;
+                value_text.text = inventoryReference.boolValue.ToString();
+                break;
+
+            case InventorySelection.BlockType.Char:
+                valueImage.SetActive(true);
+                image.color = intColor;
+                value_text.text = inventoryReference.charValue.ToString();
+                break;
+
+        }
+
+        }
+
+    private void OnMouseDown()
+    {
+        if(trash.isOnTrash) { trash.canDelete = true; }
+        else if(emptyBlock!=null) { emptyBlock.canSelect = true; }
     }
 
     private void OnDestroy()

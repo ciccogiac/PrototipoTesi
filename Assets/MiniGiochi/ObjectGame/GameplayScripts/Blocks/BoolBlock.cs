@@ -15,6 +15,7 @@ public class BoolBlock : GridBlock
         attributeValue_text.text = value.ToString();
     }
 
+    public void SetBoolValue(bool _value) { value = _value; attributeValue_text.text = value.ToString(); }
     public override void ConnectBlock()
     {
         base.ConnectBlock();

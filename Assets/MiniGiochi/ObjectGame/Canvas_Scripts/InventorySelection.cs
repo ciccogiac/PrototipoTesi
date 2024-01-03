@@ -24,9 +24,44 @@ public class InventorySelection : MonoBehaviour
 
     public BlockDirection direction;
 
+    public enum BlockType
+    {
+        Connection,
+        Integer,
+        Boolean,
+        Char
+    }
+
+    public BlockType blockType;
+
+    public int intValue = 0;
+    public bool boolValue = false;
+    public char charValue = ' ';
+    [SerializeField] TextMeshProUGUI itemValue_text;
+
     private GameManager_ObjectGame gameManager;
 
+    private void OnValidate()
+    {
+        switch (blockType)
+        {
+            case BlockType.Connection:
+                break;
 
+            case BlockType.Integer:
+                if (intValue > 0) { itemValue_text.text = "+" + intValue.ToString(); }
+                else { itemValue_text.text = intValue.ToString(); }
+                break;
+
+            case BlockType.Boolean:
+                itemValue_text.text = boolValue.ToString();
+                break;
+
+            case BlockType.Char:
+                itemValue_text.text = charValue.ToString();
+                break;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +71,8 @@ public class InventorySelection : MonoBehaviour
         imageColor = image.color;
 
         itemCount_text.text = itemCount.ToString();
+
+       
     }
 
     public void RestoreImage() { image.color = imageColor; }

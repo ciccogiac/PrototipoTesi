@@ -14,6 +14,7 @@ public class CharBlock : GridBlock
     {
         attributeValue_text.text = (value).ToString();
     }
+    public void SetCharValue(char _value) { value = _value; attributeValue_text.text = value.ToString(); }
 
     public override void ConnectBlock()
     {

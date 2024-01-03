@@ -121,14 +121,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.35, y: 0.85}
-      - {x: -0.85, y: 0.35}
-      - {x: -0.85, y: -0.35}
-      - {x: -0.35, y: -0.85}
-      - {x: 0.35, y: -0.85}
-      - {x: 0.85, y: -0.35}
-      - {x: 0.85, y: 0.35}
-      - {x: 0.35, y: 0.85}
+    - - {x: -0.15, y: 0.2}
+      - {x: -0.2, y: 0.15}
+      - {x: -0.2, y: -0.15}
+      - {x: -0.15, y: -0.2}
+      - {x: 0.15, y: -0.2}
+      - {x: 0.2, y: -0.15}
+      - {x: 0.2, y: 0.15}
+      - {x: 0.15, y: 0.2}
   m_UseDelaunayMesh: 0
 --- !u!114 &6798813224115205188
 MonoBehaviour:
@@ -144,7 +144,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   temporaryColor: {r: 0.28627452, g: 0.28627452, b: 0.28627452, a: 0.62352943}
   gameManager: {fileID: 0}
-  prefabs:
+  prefabs_Connection:
   - {fileID: 2411727714358183167, guid: 4a18e89d05fe8af4d916ea0b9527c2d0, type: 3}
   - {fileID: 2411727714358183167, guid: 19162b1adea086b4eb116cc54bf9a794, type: 3}
   - {fileID: 2411727714358183167, guid: e32cd76f746ca2d42be96a6d3a6dedf8, type: 3}
+  prefabs_Int:
+  - {fileID: 2411727714358183167, guid: abf37aad267d3de4b9336126d3575bf8, type: 3}
+  - {fileID: 2411727714358183167, guid: 4908abaa019e0144d95354d950722448, type: 3}
+  - {fileID: 2411727714358183167, guid: 46aa3e0a0ab461347aba9461561c67b7, type: 3}
+  prefabs_Bool:
+  - {fileID: 2411727714358183167, guid: fa8a762b5609f0b4cbfead204a897ef7, type: 3}
+  - {fileID: 2411727714358183167, guid: 4eeba39a8423c514b92cf104dd6bef42, type: 3}
+  - {fileID: 2411727714358183167, guid: 6b9a20c1df0dae049af308b5482a1a12, type: 3}
+  prefabs_Char:
+  - {fileID: 2411727714358183167, guid: 44a7bb747f205f6449cc46b6fe994a88, type: 3}
+  - {fileID: 2411727714358183167, guid: 2a92441769f8f5d4da63e4f18cc492ff, type: 3}
+  - {fileID: 2411727714358183167, guid: 52251d394282da2438f7cdcc40614fda, type: 3}
+  canSelect: 0
