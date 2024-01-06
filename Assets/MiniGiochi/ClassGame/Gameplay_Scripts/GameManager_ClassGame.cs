@@ -19,8 +19,8 @@ public class GameManager_ClassGame : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI text_className;
 
-    [SerializeField] private string[] methods;
-    [SerializeField] private string[] attributes;
+    [SerializeField] private List<string> methods;
+    [SerializeField] private List<string> attributes;
 
     [SerializeField] private string className;
 
@@ -59,7 +59,7 @@ public class GameManager_ClassGame : MonoBehaviour
 
 
         //istanzia gli oggetti metodi e li inizializza
-        for (int i = 0; i < methods.Length; i++)
+        for (int i = 0; i < methods.Count; i++)
         {
 
             GameObject oggettoIstanziato = Instantiate(method_prefab, transform.position, Quaternion.identity);
@@ -73,7 +73,7 @@ public class GameManager_ClassGame : MonoBehaviour
         }
 
         //istanzia gli oggetti attribbuti e li inizializza
-        for (int i = 0; i < attributes.Length; i++)
+        for (int i = 0; i < attributes.Count; i++)
         { 
             GameObject oggettoIstanziato = Instantiate(attribute_prefab, transform.position, Quaternion.identity);
             attributesConnections.Add(oggettoIstanziato.GetComponentInChildren<Attribute_Connection>());

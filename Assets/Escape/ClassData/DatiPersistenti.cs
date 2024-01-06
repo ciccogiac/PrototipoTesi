@@ -7,8 +7,8 @@ public class DatiPersistenti : MonoBehaviour
     public static DatiPersistenti istanza;
     public string className;
     public float timer;
-    public string[] methods;
-    public string[] attributes;
+    public List<string> methods;
+    public List<string> attributes;
     public Dictionary<string, (bool visibility,List<string>)> coppie;
 
     public Vector3 lastCharacterEscapePosition;

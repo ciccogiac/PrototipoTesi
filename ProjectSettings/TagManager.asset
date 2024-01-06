@@ -10,6 +10,8 @@ TagManager:
   - Line
   - ConnectionGive
   - TemporaryItem
+  - RaycastSource
+  - Interactable
   layers:
   - Default
   - TransparentFX

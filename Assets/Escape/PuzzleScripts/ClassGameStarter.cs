@@ -4,17 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ClassGameStarter : MonoBehaviour
+public class ClassGameStarter : Interactable
 {
     [SerializeField] string className;
     [SerializeField] float timer=60f;
-    [SerializeField] GameObject text_active;
-    public StarterAssetsInputs _input;
+    
 
     [SerializeField] public Dictionary<string, (bool,List<string>)> coppie ;
     [SerializeField] Inventario inventary;
 
     private ClassDictionary classDictionary;
+
+    [SerializeField] GameObject player;
     
 
     //L'interazione con l'oggetto fa partirte il minigioco delle classi.Si crea il rispettivo dizionario per il tipo di classe , e si passano i dati attuali tramite i datipersistenti.
@@ -41,30 +42,12 @@ public class ClassGameStarter : MonoBehaviour
             Debug.Log("Attributo : " + coppia.Key + " Visibilità : "+ v +" Metodi : " + s);
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            text_active.SetActive(true);
-        }
-    }
+    
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            text_active.SetActive(false);
-        }
-    }
 
-    private void OnTriggerStay(Collider other)
+    
+    override public void Interact()
     {
-        if (other.CompareTag("Player"))
-        {
-            if (_input.interact == true)
-            {
-                _input.interact = false;
-
                 //PlayerPrefs.SetString("ClassName", className);
                 DatiPersistenti.istanza.className = className;
                 DatiPersistenti.istanza.timer = timer;
@@ -72,10 +55,11 @@ public class ClassGameStarter : MonoBehaviour
                 DatiPersistenti.istanza.attributes = inventary.attributes;
                 DatiPersistenti.istanza.coppie = coppie;
 
-                DatiPersistenti.istanza.lastCharacterEscapePosition = other.transform.position;
+                DatiPersistenti.istanza.lastCharacterEscapePosition = player.transform.position;
 
                 SceneManager.LoadScene("ClassGame");
-            }
-        }
+            
+        
     }
+    
 }

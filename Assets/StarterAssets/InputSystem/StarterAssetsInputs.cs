@@ -20,7 +20,9 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
+		[Header("Interaction Settings")]
 		public bool interact;
+		public bool inventory;
 
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
@@ -50,6 +52,11 @@ namespace StarterAssets
 		{
 			InteractInput(value.isPressed);
 		}
+
+		public void OnInventory(InputValue value)
+		{
+			InventoryInput(value.isPressed);
+		}
 #endif
 
 
@@ -76,6 +83,11 @@ namespace StarterAssets
 		public void InteractInput(bool newInteractState)
 		{
 			interact = newInteractState;
+		}
+
+		public void InventoryInput(bool newJumpState)
+		{
+			inventory = newJumpState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)
