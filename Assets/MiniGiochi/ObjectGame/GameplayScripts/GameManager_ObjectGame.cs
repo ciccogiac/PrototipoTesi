@@ -49,6 +49,11 @@ public class GameManager_ObjectGame : MonoBehaviour
 
     private bool is_game_won = false;
 
+    [SerializeField] private string className;
+    [SerializeField] TextMeshProUGUI className_text;
+    [SerializeField] private string objectName;
+    [SerializeField] TextMeshProUGUI objectName_text;
+
     private void ReadLevel()
     {
         if (level > 0) { levels[level - 1].gameObject.SetActive(false);}
@@ -67,7 +72,7 @@ public class GameManager_ObjectGame : MonoBehaviour
     }
     private void LoadLevel()
     {
-        if (level >= levels.Length) { Debug.Log("EndGame"); }
+        if (level >= levels.Length) { Debug.Log("EndGame"); is_game_won = true; CloseGame(); }
         else
         {
             ReadLevel();
@@ -100,11 +105,20 @@ public class GameManager_ObjectGame : MonoBehaviour
 
     private void Start()
     {
+        if (DatiPersistenti.istanza != null)
+        {
+            className = DatiPersistenti.istanza.className;
+            objectName = DatiPersistenti.istanza.objectName;
+        }
+        className_text.text = className;
+        objectName_text.text = objectName;
 
         trash = FindObjectOfType<TrashTemporaryItem>().gameObject;
         trash.SetActive(false);
 
-        
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+
 
         LoadLevel();
     }
@@ -204,7 +218,15 @@ public class GameManager_ObjectGame : MonoBehaviour
         if (!isTemporaryItemDragging)
         {
             Cursor.visible = false;
-            if (is_game_won) { SceneManager.LoadScene("Playground"); }
+            if (is_game_won) {
+                //Non devo eliminare la classe dall'inventario , anche perchè posso creare più oggetti della stessa classe
+                //Non genero qui l'oggetto perchè viene inserito nell'inventario quando raccolto dalla stampante
+                //Qui devo dare l'input alla stampante per avviare l'animazione di stampa e stampare il relativo oggetto
+
+                //In maniera temporanea gestisco la vittoria creando direttamente nell'inventario l'oggetto desiderato
+                Inventario.istanza.oggetti.Add(objectName);
+
+                SceneManager.LoadScene("Playground"); }
             else { SceneManager.LoadScene("Playground"); }
         }
     }

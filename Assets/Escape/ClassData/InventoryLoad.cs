@@ -20,26 +20,57 @@ public class InventoryLoad : MonoBehaviour
     [SerializeField] GameObject teoria_Prefab;
 
 
-    private Inventario inventario;
-
     // Start is called before the first frame update
     void Start()
     {
-        inventario = FindObjectOfType<Inventario>();
+        LoadInventory();
+    }
 
-        foreach(var x in inventario.methods)
+    public void LoadInventory()
+    {
+        foreach (Transform figlio in Box_Teoria.transform){Destroy(figlio.gameObject);}
+        foreach (Transform figlio in Box_Methods.transform) { Destroy(figlio.gameObject); }
+        foreach (Transform figlio in Box_Attributes.transform) { Destroy(figlio.gameObject); }
+        foreach (Transform figlio in Box_Classi.transform) { Destroy(figlio.gameObject); }
+        foreach (Transform figlio in Box_Oggetti.transform) { Destroy(figlio.gameObject); }
+
+        foreach (var x in Inventario.istanza.methods)
         {
             GameObject oggettoIstanziato = Instantiate(method_Prefab, transform.position, Quaternion.identity);
-            oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text= x;
+            oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x;
             oggettoIstanziato.transform.SetParent(Box_Methods.transform);
 
         }
 
-        foreach (var x in inventario.attributes)
+        foreach (var x in Inventario.istanza.attributes)
         {
             GameObject oggettoIstanziato = Instantiate(attribute_Prefab, transform.position, Quaternion.identity);
             oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x;
             oggettoIstanziato.transform.SetParent(Box_Attributes.transform);
+
+        }
+
+        foreach (var x in Inventario.istanza.classi)
+        {
+            GameObject oggettoIstanziato = Instantiate(class_Prefab, transform.position, Quaternion.identity);
+            oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x;
+            oggettoIstanziato.transform.SetParent(Box_Classi.transform);
+
+        }
+
+        foreach (var x in Inventario.istanza.oggetti)
+        {
+            GameObject oggettoIstanziato = Instantiate(oggetto_Prefab, transform.position, Quaternion.identity);
+            oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x;
+            oggettoIstanziato.transform.SetParent(Box_Oggetti.transform);
+
+        }
+
+        foreach (var x in Inventario.istanza.teoria)
+        {
+            GameObject oggettoIstanziato = Instantiate(teoria_Prefab, transform.position, Quaternion.identity);
+            oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x;
+            oggettoIstanziato.transform.SetParent(Box_Teoria.transform);
 
         }
     }

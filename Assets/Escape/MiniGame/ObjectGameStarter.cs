@@ -5,14 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class ObjectGameStarter : Interactable
 {
-    [SerializeField] GameObject player;
+    [SerializeField] GameObject canvas_ObjectGameInterface;
 
     override public void Interact()
     {
-
-        DatiPersistenti.istanza.lastCharacterEscapePosition = player.transform.position;
-        SceneManager.LoadScene("ObjectGame");
-
+        canvas_ObjectGameInterface.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
 
     }
 }

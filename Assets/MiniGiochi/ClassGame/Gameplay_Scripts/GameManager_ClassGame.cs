@@ -46,10 +46,15 @@ public class GameManager_ClassGame : MonoBehaviour
         //Legge i valori dei datipersistenti e li assegna alle variabili locali della scena
         if (DatiPersistenti.istanza != null) { 
             className = DatiPersistenti.istanza.className;
-            tempoIniziale = DatiPersistenti.istanza.timer;
-            methods = DatiPersistenti.istanza.methods;
-            attributes = DatiPersistenti.istanza.attributes;
+            tempoIniziale = DatiPersistenti.istanza.timer;   
             coppie = DatiPersistenti.istanza.coppie;
+            
+        }
+
+        if (Inventario.istanza != null)
+        {
+            methods = Inventario.istanza.methods;
+            attributes = Inventario.istanza.attributes;
         }
 
         LoadLevel();
@@ -179,7 +184,25 @@ public class GameManager_ClassGame : MonoBehaviour
     public void ReturnToescape(bool is_game_won)
     {
         Cursor.visible = false;
-        if (is_game_won) { SceneManager.LoadScene("Playground"); }
+        if (is_game_won) {
+            //Creare la classe e aggiungerla all'inventario
+            Inventario.istanza.classi.Add(className);
+            //Eliminare dall'inventario metodi e attributi usati nelle classe
+            foreach(var coppia in coppie)
+            {
+                foreach(var method in coppia.Value.Item2)
+                {
+                    Inventario.istanza.methods.Remove(method);
+                    Inventario.istanza.methodsAttributesUsed.Add(method);
+                }
+
+                Inventario.istanza.attributes.Remove(coppia.Key);
+                Inventario.istanza.methodsAttributesUsed.Add(coppia.Key);
+            }
+            //Gestire l'eventuale valore private/public degli attributi se utilizzato in seguito
+
+            SceneManager.LoadScene("Playground"); 
+        }
         else { SceneManager.LoadScene("Playground"); }
         
     }

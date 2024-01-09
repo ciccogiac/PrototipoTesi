@@ -92,11 +92,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.5
+  m_fontSize: 0.45
   m_fontSizeBase: 0.5
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 0.5
+  m_fontSizeMin: 0.1
   m_fontSizeMax: 1
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -295,6 +295,7 @@ MonoBehaviour:
   isEndingBlock: 0
   inventoryReference: {fileID: 0}
   line: {fileID: 0}
+  isStationary: 0
   value: 0
   attributeValue_text: {fileID: 6118762697290665632}
   gameObject_Value: {fileID: 3476372906061862164}

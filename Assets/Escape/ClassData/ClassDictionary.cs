@@ -20,12 +20,12 @@ public class ClassDictionary : MonoBehaviour
 
         if (classFound != null)
         {
-            Debug.Log("Classe  '" +  classFound.className +"' trovata" );
+            //Debug.Log("Classe  '" +  classFound.className +"' trovata" );
             return CreateDictionary(classFound);
         }
         else
         {
-            Debug.Log("Classe  '" + _className + "' non trovata");
+            //Debug.Log("Classe  '" + _className + "' non trovata");
             return null;
         }
     }

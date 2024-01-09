@@ -11,12 +11,12 @@ public class ClassGameStarter : Interactable
     
 
     [SerializeField] public Dictionary<string, (bool,List<string>)> coppie ;
-    [SerializeField] Inventario inventary;
 
     private ClassDictionary classDictionary;
 
     [SerializeField] GameObject player;
-    
+
+    [SerializeField] GameObject canvas_ClassGameInterface;
 
     //L'interazione con l'oggetto fa partirte il minigioco delle classi.Si crea il rispettivo dizionario per il tipo di classe , e si passano i dati attuali tramite i datipersistenti.
 
@@ -25,10 +25,12 @@ public class ClassGameStarter : Interactable
         classDictionary = FindObjectOfType<ClassDictionary>();
         coppie = classDictionary.FindClass(className);
 
+        /*
         if (coppie != null)
             StampaDizionario(coppie);
         else
             Debug.Log("Classe non trovata nel dizionario");
+        */
     }
 
     private void StampaDizionario(Dictionary<string, (bool ,List<string>)> dizionario)
@@ -51,15 +53,17 @@ public class ClassGameStarter : Interactable
                 //PlayerPrefs.SetString("ClassName", className);
                 DatiPersistenti.istanza.className = className;
                 DatiPersistenti.istanza.timer = timer;
-                DatiPersistenti.istanza.methods = inventary.methods;
-                DatiPersistenti.istanza.attributes = inventary.attributes;
                 DatiPersistenti.istanza.coppie = coppie;
 
                 DatiPersistenti.istanza.lastCharacterEscapePosition = player.transform.position;
 
-                SceneManager.LoadScene("ClassGame");
-            
-        
+                //SceneManager.LoadScene("ClassGame");
+
+                canvas_ClassGameInterface.SetActive(true);
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+
+
     }
     
 }

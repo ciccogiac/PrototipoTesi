@@ -355,6 +355,7 @@ MonoBehaviour:
   isEndingBlock: 0
   inventoryReference: {fileID: 0}
   line: {fileID: 0}
+  isStationary: 0
   value: 0
   attributeValue_text: {fileID: 6850899725305364127}
   gameObject_Value: {fileID: 2675977545500613741}
@@ -971,7 +972,7 @@ MonoBehaviour:
   m_fontSizeBase: 0.5
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 0.5
+  m_fontSizeMin: 0.1
   m_fontSizeMax: 1
   m_fontStyle: 0
   m_HorizontalAlignment: 2
