@@ -5,12 +5,17 @@ using UnityEngine;
 public class DatiPersistenti : MonoBehaviour
 {
     public static DatiPersistenti istanza;
+
+    public Vector3 lastCharacterEscapePosition;
+
+    [Header("ClassGame")]
     public string className;
-    public string objectName;
     public float timer;
     public Dictionary<string, (bool visibility,List<string>)> coppie;
 
-    public Vector3 lastCharacterEscapePosition;
+    [Header("ObjectGame")]
+    public bool isObjectToPrint=false;
+    public string objectName;
 
     //Rappresenta l'istanza unica dei dati che si condividono tra le varie scene. Tra cui i valori dell'inventario , il dizionario di ogni minigioco classe, ecc..
 

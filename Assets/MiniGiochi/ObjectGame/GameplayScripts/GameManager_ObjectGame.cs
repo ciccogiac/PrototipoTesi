@@ -222,9 +222,10 @@ public class GameManager_ObjectGame : MonoBehaviour
                 //Non devo eliminare la classe dall'inventario , anche perchè posso creare più oggetti della stessa classe
                 //Non genero qui l'oggetto perchè viene inserito nell'inventario quando raccolto dalla stampante
                 //Qui devo dare l'input alla stampante per avviare l'animazione di stampa e stampare il relativo oggetto
+                DatiPersistenti.istanza.isObjectToPrint = true;
 
                 //In maniera temporanea gestisco la vittoria creando direttamente nell'inventario l'oggetto desiderato
-                Inventario.istanza.oggetti.Add(objectName);
+                //Inventario.istanza.oggetti.Add(objectName);
 
                 SceneManager.LoadScene("Playground"); }
             else { SceneManager.LoadScene("Playground"); }

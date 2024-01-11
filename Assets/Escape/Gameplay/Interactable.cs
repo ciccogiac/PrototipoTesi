@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] GameObject text_active;
+    public GameObject text_active;
+
+    public bool isActive = true;
 
     public void RaycastEnter()
     {
-        text_active.SetActive(true);
+        if (isActive){ text_active.SetActive(true); }
     }
 
     public void RaycastExit()
     {
-        text_active.SetActive(false);
+        if (isActive) { text_active.SetActive(false); }
     }
 
     public virtual void Interact() { }
