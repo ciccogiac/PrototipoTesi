@@ -63,6 +63,7 @@ public class ObjectGame_Interface : MonoBehaviour
             DatiPersistenti.istanza.lastCharacterEscapePosition = player.transform.position;
             DatiPersistenti.istanza.className = className;
             DatiPersistenti.istanza.objectName = inputField.text;
+            DatiPersistenti.istanza.coppie = FindObjectOfType<ClassDictionary>().FindClass(className);
             SceneManager.LoadScene("ObjectGame");
         }
     }

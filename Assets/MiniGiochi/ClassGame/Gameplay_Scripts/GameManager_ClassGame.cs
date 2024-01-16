@@ -24,7 +24,7 @@ public class GameManager_ClassGame : MonoBehaviour
 
     [SerializeField] private string className;
 
-    [SerializeField] public Dictionary<string, (bool ,List<string>)> coppie;
+    [SerializeField] public Dictionary<string, (bool ,List<Method>)> coppie;
 
     [SerializeField] CompilationResult_UI compilationResult_UI;
 
@@ -158,7 +158,7 @@ public class GameManager_ClassGame : MonoBehaviour
             {
                 if (coppia.Key == a.attribute_name)
                     //if (coppia.Value != a.method_name) coppia.Value.Contains(a.method_name) != a.method_name
-                    if(!VerifyMethodList(coppia.Value.Item2 , a.method_names))
+                    if(!VerifyMethodList(coppia.Value.Item2, a.method_names))
                     {
                         compilationResult_UI.Compile(false);
                         return;
@@ -172,11 +172,13 @@ public class GameManager_ClassGame : MonoBehaviour
         compilationResult_UI.Compile(true);
     }
 
-    private bool VerifyMethodList(List<string> dictionary_list , List<string> attribute_list)
+    private bool VerifyMethodList(List<Method> dictionary_list , List<string> attribute_list)
     {
+        List<string> methodsList = new List<string>();
+        foreach(var x in dictionary_list) { methodsList.Add(x.methodName); }
 
-        foreach(var x in dictionary_list) { if (!attribute_list.Contains(x)) return false; }
-        foreach (var y in attribute_list) { if (!dictionary_list.Contains(y)) return false; }
+        foreach(var x in methodsList) { if (!attribute_list.Contains(x)) return false; }
+        foreach (var y in attribute_list) { if (!methodsList.Contains(y)) return false; }
 
         return true;
     }
@@ -192,8 +194,8 @@ public class GameManager_ClassGame : MonoBehaviour
             {
                 foreach(var method in coppia.Value.Item2)
                 {
-                    Inventario.istanza.methods.Remove(method);
-                    Inventario.istanza.methodsAttributesUsed.Add(method);
+                    Inventario.istanza.methods.Remove(method.methodName);
+                    Inventario.istanza.methodsAttributesUsed.Add(method.methodName);
                 }
 
                 Inventario.istanza.attributes.Remove(coppia.Key);

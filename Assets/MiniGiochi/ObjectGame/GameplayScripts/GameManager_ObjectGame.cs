@@ -54,12 +54,14 @@ public class GameManager_ObjectGame : MonoBehaviour
     [SerializeField] private string objectName;
     [SerializeField] TextMeshProUGUI objectName_text;
 
+    private List<(string, string)> attributesValues = new List<(string, string)>();
+
     private void ReadLevel()
     {
         if (level > 0) { levels[level - 1].gameObject.SetActive(false);}
+
         levels[level].gameObject.SetActive(true);
         
-
         attributeType = levels[level].attributeType;
         attributeName_text.text = levels[level].attributeName;
         AttributeIntTarget = levels[level].AttributeIntTarget;
@@ -97,7 +99,10 @@ public class GameManager_ObjectGame : MonoBehaviour
                     break;
 
             }
-          
+
+            (string, string) tupla = (attributeName_text.text, attributeTarget_text.text);
+            attributesValues.Add(tupla);
+
         }
       
     }
@@ -223,6 +228,8 @@ public class GameManager_ObjectGame : MonoBehaviour
                 //Non genero qui l'oggetto perchè viene inserito nell'inventario quando raccolto dalla stampante
                 //Qui devo dare l'input alla stampante per avviare l'animazione di stampa e stampare il relativo oggetto
                 DatiPersistenti.istanza.isObjectToPrint = true;
+                DatiPersistenti.istanza.attributesValues = attributesValues ;
+                
 
                 //In maniera temporanea gestisco la vittoria creando direttamente nell'inventario l'oggetto desiderato
                 //Inventario.istanza.oggetti.Add(objectName);

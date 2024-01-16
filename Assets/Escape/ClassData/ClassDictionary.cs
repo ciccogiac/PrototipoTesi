@@ -11,10 +11,10 @@ public class ClassDictionary : MonoBehaviour
     private List<ClassValue> classi = new List<ClassValue>();
 
 
-    [SerializeField] public Dictionary<string, (bool, List<string>)> coppie;
+    [SerializeField] public Dictionary<string, (bool, List<Method>)> coppie;
     // Start is called before the first frame update
     
-    public Dictionary<string, (bool, List<string>)> FindClass(string _className)
+    public Dictionary<string, (bool, List<Method>)> FindClass(string _className)
     {
        ClassValue classFound = classi.Find(s => string.Equals(s.className, _className, StringComparison.OrdinalIgnoreCase));
 
@@ -30,9 +30,9 @@ public class ClassDictionary : MonoBehaviour
         }
     }
 
-    public Dictionary<string, (bool, List<string>)> CreateDictionary(ClassValue _class)
+    public Dictionary<string, (bool, List<Method>)> CreateDictionary(ClassValue _class)
     {
-        Dictionary<string, (bool, List<string>)>  dizionario = new Dictionary<string, (bool, List<string>)>();
+        Dictionary<string, (bool, List<Method>)>  dizionario = new Dictionary<string, (bool, List<Method>)>();
 
         foreach (var attribute in _class.attributes)
         {

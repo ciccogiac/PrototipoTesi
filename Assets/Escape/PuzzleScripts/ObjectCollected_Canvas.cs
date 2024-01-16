@@ -17,10 +17,13 @@ public class ObjectCollected_Canvas : MonoBehaviour
     [SerializeField] Color selectedColor;
     [SerializeField] Color normalColor;
     private GameObject previousObjectButton;
+    private string objectName;
 
     [SerializeField] PlayerInput input;
 
     public ObjectInteraction objectInteraction;
+
+    [SerializeField] InventoryLoad inventoryLoad;
 
     private void OnEnable()
     {
@@ -42,7 +45,7 @@ public class ObjectCollected_Canvas : MonoBehaviour
             foreach (var oggetto in Inventario.istanza.oggetti)
             {
                 GameObject oggettoIstanziato = Instantiate(objectCollectedCanvasPrefab, transform.position, Quaternion.identity);
-                oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = oggetto;
+                oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = oggetto.objectName;
                 oggettoIstanziato.GetComponent<Button>().onClick.AddListener(() => SelectObjectOnCanvas(oggettoIstanziato));
                 oggettoIstanziato.transform.SetParent(ObjectBox.transform);
             }
@@ -56,15 +59,33 @@ public class ObjectCollected_Canvas : MonoBehaviour
 
         if (previousObjectButton != null) { previousObjectButton.GetComponent<Image>().color = normalColor; }
         previousObjectButton = button;
+        objectName = button.GetComponentInChildren<TextMeshProUGUI>().text;
         button.GetComponent<Image>().color = selectedColor;
     }
 
     private void SelectObjectOnGame()
     {
-        GameObject oggettoIstanziato = Instantiate(objectPrefab,objectInteraction.objectPoint.position, Quaternion.identity);
-        oggettoIstanziato.transform.SetParent(objectInteraction.gameObject.transform);
+        if (objectInteraction.oggetto == null)
+        {
+            OggettoEscape oggettoIstanziato = Inventario.istanza.oggetti.Find(x => x.objectName == objectName);
+            //GameObject oggettoIstanziato = Instantiate(objectPrefab, objectInteraction.objectPoint.position, Quaternion.identity);
+            oggettoIstanziato.transform.position = objectInteraction.objectPoint.position;
+            oggettoIstanziato.transform.SetParent(objectInteraction.gameObject.transform);
+            //oggettoIstanziato.gameObject.GetComponentInChildren<TextMeshPro>().gameObject.SetActive(false);
+            oggettoIstanziato.gameObject.AddComponent<MeshFilter>().mesh = oggettoIstanziato.mesh;
+            oggettoIstanziato.gameObject.AddComponent<MeshRenderer>().material = oggettoIstanziato.material;
+            float fattoreScala = 0.7f;
+            oggettoIstanziato.gameObject.transform.localScale *= fattoreScala;
+            oggettoIstanziato.gameObject.SetActive(true);
+            
+            //oggettoIstanziato.GetComponent<OggettoEscape>().SetObjectValue();
+            objectInteraction.oggetto = oggettoIstanziato;
+            objectInteraction.oggetto.methodListener = objectInteraction.methodListener;
 
-        objectInteraction.oggetto = oggettoIstanziato.GetComponent<Clue>();
+            Inventario.istanza.oggetti.Remove(oggettoIstanziato);
+            inventoryLoad.RemoveObject(objectName);
+
+        }
         CloseInterface();
     }
 

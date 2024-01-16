@@ -5,9 +5,11 @@ using UnityEngine;
 public class ObjectInteraction : Interactable
 {
     [SerializeField] GameObject objectCollectedCanvas;
+    [SerializeField] GameObject objectCallMethodsCanvas;
     public Transform objectPoint;
 
-    public Clue oggetto;
+    public OggettoEscape oggetto;
+    public MethodListener methodListener;
 
     override public void Interact()
     {
@@ -24,6 +26,9 @@ public class ObjectInteraction : Interactable
             else
             {
                 Debug.Log("Interagisco con oggetto");
+                objectCallMethodsCanvas.GetComponent<ObjectCallMethods>().objectInteraction = this;
+                objectCallMethodsCanvas.SetActive(true);
+                text_active.SetActive(false);
             }
         }
     }

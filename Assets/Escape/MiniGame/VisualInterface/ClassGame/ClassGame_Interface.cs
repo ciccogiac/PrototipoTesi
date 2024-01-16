@@ -50,7 +50,7 @@ public class ClassGame_Interface : MonoBehaviour
 
             foreach(var method in coppia.Value.Item2)
             {
-                if (!Inventario.istanza.methods.Contains(method)) { StartCoroutine(ShowCluesError(secondsToShowError)); return; }
+                if (!Inventario.istanza.methods.Contains(method.methodName)) { StartCoroutine(ShowCluesError(secondsToShowError)); return; }
             }
         }
 
@@ -76,7 +76,7 @@ public class ClassGame_Interface : MonoBehaviour
 
             foreach (var method in coppia.Value.Item2)
             {
-                if (!Inventario.istanza.methods.Contains(method)) { Inventario.istanza.methods.Add(method); }
+                if (!Inventario.istanza.methods.Contains(method.methodName)) { Inventario.istanza.methods.Add(method.methodName); }
             }
         }
 

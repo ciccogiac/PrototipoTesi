@@ -16,6 +16,29 @@ public class AttributeValue
 {
     public string attribute;
     public bool visibility;
-    public List<string> methods;
+    public List<Method> methods;
 
+}
+
+[Serializable]
+public class Method
+{
+    public enum MethodType
+    {
+        getter,
+        setter,
+        interactor,
+        pickUp,
+        destroy
+
+    }
+
+    public string methodName;
+    public MethodType methodType;
+
+    public Method(string method, MethodType type)
+    {
+        this.methodName = method;
+        this.methodType = type;
+    }
 }

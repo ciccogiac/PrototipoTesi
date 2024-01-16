@@ -26,6 +26,14 @@ public class InventoryLoad : MonoBehaviour
         LoadInventory();
     }
 
+    public void RemoveObject(string objectName)
+    {
+        Debug.Log(objectName);
+        foreach (Transform figlio in Box_Oggetti.transform) { if (figlio.GetComponentInChildren<TextMeshProUGUI>().text == objectName) { Destroy(figlio.gameObject); } }
+    }
+
+
+
     public void LoadInventory()
     {
         foreach (Transform figlio in Box_Teoria.transform){Destroy(figlio.gameObject);}
@@ -61,7 +69,7 @@ public class InventoryLoad : MonoBehaviour
         foreach (var x in Inventario.istanza.oggetti)
         {
             GameObject oggettoIstanziato = Instantiate(oggetto_Prefab, transform.position, Quaternion.identity);
-            oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x;
+            oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x.objectName;
             oggettoIstanziato.transform.SetParent(Box_Oggetti.transform);
 
         }

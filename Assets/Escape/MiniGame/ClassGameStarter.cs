@@ -10,9 +10,9 @@ public class ClassGameStarter : Interactable
     [SerializeField] float timer=60f;
     
 
-    [SerializeField] public Dictionary<string, (bool,List<string>)> coppie ;
+    [SerializeField] public Dictionary<string, (bool,List<Method>)> coppie ;
 
-    private ClassDictionary classDictionary;
+    //private ClassDictionary classDictionary;
 
     [SerializeField] GameObject player;
 
@@ -22,8 +22,10 @@ public class ClassGameStarter : Interactable
 
     private void Start()
     {
-        classDictionary = FindObjectOfType<ClassDictionary>();
-        coppie = classDictionary.FindClass(className);
+        //classDictionary = FindObjectOfType<ClassDictionary>();
+        //coppie = classDictionary.FindClass(className);
+
+        coppie = FindObjectOfType<ClassDictionary>().FindClass(className);
 
         /*
         if (coppie != null)
@@ -33,12 +35,12 @@ public class ClassGameStarter : Interactable
         */
     }
 
-    private void StampaDizionario(Dictionary<string, (bool ,List<string>)> dizionario)
+    private void StampaDizionario(Dictionary<string, (bool ,List<Method>)> dizionario)
     {
         foreach (var coppia in dizionario)
         {
             string s="";
-            coppia.Value.Item2.ForEach(x => s= s + " " + x);
+            coppia.Value.Item2.ForEach(x => s= s + " " + x.methodName);
             string v = "";
             v = coppia.Value.Item1 ? "public" : "private";
             Debug.Log("Attributo : " + coppia.Key + " Visibilità : "+ v +" Metodi : " + s);
