@@ -61,7 +61,7 @@ public class InventoryLoad : MonoBehaviour
         foreach (var x in Inventario.istanza.classi)
         {
             GameObject oggettoIstanziato = Instantiate(class_Prefab, transform.position, Quaternion.identity);
-            oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x;
+            oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x.className;
             oggettoIstanziato.transform.SetParent(Box_Classi.transform);
 
         }

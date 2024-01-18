@@ -183,12 +183,65 @@ public class GameManager_ClassGame : MonoBehaviour
         return true;
     }
 
+    public ClassValue FromDictionaryToClassValue()
+    {
+        ClassValue classValue = new ClassValue();
+        classValue.className = className;
+
+        List<AttributeValue> l = new List<AttributeValue>();
+        foreach( var x in coppie)
+        {
+            AttributeValue a = new AttributeValue();
+            a.attribute = x.Key;
+            a.visibility = x.Value.Item1;
+            a.methods = x.Value.Item2;
+
+            l.Add(a);
+        }
+
+        classValue.attributes = l;
+        return classValue;
+
+    }
     public void ReturnToescape(bool is_game_won)
     {
         Cursor.visible = false;
         if (is_game_won) {
+            //gestire eventuali attribute aggiuntivi collegati a metodi erronemanete
+            foreach (var a in attributesConnections)
+            {
+                if (!coppie.ContainsKey(a.attribute_name) && a.method_names.Count!=0)
+                {
+                    string attributo = a.attribute_name;
+                    bool attributeVisibility = a.is_public;
+
+                    List<string> l = a.method_names;
+                    List<Method> lm = new List<Method>();
+
+                    foreach(var m in l)
+                    {
+                        Method met = new Method(m, Method.MethodType.getter);
+                        lm.Add(met);
+                    }
+
+                    coppie.Add(attributo,(attributeVisibility,lm));
+                    
+                }
+            }
+
+                //Gestire l'eventuale valore private/public degli attributi se utilizzato in seguito
+                foreach (var a in attributesConnections)
+            {
+                if (coppie.ContainsKey(a.attribute_name))
+                {
+                    bool attributeVisibility = a.is_public;
+                    List<Method> l = coppie[a.attribute_name].Item2;
+                    coppie[a.attribute_name] = (attributeVisibility, l);
+                }
+            }
+
             //Creare la classe e aggiungerla all'inventario
-            Inventario.istanza.classi.Add(className);
+            Inventario.istanza.classi.Add(FromDictionaryToClassValue());
             //Eliminare dall'inventario metodi e attributi usati nelle classe
             foreach(var coppia in coppie)
             {
@@ -201,9 +254,9 @@ public class GameManager_ClassGame : MonoBehaviour
                 Inventario.istanza.attributes.Remove(coppia.Key);
                 Inventario.istanza.methodsAttributesUsed.Add(coppia.Key);
             }
-            //Gestire l'eventuale valore private/public degli attributi se utilizzato in seguito
+           
 
-            SceneManager.LoadScene("Playground"); 
+                SceneManager.LoadScene("Playground"); 
         }
         else { SceneManager.LoadScene("Playground"); }
         

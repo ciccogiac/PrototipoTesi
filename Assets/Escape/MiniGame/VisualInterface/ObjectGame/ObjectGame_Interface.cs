@@ -37,8 +37,8 @@ public class ObjectGame_Interface : MonoBehaviour
             foreach (var classe in Inventario.istanza.classi)
             {
                 GameObject oggettoIstanziato = Instantiate(classPrefab, transform.position, Quaternion.identity);
-                oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = classe;
-                oggettoIstanziato.GetComponent<Button>().onClick.AddListener(() => ActiveNameObjectBox(classe, oggettoIstanziato));
+                oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = classe.className;
+                oggettoIstanziato.GetComponent<Button>().onClick.AddListener(() => ActiveNameObjectBox(classe.className, oggettoIstanziato));
                 oggettoIstanziato.transform.SetParent(Box_Classes.transform);
             }
             
@@ -63,7 +63,7 @@ public class ObjectGame_Interface : MonoBehaviour
             DatiPersistenti.istanza.lastCharacterEscapePosition = player.transform.position;
             DatiPersistenti.istanza.className = className;
             DatiPersistenti.istanza.objectName = inputField.text;
-            DatiPersistenti.istanza.coppie = FindObjectOfType<ClassDictionary>().FindClass(className);
+            //DatiPersistenti.istanza.coppie = FindObjectOfType<ClassDictionary>().FindClass(className);
             SceneManager.LoadScene("ObjectGame");
         }
     }

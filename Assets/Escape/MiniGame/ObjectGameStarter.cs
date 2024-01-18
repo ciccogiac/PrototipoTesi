@@ -36,9 +36,17 @@ public class ObjectGameStarter : Interactable
 
     private List<(Method, List<string>)> GetObjectMethods()
     {
+        ClassValue classValue = Inventario.istanza.classi.Find(x => x.className == DatiPersistenti.istanza.className );
 
-
-        Dictionary<string, (bool, List<Method>)> dizionarioOriginale = DatiPersistenti.istanza.coppie;
+        //Dictionary<string, (bool, List<Method>)> dizionarioOriginale = DatiPersistenti.istanza.coppie;
+        Dictionary<string, (bool, List<Method>)> dizionarioOriginale = new Dictionary<string, (bool, List<Method>)>();
+        if (classValue!= null)
+        {
+            foreach (var attribute in classValue.attributes)
+            {
+                dizionarioOriginale.Add(attribute.attribute, (attribute.visibility, attribute.methods));
+            }
+        }
 
        // List<(Method, List<string>)> listaDiTuple = dizionarioOriginale.Select(kvp => (kvp.Value.Item2.FirstOrDefault(), dizionarioOriginale.Where(item => item.Value.Item2.Any(m => m.methodName == kvp.Value.Item2.First().methodName)).Select(item => item.Key).ToList())).ToList();
 

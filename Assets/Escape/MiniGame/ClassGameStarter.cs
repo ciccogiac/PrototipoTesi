@@ -22,32 +22,10 @@ public class ClassGameStarter : Interactable
 
     private void Start()
     {
-        //classDictionary = FindObjectOfType<ClassDictionary>();
-        //coppie = classDictionary.FindClass(className);
 
         coppie = FindObjectOfType<ClassDictionary>().FindClass(className);
 
-        /*
-        if (coppie != null)
-            StampaDizionario(coppie);
-        else
-            Debug.Log("Classe non trovata nel dizionario");
-        */
     }
-
-    private void StampaDizionario(Dictionary<string, (bool ,List<Method>)> dizionario)
-    {
-        foreach (var coppia in dizionario)
-        {
-            string s="";
-            coppia.Value.Item2.ForEach(x => s= s + " " + x.methodName);
-            string v = "";
-            v = coppia.Value.Item1 ? "public" : "private";
-            Debug.Log("Attributo : " + coppia.Key + " Visibilità : "+ v +" Metodi : " + s);
-        }
-    }
-    
-
 
     
     override public void Interact()

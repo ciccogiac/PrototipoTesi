@@ -25,7 +25,8 @@ public class ClassGame_Interface : MonoBehaviour
         panel_noClassComplete.SetActive(false);
         classname_text.text = DatiPersistenti.istanza.className;
 
-        if (Inventario.istanza.classi.Contains(classname_text.text))
+        //if (Inventario.istanza.classi.Contains(classname_text.text))
+        if (Inventario.istanza.classi.Find(x => x.className==classname_text.text) != null)
         {
             button_creaClasse.interactable = false;
             button_eliminaClasse.interactable = true;
@@ -67,18 +68,33 @@ public class ClassGame_Interface : MonoBehaviour
 
     public void DeleteClass()
     {
-        Inventario.istanza.classi.Remove(classname_text.text);
+        //Inventario.istanza.classi.Remove(classname_text.text);
+        ClassValue c = Inventario.istanza.classi.Find(x => x.className == classname_text.text);
+        if(c!= null) { 
 
-        foreach (var coppia in DatiPersistenti.istanza.coppie)
+        foreach (var coppia in c.attributes)
         {
 
-            Inventario.istanza.attributes.Add(coppia.Key); 
+            Inventario.istanza.attributes.Add(coppia.attribute); 
 
-            foreach (var method in coppia.Value.Item2)
+            foreach (var method in coppia.methods)
             {
                 if (!Inventario.istanza.methods.Contains(method.methodName)) { Inventario.istanza.methods.Add(method.methodName); }
             }
         }
+
+            Inventario.istanza.classi.Remove(c);
+        }
+
+        OggettoEscape[] oggettiTrovati = Object.FindObjectsOfType<OggettoEscape>();
+
+        // Stampa i risultati
+        foreach (OggettoEscape oggetto in oggettiTrovati)
+        {
+            if(oggetto.className == classname_text.text)
+                Destroy(oggetto.gameObject);
+        }
+
 
         StartCoroutine(ShowDeleteClass(secondsToShowError));
     }

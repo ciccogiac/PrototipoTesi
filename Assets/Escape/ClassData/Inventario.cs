@@ -10,7 +10,8 @@ public class Inventario : MonoBehaviour
     public List<string> teoria;
     public List<string> methods;
     public List<string> attributes;
-    public List<string> classi;
+    //public List<string> classi;
+    public List<ClassValue> classi;
     public List<OggettoEscape> oggetti;
 
     public List<string> methodsAttributesUsed;
@@ -55,8 +56,11 @@ public class Inventario : MonoBehaviour
             case Clue.ClueType.Metodo:
                 return methods.Contains(clue.clueName);
 
+                
             case Clue.ClueType.Classe:
-                return classi.Contains(clue.clueName);
+                ClassValue c = classi.Find(x => x.className == clue.clueName);
+                return c!=null;
+                
 
                 /*
             case Clue.ClueType.Oggetto:
@@ -86,10 +90,12 @@ public class Inventario : MonoBehaviour
                 inventoryLoad.AddItem(clue.clueName, clue.clueType);
                 break;
 
+                
             case Clue.ClueType.Classe:
-                classi.Add(clue.clueName);
+                classi.Add(clue.gameObject.GetComponent<ClasseEscape>().classValue);
                 inventoryLoad.AddItem(clue.clueName, clue.clueType);
                 break;
+                
 
                 /*
             case Clue.ClueType.Oggetto:

@@ -31,13 +31,41 @@ public class Door : MethodListener
             bool found = false;
             foreach (var m in methodsListenerToRead)
             {
+
+                
                 if (m.objectAttributeValue != null && value.className == m.className)
                 {
-                    (string, string) tupla = m.objectAttributeValue.Find(x => x.Item1 == value.attribute && x.Item2 == value.value );
-                    if (tupla != (null, null))
+                    ClassValue classValue = Inventario.istanza.classi.Find(x => x.className == m.className);
+
+                    if (classValue != null)
                     {
-                        found = true;
-                        continue;
+
+                        if (classValue.attributes.Find(x => x.attribute == value.attribute).visibility)
+                        {
+
+                            (string, string) tupla = m.objectAttributeValue.Find(x => x.Item1 == value.attribute && x.Item2 == value.value);
+                            if (tupla != (null, null))
+                            {
+                                found = true;
+                                continue;
+                            }
+                        }
+
+                        else
+                        {
+                            Debug.Log("Attributo : " + value.attribute + "Non accessibile perchè private");
+                            continue;
+                        }
+                    }
+
+                    else //è un attrbiuteNotPrinted
+                    {
+                        (string, string) tupla = m.objectAttributeValue.Find(x => x.Item1 == value.attribute && x.Item2 == value.value);
+                        if (tupla != (null, null))
+                        {
+                            found = true;
+                            continue;
+                        }
                     }
                 }
             }
