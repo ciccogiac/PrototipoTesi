@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class OggettoEscape : Interactable
 {
+    public bool isMadeByPrinter = true;
+
     public string objectName ;
     public string className;
     public List<(string, string)> attributes = new List<(string, string)>();   // primo valore attributeName secondo attributeValue
@@ -36,12 +38,33 @@ public class OggettoEscape : Interactable
     void Start()
     {
         inventoryLoad = FindObjectOfType<InventoryLoad>();
-        SetObjectValue();
         if (mesh == null)
         {
             mesh = GetComponent<MeshFilter>().mesh;
             material = GetComponent<MeshRenderer>().material;
         }
+
+        if (!isMadeByPrinter)
+        {
+            ReadOggettoEscapeNotPrinted();
+        }
+
+    }
+
+    public void ReadOggettoEscapeNotPrinted()
+    {
+        OggettoEscapeNotPrintedValue oggettoNotPrinted = GetComponent<OggettoEscapeNotPrintedValue>();
+
+        List<(string, string)> attributeTemporary = new List<(string, string)>();
+        foreach (var x in oggettoNotPrinted.attributes){ attributeTemporary.Add((x.attributeName, x.attributeValue));}
+        attributes = attributeTemporary;
+
+        List<(Method, List<string>)> methodsTemporary = new List<(Method, List<string>)>();
+        foreach (var x in oggettoNotPrinted.methods) { methodsTemporary.Add((x.method, x.attributes)); }
+        methodsTemporary.Add((new Method("PickUpObject", Method.MethodType.pickUp), new List<string> { }));
+        methods = methodsTemporary;
+
+       
     }
 
     private OggettoEscape CopyObject()
@@ -64,26 +87,6 @@ public class OggettoEscape : Interactable
         }
     }
 
-    public void SetObjectValue()
-    {
-        /*
-        objectName= "Chitarra";
-        attributes = new List<(string, string)> { ("Legno", "Faggio"), ("Numero corde", "12"), ("isElectric", "false") };
-        methods = new List<(string, MethodType, List<string>)> {
-            ("CambiaCorde", MethodType.setter, new List<string>{ "Numero corde" }),
-            ("GetTipoLegno", MethodType.getter,new List<string>{ "Legno" }),
-            ("IsEletctricGuitar", MethodType.getter,new List<string>{ "isElectric" } ),
-            ("PickUpObject", MethodType.pickUp, new List<string>{ }), ("DestroyObject", MethodType.destroy,new List<string>{ }) };
-        */
-        /*
-        objectName = "Chiave";
-        attributes = new List<(string, string)> {("DoorName", "ingresso") , ("Lunghezza", "3") };
-        methods = new List<(string, Method.MethodType, List<string>)> {
-            ("ApriPorta", Method.MethodType.interactor, new List<string>{  }),
-            ("PickUpObject", Method.MethodType.pickUp, new List<string>{ }), ("DestroyObject", Method.MethodType.destroy,new List<string>{ }) };
-        */
-    }
-
     public void CallMethod(string m)
     {
         (Method, List<string>) method = methods.Find(x => x.Item1.methodName == m);
@@ -92,10 +95,13 @@ public class OggettoEscape : Interactable
         switch (methodType)
         {
             case Method.MethodType.getter:
-                foreach(var attributo in attributi)
+                List<(string, string)> attributesWithValue = new List<(string, string)>();
+                foreach (var attributo in attributi)
                 {
-                    Debug.Log("Attribute: " + attributo + " Value : " +  attributes.Find(x => x.Item1 == attributo).Item2);
+                    (string, string) tupla = (attributo, attributes.Find(x => x.Item1 == attributo).Item2);
+                    attributesWithValue.Add(tupla);
                 }
+                methodListener.Getter(attributesWithValue);
                 ObjectCallCanvas.CloseInterface();
                 break;
 
@@ -111,7 +117,15 @@ public class OggettoEscape : Interactable
                 break;
 
             case Method.MethodType.interactor:
-                methodListener.Method(attributes);
+
+                List<(string, string)> attributesWithValues = new List<(string, string)>();
+                foreach (var attributo in attributi)
+                {
+                    (string,string) tupla= (attributo,attributes.Find(x => x.Item1 == attributo).Item2);
+                    attributesWithValues.Add(tupla);
+                }
+
+                methodListener.Method(attributesWithValues);
                 ObjectCallCanvas.CloseInterface();
                 break;
 
@@ -119,11 +133,13 @@ public class OggettoEscape : Interactable
                 //aggiungere all'inventario
                 Inventario.istanza.PickUpObject(CopyObject());
                 ObjectCallCanvas.CloseInterface();
+                methodListener.RemoveObject();
                 Destroy(gameObject);
                 break;
 
             case Method.MethodType.destroy:
                 ObjectCallCanvas.CloseInterface();
+                methodListener.RemoveObject();
                 Destroy(gameObject);
                 break;
         }

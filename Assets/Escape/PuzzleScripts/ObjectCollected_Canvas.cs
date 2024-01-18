@@ -74,13 +74,14 @@ public class ObjectCollected_Canvas : MonoBehaviour
             //oggettoIstanziato.gameObject.GetComponentInChildren<TextMeshPro>().gameObject.SetActive(false);
             oggettoIstanziato.gameObject.AddComponent<MeshFilter>().mesh = oggettoIstanziato.mesh;
             oggettoIstanziato.gameObject.AddComponent<MeshRenderer>().material = oggettoIstanziato.material;
-            float fattoreScala = 0.7f;
+            float fattoreScala = 0.3f;
             oggettoIstanziato.gameObject.transform.localScale *= fattoreScala;
             oggettoIstanziato.gameObject.SetActive(true);
             
             //oggettoIstanziato.GetComponent<OggettoEscape>().SetObjectValue();
             objectInteraction.oggetto = oggettoIstanziato;
             objectInteraction.oggetto.methodListener = objectInteraction.methodListener;
+            objectInteraction.oggetto.methodListener.className = objectInteraction.oggetto.className;
 
             Inventario.istanza.oggetti.Remove(oggettoIstanziato);
             inventoryLoad.RemoveObject(objectName);

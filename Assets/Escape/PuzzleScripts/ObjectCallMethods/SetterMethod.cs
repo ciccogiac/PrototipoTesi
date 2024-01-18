@@ -8,17 +8,7 @@ public class SetterMethod : MonoBehaviour
     [SerializeField] GameObject prefab_AttributeSetter;
     [SerializeField] GameObject box_AttribbuteSetter;
     [SerializeField] ObjectCallMethods objectCallMethods;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 
     public void CreateAttributeSetter(string name, string value)
     {

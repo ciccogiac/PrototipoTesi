@@ -17,7 +17,6 @@ public class ObjectInteraction : Interactable
         {
             if (oggetto == null)
             {
-                Debug.Log("Interact with objectInteractor");
                 objectCollectedCanvas.GetComponent<ObjectCollected_Canvas>().objectInteraction = this;
                 objectCollectedCanvas.SetActive(true);
                 text_active.SetActive(false);
@@ -25,7 +24,6 @@ public class ObjectInteraction : Interactable
 
             else
             {
-                Debug.Log("Interagisco con oggetto");
                 objectCallMethodsCanvas.GetComponent<ObjectCallMethods>().objectInteraction = this;
                 objectCallMethodsCanvas.SetActive(true);
                 text_active.SetActive(false);

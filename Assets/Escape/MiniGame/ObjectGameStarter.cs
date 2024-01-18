@@ -14,14 +14,6 @@ public class ObjectGameStarter : Interactable
 
     private void Start()
     {
-        
-        DatiPersistenti.istanza.isObjectToPrint = true;
-        DatiPersistenti.istanza.objectName= "studentePOLI";
-        DatiPersistenti.istanza.className = "Studente";
-        DatiPersistenti.istanza.coppie = FindObjectOfType<ClassDictionary>().FindClass(DatiPersistenti.istanza.className);
-        List<(string, string)> l = new List<(string, string)> { ("Età", "25"), ("Nome", "Ernesto"), ("StudenteLaureato", "False") };
-        DatiPersistenti.istanza.attributesValues = l;
-        
 
         if (DatiPersistenti.istanza.isObjectToPrint)
         {

@@ -82,10 +82,6 @@ public class ObjectCallMethods : MonoBehaviour
         objectInteraction.oggetto.ObjectCallCanvas = this;
         objectInteraction.oggetto.CallMethod(methodCaller);
 
-        //CallerCanvas.SetActive(false);
-        //SetterCanvas.SetActive(true);
-
-        //CloseInterface();
     }
 
     public void CloseInterface()
