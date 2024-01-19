@@ -7,6 +7,7 @@ public class Door : MethodListener
     [SerializeField] Animator door;
 
     [SerializeField] List<MethodListener> methodsListenerToRead;
+    [SerializeField] string classValueListener;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,10 @@ public class Door : MethodListener
         }
         return false;
         */
+
+        if (className != classValueListener)
+            return false;
+
         foreach (var value in attributeValueListener)   
         {
             bool found = false;
