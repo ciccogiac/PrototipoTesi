@@ -79,6 +79,7 @@ public class ObjectGame_Interface : MonoBehaviour
         }
 
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         gameObject.SetActive(false);
     }
 }

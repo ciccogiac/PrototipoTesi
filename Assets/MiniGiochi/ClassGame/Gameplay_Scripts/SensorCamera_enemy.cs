@@ -65,7 +65,11 @@ public class SensorCamera_enemy : MonoBehaviour
 
         if (hit.collider != null && !hit.collider.GetComponentInParent<Drag_Rigidbody>().isConnected )
         {
-            gameManager.GameOver();
+            if (hit.collider.GetComponent<Drag_Rigidbody>())
+                gameManager.GameOver();
+
+            if (hit.collider.GetComponent<PolygonCollider2D>())
+                gameManager.GameOver();
         }
     }
 

@@ -101,6 +101,7 @@ public class ObjectCollected_Canvas : MonoBehaviour
         }
 
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         input.enabled = true;
         objectInteraction.isActive = true;
 

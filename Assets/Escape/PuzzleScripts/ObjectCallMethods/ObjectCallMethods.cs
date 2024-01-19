@@ -101,6 +101,7 @@ public class ObjectCallMethods : MonoBehaviour
         }
 
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         input.enabled = true;
         objectInteraction.isActive = true;
 

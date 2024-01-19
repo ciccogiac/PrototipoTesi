@@ -14,6 +14,15 @@ public class GameManager_Escape : MonoBehaviour
         {
             if (Inventario.istanza.IsCluePickedUp(clue) || Inventario.istanza.IsClueUsed(clue) ) { Destroy(clue.gameObject); }
         }
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if (focus)
+            Cursor.lockState = CursorLockMode.Locked;
+    }
+
 
 }
