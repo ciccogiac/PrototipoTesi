@@ -27,14 +27,15 @@ public class ObjectGameStarter : Interactable
         string objectName = DatiPersistenti.istanza.objectName;
         GameObject nuovoOggetto = Instantiate(oggettoDaIstanzare, printingPosition.position, transform.rotation);
         OggettoEscape oggetto = nuovoOggetto.GetComponent<OggettoEscape>();
-        oggetto.objectName = DatiPersistenti.istanza.objectName; 
-        oggetto.className = DatiPersistenti.istanza.className; 
-        oggetto.attributes = DatiPersistenti.istanza.attributesValues;
-        oggetto.methods = GetObjectMethods();
+        oggetto.oggettoEscapeValue.isMadeByPrinter = true;
+        oggetto.oggettoEscapeValue.objectName = DatiPersistenti.istanza.objectName; 
+        oggetto.oggettoEscapeValue.className = DatiPersistenti.istanza.className; 
+        oggetto.oggettoEscapeValue.attributes = DatiPersistenti.istanza.attributesValues;
+        oggetto.oggettoEscapeValue.methods = GetObjectMethods();
 
     }
 
-    private List<(Method, List<string>)> GetObjectMethods()
+    private List<Methos> GetObjectMethods()
     {
         ClassValue classValue = Inventario.istanza.classi.Find(x => x.className == DatiPersistenti.istanza.className );
 
@@ -58,26 +59,29 @@ public class ObjectGameStarter : Interactable
 
         // Elimina duplicati di tuple mantenendo solo una tupla per ogni metodo
         HashSet<string> metodiGiaVisti = new HashSet<string>();
-        List<(Method, List<string>)> listaDiTupleSenzaDuplicati = new List<(Method, List<string>)>();
+        List<Methos> listaDiTupleSenzaDuplicati = new List<Methos>();
 
         foreach (var tupla in listaDiTuple)
         {
             if (metodiGiaVisti.Add(tupla.Item1.methodName))
             {
-                listaDiTupleSenzaDuplicati.Add(tupla);
+                Methos m = new Methos(tupla.Item1, tupla.Item2);
+                listaDiTupleSenzaDuplicati.Add(m);
             }
             else
             {
-                listaDiTupleSenzaDuplicati.Find(x => x.Item1.methodName == tupla.Item1.methodName).Item2.Add(tupla.Item2[0]);
+                listaDiTupleSenzaDuplicati.Find(x => x.method.methodName == tupla.Item1.methodName).attributes.Add(tupla.Item2[0]);
             }
         }
 
         foreach (var tupla in listaDiTupleSenzaDuplicati)
         {
-            Debug.Log("MethodName: " + tupla.Item1.methodName +" MethodType: " + tupla.Item1.methodType + " Attributes : " + string.Join(", ", tupla.Item2));
+            Debug.Log("MethodName: " + tupla.method.methodName +" MethodType: " + tupla.method.methodType + " Attributes : " + string.Join(", ", tupla.attributes));
         }
-        listaDiTupleSenzaDuplicati.Add((new Method("PickUpObject", Method.MethodType.pickUp), new List<string> { }));
-        listaDiTupleSenzaDuplicati.Add((new Method("DestroyObject", Method.MethodType.destroy), new List<string> { }));
+        Methos m_pickup = new Methos(new Method("PickUpObject", Method.MethodType.pickUp), new List<string> { });
+        listaDiTupleSenzaDuplicati.Add(m_pickup);
+        Methos m_destroy = new Methos(new Method("DestroyObject", Method.MethodType.destroy), new List<string> { });
+        listaDiTupleSenzaDuplicati.Add(m_destroy);
 
         return listaDiTupleSenzaDuplicati;
     }

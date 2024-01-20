@@ -44,21 +44,21 @@ public class ObjectCallMethods : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
 
-        objectName_text.text = objectInteraction.oggetto.objectName;
+        objectName_text.text = objectInteraction.oggetto.oggettoEscapeValue.objectName;
 
-        foreach (var attributo in objectInteraction.oggetto.attributes)
+        foreach (var attributo in objectInteraction.oggetto.oggettoEscapeValue.attributes)
         {
             GameObject oggettoIstanziato = Instantiate(attributePrefab, transform.position, Quaternion.identity);
             //setta i testi dell'attributo
-            oggettoIstanziato.GetComponent<AttributeInitializer>().SetAttributeValue(attributo.Item1,attributo.Item2);
+            oggettoIstanziato.GetComponent<AttributeInitializer>().SetAttributeValue(attributo.attributeName,attributo.attributeValue);
             oggettoIstanziato.transform.SetParent(attributeBox.transform);
         }
 
-        foreach (var metodo in objectInteraction.oggetto.methods)
+        foreach (var metodo in objectInteraction.oggetto.oggettoEscapeValue.methods)
         {
             GameObject oggettoIstanziato = Instantiate(methodPrefab, transform.position, Quaternion.identity);
             //setta i valori del metodo
-            oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = metodo.Item1.methodName;
+            oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = metodo.method.methodName;
             oggettoIstanziato.GetComponent<Button>().onClick.AddListener(() => SelectMethod(oggettoIstanziato));
             oggettoIstanziato.transform.SetParent(methodBox.transform);
         }

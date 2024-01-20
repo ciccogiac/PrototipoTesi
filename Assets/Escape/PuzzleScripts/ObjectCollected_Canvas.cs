@@ -67,24 +67,27 @@ public class ObjectCollected_Canvas : MonoBehaviour
     {
         if (objectInteraction.oggetto == null)
         {
-            OggettoEscape oggettoIstanziato = Inventario.istanza.oggetti.Find(x => x.objectName == objectName);
-            //GameObject oggettoIstanziato = Instantiate(objectPrefab, objectInteraction.objectPoint.position, Quaternion.identity);
+            OggettoEscapeValue oggettoEscapeValue = Inventario.istanza.oggetti.Find(x => x.objectName == objectName);
+            GameObject oggettoIstanziato = Instantiate(objectPrefab, objectInteraction.objectPoint.position, Quaternion.identity);
+            oggettoIstanziato.GetComponent<OggettoEscape>().SetOggettoEscapeValue( oggettoEscapeValue);
+
             oggettoIstanziato.transform.position = objectInteraction.objectPoint.position;
             oggettoIstanziato.transform.SetParent(objectInteraction.gameObject.transform);
-            //oggettoIstanziato.gameObject.GetComponentInChildren<TextMeshPro>().gameObject.SetActive(false);
-            oggettoIstanziato.gameObject.AddComponent<MeshFilter>().mesh = oggettoIstanziato.mesh;
-            oggettoIstanziato.gameObject.AddComponent<MeshRenderer>().material = oggettoIstanziato.material;
-            float fattoreScala = 0.3f;
+
+            oggettoIstanziato.gameObject.GetComponent<MeshFilter>().mesh = oggettoIstanziato.GetComponent<OggettoEscape>().oggettoEscapeValue.mesh;
+            oggettoIstanziato.gameObject.GetComponent<MeshRenderer>().materials = oggettoIstanziato.GetComponent<OggettoEscape>().oggettoEscapeValue.material;
+            float fattoreScala = 0.5f;
             oggettoIstanziato.gameObject.transform.localScale *= fattoreScala;
             oggettoIstanziato.gameObject.SetActive(true);
             
             //oggettoIstanziato.GetComponent<OggettoEscape>().SetObjectValue();
-            objectInteraction.oggetto = oggettoIstanziato;
+            objectInteraction.oggetto = oggettoIstanziato.GetComponent<OggettoEscape>();
             objectInteraction.oggetto.methodListener = objectInteraction.methodListener;
-            objectInteraction.oggetto.methodListener.className = objectInteraction.oggetto.className;
+            objectInteraction.oggetto.methodListener.SetClass( objectInteraction.oggetto.oggettoEscapeValue.className);
 
-            Inventario.istanza.oggetti.Remove(oggettoIstanziato);
+            Inventario.istanza.oggetti.Remove(oggettoIstanziato.GetComponent<OggettoEscape>().oggettoEscapeValue);
             inventoryLoad.RemoveObject(objectName);
+            Inventario.istanza.oggettiUsed.Add(oggettoIstanziato.GetComponent<OggettoEscape>().oggettoEscapeValue);
 
         }
         CloseInterface();

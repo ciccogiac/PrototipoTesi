@@ -9,12 +9,36 @@ public class Door : MethodListener
     [SerializeField] List<MethodListener> methodsListenerToRead;
     [SerializeField] string classValueListener;
 
+    [SerializeField] Monitor doorMonitor;
+
     // Start is called before the first frame update
     void Start()
     {
         door = GetComponent<Animator>();
     }
 
+    public override void SetClass(string name)
+    {
+        base.SetClass(name);
+        doorMonitor.SetClass(name);
+
+        if (className != classValueListener)
+        {
+            doorMonitor.SetError("Classe Errata");
+        }
+    }
+
+    public override void RemoveObject()
+    {
+        base.RemoveObject();
+        doorMonitor.RemoveObject();
+    }
+
+    public override void Getter(List<(string, string)> objectValue)
+    {
+        base.Getter(objectValue);
+        //doorMonitor.Getter(objectValue);
+    }
 
     public override bool Method(List<(string, string)> objectValue)
     {
@@ -29,11 +53,16 @@ public class Door : MethodListener
         */
 
         if (className != classValueListener)
+        {
+            doorMonitor.SetError("Classe Errata");
             return false;
+        }
+            
 
         foreach (var value in attributeValueListener)   
         {
             bool found = false;
+            bool correctValue = true;
             foreach (var m in methodsListenerToRead)
             {
 
@@ -54,11 +83,25 @@ public class Door : MethodListener
                                 found = true;
                                 continue;
                             }
+
+                            else
+                            {
+                                tupla = m.objectAttributeValue.Find(x => x.Item1 == value.attribute && x.Item2 != value.value);
+                                if (tupla != (null, null))
+                                {
+                                    doorMonitor.SetError("Attributo : " + value.attribute + " ha un valore errato");
+                                    found = false;
+                                    correctValue = false;
+                                    continue;
+                                }
+                            }
                         }
 
                         else
                         {
                             Debug.Log("Attributo : " + value.attribute + "Non accessibile perchè private");
+                            doorMonitor.SetError("Attributo : " + value.attribute + "Non accessibile perchè private");
+                            correctValue = false;
                             continue;
                         }
                     }
@@ -71,17 +114,32 @@ public class Door : MethodListener
                             found = true;
                             continue;
                         }
+
+                        else
+                        {
+                            tupla = m.objectAttributeValue.Find(x => x.Item1 == value.attribute && x.Item2 != value.value);
+                            if (tupla != (null, null))
+                            {
+                                doorMonitor.SetError("Attributo : " + value.attribute + " ha un valore errato");
+                                found = false;
+                                correctValue = false;
+                                continue;
+                            }
+                        }
                     }
                 }
             }
 
             if (!found)
             {
+                if(correctValue) doorMonitor.SetError("Nessuno oggetto della classe  " + value.className + " trovato");
                 return false;
             }
 
            
         }
+
+        doorMonitor.SetError("");
 
         door.SetBool("character_nearby", true);
         return true;

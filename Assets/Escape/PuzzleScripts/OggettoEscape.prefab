@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 5110181783080401423}
   - component: {fileID: 8918534226726747161}
   - component: {fileID: 7771533958477937155}
+  - component: {fileID: 8540938597773586847}
   m_Layer: 0
   m_Name: OggettoEscape
   m_TagString: Interactable
@@ -305,6 +306,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text_active: {fileID: 2922866636125413834}
   isActive: 1
-  objectName: 
-  className: 
   methodListener: {fileID: 0}
+  ObjectCallCanvas: {fileID: 0}
+  oggettoEscapeValue:
+    isMadeByPrinter: 1
+    objectName: 
+    className: 
+    attributes: []
+    methods: []
+    mesh: {fileID: 0}
+    material: {fileID: 0}
+--- !u!114 &8540938597773586847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4662660443964727186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3c629256d454b14c8eadd5777a9c2af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text_active: {fileID: 2922866636125413834}
+  isActive: 1
+  clueType: 4
+  clueName: 

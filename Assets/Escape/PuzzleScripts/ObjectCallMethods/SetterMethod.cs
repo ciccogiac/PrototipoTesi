@@ -23,15 +23,15 @@ public class SetterMethod : MonoBehaviour
         foreach (Transform figlio in box_AttribbuteSetter.gameObject.transform)
         {
 
-            if(objectCallMethods.objectInteraction.oggetto.attributes.Find(x => x.Item1 == figlio.gameObject.GetComponent<AttributeInitializer>().GetAttributeName()) != (null,null))
+            if(objectCallMethods.objectInteraction.oggetto.oggettoEscapeValue.attributes.Find(x => x.attributeName == figlio.gameObject.GetComponent<AttributeInitializer>().GetAttributeName()) != null)
             {
                 string inputString = figlio.gameObject.GetComponentInChildren<TMP_InputField>().text;
                 if (inputString  != "")
                 {
 
-                    objectCallMethods.objectInteraction.oggetto.attributes.RemoveAll(t => t.Item1 == figlio.gameObject.GetComponent<AttributeInitializer>().GetAttributeName());
-                    (string, string) nuovaTupla = (figlio.gameObject.GetComponent<AttributeInitializer>().GetAttributeName(), inputString);
-                    objectCallMethods.objectInteraction.oggetto.attributes.Add(nuovaTupla);
+                    objectCallMethods.objectInteraction.oggetto.oggettoEscapeValue.attributes.RemoveAll(t => t.attributeName == figlio.gameObject.GetComponent<AttributeInitializer>().GetAttributeName());
+                    Attribute nuovaTupla = new Attribute(figlio.gameObject.GetComponent<AttributeInitializer>().GetAttributeName(), inputString);
+                    objectCallMethods.objectInteraction.oggetto.oggettoEscapeValue.attributes.Add(nuovaTupla);
                 }
             }
 

@@ -54,7 +54,7 @@ public class GameManager_ObjectGame : MonoBehaviour
     [SerializeField] private string objectName;
     [SerializeField] TextMeshProUGUI objectName_text;
 
-    private List<(string, string)> attributesValues = new List<(string, string)>();
+    private List<Attribute> attributesValues = new List<Attribute>();
 
     private void ReadLevel()
     {
@@ -100,7 +100,7 @@ public class GameManager_ObjectGame : MonoBehaviour
 
             }
 
-            (string, string) tupla = (attributeName_text.text, attributeTarget_text.text);
+            Attribute tupla = new Attribute (attributeName_text.text, attributeTarget_text.text);
             attributesValues.Add(tupla);
 
         }

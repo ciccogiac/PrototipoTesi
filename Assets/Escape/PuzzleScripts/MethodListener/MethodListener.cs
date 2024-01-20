@@ -49,6 +49,12 @@ public class MethodListener : MonoBehaviour
         
     }
 
+
+    public virtual void SetClass(string name)
+    {
+        className = name;
+    }
+
     public virtual void RemoveObject()
     {
         objectAttributeValue = null;

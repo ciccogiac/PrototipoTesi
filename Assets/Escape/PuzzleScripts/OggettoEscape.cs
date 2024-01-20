@@ -1,80 +1,86 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class OggettoEscape : Interactable
 {
-    public bool isMadeByPrinter = true;
-
-    public string objectName ;
-    public string className;
-    public List<(string, string)> attributes = new List<(string, string)>();   // primo valore attributeName secondo attributeValue
-    public List<(Method,List<string>)> methods = new List<(Method, List<string>)>(); // nome metodo , tipo metodo , lista di attributi a cui fa riferimento
-
+   
     public MethodListener methodListener;
 
-    public Mesh mesh;
-    public Material material;
+   
 
 
     private InventoryLoad inventoryLoad;
 
     public ObjectCallMethods ObjectCallCanvas;
 
+    public OggettoEscapeValue oggettoEscapeValue;
 
-    public void InitializeObject(string _objectName, string _className, List<(string, string)> _attributes, List<(Method, List<string>)> _methods  , MethodListener _methodListener, Mesh _mesh, Material _material)
+    /*
+
+    public void InitializeObject(string _objectName, string _className, List<Attribute> _attributes, List<Methos> _methods  , MethodListener _methodListener, Mesh _mesh, Material _material)
     {
-        objectName = _objectName;
-        className = _className;
-        attributes = _attributes;
-        methods = _methods;
+        oggettoEscapeValue.objectName = _objectName;
+        oggettoEscapeValue.className = _className;
+        oggettoEscapeValue.attributes = _attributes;
+        oggettoEscapeValue.methods = _methods;
         methodListener = _methodListener;
-        mesh = _mesh;
-        material = _material;
+        oggettoEscapeValue.mesh = _mesh;
+        oggettoEscapeValue.material = _material;
     }
+    */
 
+    private void OnValidate()
+    {
+        GetComponent<Clue>().clueName = oggettoEscapeValue.objectName;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         inventoryLoad = FindObjectOfType<InventoryLoad>();
-        if (mesh == null)
+        if (oggettoEscapeValue.mesh == null)
         {
-            mesh = GetComponent<MeshFilter>().mesh;
-            material = GetComponent<MeshRenderer>().material;
+            oggettoEscapeValue.mesh = GetComponent<MeshFilter>().mesh;
+            oggettoEscapeValue.material = GetComponent<MeshRenderer>().materials;
         }
 
-        if (!isMadeByPrinter)
+        if (!oggettoEscapeValue.isMadeByPrinter)
         {
-            ReadOggettoEscapeNotPrinted();
+            //SetOggettoEscapeNotPrinted();
         }
+
+
 
     }
 
-    public void ReadOggettoEscapeNotPrinted()
+    public void SetOggettoEscapeValue(OggettoEscapeValue oggetto)
     {
-        OggettoEscapeNotPrintedValue oggettoNotPrinted = GetComponent<OggettoEscapeNotPrintedValue>();
+        oggettoEscapeValue = oggetto;
+        SetOggettoEscapeNotPrinted();
+    }
 
-        List<(string, string)> attributeTemporary = new List<(string, string)>();
-        foreach (var x in oggettoNotPrinted.attributes){ attributeTemporary.Add((x.attributeName, x.attributeValue));}
-        attributes = attributeTemporary;
-
-        List<(Method, List<string>)> methodsTemporary = new List<(Method, List<string>)>();
-        foreach (var x in oggettoNotPrinted.methods) { methodsTemporary.Add((x.method, x.attributes)); }
-        methodsTemporary.Add((new Method("PickUpObject", Method.MethodType.pickUp), new List<string> { }));
-        methods = methodsTemporary;
-
+    public void SetOggettoEscapeNotPrinted()
+    {
+        Methos m = new Methos(new Method("PickUpObject", Method.MethodType.pickUp), new List<string> { });
+        if(oggettoEscapeValue.methods.Find(x => x.method.methodType == Method.MethodType.pickUp) == null)
+            oggettoEscapeValue.methods.Add(m); 
        
     }
 
+    /*
     private OggettoEscape CopyObject()
     {
         GameObject nuovoGameobject= new GameObject();
         OggettoEscape ogettoCopia= nuovoGameobject.AddComponent<OggettoEscape>();
-        ogettoCopia.InitializeObject(objectName,className,attributes,methods,methodListener,mesh,material);
-        nuovoGameobject.name = objectName;
+        ogettoCopia.InitializeObject(oggettoEscapeValue.objectName, oggettoEscapeValue.className, oggettoEscapeValue.attributes, oggettoEscapeValue.methods, methodListener, oggettoEscapeValue.mesh, oggettoEscapeValue.material);
+        nuovoGameobject.name = oggettoEscapeValue.objectName;
         return ogettoCopia;
     }
+    */
+
     override public void Interact()
     {
         if (isActive)
@@ -82,23 +88,25 @@ public class OggettoEscape : Interactable
             gameObject.SetActive(false);
             isActive = false;
 
-            Inventario.istanza.PickUpObject(CopyObject());
+            //Inventario.istanza.PickUpObject(CopyObject());
+            Inventario.istanza.PickUpObject(oggettoEscapeValue);
             Destroy(gameObject);
         }
     }
 
     public void CallMethod(string m)
     {
-        (Method, List<string>) method = methods.Find(x => x.Item1.methodName == m);
-        Method.MethodType methodType = method.Item1.methodType;
-        List<string> attributi = method.Item2;
+        //(Method, List<string>) method = oggettoEscapeValue.methods.Find(x => x.Item1.methodName == m);
+        Methos method = oggettoEscapeValue.methods.Find(x => x.method.methodName == m);
+        Method.MethodType methodType = method.method.methodType;
+        List<string> attributi = method.attributes;
         switch (methodType)
         {
             case Method.MethodType.getter:
                 List<(string, string)> attributesWithValue = new List<(string, string)>();
                 foreach (var attributo in attributi)
                 {
-                    (string, string) tupla = (attributo, attributes.Find(x => x.Item1 == attributo).Item2);
+                    (string, string) tupla = (attributo, oggettoEscapeValue.attributes.Find(x => x.attributeName == attributo).attributeValue);
                     attributesWithValue.Add(tupla);
                 }
                 methodListener.Getter(attributesWithValue);
@@ -111,7 +119,7 @@ public class OggettoEscape : Interactable
 
                 foreach(var attributo in attributi)
                 {
-                    ObjectCallCanvas.setterMethod.CreateAttributeSetter( attributo, attributes.Find(x => x.Item1 == attributo).Item2);
+                    ObjectCallCanvas.setterMethod.CreateAttributeSetter( attributo, oggettoEscapeValue.attributes.Find(x => x.attributeName == attributo).attributeValue);
                 }
 
                 break;
@@ -121,7 +129,7 @@ public class OggettoEscape : Interactable
                 List<(string, string)> attributesWithValues = new List<(string, string)>();
                 foreach (var attributo in attributi)
                 {
-                    (string,string) tupla= (attributo,attributes.Find(x => x.Item1 == attributo).Item2);
+                    (string,string) tupla= (attributo, oggettoEscapeValue.attributes.Find(x => x.attributeName == attributo).attributeValue);
                     attributesWithValues.Add(tupla);
                 }
 
@@ -131,7 +139,9 @@ public class OggettoEscape : Interactable
 
             case Method.MethodType.pickUp:
                 //aggiungere all'inventario
-                Inventario.istanza.PickUpObject(CopyObject());
+                //Inventario.istanza.PickUpObject(CopyObject());
+                Inventario.istanza.PickUpObject(oggettoEscapeValue);
+                Inventario.istanza.oggettiUsed.Remove(oggettoEscapeValue);
                 ObjectCallCanvas.CloseInterface();
                 methodListener.RemoveObject();
                 Destroy(gameObject);
@@ -140,6 +150,7 @@ public class OggettoEscape : Interactable
             case Method.MethodType.destroy:
                 ObjectCallCanvas.CloseInterface();
                 methodListener.RemoveObject();
+                Inventario.istanza.oggettiUsed.Remove(oggettoEscapeValue);
                 Destroy(gameObject);
                 break;
         }

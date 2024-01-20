@@ -16,7 +16,7 @@ public class DatiPersistenti : MonoBehaviour
     [Header("ObjectGame")]
     public bool isObjectToPrint=false;
     public string objectName;
-    public List<(string, string)> attributesValues;
+    public List<Attribute> attributesValues;
 
     //Rappresenta l'istanza unica dei dati che si condividono tra le varie scene. Tra cui i valori dell'inventario , il dizionario di ogni minigioco classe, ecc..
 

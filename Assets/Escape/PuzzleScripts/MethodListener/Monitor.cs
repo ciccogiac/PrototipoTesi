@@ -16,6 +16,8 @@ public class Monitor : MethodListener
     [SerializeField] Color offColor;
     [SerializeField] Color onColor;
 
+    [SerializeField] TextMeshProUGUI text_Error;
+
 
     public override void Getter(List<(string, string)> objectValue)
     {
@@ -40,6 +42,30 @@ public class Monitor : MethodListener
             oggettoIstanziato.transform.rotation = new Quaternion(0f,0f,0f,0f);
         }
 
+    }
+
+    public override void SetClass(string name)
+    {
+        base.SetClass(name);
+
+        classBox.SetActive(true);
+        attributeBox.SetActive(true);
+        text_Error.gameObject.SetActive(false);
+
+        monitorImage.color = onColor;
+        text_ClassName.text = className;
+
+    }
+
+    public void SetError(string error)
+    {
+        foreach (Transform figlio in attributeBox.transform)
+        {
+            Destroy(figlio.gameObject);
+        }
+
+        text_Error.gameObject.SetActive(true);
+        text_Error.text = error;
     }
 
     public override void RemoveObject()

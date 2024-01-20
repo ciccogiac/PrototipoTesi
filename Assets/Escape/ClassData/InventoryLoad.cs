@@ -28,7 +28,6 @@ public class InventoryLoad : MonoBehaviour
 
     public void RemoveObject(string objectName)
     {
-        Debug.Log(objectName);
         foreach (Transform figlio in Box_Oggetti.transform) { if (figlio.GetComponentInChildren<TextMeshProUGUI>().text == objectName) { Destroy(figlio.gameObject); } }
     }
 
