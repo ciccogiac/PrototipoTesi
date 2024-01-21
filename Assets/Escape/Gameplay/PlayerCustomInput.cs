@@ -2,6 +2,7 @@ using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerCustomInput : MonoBehaviour
 {
@@ -22,6 +23,12 @@ public class PlayerCustomInput : MonoBehaviour
             inventoryState = !inventoryState;
             canvasInventory.SetActive(inventoryState);
 
+
+            Cursor.visible = inventoryState;
+            if(inventoryState)
+                Cursor.lockState = CursorLockMode.Confined;
+            else
+                Cursor.lockState = CursorLockMode.Locked;
         }
     }
 

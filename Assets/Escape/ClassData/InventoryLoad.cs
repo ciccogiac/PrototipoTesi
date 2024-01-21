@@ -19,6 +19,12 @@ public class InventoryLoad : MonoBehaviour
     [SerializeField] GameObject oggetto_Prefab;
     [SerializeField] GameObject teoria_Prefab;
 
+    [Header("Panel")]
+    [SerializeField] GameObject InventoryPanel;
+    [SerializeField] GameObject ClassPanel;
+    [SerializeField] TextMeshProUGUI classValueName;
+    [SerializeField] GameObject ClassBox;
+    [SerializeField] GameObject classValue_prefab;
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +67,7 @@ public class InventoryLoad : MonoBehaviour
         {
             GameObject oggettoIstanziato = Instantiate(class_Prefab, transform.position, Quaternion.identity);
             oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x.className;
+            oggettoIstanziato.GetComponent<ClassInventoryButton>().InitializeClassInventoryVisualization(x.className,this);
             oggettoIstanziato.transform.SetParent(Box_Classi.transform);
 
         }
@@ -117,6 +124,36 @@ public class InventoryLoad : MonoBehaviour
         GameObject oggettoIstanziato = Instantiate(Prefab, transform.position, Quaternion.identity);
         oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = clueText;
         oggettoIstanziato.transform.SetParent(Box.transform);
+
+        if (clueType == Clue.ClueType.Classe)
+        {
+            oggettoIstanziato.GetComponent<ClassInventoryButton>().InitializeClassInventoryVisualization(clueText,this);
+        }
+    }
+
+    public void ActivateClassPanel(ClassValue classValue)
+    {
+        InventoryPanel.SetActive(false);
+        ClassPanel.SetActive(true);
+
+        classValueName.text = classValue.className;
+
+        foreach(var attribute in classValue.attributes)
+        {
+            GameObject oggettoIstanziato = Instantiate(classValue_prefab, transform.position, Quaternion.identity);
+            oggettoIstanziato.GetComponentInChildren<ClassValueInventory>().SetClassValue(attribute.attribute,attribute.visibility,attribute.methods);
+            oggettoIstanziato.transform.SetParent(ClassBox.transform);
+        }
+
+    }
+
+    public void DeactivateClassPanel()
+    {
+        InventoryPanel.SetActive(true);
+        ClassPanel.SetActive(false);
+
+        classValueName.text = "";
+        foreach (Transform figlio in ClassBox.transform) { Destroy(figlio.gameObject); }
     }
 
 }
