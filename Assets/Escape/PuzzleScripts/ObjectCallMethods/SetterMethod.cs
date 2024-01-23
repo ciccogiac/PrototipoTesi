@@ -32,6 +32,8 @@ public class SetterMethod : MonoBehaviour
                     objectCallMethods.objectInteraction.oggetto.oggettoEscapeValue.attributes.RemoveAll(t => t.attributeName == figlio.gameObject.GetComponent<AttributeInitializer>().GetAttributeName());
                     Attribute nuovaTupla = new Attribute(figlio.gameObject.GetComponent<AttributeInitializer>().GetAttributeName(), inputString);
                     objectCallMethods.objectInteraction.oggetto.oggettoEscapeValue.attributes.Add(nuovaTupla);
+
+                    objectCallMethods.objectInteraction.methodListener.ChangeTubeColor("Connected");
                 }
             }
 

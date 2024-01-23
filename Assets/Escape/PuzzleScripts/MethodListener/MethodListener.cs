@@ -22,9 +22,22 @@ public class MethodListener : MonoBehaviour
 
     public string className;
 
+    public MethodTube[] methodTubes ;
+
+    public virtual void Start()
+    {
+        methodTubes = GetComponentsInChildren<MethodTube>();
+    }
+
+    public void ChangeTubeColor(string color)
+    {
+        foreach (var tube in methodTubes) { tube.ChangeTubeColor(color); }
+    }
+
     public virtual void Getter(List<(string, string)> objectValue)
     {
         objectAttributeValue = objectValue;
+        ChangeTubeColor("Getter");
     }
 
     public virtual bool  Method(List<(string, string)> objectValue)
@@ -37,11 +50,22 @@ public class MethodListener : MonoBehaviour
                 if (tupla != (null, null))
                 {
                     if (tupla.Item2 != value.value)
+                    {
+                        ChangeTubeColor("Error");
                         return false;
+                    }
                 }
-                else return false;
+                else
+                {
+                    ChangeTubeColor("Error");
+                    return false;
+                }
             }
-            else return false;
+            else
+            {
+                ChangeTubeColor("Error");
+                return false;
+            }
 
         }
 
@@ -53,11 +77,13 @@ public class MethodListener : MonoBehaviour
     public virtual void SetClass(string name)
     {
         className = name;
+        ChangeTubeColor("Connected");
     }
 
     public virtual void RemoveObject()
     {
         objectAttributeValue = null;
         className = "";
+        ChangeTubeColor("Disconnect");
     }
 }

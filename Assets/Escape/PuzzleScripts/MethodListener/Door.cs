@@ -12,8 +12,9 @@ public class Door : MethodListener
     [SerializeField] Monitor doorMonitor;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
+        base.Start();
         door = GetComponent<Animator>();
     }
 
@@ -25,6 +26,7 @@ public class Door : MethodListener
         if (className != classValueListener)
         {
             doorMonitor.SetError("Classe Errata");
+            ChangeTubeColor("Error");
         }
     }
 
@@ -55,6 +57,7 @@ public class Door : MethodListener
         if (className != classValueListener)
         {
             doorMonitor.SetError("Classe Errata");
+            ChangeTubeColor("Error");
             return false;
         }
             
@@ -90,6 +93,7 @@ public class Door : MethodListener
                                 if (tupla != (null, null))
                                 {
                                     doorMonitor.SetError("Attributo : " + value.attribute + " ha un valore errato");
+                                    ChangeTubeColor("Error");
                                     found = false;
                                     correctValue = false;
                                     continue;
@@ -101,6 +105,7 @@ public class Door : MethodListener
                         {
                             Debug.Log("Attributo : " + value.attribute + "Non accessibile perchè private");
                             doorMonitor.SetError("Attributo : " + value.attribute + "Non accessibile perchè private");
+                            ChangeTubeColor("Error");
                             correctValue = false;
                             continue;
                         }
@@ -121,6 +126,7 @@ public class Door : MethodListener
                             if (tupla != (null, null))
                             {
                                 doorMonitor.SetError("Attributo : " + value.attribute + " ha un valore errato");
+                                ChangeTubeColor("Error");
                                 found = false;
                                 correctValue = false;
                                 continue;
@@ -133,6 +139,7 @@ public class Door : MethodListener
             if (!found)
             {
                 if(correctValue) doorMonitor.SetError("Nessuno oggetto della classe  " + value.className + " trovato");
+                ChangeTubeColor("Error");
                 return false;
             }
 
@@ -141,6 +148,7 @@ public class Door : MethodListener
 
         doorMonitor.SetError("");
 
+        ChangeTubeColor("Getter");
         door.SetBool("character_nearby", true);
         return true;
     }

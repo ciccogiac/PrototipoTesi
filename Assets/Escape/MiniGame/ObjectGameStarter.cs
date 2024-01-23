@@ -33,6 +33,8 @@ public class ObjectGameStarter : Interactable
         oggetto.oggettoEscapeValue.attributes = DatiPersistenti.istanza.attributesValues;
         oggetto.oggettoEscapeValue.methods = GetObjectMethods();
 
+
+
     }
 
     private List<Methos> GetObjectMethods()
