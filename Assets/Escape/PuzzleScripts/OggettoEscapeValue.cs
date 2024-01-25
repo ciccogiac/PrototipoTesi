@@ -15,6 +15,8 @@ public class OggettoEscapeValue
 
     public Mesh mesh;
     public Material[] material;
+
+    public int ObjectInteractorId = 0;
 }
 
 [Serializable] 

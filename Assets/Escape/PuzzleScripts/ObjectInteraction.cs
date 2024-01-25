@@ -11,6 +11,8 @@ public class ObjectInteraction : Interactable
     public OggettoEscape oggetto;
     public MethodListener methodListener;
 
+    public int Id=1;
+
     override public void Interact()
     {
         if (isActive)

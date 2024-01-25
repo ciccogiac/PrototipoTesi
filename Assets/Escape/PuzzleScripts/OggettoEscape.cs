@@ -18,19 +18,6 @@ public class OggettoEscape : Interactable
 
     public OggettoEscapeValue oggettoEscapeValue;
 
-    /*
-
-    public void InitializeObject(string _objectName, string _className, List<Attribute> _attributes, List<Methos> _methods  , MethodListener _methodListener, Mesh _mesh, Material _material)
-    {
-        oggettoEscapeValue.objectName = _objectName;
-        oggettoEscapeValue.className = _className;
-        oggettoEscapeValue.attributes = _attributes;
-        oggettoEscapeValue.methods = _methods;
-        methodListener = _methodListener;
-        oggettoEscapeValue.mesh = _mesh;
-        oggettoEscapeValue.material = _material;
-    }
-    */
 
     private void OnValidate()
     {
@@ -70,16 +57,6 @@ public class OggettoEscape : Interactable
        
     }
 
-    /*
-    private OggettoEscape CopyObject()
-    {
-        GameObject nuovoGameobject= new GameObject();
-        OggettoEscape ogettoCopia= nuovoGameobject.AddComponent<OggettoEscape>();
-        ogettoCopia.InitializeObject(oggettoEscapeValue.objectName, oggettoEscapeValue.className, oggettoEscapeValue.attributes, oggettoEscapeValue.methods, methodListener, oggettoEscapeValue.mesh, oggettoEscapeValue.material);
-        nuovoGameobject.name = oggettoEscapeValue.objectName;
-        return ogettoCopia;
-    }
-    */
 
     override public void Interact()
     {
@@ -140,6 +117,7 @@ public class OggettoEscape : Interactable
             case Method.MethodType.pickUp:
                 //aggiungere all'inventario
                 //Inventario.istanza.PickUpObject(CopyObject());
+                oggettoEscapeValue.ObjectInteractorId = 0;
                 Inventario.istanza.PickUpObject(oggettoEscapeValue);
                 Inventario.istanza.oggettiUsed.Remove(oggettoEscapeValue);
                 ObjectCallCanvas.CloseInterface();

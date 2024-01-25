@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 public class ObjectGame_Interface : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class ObjectGame_Interface : MonoBehaviour
     [SerializeField] GameObject Box_Classes;
     [SerializeField] GameObject ClassBoxVertical;
     [SerializeField] GameObject noClassAvailable_text;
+    [SerializeField] GameObject ObjectNameUsed_Panel;
 
     [SerializeField] GameObject player;
     
@@ -21,11 +23,15 @@ public class ObjectGame_Interface : MonoBehaviour
 
     [SerializeField] Color selectedColor;
     [SerializeField] Color normalColor;
-    private GameObject previousButtonClass; 
+    private GameObject previousButtonClass;
+
+    [SerializeField] float secondsToShowError = 4f;
 
     private void OnEnable()
     {
-        if(Inventario.istanza.classi.Count == 0) { noClassAvailable_text.SetActive(true); ClassBoxVertical.SetActive(false); }
+        ObjectNameUsed_Panel.SetActive(false);
+
+        if (Inventario.istanza.classi.Count == 0) { noClassAvailable_text.SetActive(true); ClassBoxVertical.SetActive(false); }
         else
         {
             
@@ -58,8 +64,50 @@ public class ObjectGame_Interface : MonoBehaviour
         button.GetComponent<Image>().color = selectedColor;
     }
 
+    private bool IsNameObjectUnique()
+    {
+        //Controllo su oggetti raccolti nell'inventario
+        foreach(var oggetto in Inventario.istanza.oggetti)
+        {
+            
+            if (string.Equals(inputField.text, oggetto.objectName, StringComparison.OrdinalIgnoreCase)) 
+            {
+                StartCoroutine(ShowCluesError(secondsToShowError)) ;
+                return false;
+            }
+        }
+
+        //Controllo su oggetti inseriti negli objectInteractor
+        foreach (var oggetto in Inventario.istanza.oggettiUsed)
+        {
+
+            if (string.Equals(inputField.text, oggetto.objectName, StringComparison.OrdinalIgnoreCase))
+            {
+                StartCoroutine(ShowCluesError(secondsToShowError));
+                return false;
+            }
+        }
+
+        //Non c'è controllo sugli oggetti preenti nell scena e non ancora raccolti. Quindi posso creare oggetto dello stesso nome , e quando
+        // raccolgo l'oggetto avrà lo stesso nome di quello creato.
+        //SOluzione può essere che se raccolgo oggetto e ne ho già uno con lo stesso nome , aggiungo un numero
+
+        return true;
+    }
+
+    IEnumerator ShowCluesError(float time)
+    {
+        ClassBoxVertical.SetActive(false);
+        ObjectNameUsed_Panel.SetActive(true);
+        yield return new WaitForSeconds(time);
+        ClassBoxVertical.SetActive(true);
+        ObjectNameUsed_Panel.SetActive(false);
+
+    }
+
     public void StartGame(string className) {
-        if (inputField.text!= "") {
+        if (inputField.text!= "" && IsNameObjectUnique()) {
+
             DatiPersistenti.istanza.lastCharacterEscapePosition = player.transform.position;
             DatiPersistenti.istanza.className = className;
             DatiPersistenti.istanza.objectName = inputField.text;
