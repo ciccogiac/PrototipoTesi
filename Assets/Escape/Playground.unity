@@ -302,6 +302,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 24236745}
 --- !u!1 &34505539
 GameObject:
   m_ObjectHideFlags: 0
@@ -2850,6 +2851,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 201265274}
 --- !u!1 &207913996
 GameObject:
   m_ObjectHideFlags: 0
@@ -3236,6 +3238,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 235092161}
 --- !u!136 &235092160
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3360,6 +3363,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 236667302}
 --- !u!136 &236667301
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5629,6 +5633,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 471889590}
 --- !u!136 &471889589
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7180,7 +7185,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attributeValueListener: []
   className: 
-  methodTubes: []
+  methodTubes:
+  - {fileID: 1443433866}
+  - {fileID: 1063586408}
+  - {fileID: 705281584}
+  - {fileID: 2113708912}
   attributeValueMonitor_prefab: {fileID: 6674831499766437521, guid: acc7d097bc8b69f45b7e0777919dcd56, type: 3}
   attributeBox: {fileID: 1341866049}
   text_ClassName: {fileID: 1865423283}
@@ -7245,6 +7254,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 553682054}
 --- !u!136 &553682053
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8657,6 +8667,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 638450014}
 --- !u!1 &646117182
 GameObject:
   m_ObjectHideFlags: 0
@@ -9022,6 +9033,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 656882997}
 --- !u!1 &660674020
 GameObject:
   m_ObjectHideFlags: 0
@@ -9510,7 +9522,7 @@ GameObject:
   - component: {fileID: 703143133}
   - component: {fileID: 703143132}
   m_Layer: 0
-  m_Name: ObjectInteractor (2)
+  m_Name: MeshInteractor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9525,14 +9537,13 @@ Transform:
   m_GameObject: {fileID: 703143130}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.90086365, y: 2.2334828, z: -7.8857727}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalPosition: {x: 0, y: 0.6866665, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.3333333, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 965815616}
   - {fileID: 1012458095}
   - {fileID: 1123159460}
-  m_Father: {fileID: 1999055851}
+  m_Father: {fileID: 965815616}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &703143132
 CapsuleCollider:
@@ -9661,6 +9672,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 705281586}
 --- !u!136 &705281585
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9858,6 +9870,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 707370716}
 --- !u!1 &709087369
 GameObject:
   m_ObjectHideFlags: 0
@@ -10275,6 +10288,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 722219295}
 --- !u!1 &734469581 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 135284, guid: a5cd29a93d7ae2d488fa0376d0d08462, type: 3}
@@ -10294,7 +10308,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attributeValueListener: []
   className: 
-  methodTubes: []
+  methodTubes:
+  - {fileID: 24236747}
+  - {fileID: 638450016}
   attributeValueMonitor_prefab: {fileID: 6674831499766437521, guid: acc7d097bc8b69f45b7e0777919dcd56, type: 3}
   attributeBox: {fileID: 1074410694}
   text_ClassName: {fileID: 1698718779}
@@ -13114,6 +13130,13 @@ MonoBehaviour:
       methods:
       - methodName: IsStudenteLaureato()
         methodType: 2
+  - className: Professore
+    attributes:
+    - attribute: Nome
+      visibility: 0
+      methods:
+      - methodName: GetNome()
+        methodType: 0
 --- !u!4 &918879897
 Transform:
   m_ObjectHideFlags: 0
@@ -13316,6 +13339,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 925474129}
 --- !u!1 &936750072
 GameObject:
   m_ObjectHideFlags: 0
@@ -13718,7 +13742,7 @@ GameObject:
   - component: {fileID: 965815618}
   - component: {fileID: 965815617}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: ObjectInteractor
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13732,12 +13756,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965815615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.06, z: 0}
-  m_LocalScale: {x: 2.5, y: 3, z: 2.5}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.90086365, y: 1.8214829, z: -7.8857727}
+  m_LocalScale: {x: 0.5, y: 0.6, z: 0.5}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 703143131}
+  m_Children:
+  - {fileID: 703143131}
+  m_Father: {fileID: 1999055851}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &965815617
 MonoBehaviour:
@@ -13758,7 +13783,7 @@ MonoBehaviour:
   objectPoint: {fileID: 1123159460}
   oggetto: {fileID: 0}
   methodListener: {fileID: 552152472}
-  Id: 0
+  Id: 6
 --- !u!136 &965815618
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14362,7 +14387,7 @@ GameObject:
   - component: {fileID: 1020961040}
   - component: {fileID: 1020961039}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: ObjectInteractor
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14376,12 +14401,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020961037}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.06, z: 0}
-  m_LocalScale: {x: 2.5, y: 3, z: 2.5}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.4231362, y: 1.8214829, z: -6.2317734}
+  m_LocalScale: {x: 0.5, y: 0.6, z: 0.5}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1364373285}
+  m_Children:
+  - {fileID: 1364373285}
+  m_Father: {fileID: 1999055851}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1020961039
 MonoBehaviour:
@@ -14402,7 +14428,7 @@ MonoBehaviour:
   objectPoint: {fileID: 2054098459}
   oggetto: {fileID: 0}
   methodListener: {fileID: 2013663129}
-  Id: 0
+  Id: 4
 --- !u!136 &1020961040
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14560,7 +14586,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attributeValueListener: []
   className: 
-  methodTubes: []
+  methodTubes:
+  - {fileID: 2087367424}
+  - {fileID: 1418074248}
   attributeValueMonitor_prefab: {fileID: 6674831499766437521, guid: acc7d097bc8b69f45b7e0777919dcd56, type: 3}
   attributeBox: {fileID: 859054571}
   text_ClassName: {fileID: 1619902933}
@@ -14998,6 +15026,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 1063586410}
 --- !u!136 &1063586409
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -16016,6 +16045,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 1108379114}
 --- !u!1 &1123159459
 GameObject:
   m_ObjectHideFlags: 0
@@ -16432,6 +16462,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 1140763662}
 --- !u!1001 &1150064260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16931,6 +16962,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 1169687121}
 --- !u!136 &1169687120
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -17108,7 +17140,8 @@ MonoBehaviour:
     attribute: CodicePorta
     value: 649
   className: 
-  methodTubes: []
+  methodTubes:
+  - {fileID: 201265276}
   door: {fileID: 1173819204}
   methodsListenerToRead:
   - {fileID: 1593998269}
@@ -18617,7 +18650,7 @@ MonoBehaviour:
   text_active: {fileID: 1472492090}
   isActive: 1
   clueType: 4
-  clueName: Codice
+  clueName: IndizioPorta
 --- !u!114 &1268393231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18636,7 +18669,7 @@ MonoBehaviour:
   ObjectCallCanvas: {fileID: 0}
   oggettoEscapeValue:
     isMadeByPrinter: 0
-    objectName: Codice
+    objectName: IndizioPorta
     className: IndizioPorta
     attributes:
     - attributeName: NomePorta
@@ -19549,7 +19582,7 @@ GameObject:
   - component: {fileID: 1364373287}
   - component: {fileID: 1364373286}
   m_Layer: 0
-  m_Name: ObjectInteractor
+  m_Name: MeshInteractor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19564,14 +19597,13 @@ Transform:
   m_GameObject: {fileID: 1364373284}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.4231362, y: 2.2334828, z: -6.2317724}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalPosition: {x: 0, y: 0.6866665, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.3333333, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1020961038}
   - {fileID: 1832785723}
   - {fileID: 2054098459}
-  m_Father: {fileID: 1999055851}
+  m_Father: {fileID: 1020961038}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1364373286
 CapsuleCollider:
@@ -20156,6 +20188,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 1418074250}
 --- !u!136 &1418074249
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -20461,6 +20494,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 1443433868}
 --- !u!136 &1443433867
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -21924,7 +21958,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attributeValueListener: []
   className: 
-  methodTubes: []
+  methodTubes:
+  - {fileID: 1140763664}
+  - {fileID: 1108379116}
+  - {fileID: 656882999}
+  - {fileID: 1972966206}
   attributeValueMonitor_prefab: {fileID: 6674831499766437521, guid: acc7d097bc8b69f45b7e0777919dcd56, type: 3}
   attributeBox: {fileID: 398950452}
   text_ClassName: {fileID: 1212605890}
@@ -22494,7 +22532,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attributeValueListener: []
   className: 
-  methodTubes: []
+  methodTubes:
+  - {fileID: 2129478890}
+  - {fileID: 925474131}
+  - {fileID: 707370718}
+  - {fileID: 722219297}
   attributeValueMonitor_prefab: {fileID: 6674831499766437521, guid: acc7d097bc8b69f45b7e0777919dcd56, type: 3}
   attributeBox: {fileID: 444954534}
   text_ClassName: {fileID: 2013077278}
@@ -22594,7 +22636,7 @@ GameObject:
   - component: {fileID: 1604670681}
   - component: {fileID: 1604670680}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: ObjectInteractor
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22608,12 +22650,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604670678}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.06, z: 0}
-  m_LocalScale: {x: 2.5, y: 3, z: 2.5}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.8491364, y: 1.8214829, z: -7.8857727}
+  m_LocalScale: {x: 0.5, y: 0.6, z: 0.5}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1609475570}
+  m_Children:
+  - {fileID: 1609475570}
+  m_Father: {fileID: 1999055851}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1604670680
 MonoBehaviour:
@@ -22634,7 +22677,7 @@ MonoBehaviour:
   objectPoint: {fileID: 1044907452}
   oggetto: {fileID: 0}
   methodListener: {fileID: 1841847452}
-  Id: 0
+  Id: 5
 --- !u!136 &1604670681
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -23036,7 +23079,7 @@ GameObject:
   - component: {fileID: 1609475572}
   - component: {fileID: 1609475571}
   m_Layer: 0
-  m_Name: ObjectInteractor (1)
+  m_Name: MeshInteractor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23051,14 +23094,13 @@ Transform:
   m_GameObject: {fileID: 1609475569}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.8491364, y: 2.2334828, z: -7.8857727}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalPosition: {x: 0, y: 0.6866665, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.3333333, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1604670679}
   - {fileID: 540224184}
   - {fileID: 1044907452}
-  m_Father: {fileID: 1999055851}
+  m_Father: {fileID: 1604670679}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1609475571
 CapsuleCollider:
@@ -26605,7 +26647,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attributeValueListener: []
   className: 
-  methodTubes: []
+  methodTubes:
+  - {fileID: 235092159}
+  - {fileID: 553682052}
+  - {fileID: 1169687119}
+  - {fileID: 236667300}
   attributeValueMonitor_prefab: {fileID: 6674831499766437521, guid: acc7d097bc8b69f45b7e0777919dcd56, type: 3}
   attributeBox: {fileID: 675906218}
   text_ClassName: {fileID: 217659322}
@@ -28013,6 +28059,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 1972966204}
 --- !u!1 &1980069542
 GameObject:
   m_ObjectHideFlags: 0
@@ -28446,11 +28493,11 @@ Transform:
   m_Children:
   - {fileID: 2013663134}
   - {fileID: 1035597075}
-  - {fileID: 1364373285}
+  - {fileID: 1020961038}
   - {fileID: 1841847456}
-  - {fileID: 1609475570}
+  - {fileID: 1604670679}
   - {fileID: 552152476}
-  - {fileID: 703143131}
+  - {fileID: 965815616}
   - {fileID: 1491265325}
   - {fileID: 390931249}
   m_Father: {fileID: 1465629477}
@@ -28888,7 +28935,8 @@ MonoBehaviour:
     attribute: Nome
     value: Giovanni
   className: 
-  methodTubes: []
+  methodTubes:
+  - {fileID: 471889588}
   door: {fileID: 2013663130}
   methodsListenerToRead:
   - {fileID: 1841847452}
@@ -29182,7 +29230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7771533958477937155, guid: 71d6dcfe863861d45bbd954dd0ec9b49, type: 3}
       propertyPath: oggettoEscapeValue.objectName
-      value: Codice
+      value: ChiavePorta
       objectReference: {fileID: 0}
     - target: {fileID: 7771533958477937155, guid: 71d6dcfe863861d45bbd954dd0ec9b49, type: 3}
       propertyPath: oggettoEscapeValue.isMadeByPrinter
@@ -29206,7 +29254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8540938597773586847, guid: 71d6dcfe863861d45bbd954dd0ec9b49, type: 3}
       propertyPath: clueName
-      value: Codice
+      value: ChiavePorta
       objectReference: {fileID: 0}
     - target: {fileID: 3768387474383854782, guid: 53868f9b4de30ea4f81168f3d4b09427, type: 3}
       propertyPath: methods.Array.size
@@ -29510,6 +29558,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 2087367426}
 --- !u!136 &2087367425
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -30089,6 +30138,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 2113708914}
 --- !u!136 &2113708913
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -30286,6 +30336,7 @@ MonoBehaviour:
   material_connected: {fileID: 2100000, guid: 6b2720e188ce2fc4bafbce224449a3e1, type: 2}
   material_getter: {fileID: 2100000, guid: f73c52fdcf6c2d3418d879b457db6c9c, type: 2}
   material_error: {fileID: 2100000, guid: 514171954b9c376449bf4d59558c3536, type: 2}
+  mesh: {fileID: 2129478888}
 --- !u!1001 &60889539378096550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30547,6 +30598,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5393215578589016655, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: GroundLayers.m_Bits
       value: 1

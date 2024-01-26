@@ -44,8 +44,9 @@ public class GameManager_ObjectGame : MonoBehaviour
     [SerializeField] float secondToShowCompleted = 5f;
     [SerializeField] GameObject canvas_AttributeComplete;
 
-    private int level = 0;
-    [SerializeField] Level[] levels;
+    private int attributeGamelevel = 0;
+    [SerializeField] AttributeGrid[] attributeGrids;
+    [SerializeField] AttributeInventory[] attributeInventory;
 
     private bool is_game_won = false;
 
@@ -56,25 +57,47 @@ public class GameManager_ObjectGame : MonoBehaviour
 
     private List<Attribute> attributesValues = new List<Attribute>();
 
+    [SerializeField] GameObject gridLevels;
+    [SerializeField] GameObject inventoryLevels;
+
     private void ReadLevel()
     {
-        if (level > 0) { levels[level - 1].gameObject.SetActive(false);}
 
-        levels[level].gameObject.SetActive(true);
+        if (attributeGamelevel > 0)
+        {
+            attributeGrids[attributeGamelevel - 1].gameObject.SetActive(false);
+
+            foreach (var x in attributeInventory)
+            {
+                if (x.attributeName == attributeGrids[attributeGamelevel - 1].attributeName)
+                { x.gameObject.SetActive(false); continue; }
+            }
+            //attributeInventory[attributeGamelevel - 1].gameObject.SetActive(false); }
+        }
+
+            attributeGrids[attributeGamelevel].gameObject.SetActive(true);
+
+            foreach (var x in attributeInventory)
+            {
+                if (x.attributeName == attributeGrids[attributeGamelevel].attributeName)
+                { x.gameObject.SetActive(true); continue; }
+            }
+
+            //attributeInventory[attributeGamelevel].gameObject.SetActive(true);
+
+            attributeType = attributeGrids[attributeGamelevel].attributeType;
+            attributeName_text.text = attributeGrids[attributeGamelevel].attributeName;
+            AttributeIntTarget = attributeGrids[attributeGamelevel].AttributeIntTarget;
+            AttributeBoolTarget = attributeGrids[attributeGamelevel].AttributeBoolTarget;
+            AttributeStringTarget = attributeGrids[attributeGamelevel].AttributeStringTarget;
+
+            attributeGamelevel++;
+
         
-        attributeType = levels[level].attributeType;
-        attributeName_text.text = levels[level].attributeName;
-        AttributeIntTarget = levels[level].AttributeIntTarget;
-        AttributeBoolTarget = levels[level].AttributeBoolTarget;
-        AttributeStringTarget = levels[level].AttributeStringTarget;
-
-        level++;
-
-
     }
-    private void LoadLevel()
+    private void LoadAttributeGame()
     {
-        if (level >= levels.Length) { Debug.Log("EndGame"); is_game_won = true; CloseGame(); }
+        if (attributeGamelevel >= attributeGrids.Length) { Debug.Log("EndGame"); is_game_won = true; CloseGame(); }
         else
         {
             ReadLevel();
@@ -107,6 +130,42 @@ public class GameManager_ObjectGame : MonoBehaviour
       
     }
 
+    private void LoadLevel()
+    {
+        Transform livelloGridTrovato = gridLevels.transform.Find(className);
+        Transform livelloInventoryTrovato = inventoryLevels.transform.Find(className);
+
+        if (livelloGridTrovato != null)
+        {
+            // Fai qualcosa con l'oggetto trovato
+            Debug.Log("Livello grid trovato: " + livelloGridTrovato.name);
+
+            attributeGrids = livelloGridTrovato.GetComponentsInChildren<AttributeGrid>(true);
+            livelloGridTrovato.gameObject.SetActive(true);
+            
+        }
+        else
+        {
+            Debug.LogWarning("Nessun livello grid trovato con il nome specificato.");
+        }
+
+        if (livelloInventoryTrovato != null)
+        {
+            // Fai qualcosa con l'oggetto trovato
+            Debug.Log("Livello inventory trovato: " + livelloInventoryTrovato.name);
+
+            attributeInventory = livelloInventoryTrovato.GetComponentsInChildren<AttributeInventory>(true);
+            livelloInventoryTrovato.gameObject.SetActive(true);
+
+        }
+        else
+        {
+            Debug.LogWarning("Nessun livello inventory trovato con il nome specificato.");
+        }
+
+
+    }
+
 
     private void Start()
     {
@@ -124,8 +183,8 @@ public class GameManager_ObjectGame : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
 
-
         LoadLevel();
+        LoadAttributeGame();
     }
 
     public void CalculateAttributeValue(int value) { attributeIntValue += value; attributeValue_text.text = attributeIntValue.ToString(); }
@@ -250,6 +309,6 @@ public class GameManager_ObjectGame : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         canvas_AttributeComplete.SetActive(false);
-        LoadLevel();
+        LoadAttributeGame();
     }
 }

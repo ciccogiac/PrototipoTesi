@@ -9,10 +9,17 @@ public class MethodTube : MonoBehaviour
     [SerializeField] Material material_getter;
     [SerializeField] Material material_error;
 
-    private MeshRenderer mesh;
+    public MeshRenderer mesh;
 
     // Start is called before the first frame update
+    /*
     void Start()
+    {
+        mesh = GetComponent<MeshRenderer>();
+    }
+    */
+
+    private void OnValidate()
     {
         mesh = GetComponent<MeshRenderer>();
     }

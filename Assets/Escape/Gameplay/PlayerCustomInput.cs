@@ -56,10 +56,15 @@ public class PlayerCustomInput : MonoBehaviour
                         last_InteractableObject = oggettoColpito.GetComponent<Interactable>();
                         last_InteractableObject.RaycastEnter();
                     }
-                    else if (last_InteractableObject != oggettoColpito.GetComponent<Interactable>())
+                    //else if (last_InteractableObject != oggettoColpito.GetComponent<Interactable>())
+                    else
                     {
-                        last_InteractableObject.RaycastExit();
-                        last_InteractableObject = oggettoColpito.GetComponent<Interactable>();
+                        Interactable i = oggettoColpito.GetComponent<Interactable>();
+
+                        if (last_InteractableObject != i) 
+                            last_InteractableObject.RaycastExit();
+                        
+                        last_InteractableObject = i;
                         last_InteractableObject.RaycastEnter();
                     }
 

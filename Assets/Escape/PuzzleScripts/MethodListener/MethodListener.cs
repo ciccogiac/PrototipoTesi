@@ -24,7 +24,14 @@ public class MethodListener : MonoBehaviour
 
     public MethodTube[] methodTubes ;
 
+    
     public virtual void Start()
+    {
+       // methodTubes = GetComponentsInChildren<MethodTube>();
+    }
+    
+
+    private void OnValidate()
     {
         methodTubes = GetComponentsInChildren<MethodTube>();
     }
