@@ -28,25 +28,30 @@ public class OggettoEscape : Interactable
     void Start()
     {
         inventoryLoad = FindObjectOfType<InventoryLoad>();
-        if (oggettoEscapeValue.mesh == null)
-        {
-            oggettoEscapeValue.mesh = GetComponent<MeshFilter>().mesh;
-            oggettoEscapeValue.material = GetComponent<MeshRenderer>().materials;
-        }
 
         if (!oggettoEscapeValue.isMadeByPrinter)
         {
-            //SetOggettoEscapeNotPrinted();
+            SetOggettoEscapeNotPrinted();
+            oggettoEscapeValue.mesh = GetComponent<MeshFilter>().mesh;
+            oggettoEscapeValue.material = GetComponent<MeshRenderer>().materials;
         }
 
 
 
     }
 
-    public void SetOggettoEscapeValue(OggettoEscapeValue oggetto)
+    public void SetMeshMaterial((Mesh, Material[])m)
+    {
+        GetComponent<MeshFilter>().mesh = m.Item1;
+        GetComponent<MeshRenderer>().materials = m.Item2;
+        oggettoEscapeValue.mesh = m.Item1;
+        oggettoEscapeValue.material = m.Item2;
+    }
+
+        public void SetOggettoEscapeValue(OggettoEscapeValue oggetto)
     {
         oggettoEscapeValue = oggetto;
-        SetOggettoEscapeNotPrinted();
+        //SetOggettoEscapeNotPrinted();
     }
 
     public void SetOggettoEscapeNotPrinted()

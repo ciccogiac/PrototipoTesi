@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5392033714926165374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7444941751796098673}
+  - component: {fileID: 7037852825392380413}
+  m_Layer: 5
+  m_Name: InventoryBlockLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7444941751796098673
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5392033714926165374}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7037852825392380413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5392033714926165374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09879b9bdb6660e40869cead2cd53f99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 2411727714358183167, guid: 549ab1036e256804e8694c85784ddd7d, type: 3}
+  - {fileID: 2411727714358183167, guid: 61bffe903e8beae43b66be713d5a3b80, type: 3}
+  - {fileID: 2411727714358183167, guid: 9f2827c94bd510d4eadaa82e49eed307, type: 3}
+  - {fileID: 2411727714358183167, guid: ebb593fc97762924b97d86d72e15f06a, type: 3}
+  - {fileID: 2411727714358183167, guid: 1c73dd6775d0ea04487ee9b02831f62c, type: 3}
+  - {fileID: 2411727714358183167, guid: 540231b72c49fe640b587c41b533b078, type: 3}
+  - {fileID: 2411727714358183167, guid: f2cdf5d130f7ac24e86683ce49c977ef, type: 3}
+  - {fileID: 2411727714358183167, guid: 9ae86959cf8ff4a42a344ae38f8e2190, type: 3}
+  - {fileID: 2411727714358183167, guid: 94df5e80530c0fb40a66e8206a51f407, type: 3}
+  - {fileID: 2411727714358183167, guid: 0f3b56c450d6b6e48b726e4fe0a8b1f4, type: 3}
+  - {fileID: 2411727714358183167, guid: 0d0bb439053edfb40b71e7a054340503, type: 3}
+  - {fileID: 2411727714358183167, guid: 83f8ccd901b8a8e4ab2a080eec2b6bd9, type: 3}
+  blockType: 0
+  blockQuantity: 0
+  value_int: 8
+  value_char: 110
+  value_bool: 0

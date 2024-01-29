@@ -179,8 +179,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 741073615
-  m_SortingLayer: 1
+  m_SortingLayerID: -409428387
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 11e550b1407ec8b45b45ec747aa2bdf7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -230,10 +230,10 @@ RectTransform:
   - {fileID: 4189627734389930474}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1.75, y: 1.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4844838023671803281
 CanvasRenderer:
@@ -286,11 +286,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   temporaryColor: {r: 1, g: 1, b: 1, a: 0.5882353}
+  temporaryConnectionColor: {r: 0, g: 0, b: 0, a: 0}
   isSelected: 0
   gameManager: {fileID: 0}
   isConnected: 0
   connectColor: {r: 0.011764706, g: 1, b: 0, a: 0.70980394}
   isStartingBlock: 1
+  isEndingBlock: 0
+  inventoryReference: {fileID: 0}
+  line: {fileID: 0}
+  isStationary: 0
 --- !u!60 &6221098058576697523
 PolygonCollider2D:
   m_ObjectHideFlags: 0

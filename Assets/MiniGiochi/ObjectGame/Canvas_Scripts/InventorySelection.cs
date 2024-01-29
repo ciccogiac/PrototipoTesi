@@ -11,7 +11,7 @@ public class InventorySelection : MonoBehaviour
     [SerializeField] Color temporaryColor;
 
     [SerializeField] TextMeshProUGUI itemCount_text;
-    [SerializeField] int itemCount = 0;
+    public int itemCount = 0;
 
     [SerializeField] GameObject temporaryItem;
 
@@ -43,6 +43,13 @@ public class InventorySelection : MonoBehaviour
 
     private void OnValidate()
     {
+        UpdateItemValue();
+    }
+
+    public void UpdateItemValue()
+    {
+        itemCount_text.text = itemCount.ToString();
+
         switch (blockType)
         {
             case BlockType.Connection:

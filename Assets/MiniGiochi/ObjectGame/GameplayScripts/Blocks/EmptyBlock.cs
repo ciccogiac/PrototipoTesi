@@ -26,32 +26,6 @@ public class EmptyBlock : MonoBehaviour
         gameManager = FindObjectOfType<GameManager_ObjectGame>();
     }
 
-    /*
-    private void OnMouseDown()
-    {
-        if (gameManager.isTemporaryItemDragging)
-        {
-            TemporaryBlock b = FindObjectOfType<TemporaryBlock>();
-            
-            gameManager.isTemporaryItemDragging = false;
-
-            Cursor.visible = true;
-
-            GameObject g= Instantiate(prefabs[b.dir], new Vector3(0f,0f,0f), Quaternion.identity);
-            g.gameObject.GetComponent<GridBlock>().inventoryReference = b.inventoryReference;
-            Destroy(b.gameObject);
-            g.transform.parent = transform.parent;
-            g.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
-            g.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
-            
-
-            gameManager.trash.SetActive(false);
-            Destroy(this.gameObject);
-
-        }
-    }
-    */
-    
     
     
     private void OnTriggerStay2D(Collider2D collision)

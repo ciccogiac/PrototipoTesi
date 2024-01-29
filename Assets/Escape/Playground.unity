@@ -13130,6 +13130,9 @@ MonoBehaviour:
       methods:
       - methodName: IsStudenteLaureato()
         methodType: 2
+    mesh: {fileID: 4484052843275181868, guid: fb4e663b65f03df4cbc64dfd6d95c6be, type: 3}
+    material:
+    - {fileID: 2100000, guid: 2d659af0734969d469636bc7dd2e33ca, type: 2}
   - className: Professore
     attributes:
     - attribute: Nome
@@ -13137,6 +13140,8 @@ MonoBehaviour:
       methods:
       - methodName: GetNome()
         methodType: 0
+    mesh: {fileID: 0}
+    material: []
 --- !u!4 &918879897
 Transform:
   m_ObjectHideFlags: 0

@@ -97,7 +97,7 @@ public class GameManager_ObjectGame : MonoBehaviour
     }
     private void LoadAttributeGame()
     {
-        if (attributeGamelevel >= attributeGrids.Length) { Debug.Log("EndGame"); is_game_won = true; CloseGame(); }
+        if (attributeGamelevel >= attributeGrids.Length) { is_game_won = true; CloseGame(); }
         else
         {
             ReadLevel();
@@ -310,5 +310,14 @@ public class GameManager_ObjectGame : MonoBehaviour
 
         canvas_AttributeComplete.SetActive(false);
         LoadAttributeGame();
+    }
+
+    //Cheat
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(AttributeCompletedCoroutine(1f));
+        }
     }
 }
