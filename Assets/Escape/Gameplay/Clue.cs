@@ -17,8 +17,17 @@ public class Clue : Interactable
 
     public string clueName;
 
+    private PlayerCustomInput customInput;
+
+    private void Start()
+    {
+        customInput = FindObjectOfType<PlayerCustomInput>();
+    }
+
     override public void Interact()
     {
+        customInput.CanvasInteract.SetActive(false);
+
         gameObject.SetActive(false);
         Inventario.istanza.PickUpClue(this);  
         Destroy(this);

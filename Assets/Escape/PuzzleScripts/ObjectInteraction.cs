@@ -21,14 +21,14 @@ public class ObjectInteraction : Interactable
             {
                 objectCollectedCanvas.GetComponent<ObjectCollected_Canvas>().objectInteraction = this;
                 objectCollectedCanvas.SetActive(true);
-                text_active.SetActive(false);
+                //text_active.SetActive(false);
             }
 
             else
             {
                 objectCallMethodsCanvas.GetComponent<ObjectCallMethods>().objectInteraction = this;
                 objectCallMethodsCanvas.SetActive(true);
-                text_active.SetActive(false);
+                //text_active.SetActive(false);
             }
         }
     }

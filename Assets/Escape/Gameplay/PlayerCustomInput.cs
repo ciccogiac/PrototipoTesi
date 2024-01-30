@@ -14,6 +14,7 @@ public class PlayerCustomInput : MonoBehaviour
     [SerializeField] GameObject canvasInventory;
     private bool inventoryState = false;
 
+    public GameObject CanvasInteract;
 
     private void checkInventoryInput()
     {
@@ -55,17 +56,22 @@ public class PlayerCustomInput : MonoBehaviour
                     {
                         last_InteractableObject = oggettoColpito.GetComponent<Interactable>();
                         last_InteractableObject.RaycastEnter();
+                        CanvasInteract.SetActive(true);
                     }
                     //else if (last_InteractableObject != oggettoColpito.GetComponent<Interactable>())
                     else
                     {
                         Interactable i = oggettoColpito.GetComponent<Interactable>();
 
-                        if (last_InteractableObject != i) 
+                        if (last_InteractableObject != i)
+                        {
                             last_InteractableObject.RaycastExit();
+                            CanvasInteract.SetActive(false);
+                        }
                         
                         last_InteractableObject = i;
                         last_InteractableObject.RaycastEnter();
+                        CanvasInteract.SetActive(true);
                     }
 
                     if (_input.interact == true)
@@ -78,6 +84,7 @@ public class PlayerCustomInput : MonoBehaviour
                 else if (last_InteractableObject != null)
                 {
                     last_InteractableObject.RaycastExit();
+                    CanvasInteract.SetActive(false);
                     last_InteractableObject = null;
                 }
             }
@@ -87,6 +94,7 @@ public class PlayerCustomInput : MonoBehaviour
         else if (last_InteractableObject != null)
         {
             last_InteractableObject.RaycastExit();
+            CanvasInteract.SetActive(false);
             last_InteractableObject = null;
         }
 

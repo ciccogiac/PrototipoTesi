@@ -18,6 +18,8 @@ public class OggettoEscape : Interactable
 
     public OggettoEscapeValue oggettoEscapeValue;
 
+    private PlayerCustomInput customInput;
+
 
     private void OnValidate()
     {
@@ -28,6 +30,7 @@ public class OggettoEscape : Interactable
     void Start()
     {
         inventoryLoad = FindObjectOfType<InventoryLoad>();
+        customInput = FindObjectOfType<PlayerCustomInput>();
 
         if (!oggettoEscapeValue.isMadeByPrinter)
         {
@@ -67,6 +70,8 @@ public class OggettoEscape : Interactable
     {
         if (isActive)
         {
+            customInput.CanvasInteract.SetActive(false);
+
             gameObject.SetActive(false);
             isActive = false;
 
