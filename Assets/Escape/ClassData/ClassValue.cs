@@ -30,6 +30,7 @@ public class Method
         getter,
         setter,
         interactor,
+        inputInteractor,
         pickUp,
         destroy
 

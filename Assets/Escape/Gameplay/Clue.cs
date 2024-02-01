@@ -16,6 +16,7 @@ public class Clue : Interactable
     public ClueType clueType;
 
     public string clueName;
+    public string clueDescription;
 
     private PlayerCustomInput customInput;
 

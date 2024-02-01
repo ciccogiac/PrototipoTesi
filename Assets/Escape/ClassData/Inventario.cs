@@ -9,14 +9,14 @@ public class Inventario : MonoBehaviour
     public static Inventario istanza;
 
     //Rappresenta l'inventario temporaneo in una scena di escape . I dati verranno poi passati ai datipersitenti per una scena di minigioco(Nella classe ClassGameStarter) o di escape.
-    public List<string> teoria;
-    public List<string> methods;
-    public List<string> attributes;
+    public List<(string,string)> teoria = new List<(string, string)>();
+    public List<(string,string)> methods = new List<(string, string)>();
+    public List<(string, string)> attributes = new List<(string, string)>();
     //public List<string> classi;
     public List<ClassValue> classi;
     public List<OggettoEscapeValue> oggetti;
 
-    public List<string> methodsAttributesUsed;
+    public List<(string,string)> methodsAttributesUsed = new List<(string, string)>();
     public List<OggettoEscapeValue> oggettiUsed;
 
     public InventoryLoad inventoryLoad;
@@ -40,7 +40,7 @@ public class Inventario : MonoBehaviour
 
         if(clue.clueType == Clue.ClueType.Attributo || clue.clueType == Clue.ClueType.Metodo)
         {
-            if (methodsAttributesUsed.Contains(clue.clueName)) { return true; }
+            if (methodsAttributesUsed.Find(x => x.Item1 == clue.clueName) != (null,null)) { return true; }
         }
 
         if (clue.clueType == Clue.ClueType.Oggetto )
@@ -57,15 +57,16 @@ public class Inventario : MonoBehaviour
         switch (clue.clueType)
         {
             case Clue.ClueType.Teoria:
-                return teoria.Contains(clue.clueName);
+                return (teoria.Find(x => x.Item1 == clue.clueName)!= (null,null)) ? true : false;
+                //return teoria.Contains(clue.clueName);
 
             case Clue.ClueType.Attributo:
-                return attributes.Contains(clue.clueName);
+                return (attributes.Find(x => x.Item1 == clue.clueName) != (null, null)) ? true : false;
 
             case Clue.ClueType.Metodo:
-                return methods.Contains(clue.clueName);
+                return (methods.Find(x => x.Item1 == clue.clueName) != (null, null)) ? true : false;
 
-                
+
             case Clue.ClueType.Classe:
                 ClassValue c = classi.Find(x => x.className == clue.clueName);
                 return c!=null;
@@ -86,24 +87,24 @@ public class Inventario : MonoBehaviour
         switch (clue.clueType)
         {
             case Clue.ClueType.Teoria:
-                teoria.Add(clue.clueName);
-                inventoryLoad.AddItem(clue.clueName, clue.clueType);
+                teoria.Add((clue.clueName,clue.clueDescription));
+                inventoryLoad.AddItem(clue.clueName, clue.clueDescription, clue.clueType);
                 break;
 
             case Clue.ClueType.Attributo:
-                attributes.Add(clue.clueName);
-                inventoryLoad.AddItem(clue.clueName,clue.clueType);
+                attributes.Add((clue.clueName,clue.clueDescription));
+                inventoryLoad.AddItem(clue.clueName, clue.clueDescription,clue.clueType);
                 break;
 
             case Clue.ClueType.Metodo:
-                methods.Add(clue.clueName);
-                inventoryLoad.AddItem(clue.clueName, clue.clueType);
+                methods.Add((clue.clueName, clue.clueDescription));
+                inventoryLoad.AddItem(clue.clueName, clue.clueDescription, clue.clueType);
                 break;
 
                 
             case Clue.ClueType.Classe:
                 classi.Add(clue.gameObject.GetComponent<ClasseEscape>().classValue);
-                inventoryLoad.AddItem(clue.clueName, clue.clueType);
+                inventoryLoad.AddItem(clue.clueName, clue.clueDescription, clue.clueType);
                 break;
                 
 
@@ -119,6 +120,6 @@ public class Inventario : MonoBehaviour
     public void PickUpObject(OggettoEscapeValue oggetto)
     {
         oggetti.Add(oggetto);
-        inventoryLoad.AddItem(oggetto.objectName, Clue.ClueType.Oggetto);
+        inventoryLoad.AddItem(oggetto.objectName, "", Clue.ClueType.Oggetto);
     }
 }

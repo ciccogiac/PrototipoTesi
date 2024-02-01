@@ -80,6 +80,22 @@ public class MethodListener : MonoBehaviour
         
     }
 
+    public virtual bool MethodInput(List<(string, string)> objectValue, List<(string, string)> inputValue)
+    {
+        Debug.Log("AttributeValue");
+        foreach(var a in objectValue)
+        {
+            Debug.Log(a.Item1 + " " + a.Item2);
+        }
+
+        Debug.Log("InputValue");
+        foreach (var a in inputValue)
+        {
+            Debug.Log(a.Item1 + " " + a.Item2);
+        }
+
+        return false;
+    }
 
     public virtual void SetClass(string name)
     {

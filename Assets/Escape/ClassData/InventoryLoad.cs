@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class InventoryLoad : MonoBehaviour
 {
+    [SerializeField] GameObject InventoryPanel;
     [Header("HorizontalBox")]
     [SerializeField] GameObject Box_Teoria;
     [SerializeField] GameObject Box_Methods;
@@ -19,12 +20,17 @@ public class InventoryLoad : MonoBehaviour
     [SerializeField] GameObject oggetto_Prefab;
     [SerializeField] GameObject teoria_Prefab;
 
-    [Header("Panel")]
-    [SerializeField] GameObject InventoryPanel;
+    [Header("ClassPanel")]   
     [SerializeField] GameObject ClassPanel;
     [SerializeField] TextMeshProUGUI classValueName;
     [SerializeField] GameObject ClassBox;
     [SerializeField] GameObject classValue_prefab;
+
+    [Header("DescriptionPanel")]
+    [SerializeField] GameObject DescriptionPanel;
+    [SerializeField] TextMeshProUGUI ClueType_text;
+    [SerializeField] TextMeshProUGUI ClueName_text;
+    [SerializeField] TextMeshProUGUI ClueDescription_text;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +56,8 @@ public class InventoryLoad : MonoBehaviour
         foreach (var x in Inventario.istanza.methods)
         {
             GameObject oggettoIstanziato = Instantiate(method_Prefab, transform.position, Quaternion.identity);
-            oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x;
+            oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x.Item1;
+            oggettoIstanziato.GetComponent<DescriptionInventoryButton>().InitializeDescriptionInventory(Clue.ClueType.Metodo, x.Item1, x.Item2, this);
             oggettoIstanziato.transform.SetParent(Box_Methods.transform);
 
         }
@@ -58,7 +65,8 @@ public class InventoryLoad : MonoBehaviour
         foreach (var x in Inventario.istanza.attributes)
         {
             GameObject oggettoIstanziato = Instantiate(attribute_Prefab, transform.position, Quaternion.identity);
-            oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x;
+            oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x.Item1;
+            oggettoIstanziato.GetComponent<DescriptionInventoryButton>().InitializeDescriptionInventory(Clue.ClueType.Attributo, x.Item1, x.Item2, this);
             oggettoIstanziato.transform.SetParent(Box_Attributes.transform);
 
         }
@@ -83,13 +91,14 @@ public class InventoryLoad : MonoBehaviour
         foreach (var x in Inventario.istanza.teoria)
         {
             GameObject oggettoIstanziato = Instantiate(teoria_Prefab, transform.position, Quaternion.identity);
-            oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x;
+            oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x.Item1;
+            oggettoIstanziato.GetComponent<DescriptionInventoryButton>().InitializeDescriptionInventory(Clue.ClueType.Teoria, x.Item1, x.Item2, this);
             oggettoIstanziato.transform.SetParent(Box_Teoria.transform);
 
         }
     }
 
-    public void AddItem(string clueText, Clue.ClueType clueType)
+    public void AddItem(string clueText,string clueDescription, Clue.ClueType clueType)
     {
         GameObject Prefab=null;
         GameObject Box=null;
@@ -128,8 +137,15 @@ public class InventoryLoad : MonoBehaviour
         if (clueType == Clue.ClueType.Classe)
         {
             oggettoIstanziato.GetComponent<ClassInventoryButton>().InitializeClassInventoryVisualization(clueText,this);
+            return;
         }
-    }
+
+        if (clueType != Clue.ClueType.Oggetto)
+        {
+            oggettoIstanziato.GetComponent<DescriptionInventoryButton>().InitializeDescriptionInventory(clueType,clueText,clueDescription,this);
+        }
+
+        }
 
     public void ActivateClassPanel(ClassValue classValue)
     {
@@ -145,6 +161,16 @@ public class InventoryLoad : MonoBehaviour
             oggettoIstanziato.transform.SetParent(ClassBox.transform);
         }
 
+    }
+
+    public void ActivateDescriptionPanel(string type, string name , string description)
+    {
+        InventoryPanel.SetActive(false);
+        DescriptionPanel.SetActive(true);
+
+        ClueType_text.text = type ;
+        ClueName_text.text = name ;
+        ClueDescription_text.text = description ;
     }
 
     public void DeactivateClassPanel()

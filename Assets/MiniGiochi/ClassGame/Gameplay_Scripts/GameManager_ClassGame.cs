@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -53,8 +54,10 @@ public class GameManager_ClassGame : MonoBehaviour
 
         if (Inventario.istanza != null)
         {
-            methods = Inventario.istanza.methods;
-            attributes = Inventario.istanza.attributes;
+            //methods = Inventario.istanza.methods;
+
+            methods = Inventario.istanza.methods.Select(tuple => tuple.Item1).ToList(); ;
+            attributes = Inventario.istanza.attributes.Select(tuple => tuple.Item1).ToList(); ;
         }
 
         LoadLevel();
@@ -247,12 +250,22 @@ public class GameManager_ClassGame : MonoBehaviour
             {
                 foreach(var method in coppia.Value.Item2)
                 {
-                    Inventario.istanza.methods.Remove(method.methodName);
-                    Inventario.istanza.methodsAttributesUsed.Add(method.methodName);
+                    (string, string) b = Inventario.istanza.methods.Find(x => x.Item1 == method.methodName);
+                    if (b != (null, null))
+                    {
+                        Inventario.istanza.methodsAttributesUsed.Add(b);
+                        Inventario.istanza.methods.Remove(b);
+                    }
+                    
                 }
 
-                Inventario.istanza.attributes.Remove(coppia.Key);
-                Inventario.istanza.methodsAttributesUsed.Add(coppia.Key);
+                (string,string) a=Inventario.istanza.attributes.Find(x => x.Item1 == coppia.Key);
+                if (a != (null, null))
+                {
+                    Inventario.istanza.methodsAttributesUsed.Add(a);
+                    Inventario.istanza.attributes.Remove(a);
+                    
+                }
             }
            
 

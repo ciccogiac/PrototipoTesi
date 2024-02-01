@@ -69,12 +69,13 @@ public class ClassGame_Interface : MonoBehaviour
 
         foreach(var coppia in DatiPersistenti.istanza.coppie)
         {
-
-            if (!Inventario.istanza.attributes.Contains(coppia.Key)) { StartCoroutine(ShowCluesError(secondsToShowError)); return; }
+            (string,string) a =Inventario.istanza.attributes.Find(x => x.Item1 == coppia.Key);
+            if (a == (null,null)) { StartCoroutine(ShowCluesError(secondsToShowError)); return; }
 
             foreach(var method in coppia.Value.Item2)
             {
-                if (!Inventario.istanza.methods.Contains(method.methodName)) { StartCoroutine(ShowCluesError(secondsToShowError)); return; }
+                (string, string) b = Inventario.istanza.methods.Find(x => x.Item1 == method.methodName);
+                if (b == (null,null)) { StartCoroutine(ShowCluesError(secondsToShowError)); return; }
             }
         }
 
@@ -144,12 +145,25 @@ public class ClassGame_Interface : MonoBehaviour
 
         foreach (var coppia in c.attributes)
         {
+            (string,string) tupla = Inventario.istanza.methodsAttributesUsed.Find(x => x.Item1 == coppia.attribute);
+                //Inventario.istanza.attributes.Add((coppia.attribute,"")); 
+                if (tupla != (null, null))
+                {
+                    Inventario.istanza.attributes.Add(tupla);
+                    Inventario.istanza.methodsAttributesUsed.Remove(tupla);
+                }
 
-            Inventario.istanza.attributes.Add(coppia.attribute); 
-
-            foreach (var method in coppia.methods)
+                foreach (var method in coppia.methods)
             {
-                if (!Inventario.istanza.methods.Contains(method.methodName)) { Inventario.istanza.methods.Add(method.methodName); }
+                    
+                    if (Inventario.istanza.methods.Find(x => x.Item1 == method.methodName) == (null,null)) {
+                        (string, string) tupla_m = Inventario.istanza.methodsAttributesUsed.Find(x => x.Item1 == method.methodName);
+                        if (tupla_m != (null, null))
+                        {
+                            Inventario.istanza.methods.Add(tupla_m);
+                            Inventario.istanza.methodsAttributesUsed.Remove(tupla_m);
+                        }
+                    }
             }
         }
 

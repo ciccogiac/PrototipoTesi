@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 [Serializable]
@@ -122,6 +123,48 @@ public class OggettoEscape : Interactable
 
                 methodListener.Method(attributesWithValues);
                 ObjectCallCanvas.CloseInterface();
+                break;
+
+            case Method.MethodType.inputInteractor:
+
+                ObjectCallCanvas.CallerCanvas.SetActive(false);
+                ObjectCallCanvas.InputCanvas.SetActive(true);
+
+                List<(string, string)> attributeValues = new List<(string, string)>();
+                /*
+                foreach (var attributo in attributi)
+                {
+                    (string, string) tupla = (attributo, oggettoEscapeValue.attributes.Find(x => x.attributeName == attributo).attributeValue);
+                    attributeValues.Add(tupla);
+                }
+                */
+
+                foreach (var attributo in oggettoEscapeValue.attributes)
+                {
+                    (string, string) tupla = (attributo.attributeName,attributo.attributeValue);
+                    attributeValues.Add(tupla);
+                }
+
+                ObjectCallCanvas.InputCanvas.GetComponent<InputMethod>().method_text.text = method.method.methodName;
+                ObjectCallCanvas.InputCanvas.GetComponent<InputMethod>().attributeValues = attributeValues;
+
+                string pattern = @"\(([^)]*)\)";
+                Match match = Regex.Match(method.method.methodName, pattern);
+
+                if (match.Success)
+                {
+                    
+                    string contentInsideBrackets = match.Groups[1].Value;
+                    
+                    // Suddividi il contenuto separato dalla virgola
+                    string[] parts = contentInsideBrackets.Split(',');
+                    foreach(var x in parts)
+                    {
+                        string[] a = x.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                        ObjectCallCanvas.inputMethod.CreateMethodInput(a[0],a[1]);
+                    }
+                       
+                }
                 break;
 
             case Method.MethodType.pickUp:

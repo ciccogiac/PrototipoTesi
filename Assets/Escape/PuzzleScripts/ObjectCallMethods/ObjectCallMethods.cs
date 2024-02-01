@@ -30,6 +30,9 @@ public class ObjectCallMethods : MonoBehaviour
     public GameObject SetterCanvas;
     public SetterMethod setterMethod;
 
+    public GameObject InputCanvas;
+    public InputMethod inputMethod;
+
 
 
     private void OnEnable()
