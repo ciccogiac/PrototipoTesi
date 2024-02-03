@@ -100,6 +100,12 @@ public class GameManager_ObjectGame : MonoBehaviour
         if (attributeGamelevel >= attributeGrids.Length) { is_game_won = true; CloseGame(); }
         else
         {
+            ButtonDeselectBlock.SetActive(false);
+            ButtonsRotation.SetActive(false);
+            ButtonRemoveBlock.SetActive(false);
+            isTemporaryItemDragging = false;
+            isABlockSelected = false;
+
             ReadLevel();
             blocks = null;
             blocks = FindObjectsOfType<Block>();

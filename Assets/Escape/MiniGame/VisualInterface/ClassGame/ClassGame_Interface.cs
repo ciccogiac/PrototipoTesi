@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -31,9 +32,15 @@ public class ClassGame_Interface : MonoBehaviour
 
     [SerializeField] GameObject prefab_AttributeChangeVisibility;
 
+    [SerializeField] GameObject interactCanvas;
+    [SerializeField] PlayerInput input;
+
 
     private void OnEnable()
     {
+        input.enabled = false;
+        interactCanvas.SetActive(false);
+
         panel_noClassComplete.SetActive(false);
         panel_classDeleted.SetActive(false);
         panel_classModify.SetActive(false);
@@ -202,6 +209,9 @@ public class ClassGame_Interface : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         gameObject.SetActive(false);
+
+        input.enabled = true;
+        interactCanvas.SetActive(true);
     }
 
    

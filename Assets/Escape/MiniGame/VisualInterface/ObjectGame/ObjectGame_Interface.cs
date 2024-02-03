@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System;
+using UnityEngine.InputSystem;
 
 public class ObjectGame_Interface : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class ObjectGame_Interface : MonoBehaviour
     [SerializeField] GameObject ClassBoxVertical;
     [SerializeField] GameObject noClassAvailable_text;
     [SerializeField] GameObject ObjectNameUsed_Panel;
+    [SerializeField] GameObject loadingBox;
 
     [SerializeField] GameObject player;
     
@@ -27,9 +29,25 @@ public class ObjectGame_Interface : MonoBehaviour
 
     [SerializeField] float secondsToShowError = 4f;
 
+    [SerializeField] GameObject interactCanvas;
+
+    [SerializeField] private Texture2D cursorTexture;
+    private Vector2 cursorHotspot;
+
+    [SerializeField] PlayerInput input;
+
     private void OnEnable()
     {
+        input.enabled = false;
+
+        interactCanvas.SetActive(false);
         ObjectNameUsed_Panel.SetActive(false);
+        loadingBox.SetActive(false);
+
+        //cursorHotspot = new Vector2(cursorTexture.width / 2, cursorTexture.height / 2);
+        cursorHotspot = new Vector2(0f, 0f);
+        Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);
+
 
         if (Inventario.istanza.classi.Count == 0) { noClassAvailable_text.SetActive(true); ClassBoxVertical.SetActive(false); }
         else
@@ -108,10 +126,14 @@ public class ObjectGame_Interface : MonoBehaviour
     public void StartGame(string className) {
         if (inputField.text!= "" && IsNameObjectUnique()) {
 
+            ClassBoxVertical.SetActive(false);
+            loadingBox.SetActive(true);
+
             DatiPersistenti.istanza.lastCharacterEscapePosition = player.transform.position;
             DatiPersistenti.istanza.className = className;
             DatiPersistenti.istanza.objectName = inputField.text;
             //DatiPersistenti.istanza.coppie = FindObjectOfType<ClassDictionary>().FindClass(className);
+       
             SceneManager.LoadScene("ObjectGame");
         }
     }
@@ -129,5 +151,8 @@ public class ObjectGame_Interface : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         gameObject.SetActive(false);
+        interactCanvas.SetActive(true);
+
+        input.enabled = true;
     }
 }
