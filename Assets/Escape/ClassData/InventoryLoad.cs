@@ -6,6 +6,9 @@ using UnityEngine;
 public class InventoryLoad : MonoBehaviour
 {
     [SerializeField] GameObject InventoryPanel;
+
+    [SerializeField] TextMeshProUGUI textItems;
+    [SerializeField] GameObject ItemsVisualizerVerticalBox;
     [Header("HorizontalBox")]
     [SerializeField] GameObject Box_Teoria;
     [SerializeField] GameObject Box_Methods;
@@ -28,8 +31,6 @@ public class InventoryLoad : MonoBehaviour
 
     [Header("DescriptionPanel")]
     [SerializeField] GameObject DescriptionPanel;
-    [SerializeField] TextMeshProUGUI ClueType_text;
-    [SerializeField] TextMeshProUGUI ClueName_text;
     [SerializeField] TextMeshProUGUI ClueDescription_text;
 
     // Start is called before the first frame update
@@ -147,6 +148,41 @@ public class InventoryLoad : MonoBehaviour
 
         }
 
+    public void ActivateItemsPanel(string s)
+    {
+        textItems.text = s;
+
+       
+
+        Box_Teoria.SetActive(false);
+        Box_Methods.SetActive(false);
+        Box_Attributes.SetActive(false);
+        Box_Classi.SetActive(false);
+        Box_Oggetti.SetActive(false);
+        DescriptionPanel.SetActive(false);
+
+        ItemsVisualizerVerticalBox.SetActive(true);
+
+        switch (s)
+        {
+            case "Teoria":
+                Box_Teoria.SetActive(true);
+                break;
+            case "Attributi":
+                Box_Attributes.SetActive(true);
+                break;
+            case "Metodi":
+                Box_Methods.SetActive(true);
+                break;
+            case "Classi":
+                Box_Classi.SetActive(true);
+                break;
+            case "Oggetti":
+                Box_Oggetti.SetActive(true);
+                break;
+        }
+
+    }
     public void ActivateClassPanel(ClassValue classValue)
     {
         InventoryPanel.SetActive(false);
@@ -165,11 +201,11 @@ public class InventoryLoad : MonoBehaviour
 
     public void ActivateDescriptionPanel(string type, string name , string description)
     {
-        InventoryPanel.SetActive(false);
+        //InventoryPanel.SetActive(false);
         DescriptionPanel.SetActive(true);
 
-        ClueType_text.text = type ;
-        ClueName_text.text = name ;
+        //ClueType_text.text = type ;
+        //ClueName_text.text = name ;
         ClueDescription_text.text = description ;
     }
 

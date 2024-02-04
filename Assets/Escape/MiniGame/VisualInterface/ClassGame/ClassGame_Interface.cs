@@ -24,6 +24,8 @@ public class ClassGame_Interface : MonoBehaviour
     [SerializeField] GameObject panel_classOptions;
     [SerializeField] GameObject panel_classModify;
 
+    [SerializeField] GameObject panel_classBox;
+
     [SerializeField] float secondsToShowError = 3f;
 
     [SerializeField] InventoryLoad inventoryLoad;
@@ -35,11 +37,15 @@ public class ClassGame_Interface : MonoBehaviour
     [SerializeField] GameObject interactCanvas;
     [SerializeField] PlayerInput input;
 
+    [SerializeField] private Texture2D cursorTexture;
+    private Vector2 cursorHotspot;
+
 
     private void OnEnable()
     {
         input.enabled = false;
         interactCanvas.SetActive(false);
+        panel_classBox.SetActive(true);
 
         panel_noClassComplete.SetActive(false);
         panel_classDeleted.SetActive(false);
@@ -49,6 +55,9 @@ public class ClassGame_Interface : MonoBehaviour
         button_exit.SetActive(true);
         button_back.SetActive(false);
         button_confirm.SetActive(false);
+
+        cursorHotspot = new Vector2(0f, 0f);
+        Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);
 
         classname_text.text = DatiPersistenti.istanza.className;
 
@@ -91,9 +100,11 @@ public class ClassGame_Interface : MonoBehaviour
 
     IEnumerator ShowCluesError(float time)
     {
+        panel_classBox.SetActive(false);
         panel_noClassComplete.SetActive(true);
         yield return new WaitForSeconds(time);
         panel_noClassComplete.SetActive(false);
+        panel_classBox.SetActive(true);
 
     }
 
@@ -192,6 +203,7 @@ public class ClassGame_Interface : MonoBehaviour
 
     IEnumerator ShowDeleteClass(float time)
     {
+        panel_classBox.SetActive(false);
         panel_classDeleted.SetActive(true);
         button_creaClasse.interactable = true;
         button_eliminaClasse.interactable = false;
@@ -200,7 +212,7 @@ public class ClassGame_Interface : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         panel_classDeleted.SetActive(false);
-
+        panel_classBox.SetActive(true);
     }
 
     public void CloseInterface()

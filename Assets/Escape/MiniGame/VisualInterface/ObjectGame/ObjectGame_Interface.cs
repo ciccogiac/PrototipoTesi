@@ -44,7 +44,6 @@ public class ObjectGame_Interface : MonoBehaviour
         ObjectNameUsed_Panel.SetActive(false);
         loadingBox.SetActive(false);
 
-        //cursorHotspot = new Vector2(cursorTexture.width / 2, cursorTexture.height / 2);
         cursorHotspot = new Vector2(0f, 0f);
         Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);
 

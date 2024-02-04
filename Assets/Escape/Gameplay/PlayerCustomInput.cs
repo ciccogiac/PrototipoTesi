@@ -106,7 +106,8 @@ public class PlayerCustomInput : MonoBehaviour
     {
 
         checkInventoryInput();
-        PlayerRaycast();
+        if(!inventoryState)
+            PlayerRaycast();
        
     }
 }

@@ -251,7 +251,35 @@
                 {
                     "name": "",
                     "id": "ea40ff2c-093f-4b04-90c2-d74e47fa360e",
-                    "path": "<Keyboard>/i",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Inventory",
+            "id": "1350036d-a85f-49d2-9032-b500d97474ac",
+            "actions": [
+                {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "0fd15acc-073a-4950-a0a7-28c4d9114901",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2afc629e-9cbc-4b16-aa42-7638bc20e10e",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
