@@ -20,6 +20,9 @@ public class OggettoEscape : Interactable
     public OggettoEscapeValue oggettoEscapeValue;
 
     private PlayerCustomInput customInput;
+    private GameManager_Escape gameManager;
+
+    private Clue clue;
 
 
     private void OnValidate()
@@ -30,8 +33,10 @@ public class OggettoEscape : Interactable
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager_Escape>();
         inventoryLoad = FindObjectOfType<InventoryLoad>();
         customInput = FindObjectOfType<PlayerCustomInput>();
+        clue = GetComponent<Clue>();
 
         if (!oggettoEscapeValue.isMadeByPrinter)
         {
@@ -78,6 +83,7 @@ public class OggettoEscape : Interactable
 
             //Inventario.istanza.PickUpObject(CopyObject());
             Inventario.istanza.PickUpObject(oggettoEscapeValue);
+            gameManager.ActivateNewItemCanvas(clue.clueType.ToString(), clue.clueName, clue.clueDescription);
             Destroy(gameObject);
         }
     }

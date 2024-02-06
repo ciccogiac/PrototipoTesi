@@ -71,6 +71,7 @@ public class GameManager_ClassGame : MonoBehaviour
         {
 
             GameObject oggettoIstanziato = Instantiate(method_prefab, transform.position, Quaternion.identity);
+            
             Method_initializer mi = oggettoIstanziato.GetComponent<Method_initializer>();
             if (mi != null)
             {
@@ -78,6 +79,7 @@ public class GameManager_ClassGame : MonoBehaviour
                 mi.initialize();
             }
             oggettoIstanziato.transform.SetParent(VerticalBox_Methods.transform);
+            oggettoIstanziato.transform.localScale = Vector3.one;
         }
 
         //istanzia gli oggetti attribbuti e li inizializza

@@ -18,6 +18,7 @@ public class ObjectCallMethods : MonoBehaviour
     [SerializeField] GameObject buttonCallMethod;
 
     public PlayerInput input;
+    [SerializeField] GameObject interactCanvas;
     public ObjectInteraction objectInteraction;
 
     [SerializeField] Color selectedColor;
@@ -38,6 +39,7 @@ public class ObjectCallMethods : MonoBehaviour
     private void OnEnable()
     {
         input.enabled = false;
+        interactCanvas.SetActive(false);
         objectInteraction.isActive = false;
 
         CallerCanvas.SetActive(true);
@@ -109,6 +111,7 @@ public class ObjectCallMethods : MonoBehaviour
         objectInteraction.isActive = true;
 
         CallerCanvas.SetActive(false);
+        interactCanvas.SetActive(true);
         gameObject.SetActive(false);
 
 

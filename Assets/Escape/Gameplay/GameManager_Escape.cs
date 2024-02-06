@@ -1,6 +1,10 @@
+using Cinemachine;
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager_Escape : MonoBehaviour
 {
@@ -10,9 +14,30 @@ public class GameManager_Escape : MonoBehaviour
 
     [SerializeField] GameObject objectPrefab;
 
+    [SerializeField] GameObject readObjectCanvas;
+    [SerializeField] GameObject interactionCanvas;
+    [SerializeField] GameObject interactionSwitchCameraCanvas;
+    [SerializeField] GameObject NewItemCanvas;
+
+    [SerializeField] TextMeshProUGUI ReadObjectText;
+
+    public PlayerInput input;
+    public StarterAssetsInputs _input;
+
+    [SerializeField] NewItem itemCanvasScript;
+
+    [SerializeField] CinemachineVirtualCamera primaryCamera;
+
+    public bool isSeeing = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        interactionCanvas.SetActive(true);
+        interactionSwitchCameraCanvas.SetActive(false);
+        readObjectCanvas.SetActive(false);     
+        NewItemCanvas.SetActive(false);
+
         clues = FindObjectsOfType<Clue>();
 
         foreach(var clue in clues)
@@ -62,5 +87,105 @@ public class GameManager_Escape : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
     }
 
+    public void SwitchCamera(CinemachineVirtualCamera objectCamera)
+    {
+        isSeeing = true;
+        input.SwitchCurrentActionMap("SwitchCamera");
 
+        primaryCamera.enabled = false;
+        objectCamera.enabled = true;
+
+        interactionCanvas.SetActive(false);
+        interactionSwitchCameraCanvas.SetActive(true);
+    }
+
+    public void SwitchCameraToPrimary(CinemachineVirtualCamera objectCamera)
+    {
+        objectCamera.enabled = false;
+        primaryCamera.enabled = true;
+
+        input.SwitchCurrentActionMap("Player");
+
+        interactionSwitchCameraCanvas.SetActive(false);
+        interactionCanvas.SetActive(true);
+        isSeeing = false;
+
+    }
+
+    public void ActivateReadObjectCanvas(string text)
+    {
+        input.SwitchCurrentActionMap("ReadObject");
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        ReadObjectText.text = text;
+
+        if (isSeeing)
+            interactionSwitchCameraCanvas.SetActive(false);
+        else
+            interactionCanvas.SetActive(false);
+
+        readObjectCanvas.SetActive(true);
+
+    }
+
+    public void DeactivateReadObjectCanvas()
+    {
+
+        if (isSeeing)
+        {
+            input.SwitchCurrentActionMap("SwitchCamera");
+            interactionSwitchCameraCanvas.SetActive(true);
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+        else
+        {
+            input.SwitchCurrentActionMap("Player");
+            interactionCanvas.SetActive(true);
+        }
+
+        readObjectCanvas.SetActive(false);
+    }
+
+    public void ActivateNewItemCanvas(string type, string name, string description)
+    {
+        input.SwitchCurrentActionMap("ReadObject");
+        itemCanvasScript.InitializeItemCanvas(type, name, description);
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        if (isSeeing) 
+            interactionSwitchCameraCanvas.SetActive(false);
+        else
+            interactionCanvas.SetActive(false);
+
+        NewItemCanvas.SetActive(true);
+    }
+
+    public void DeactivateNewItemCanvas()
+    {
+        
+
+        NewItemCanvas.SetActive(false);
+
+        if (isSeeing)
+        {
+            input.SwitchCurrentActionMap("SwitchCamera");
+            interactionSwitchCameraCanvas.SetActive(true);
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+        else
+        {
+            input.SwitchCurrentActionMap("Player");
+            interactionCanvas.SetActive(true);
+        }
+            
+
+    }
 }

@@ -19,6 +19,10 @@ public class Inventory_Interface : MonoBehaviour
 
     [SerializeField] GameObject DescriptionPanel;
 
+    [SerializeField] GameManager_Escape gameManager;
+    [SerializeField] GameObject interactionSwitchCameraCanvas;
+
+
 
     private void OnEnable()
     {
@@ -43,12 +47,29 @@ public class Inventory_Interface : MonoBehaviour
         cursorHotspot = new Vector2(0f, 0f);
         Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);
 
-        interactionCanvas.SetActive(false);
+        if (gameManager.isSeeing)
+            interactionSwitchCameraCanvas.SetActive(false);
+        else
+            interactionCanvas.SetActive(false);
     }
 
     private void OnDisable()
     {
-        input.SwitchCurrentActionMap("Player");
-        interactionCanvas.SetActive(true);
+        //input.SwitchCurrentActionMap("Player");
+        //interactionCanvas.SetActive(true);
+
+        if (gameManager.isSeeing)
+        {
+            input.SwitchCurrentActionMap("SwitchCamera");
+            interactionSwitchCameraCanvas.SetActive(true);
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+        else
+        {
+            input.SwitchCurrentActionMap("Player");
+            interactionCanvas.SetActive(true);
+        }
     }
 }

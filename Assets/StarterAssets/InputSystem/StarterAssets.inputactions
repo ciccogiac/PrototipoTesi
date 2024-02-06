@@ -288,6 +288,102 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "ReadObject",
+            "id": "fcfb445c-a003-4afe-90a6-fa9961c59d82",
+            "actions": [
+                {
+                    "name": "readObject",
+                    "type": "PassThrough",
+                    "id": "0fd459c2-3ccd-4b6e-b70f-ecc69e0a6d77",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "889f5139-2fad-4c0a-aa88-6e9c432b10ba",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "readObject",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "SwitchCamera",
+            "id": "d4f29a26-fd16-4506-8317-066f78c22176",
+            "actions": [
+                {
+                    "name": "Interact",
+                    "type": "PassThrough",
+                    "id": "83dbc3f9-5ff6-4192-b297-5b045df6118a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "edcaf9e2-9e7f-48c1-a589-d616c54ff8eb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BackCamera",
+                    "type": "Button",
+                    "id": "8c3a2a49-1ba3-4bc9-9fb2-aaee492c5a89",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2ab6614e-14f7-45bc-b7ca-099b6d676126",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc296a2d-5d9f-4532-b66b-6eef652f9474",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "BackCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3baaf0fe-2a0a-4f97-8c92-1f59cf70992b",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

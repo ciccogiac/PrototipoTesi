@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerCustomInput : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PlayerCustomInput : MonoBehaviour
     private bool inventoryState = false;
 
     public GameObject CanvasInteract;
+    [SerializeField] TextMeshProUGUI mouseText;
 
     private void checkInventoryInput()
     {
@@ -22,7 +24,7 @@ public class PlayerCustomInput : MonoBehaviour
         {
             _input.inventory = false;
             inventoryState = !inventoryState;
-            canvasInventory.SetActive(inventoryState);
+           
 
 
             Cursor.visible = inventoryState;
@@ -30,7 +32,34 @@ public class PlayerCustomInput : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Confined;
             else
                 Cursor.lockState = CursorLockMode.Locked;
+
+            canvasInventory.SetActive(inventoryState);
         }
+    }
+
+    private void setMouseText(GameObject oggettoColpito)
+    {
+
+            Clue c = oggettoColpito.GetComponent<Clue>();
+            if (c != null) { mouseText.text = "Pick Up"; return; }
+
+            ObjectInteraction o = oggettoColpito.GetComponent<ObjectInteraction>();
+            if (o != null) { mouseText.text = "Interact"; return; }
+
+            ClassGameStarter cs = oggettoColpito.GetComponent<ClassGameStarter>();
+            if (cs != null) { mouseText.text = "Open ClassGame"; return; }
+
+            ObjectGameStarter os = oggettoColpito.GetComponent<ObjectGameStarter>();
+            if (os != null) { mouseText.text = "Open ObjectGame"; return; }
+
+            ReadObject ro = oggettoColpito.GetComponent<ReadObject>();
+            if (ro != null) { mouseText.text = "Read"; return; }
+
+            SwitchCameraObject sco = oggettoColpito.GetComponent<SwitchCameraObject>();
+            if (sco != null) { mouseText.text = "See"; return; }
+        
+
+
     }
 
     private void PlayerRaycast()
@@ -56,7 +85,11 @@ public class PlayerCustomInput : MonoBehaviour
                     {
                         last_InteractableObject = oggettoColpito.GetComponent<Interactable>();
                         last_InteractableObject.RaycastEnter();
-                        CanvasInteract.SetActive(true);
+                        if (last_InteractableObject.isActive)
+                        {
+                            setMouseText(oggettoColpito);
+                            CanvasInteract.SetActive(true);
+                        }
                     }
                     //else if (last_InteractableObject != oggettoColpito.GetComponent<Interactable>())
                     else
@@ -71,7 +104,11 @@ public class PlayerCustomInput : MonoBehaviour
                         
                         last_InteractableObject = i;
                         last_InteractableObject.RaycastEnter();
-                        CanvasInteract.SetActive(true);
+                        if (last_InteractableObject.isActive)
+                        {
+                            setMouseText(oggettoColpito);
+                            CanvasInteract.SetActive(true);
+                        }
                     }
 
                     if (_input.interact == true)

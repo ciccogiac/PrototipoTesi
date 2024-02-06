@@ -20,9 +20,12 @@ public class Clue : Interactable
 
     private PlayerCustomInput customInput;
 
+    private GameManager_Escape gameManager;
+
     private void Start()
     {
         customInput = FindObjectOfType<PlayerCustomInput>();
+        gameManager = FindObjectOfType<GameManager_Escape>();
     }
 
     override public void Interact()
@@ -30,7 +33,8 @@ public class Clue : Interactable
         customInput.CanvasInteract.SetActive(false);
 
         gameObject.SetActive(false);
-        Inventario.istanza.PickUpClue(this);  
+        Inventario.istanza.PickUpClue(this);
+        gameManager.ActivateNewItemCanvas(clueType.ToString(),clueName,clueDescription);
         Destroy(this);
     }
  }

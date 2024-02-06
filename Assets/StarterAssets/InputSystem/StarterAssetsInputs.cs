@@ -24,6 +24,9 @@ namespace StarterAssets
 		public bool interact;
 		public bool inventory;
 
+		public bool readObject;
+		public bool backCamera;
+
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
 		{
@@ -57,6 +60,16 @@ namespace StarterAssets
 		{
 			InventoryInput(value.isPressed);
 		}
+
+		public void OnReadObject(InputValue value)
+		{
+			ReadObjectInput(value.isPressed);
+		}
+		
+			public void OnBackCamera(InputValue value)
+		{
+			BackCameraInput(value.isPressed);
+		}
 #endif
 
 
@@ -88,6 +101,16 @@ namespace StarterAssets
 		public void InventoryInput(bool newJumpState)
 		{
 			inventory = newJumpState;
+		}
+		
+			public void ReadObjectInput(bool newReadObjectState)
+		{
+			readObject = newReadObjectState;
+		}
+		
+				public void BackCameraInput(bool newBackCameraState)
+		{
+			backCamera = newBackCameraState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)

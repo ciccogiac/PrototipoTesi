@@ -13,6 +13,7 @@ public class Method_initializer : MonoBehaviour
 
     [SerializeField] Transform pointLine_start; //Punto iniziale della linea
     [SerializeField] Transform pointArrow_start; //Punto iniziale della linea
+    [SerializeField] Transform[] pointArrows_starts; //Punto iniziale della linea
 
     private List<GameObject> linee;             //Lista delle linee del box
     [SerializeField] int max_lineeNumber = 4;   //Massimo numero di linee possibili per box metodo
@@ -23,10 +24,12 @@ public class Method_initializer : MonoBehaviour
 
     [SerializeField] RectTransform method_boxImage;
 
+    [SerializeField] TextMeshProUGUI methodNameText;
+
     // Start is called before the first frame update
     public void initialize()
     {
-        GetComponentInChildren<TextMeshProUGUI>().text = method_name;
+        methodNameText.text = method_name;
         linee = new List<GameObject>();
         button_less.SetActive(false);
     }
@@ -66,11 +69,15 @@ public class Method_initializer : MonoBehaviour
 
     private void Define_ConnectionPoints(Transform l)
     {
-
+        /*
         float f = (method_boxImage.rect.height / 3) * ((linee.Count -1) % 4);
         Vector3 pos = pointArrow_start.position;
         pos.y = pointArrow_start.position.y + (f );
         l.transform.position = pos;
+        */
+        
+        l.transform.position = pointArrows_starts[(linee.Count - 1) % 4].position;
+
     }
 
 }

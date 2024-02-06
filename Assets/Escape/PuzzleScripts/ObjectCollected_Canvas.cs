@@ -20,6 +20,8 @@ public class ObjectCollected_Canvas : MonoBehaviour
     private string objectName;
 
     [SerializeField] PlayerInput input;
+    [SerializeField] GameObject interactCanvas;
+
 
     public ObjectInteraction objectInteraction;
 
@@ -28,6 +30,7 @@ public class ObjectCollected_Canvas : MonoBehaviour
     private void OnEnable()
     {
         input.enabled = false;
+        interactCanvas.SetActive(false);
         objectInteraction.isActive = false;
 
         buttonSelectObject.SetActive(false);
@@ -108,6 +111,7 @@ public class ObjectCollected_Canvas : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         input.enabled = true;
         objectInteraction.isActive = true;
+        interactCanvas.SetActive(true);
 
         gameObject.SetActive(false);
       
