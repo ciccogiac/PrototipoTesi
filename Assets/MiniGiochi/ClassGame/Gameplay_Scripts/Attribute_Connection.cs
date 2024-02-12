@@ -39,14 +39,29 @@ public class Attribute_Connection : MonoBehaviour
 
     private void Redefine_ConnectionPoints()
     {
+        /*
         float f = attribute_boxImage.rect.height / (method_lines.Count + 1);
         int i = 0;
 
         foreach (var line in method_lines)
         {
-            i++;
+            
             Vector3 pos = connection_point.position;
             pos.y = connection_point.position.y - (f * i);
+            i++;
+            line.connect(pos);
+        }
+        */
+
+        float f = 0.25f;
+        int i = 0;
+
+        foreach (var line in method_lines)
+        {
+
+            Vector3 pos = connection_point.position;
+            pos.y = connection_point.position.y - (f * i);
+            i++;
             line.connect(pos);
         }
     }

@@ -32,6 +32,7 @@ public class GameManager_ClassGame : MonoBehaviour
 
     [SerializeField] float secondToShowGameover = 5f;
     [SerializeField] GameObject canvas_Gameover;
+    [SerializeField] GameObject canvas_Game;
 
 
     public float tempoIniziale = 20f; // Tempo iniziale del timer in secondi
@@ -41,20 +42,22 @@ public class GameManager_ClassGame : MonoBehaviour
 
     [SerializeField] GameObject levels;
 
+    [SerializeField] GameObject buttonCompile;
+    [SerializeField] GameObject boxCompilation;
+
+
     // Start is called before the first frame update
     void Start()
     {
         //Legge i valori dei datipersistenti e li assegna alle variabili locali della scena
         if (DatiPersistenti.istanza != null) { 
             className = DatiPersistenti.istanza.className;
-            tempoIniziale = DatiPersistenti.istanza.timer;   
             coppie = DatiPersistenti.istanza.coppie;
             
         }
 
         if (Inventario.istanza != null)
         {
-            //methods = Inventario.istanza.methods;
 
             methods = Inventario.istanza.methods.Select(tuple => tuple.Item1).ToList(); ;
             attributes = Inventario.istanza.attributes.Select(tuple => tuple.Item1).ToList(); ;
@@ -94,6 +97,7 @@ public class GameManager_ClassGame : MonoBehaviour
                 mi.initialize();
             }
             oggettoIstanziato.transform.SetParent(VerticalBox_Attributes.transform);
+            oggettoIstanziato.transform.localScale = Vector3.one;
         }
 
         //rende il cursore visibile e bloccati ai limite della finestra , per il minigioco 2D
@@ -107,11 +111,13 @@ public class GameManager_ClassGame : MonoBehaviour
     private void LoadLevel()
     {
         Transform livelloTrovato = levels.transform.Find(className);
+        
 
         if (livelloTrovato != null)
         {
             // Fai qualcosa con l'oggetto trovato
-            Debug.Log("Livello trovato: " + livelloTrovato.name);
+            //Debug.Log("Livello trovato: " + livelloTrovato.name);
+            tempoIniziale = livelloTrovato.GetComponent<LevelTimer>().timer;
             livelloTrovato.gameObject.SetActive(true);
         }
         else
@@ -165,6 +171,8 @@ public class GameManager_ClassGame : MonoBehaviour
                     //if (coppia.Value != a.method_name) coppia.Value.Contains(a.method_name) != a.method_name
                     if(!VerifyMethodList(coppia.Value.Item2, a.method_names))
                     {
+                        buttonCompile.SetActive(false);
+                        boxCompilation.SetActive(true);
                         compilationResult_UI.Compile(false);
                         return;
                           }
@@ -174,6 +182,8 @@ public class GameManager_ClassGame : MonoBehaviour
 
         //Bisogna gestire cosa si ritorna come oggetto e impostare il valore di visibilità degli attributi definito nel minigioco
 
+        buttonCompile.SetActive(false);
+        boxCompilation.SetActive(true);
         compilationResult_UI.Compile(true);
     }
 
@@ -285,6 +295,7 @@ public class GameManager_ClassGame : MonoBehaviour
 
     IEnumerator GameoverCoroutine(float time)
     {
+        canvas_Game.SetActive(false);
         canvas_Gameover.SetActive(true);
         yield return new WaitForSeconds(time);
 

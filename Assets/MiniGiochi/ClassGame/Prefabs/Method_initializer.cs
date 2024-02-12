@@ -46,7 +46,9 @@ public class Method_initializer : MonoBehaviour
             if (mi != null)
             {
                 mi.method_name = method_name;
-                mi.lc.setLineStartingPoint(pointLine_start, mi.gameObject.transform);
+                //mi.lc.setLineStartingPoint(pointLine_start, mi.gameObject.transform);
+                mi.lc.setLineStartingPoint(pointLine_start, mi.lineConnectionPoint);
+                mi.SetConnectionColor();
             }
             if (!button_less.active) { button_less.SetActive(true); }
             if (linee.Count == 4) { button_plus.SetActive(false); }

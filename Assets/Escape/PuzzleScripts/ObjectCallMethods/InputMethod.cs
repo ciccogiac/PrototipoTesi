@@ -20,6 +20,8 @@ public class InputMethod : MonoBehaviour
     public TextMeshProUGUI error_text;
     public TextMeshProUGUI hint_text;
 
+    [SerializeField] GameObject box_Caller;
+
     public void CreateMethodInput(string name, string value)
     {
         GameObject oggettoIstanziato = Instantiate(prefab_methodInput, transform.position, Quaternion.identity);
@@ -100,7 +102,17 @@ public class InputMethod : MonoBehaviour
         }
 
         objectCallMethods.objectInteraction.methodListener.MethodInput(attributeValues,attributesInputValues);
-        CloseInterface();
+       // CloseInterface();
+
+
+        foreach (Transform figlio in box_methodInput.gameObject.transform)
+        {
+            // Elimina il figlio corrente
+            Destroy(figlio.gameObject);
+        }
+
+        gameObject.SetActive(false);
+        objectCallMethods.CloseInterface();
     }
 
     public void CloseInterface()
@@ -112,6 +124,7 @@ public class InputMethod : MonoBehaviour
         }
 
         gameObject.SetActive(false);
-        objectCallMethods.CloseInterface();
+        box_Caller.SetActive(true);
+        //objectCallMethods.CloseInterface();
     }
 }

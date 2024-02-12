@@ -15,10 +15,13 @@ public class Drag_Rigidbody : MonoBehaviour
 
     private LineRenderer line;
     private Gradient line_color;
-    [SerializeField] Gradient line_connection_color;
+    [SerializeField] Gradient[] connection_Colors;
+   [SerializeField] Gradient line_connection_color;
     public LineController lc;
 
     public bool isConnected = false;
+
+    public Transform lineConnectionPoint;
 
     void Start()
     {
@@ -28,6 +31,12 @@ public class Drag_Rigidbody : MonoBehaviour
         lc = GetComponentInChildren<LineController>();
 
         transform.Rotate(0f, 0f, 90f);
+    }
+
+    public void SetConnectionColor()
+    {
+        int indiceRandom = Random.Range(0, connection_Colors.Length);
+        line_connection_color = connection_Colors[indiceRandom];
     }
 
     //Collega il metodo all'attributo , impostando il dragging a false , la posizione della freccia in quella desiderata e cambiando colore.

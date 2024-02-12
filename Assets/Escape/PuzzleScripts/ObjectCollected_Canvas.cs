@@ -27,15 +27,21 @@ public class ObjectCollected_Canvas : MonoBehaviour
 
     [SerializeField] InventoryLoad inventoryLoad;
 
+    [SerializeField] private Texture2D cursorTexture;
+    private Vector2 cursorHotspot;
+
     private void OnEnable()
     {
         input.enabled = false;
         interactCanvas.SetActive(false);
         objectInteraction.isActive = false;
-
         buttonSelectObject.SetActive(false);
+
+        cursorHotspot = new Vector2(0f, 0f);
+        Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+
         buttonSelectObject.GetComponent<Button>().onClick.AddListener(() => SelectObjectOnGame());
 
         if (Inventario.istanza.oggetti.Count == 0) { noObjectAvailable_text.SetActive(true); ObjectBox.SetActive(false); }

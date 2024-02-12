@@ -30,6 +30,12 @@ public class GameManager_Escape : MonoBehaviour
 
     public bool isSeeing = false;
 
+    public Texture2D cursorSwitchCameraTexture;
+    private Vector2 cursorSwitchCameraHotspot;
+
+    public Texture2D cursorSwitchCameraPickUpTexture;
+    public Texture2D cursorSwitchCameraReadTexture;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,6 +103,9 @@ public class GameManager_Escape : MonoBehaviour
 
         interactionCanvas.SetActive(false);
         interactionSwitchCameraCanvas.SetActive(true);
+
+        cursorSwitchCameraHotspot = new Vector2(cursorSwitchCameraTexture.width/2, cursorSwitchCameraTexture.height / 2);
+        Cursor.SetCursor(cursorSwitchCameraTexture, cursorSwitchCameraHotspot, CursorMode.Auto);
     }
 
     public void SwitchCameraToPrimary(CinemachineVirtualCamera objectCamera)
@@ -177,6 +186,7 @@ public class GameManager_Escape : MonoBehaviour
             input.SwitchCurrentActionMap("SwitchCamera");
             interactionSwitchCameraCanvas.SetActive(true);
 
+            Cursor.SetCursor(cursorSwitchCameraTexture, new Vector2(cursorSwitchCameraTexture.width / 2, cursorSwitchCameraTexture.height / 2), CursorMode.Auto);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
         }

@@ -18,6 +18,8 @@ public class Inventory_Interface : MonoBehaviour
     public Color normalColor = Color.white;
 
     [SerializeField] GameObject DescriptionPanel;
+    [SerializeField] GameObject ObjectPanel;
+    [SerializeField] GameObject ClassPanel;
 
     [SerializeField] GameManager_Escape gameManager;
     [SerializeField] GameObject interactionSwitchCameraCanvas;
@@ -29,6 +31,8 @@ public class Inventory_Interface : MonoBehaviour
         
         ItemsVisualizerVerticalBox.SetActive(false);
         DescriptionPanel.SetActive(false);
+        ObjectPanel.SetActive(false);
+        ClassPanel.SetActive(false);
 
 
         foreach (Button button in buttons)
@@ -40,8 +44,6 @@ public class Inventory_Interface : MonoBehaviour
             button.colors = colors;
         }
 
-
-        //input.enabled = false;
         input.SwitchCurrentActionMap ( "Inventory");
 
         cursorHotspot = new Vector2(0f, 0f);
@@ -55,13 +57,13 @@ public class Inventory_Interface : MonoBehaviour
 
     private void OnDisable()
     {
-        //input.SwitchCurrentActionMap("Player");
-        //interactionCanvas.SetActive(true);
 
         if (gameManager.isSeeing)
         {
             input.SwitchCurrentActionMap("SwitchCamera");
             interactionSwitchCameraCanvas.SetActive(true);
+
+            Cursor.SetCursor(gameManager.cursorSwitchCameraTexture, new Vector2(gameManager.cursorSwitchCameraTexture.width / 2, gameManager.cursorSwitchCameraTexture.height / 2), CursorMode.Auto);
 
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;

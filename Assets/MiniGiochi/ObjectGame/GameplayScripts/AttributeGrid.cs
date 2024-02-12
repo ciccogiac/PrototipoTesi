@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
 
 [CustomEditor(typeof(AttributeGrid))]
 public class AttributeGridEditor : Editor
@@ -53,6 +54,8 @@ public class AttributeGridEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+
+#endif
 
 public class AttributeGrid : MonoBehaviour
 {

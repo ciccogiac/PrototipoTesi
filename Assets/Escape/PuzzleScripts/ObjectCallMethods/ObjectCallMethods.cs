@@ -72,18 +72,31 @@ public class ObjectCallMethods : MonoBehaviour
 
     }
 
+    public void ReloadCallerCanvas()
+    {
+        foreach(Transform a in attributeBox.transform) { Destroy(a.gameObject); }
+
+        foreach (var attributo in objectInteraction.oggetto.oggettoEscapeValue.attributes)
+        {
+            GameObject oggettoIstanziato = Instantiate(attributePrefab, transform.position, Quaternion.identity);
+            //setta i testi dell'attributo
+            oggettoIstanziato.GetComponent<AttributeInitializer>().SetAttributeValue(attributo.attributeName, attributo.attributeValue);
+            oggettoIstanziato.transform.SetParent(attributeBox.transform);
+        }
+    }
+
     private void SelectMethod(GameObject button) {
         buttonCallMethod.SetActive(true);
         methodCaller = button.GetComponentInChildren<TextMeshProUGUI>().text;
 
-        if (previousObjectButton != null) { previousObjectButton.GetComponent<Image>().color = normalColor; }
+        //if (previousObjectButton != null) { previousObjectButton.GetComponent<Image>().color = normalColor; }
         previousObjectButton = button;
-        button.GetComponent<Image>().color = selectedColor;
+        //button.GetComponent<Image>().color = selectedColor;
     }
 
     public void CallMethod()
     {
-        Debug.Log("MethodCalled");
+        //Debug.Log("MethodCalled");
         objectInteraction.oggetto.ObjectCallCanvas = this;
         objectInteraction.oggetto.CallMethod(methodCaller);
 

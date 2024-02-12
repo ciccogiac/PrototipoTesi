@@ -26,6 +26,27 @@ public class CreatePointLine : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Line"))
+        {
+            lc = collision.GetComponent<LineController>();
+            if (!lines.Contains(lc))
+            {
+                
+                lines.Add(lc);
+
+                GameObject node = new GameObject("node");
+                node.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+                node.transform.SetParent(this.transform);
+
+                lc.setNodes(node.transform, this);
+
+
+            }
+        }
+    }
+
     public void RemoveLine(LineController linea)
     {
         if (lines.Contains(linea))

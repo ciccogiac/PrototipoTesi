@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class ClassGame_Interface : MonoBehaviour
 {
+    [SerializeField] GameObject classStarterPrefab;
+
     [SerializeField] TextMeshProUGUI classname_text;
 
     [SerializeField] Button button_creaClasse;
@@ -15,7 +17,6 @@ public class ClassGame_Interface : MonoBehaviour
     [SerializeField] Button button_modificaClasse;
 
     [SerializeField] GameObject button_exit;
-    [SerializeField] GameObject button_back;
     [SerializeField] GameObject button_confirm;
 
     [SerializeField] GameObject panel_noClassComplete;
@@ -25,6 +26,11 @@ public class ClassGame_Interface : MonoBehaviour
     [SerializeField] GameObject panel_classModify;
 
     [SerializeField] GameObject panel_classBox;
+    [SerializeField] GameObject panel_classStarter;
+    [SerializeField] GameObject BoxClassStarter;
+    [SerializeField] GameObject panel_noClassStarter;
+
+    [SerializeField] GameObject backButton;
 
     [SerializeField] float secondsToShowError = 3f;
 
@@ -40,48 +46,120 @@ public class ClassGame_Interface : MonoBehaviour
     [SerializeField] private Texture2D cursorTexture;
     private Vector2 cursorHotspot;
 
+    private bool modifyOpen = false;
+
 
     private void OnEnable()
     {
         input.enabled = false;
-        interactCanvas.SetActive(false);
-        panel_classBox.SetActive(true);
+        interactCanvas.SetActive(false);      
+        panel_classBox.SetActive(false);
+        backButton.SetActive(false);
 
         panel_noClassComplete.SetActive(false);
         panel_classDeleted.SetActive(false);
         panel_classModify.SetActive(false);
         panel_classOptions.SetActive(true);
 
+       
+
         button_exit.SetActive(true);
-        button_back.SetActive(false);
         button_confirm.SetActive(false);
 
         cursorHotspot = new Vector2(0f, 0f);
         Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);
 
-        classname_text.text = DatiPersistenti.istanza.className;
 
-        //if (Inventario.istanza.classi.Contains(classname_text.text))
-        classValue = Inventario.istanza.classi.Find(x => x.className == classname_text.text);
-        if ( classValue != null)
+
+        if (Inventario.istanza.ProgettiClasse.Count == 0) { panel_noClassStarter.SetActive(true); panel_classStarter.SetActive(false); }
+        else
         {
+
+            panel_noClassStarter.SetActive(false);
+            panel_classStarter.SetActive(true);
+
+            foreach (var progettoClasse in Inventario.istanza.ProgettiClasse)
+            {
+                GameObject oggettoIstanziato = Instantiate(classStarterPrefab, transform.position, Quaternion.identity);
+                oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = progettoClasse.Item1;
+                oggettoIstanziato.GetComponent<Button>().onClick.AddListener(() => OpenClass(progettoClasse.Item1));
+                oggettoIstanziato.transform.SetParent(BoxClassStarter.transform);
+            }
+
+        }
+
+
+
+
+    }
+
+    public void CloseOpenClassPanel()
+    {
+        if (modifyOpen)
+        { 
+            modifyOpen = false;
+            panel_classOptions.SetActive(true);
+            panel_classModify.SetActive(false);
+            foreach (Transform figlio in panel_classModify.gameObject.transform)
+                    { Destroy(figlio.gameObject); }
+            button_confirm.SetActive(false);
+            panel_classBox.SetActive(true); 
+            return; 
+        }
+
+        backButton.SetActive(false);
+        panel_classBox.SetActive(false);
+        panel_classStarter.SetActive(true);
+
+        
+        
+    }
+
+    private void OpenClass(string className)
+    {
+        modifyOpen = false;
+
+
+        panel_classStarter.SetActive(false);
+        panel_classModify.SetActive(false);
+        panel_classBox.SetActive(true);
+        backButton.SetActive(true);
+
+        DatiPersistenti.istanza.className = className;
+        DatiPersistenti.istanza.coppie = FindObjectOfType<ClassDictionary>().FindClass(className); ;
+
+        classname_text.text = className;
+
+        classValue = Inventario.istanza.classi.Find(x => x.className == className);
+        if (classValue != null)
+        {
+            /*
             button_creaClasse.interactable = false;
             button_eliminaClasse.interactable = true;
             button_modificaClasse.interactable = true;
+            */
+
+            button_creaClasse.gameObject.SetActive(false);
+            button_eliminaClasse.gameObject.SetActive(true);
+            button_modificaClasse.gameObject.SetActive(true);
         }
         else
-        {
+        {   /*
             button_creaClasse.interactable = true;
             button_eliminaClasse.interactable = false;
             button_modificaClasse.interactable = false;
-        }
-        
+            */
 
+            button_creaClasse.gameObject.SetActive(true);
+            button_eliminaClasse.gameObject.SetActive(false);
+            button_modificaClasse.gameObject.SetActive(false);
+        }
     }
 
 
     public void StartGame()
     {
+        if (DatiPersistenti.istanza.coppie == null) return;
 
         foreach(var coppia in DatiPersistenti.istanza.coppie)
         {
@@ -100,24 +178,16 @@ public class ClassGame_Interface : MonoBehaviour
 
     IEnumerator ShowCluesError(float time)
     {
+        backButton.SetActive(false);
         panel_classBox.SetActive(false);
         panel_noClassComplete.SetActive(true);
         yield return new WaitForSeconds(time);
         panel_noClassComplete.SetActive(false);
         panel_classBox.SetActive(true);
+        backButton.SetActive(true);
 
     }
 
-    public void BackToClassOptions()
-    {
-        foreach (Transform figlio in panel_classModify.gameObject.transform) { Destroy(figlio.gameObject); }
-
-        panel_classOptions.SetActive(true);
-        button_exit.SetActive(true);
-        panel_classModify.SetActive(false);
-        button_back.SetActive(false);
-        button_confirm.SetActive(false);
-    }
 
     public void ConfirmClassModify()
     {
@@ -133,15 +203,17 @@ public class ClassGame_Interface : MonoBehaviour
         }
 
             foreach (Transform figlio in panel_classModify.gameObject.transform) { Destroy(figlio.gameObject); }
+
+        modifyOpen = false;
         CloseInterface();
     }
 
     public void ModifyClassShow()
     {
+        modifyOpen = true;
+
         panel_classOptions.SetActive(false);
-        button_exit.SetActive(false);
         panel_classModify.SetActive(true);
-        button_back.SetActive(true);
         button_confirm.SetActive(true);
 
         foreach (var a in classValue.attributes)
@@ -203,20 +275,40 @@ public class ClassGame_Interface : MonoBehaviour
 
     IEnumerator ShowDeleteClass(float time)
     {
+        backButton.SetActive(false);
         panel_classBox.SetActive(false);
         panel_classDeleted.SetActive(true);
+
+        /*
         button_creaClasse.interactable = true;
         button_eliminaClasse.interactable = false;
+        button_modificaClasse.interactable = false;
+        */
+
+        button_creaClasse.gameObject.SetActive(true);
+        button_eliminaClasse.gameObject.SetActive(false);
+        button_modificaClasse.gameObject.SetActive(false);
+
         inventoryLoad.LoadInventory();
 
         yield return new WaitForSeconds(time);
 
         panel_classDeleted.SetActive(false);
         panel_classBox.SetActive(true);
+        backButton.SetActive(true);
     }
 
     public void CloseInterface()
     {
+        foreach (Transform figlio in BoxClassStarter.transform)
+        {
+            // Elimina il figlio corrente
+            Destroy(figlio.gameObject);
+        }
+
+        if(modifyOpen)
+            foreach (Transform figlio in panel_classModify.gameObject.transform)
+            { Destroy(figlio.gameObject); }
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(InventoryBlockLoader))]
 public class InventoryBlockLoaderEditor : Editor
 {
@@ -68,6 +69,9 @@ public class InventoryBlockLoaderEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+
+#endif
+
 public class InventoryBlockLoader : MonoBehaviour
 {
     public GameObject[] prefabs;

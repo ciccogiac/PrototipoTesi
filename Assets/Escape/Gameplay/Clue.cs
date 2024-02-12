@@ -11,7 +11,8 @@ public class Clue : Interactable
         Attributo,
         Metodo,
         Classe,
-        Oggetto
+        Oggetto,
+        ProgettoClasse
     }
     public ClueType clueType;
 

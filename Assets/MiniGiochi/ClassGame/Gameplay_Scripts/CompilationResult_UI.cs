@@ -15,19 +15,17 @@ public class CompilationResult_UI : MonoBehaviour
     [SerializeField] Color wrongColor;
     [SerializeField] Color hideColor;
 
-    private  Image compilerImage;
+    [SerializeField]  Image compilerImage;
 
 
-    private TextMeshProUGUI compilationText;
+    [SerializeField] TextMeshProUGUI compilationText;
     [SerializeField] GameManager_ClassGame gameManager;
 
+    [SerializeField] GameObject buttonCompile;
+
     [SerializeField] float secondsToShowResult = 3f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        compilationText = GetComponentInChildren<TextMeshProUGUI>();
-        compilerImage = GetComponentInChildren<Image>();
-    }
+
+
 
     public void CorrectCompilation()
     {
@@ -56,10 +54,15 @@ public class CompilationResult_UI : MonoBehaviour
 
     IEnumerator ShowCompilationResult(float time,bool compiled)
     {
+        buttonCompile.SetActive(false);
         yield return new WaitForSeconds(time);
         compilationText.text = "";
         compilerImage.color = hideColor;
+        
         if (compiled) gameManager.ReturnToescape(true);
+        else
+            buttonCompile.SetActive(true);
+
 
     }
 }

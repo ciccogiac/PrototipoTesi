@@ -30,7 +30,9 @@ public class SensorCamera_enemy : MonoBehaviour
     [SerializeField] GameManager_ClassGame gameManager;
 
     private float temporaryRotation=0;
-    private float localRotation=0;
+    public float localRotation=0;
+
+    //[SerializeField] float offset;
 
     void OnValidate()
     {

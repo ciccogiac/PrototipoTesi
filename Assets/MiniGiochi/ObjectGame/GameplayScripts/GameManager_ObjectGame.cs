@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager_ObjectGame : MonoBehaviour
 {
@@ -218,11 +220,13 @@ public class GameManager_ObjectGame : MonoBehaviour
 
     public void Left_BlockRotation()
     {
-        if(isABlockSelected) { selectedBlock.RotateBlock(true); }
+        EventSystem.current.SetSelectedGameObject(null);
+        if (isABlockSelected) { selectedBlock.RotateBlock(true); }
     }
 
     public void Right_BlockRotation()
     {
+        EventSystem.current.SetSelectedGameObject(null);
         if (isABlockSelected) { selectedBlock.RotateBlock(false); }
     }
 
@@ -258,6 +262,7 @@ public class GameManager_ObjectGame : MonoBehaviour
                 block.RestoreEmptyBlock();
             }
 
+            if(selectedBlock!=null) { selectedBlock.DeselectBlock(); }
             selectedBlock = null;
             isABlockSelected = false;
 
@@ -311,6 +316,7 @@ public class GameManager_ObjectGame : MonoBehaviour
 
     IEnumerator AttributeCompletedCoroutine(float time)
     {
+        attributeGrids[attributeGamelevel - 1].gameObject.SetActive(false);
         canvas_AttributeComplete.SetActive(true);
         yield return new WaitForSeconds(time);
 

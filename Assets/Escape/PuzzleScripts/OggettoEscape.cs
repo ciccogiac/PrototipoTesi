@@ -28,6 +28,7 @@ public class OggettoEscape : Interactable
     private void OnValidate()
     {
         GetComponent<Clue>().clueName = oggettoEscapeValue.objectName;
+        oggettoEscapeValue.description = GetComponent<Clue>().clueDescription;
     }
 
     // Start is called before the first frame update

@@ -15,6 +15,8 @@ public class InventoryLoad : MonoBehaviour
     [SerializeField] GameObject Box_Attributes;
     [SerializeField] GameObject Box_Classi;
     [SerializeField] GameObject Box_Oggetti;
+    [SerializeField] GameObject Box_progettoClasse;
+
 
     [Header("Prefabs")]
     [SerializeField] GameObject method_Prefab;
@@ -22,9 +24,10 @@ public class InventoryLoad : MonoBehaviour
     [SerializeField] GameObject class_Prefab;
     [SerializeField] GameObject oggetto_Prefab;
     [SerializeField] GameObject teoria_Prefab;
+    [SerializeField] GameObject progettoClasse_Prefab;
 
-    [Header("ClassPanel")]   
-    [SerializeField] GameObject ClassPanel;
+    [Header("ClassPanel2")]   
+    [SerializeField] GameObject ClassPanel2;
     [SerializeField] TextMeshProUGUI classValueName;
     [SerializeField] GameObject ClassBox;
     [SerializeField] GameObject classValue_prefab;
@@ -32,6 +35,22 @@ public class InventoryLoad : MonoBehaviour
     [Header("DescriptionPanel")]
     [SerializeField] GameObject DescriptionPanel;
     [SerializeField] TextMeshProUGUI ClueDescription_text;
+
+    [Header("ObjectPanel")]
+    [SerializeField] GameObject ObjectPanel;
+    [SerializeField] TextMeshProUGUI ObjectClass_text;
+    [SerializeField] TextMeshProUGUI ObjectDescription_text;
+    [SerializeField] GameObject attributePrefab;
+    [SerializeField] GameObject methodPrefab;
+    [SerializeField] GameObject attributeBox;
+    [SerializeField] GameObject methodBox;
+
+    [Header("ClassPanel")]
+    [SerializeField] GameObject ClassPanel;
+    [SerializeField] GameObject ClassMetodiBox;
+    [SerializeField] GameObject classMetodi_prefab;
+    [SerializeField] GameObject ClassAttributiBox;
+    [SerializeField] GameObject classAttributi_prefab;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +70,7 @@ public class InventoryLoad : MonoBehaviour
         foreach (Transform figlio in Box_Teoria.transform){Destroy(figlio.gameObject);}
         foreach (Transform figlio in Box_Methods.transform) { Destroy(figlio.gameObject); }
         foreach (Transform figlio in Box_Attributes.transform) { Destroy(figlio.gameObject); }
+        foreach (Transform figlio in Box_progettoClasse.transform) { Destroy(figlio.gameObject); }
         foreach (Transform figlio in Box_Classi.transform) { Destroy(figlio.gameObject); }
         foreach (Transform figlio in Box_Oggetti.transform) { Destroy(figlio.gameObject); }
 
@@ -72,6 +92,15 @@ public class InventoryLoad : MonoBehaviour
 
         }
 
+        foreach (var x in Inventario.istanza.ProgettiClasse)
+        {
+            GameObject oggettoIstanziato = Instantiate(progettoClasse_Prefab, transform.position, Quaternion.identity);
+            oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x.Item1;
+            oggettoIstanziato.GetComponent<DescriptionInventoryButton>().InitializeDescriptionInventory(Clue.ClueType.Attributo, x.Item1, x.Item2, this);
+            oggettoIstanziato.transform.SetParent(Box_progettoClasse.transform);
+
+        }
+
         foreach (var x in Inventario.istanza.classi)
         {
             GameObject oggettoIstanziato = Instantiate(class_Prefab, transform.position, Quaternion.identity);
@@ -85,6 +114,7 @@ public class InventoryLoad : MonoBehaviour
         {
             GameObject oggettoIstanziato = Instantiate(oggetto_Prefab, transform.position, Quaternion.identity);
             oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x.objectName;
+            oggettoIstanziato.GetComponent<ObjectInventoryButton>().InitializeObjectInventory(x, this);
             oggettoIstanziato.transform.SetParent(Box_Oggetti.transform);
 
         }
@@ -120,6 +150,11 @@ public class InventoryLoad : MonoBehaviour
                 Box = Box_Methods;
                 break;
 
+            case Clue.ClueType.ProgettoClasse:
+                Prefab = progettoClasse_Prefab;
+                Box = Box_progettoClasse;
+                break;
+
             case Clue.ClueType.Classe:
                 Prefab = class_Prefab;
                 Box = Box_Classi;
@@ -146,7 +181,19 @@ public class InventoryLoad : MonoBehaviour
             oggettoIstanziato.GetComponent<DescriptionInventoryButton>().InitializeDescriptionInventory(clueType,clueText,clueDescription,this);
         }
 
-        }
+        
+
+    }
+
+    public void AddObject(OggettoEscapeValue oggetto)
+    {
+        GameObject oggettoIstanziato = Instantiate(oggetto_Prefab, transform.position, Quaternion.identity);
+        oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = oggetto.objectName;
+        oggettoIstanziato.transform.SetParent(Box_Oggetti.transform);
+
+        oggettoIstanziato.GetComponent<ObjectInventoryButton>().InitializeObjectInventory(oggetto, this);
+        
+    }
 
     public void ActivateItemsPanel(string s)
     {
@@ -159,7 +206,10 @@ public class InventoryLoad : MonoBehaviour
         Box_Attributes.SetActive(false);
         Box_Classi.SetActive(false);
         Box_Oggetti.SetActive(false);
+        Box_progettoClasse.SetActive(false);
         DescriptionPanel.SetActive(false);
+        ObjectPanel.SetActive(false);
+        ClassPanel.SetActive(false);
 
         ItemsVisualizerVerticalBox.SetActive(true);
 
@@ -174,6 +224,9 @@ public class InventoryLoad : MonoBehaviour
             case "Metodi":
                 Box_Methods.SetActive(true);
                 break;
+            case "ProgettoClasse":
+                Box_progettoClasse.SetActive(true);
+                break;
             case "Classi":
                 Box_Classi.SetActive(true);
                 break;
@@ -183,21 +236,7 @@ public class InventoryLoad : MonoBehaviour
         }
 
     }
-    public void ActivateClassPanel(ClassValue classValue)
-    {
-        InventoryPanel.SetActive(false);
-        ClassPanel.SetActive(true);
-
-        classValueName.text = classValue.className;
-
-        foreach(var attribute in classValue.attributes)
-        {
-            GameObject oggettoIstanziato = Instantiate(classValue_prefab, transform.position, Quaternion.identity);
-            oggettoIstanziato.GetComponentInChildren<ClassValueInventory>().SetClassValue(attribute.attribute,attribute.visibility,attribute.methods);
-            oggettoIstanziato.transform.SetParent(ClassBox.transform);
-        }
-
-    }
+    
 
     public void ActivateDescriptionPanel(string type, string name , string description)
     {
@@ -209,13 +248,93 @@ public class InventoryLoad : MonoBehaviour
         ClueDescription_text.text = description ;
     }
 
+    public void ActivateClassPanel(ClassValue classValue)
+    {
+        //InventoryPanel.SetActive(false);
+        ClassPanel.SetActive(true);
+
+        //classValueName.text = classValue.className;
+        foreach (Transform figlio in ClassAttributiBox.transform) { Destroy(figlio.gameObject); }
+        foreach (Transform figlio in ClassMetodiBox.transform) { Destroy(figlio.gameObject); }
+
+        Dictionary<string, List<Transform>> d = new Dictionary<string, List<Transform>>();
+
+        foreach (var attribute in classValue.attributes)
+        {
+            GameObject oggettoIstanziato = Instantiate(classAttributi_prefab, transform.position, Quaternion.identity);
+            //oggettoIstanziato.GetComponentInChildren<ClassValueInventory>().SetClassValue(attribute.attribute, attribute.visibility, attribute.methods);
+            oggettoIstanziato.GetComponentInChildren<AttributeInventoryInitializer>().SetAttributeValue(attribute.attribute, attribute.visibility== true ? "Public" : "Private");
+            oggettoIstanziato.transform.SetParent(ClassAttributiBox.transform);
+
+           
+
+                foreach (var x in attribute.methods)
+                {
+                    if (d.ContainsKey(x.methodName))
+                    {
+                            d[x.methodName].Add(oggettoIstanziato.GetComponent<AttributeConnectionClassPanel>().pointLineEndAttribute);
+                    }
+                    else
+                        {
+                        List<Transform> t = new List<Transform>();
+                        t.Add(oggettoIstanziato.GetComponent<AttributeConnectionClassPanel>().pointLineEndAttribute);
+                        d.Add(x.methodName, t);
+                        }
+                }
+            
+        }
+
+        foreach (var method in d)
+        {
+            GameObject oggettoIstanziato = Instantiate(classMetodi_prefab, transform.position, Quaternion.identity);
+            //oggettoIstanziato.GetComponentInChildren<ClassValueInventory>().SetClassValue(attribute.attribute, attribute.visibility, attribute.methods);
+            oggettoIstanziato.GetComponentInChildren<MethodInventoryInitializer>().SetAttributeValue(method.Key);
+            
+            oggettoIstanziato.transform.SetParent(ClassMetodiBox.transform);
+            if(method.Value!=null)
+                oggettoIstanziato.GetComponent<LineControllerClassPanel>().SetPointLine( method.Value);
+        }
+
+
+    }
+
     public void DeactivateClassPanel()
     {
-        InventoryPanel.SetActive(true);
+        //InventoryPanel.SetActive(true);
         ClassPanel.SetActive(false);
 
-        classValueName.text = "";
-        foreach (Transform figlio in ClassBox.transform) { Destroy(figlio.gameObject); }
+        //classValueName.text = "";
+        foreach (Transform figlio in ClassAttributiBox.transform) { Destroy(figlio.gameObject); }
+    }
+
+    public void ActivateObjectPanel(OggettoEscapeValue oggetto)
+    {
+        //InventoryPanel.SetActive(false);
+        ObjectPanel.SetActive(true);
+
+        //ClueType_text.text = type ;
+        //ClueName_text.text = name ;
+        ObjectDescription_text.text = oggetto.description;
+        ObjectClass_text.text = oggetto.className;
+
+        foreach (Transform figlio in attributeBox.transform) { Destroy(figlio.gameObject); }
+        foreach (Transform figlio in methodBox.transform) { Destroy(figlio.gameObject); }
+
+        foreach (var attributo in oggetto.attributes)
+        {
+            GameObject oggettoIstanziato = Instantiate(attributePrefab, transform.position, Quaternion.identity);
+            oggettoIstanziato.GetComponent<AttributeInventoryInitializer>().SetAttributeValue(attributo.attributeName, attributo.attributeValue);
+            oggettoIstanziato.transform.SetParent(attributeBox.transform);
+        }
+
+        foreach (var metodo in oggetto.methods)
+        {
+            GameObject oggettoIstanziato = Instantiate(methodPrefab, transform.position, Quaternion.identity);
+            oggettoIstanziato.GetComponentInChildren<MethodInventoryInitializer>().SetAttributeValue(metodo.method.methodName);
+            oggettoIstanziato.transform.SetParent(methodBox.transform);
+        }
+        
+
     }
 
 }

@@ -58,3 +58,6 @@ TagManager:
   - name: EndGame
     uniqueID: 3885538909
     locked: 0
+  - name: New Layer 4
+    uniqueID: 4237215741
+    locked: 0

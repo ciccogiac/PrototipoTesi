@@ -13,6 +13,8 @@ public class OggettoEscapeValue
     public List<Attribute> attributes;
     public List<Methos> methods;
 
+    public string description;
+
     public Mesh mesh;
     public Material[] material;
 

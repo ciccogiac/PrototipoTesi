@@ -44,6 +44,9 @@ public class NewItem : MonoBehaviour
             case "Oggetto":
                 itemImage.sprite = images[4];
                 break;
+            case "ProgettoClasse":
+                itemImage.sprite = images[5];
+                break;
         }
 
         isReading = true;

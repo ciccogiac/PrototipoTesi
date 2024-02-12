@@ -163,7 +163,7 @@ public class LineController : MonoBehaviour
         
         */
 
-        float offset = 0.2f;
+        float offset = 0.35f;
         Transform pm2 = nodes[nodes.Count - 2].transform;
         Transform pm1 = nodes[nodes.Count - 1].transform;
         if (pm1.position.x < (pm2.position.x-offset))

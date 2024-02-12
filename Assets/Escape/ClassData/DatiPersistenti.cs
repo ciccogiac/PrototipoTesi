@@ -10,7 +10,6 @@ public class DatiPersistenti : MonoBehaviour
 
     [Header("ClassGame")]
     public string className;
-    public float timer;
     public Dictionary<string, (bool visibility,List<Method>)> coppie;
 
     [Header("ObjectGame")]

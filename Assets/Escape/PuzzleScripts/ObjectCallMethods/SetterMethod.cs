@@ -7,6 +7,7 @@ public class SetterMethod : MonoBehaviour
 {
     [SerializeField] GameObject prefab_AttributeSetter;
     [SerializeField] GameObject box_AttribbuteSetter;
+    [SerializeField] GameObject box_Caller;
     [SerializeField] ObjectCallMethods objectCallMethods;
    
 
@@ -40,7 +41,7 @@ public class SetterMethod : MonoBehaviour
 
         }
 
-
+        objectCallMethods.ReloadCallerCanvas();
         CloseInterface();
     }
 
@@ -53,6 +54,8 @@ public class SetterMethod : MonoBehaviour
         }
 
         gameObject.SetActive(false);
-        objectCallMethods.CloseInterface();
+        //objectCallMethods.ReloadCallerCanvas();
+        box_Caller.SetActive(true);
+        //objectCallMethods.CloseInterface();
     }
 }

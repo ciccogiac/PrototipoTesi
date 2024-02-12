@@ -18,6 +18,13 @@ public class PlayerCustomInput : MonoBehaviour
     public GameObject CanvasInteract;
     [SerializeField] TextMeshProUGUI mouseText;
 
+    private GameManager_Escape gameManager;
+
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager_Escape>();
+    }
+
     private void checkInventoryInput()
     {
         if (_input.inventory == true)
@@ -62,6 +69,19 @@ public class PlayerCustomInput : MonoBehaviour
 
     }
 
+    private void setMouseSwitchCameraText(GameObject oggettoColpito)
+    {
+
+        Clue c = oggettoColpito.GetComponent<Clue>();
+        if (c != null) { Cursor.SetCursor(gameManager.cursorSwitchCameraPickUpTexture, new Vector2(gameManager.cursorSwitchCameraPickUpTexture.width / 2, gameManager.cursorSwitchCameraPickUpTexture.height / 2), CursorMode.ForceSoftware); return; }
+
+        ReadObject ro = oggettoColpito.GetComponent<ReadObject>();
+        if (ro != null) { Cursor.SetCursor(gameManager.cursorSwitchCameraReadTexture, new Vector2(gameManager.cursorSwitchCameraReadTexture.width / 2, gameManager.cursorSwitchCameraReadTexture.height / 2), CursorMode.ForceSoftware); return; }
+
+
+
+    }
+
     private void PlayerRaycast()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -87,8 +107,15 @@ public class PlayerCustomInput : MonoBehaviour
                         last_InteractableObject.RaycastEnter();
                         if (last_InteractableObject.isActive)
                         {
-                            setMouseText(oggettoColpito);
-                            CanvasInteract.SetActive(true);
+                            if (!gameManager.isSeeing)
+                            {
+                                setMouseText(oggettoColpito);
+                                CanvasInteract.SetActive(true);
+                            }
+                            else
+                            {
+                                setMouseSwitchCameraText(oggettoColpito);
+                            }
                         }
                     }
                     //else if (last_InteractableObject != oggettoColpito.GetComponent<Interactable>())
@@ -99,15 +126,26 @@ public class PlayerCustomInput : MonoBehaviour
                         if (last_InteractableObject != i)
                         {
                             last_InteractableObject.RaycastExit();
-                            CanvasInteract.SetActive(false);
+
+                            if(!gameManager.isSeeing)
+                                CanvasInteract.SetActive(false);
+                            else
+                                Cursor.SetCursor(gameManager.cursorSwitchCameraTexture, new Vector2(gameManager.cursorSwitchCameraTexture.width / 2, gameManager.cursorSwitchCameraTexture.height / 2), CursorMode.Auto);
                         }
                         
                         last_InteractableObject = i;
                         last_InteractableObject.RaycastEnter();
                         if (last_InteractableObject.isActive)
                         {
-                            setMouseText(oggettoColpito);
-                            CanvasInteract.SetActive(true);
+                            if (!gameManager.isSeeing)
+                            {
+                                setMouseText(oggettoColpito);
+                                CanvasInteract.SetActive(true);
+                            }
+                            else
+                            {
+                                setMouseSwitchCameraText(oggettoColpito);
+                            }
                         }
                     }
 
@@ -121,7 +159,12 @@ public class PlayerCustomInput : MonoBehaviour
                 else if (last_InteractableObject != null)
                 {
                     last_InteractableObject.RaycastExit();
-                    CanvasInteract.SetActive(false);
+
+                    if (!gameManager.isSeeing)
+                        CanvasInteract.SetActive(false);
+                    else
+                        Cursor.SetCursor(gameManager.cursorSwitchCameraTexture, new Vector2(gameManager.cursorSwitchCameraTexture.width / 2, gameManager.cursorSwitchCameraTexture.height / 2), CursorMode.Auto);
+
                     last_InteractableObject = null;
                 }
             }
@@ -131,7 +174,12 @@ public class PlayerCustomInput : MonoBehaviour
         else if (last_InteractableObject != null)
         {
             last_InteractableObject.RaycastExit();
-            CanvasInteract.SetActive(false);
+
+            if (!gameManager.isSeeing)
+                CanvasInteract.SetActive(false);
+            else
+                Cursor.SetCursor(gameManager.cursorSwitchCameraTexture, new Vector2(gameManager.cursorSwitchCameraTexture.width / 2, gameManager.cursorSwitchCameraTexture.height / 2), CursorMode.Auto);
+
             last_InteractableObject = null;
         }
 

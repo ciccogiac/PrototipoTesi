@@ -16,6 +16,8 @@ public class Inventario : MonoBehaviour
     public List<ClassValue> classi;
     public List<OggettoEscapeValue> oggetti;
 
+    public List<(string,string)> ProgettiClasse = new List<(string,string)>();
+
     public List<(string,string)> methodsAttributesUsed = new List<(string, string)>();
     public List<OggettoEscapeValue> oggettiUsed;
 
@@ -66,6 +68,9 @@ public class Inventario : MonoBehaviour
             case Clue.ClueType.Metodo:
                 return (methods.Find(x => x.Item1 == clue.clueName) != (null, null)) ? true : false;
 
+            case Clue.ClueType.ProgettoClasse:
+                return (ProgettiClasse.Find(x => x.Item1 == clue.clueName) != (null, null)) ? true : false;
+
 
             case Clue.ClueType.Classe:
                 ClassValue c = classi.Find(x => x.className == clue.clueName);
@@ -76,7 +81,9 @@ public class Inventario : MonoBehaviour
             case Clue.ClueType.Oggetto:
                 OggettoEscapeValue o = oggetti.Find(x => x.objectName == clue.clueName);
                 return o!=null;
-                
+
+            
+
         }
 
         return true;
@@ -106,7 +113,12 @@ public class Inventario : MonoBehaviour
                 classi.Add(clue.gameObject.GetComponent<ClasseEscape>().classValue);
                 inventoryLoad.AddItem(clue.clueName, clue.clueDescription, clue.clueType);
                 break;
-                
+
+            case Clue.ClueType.ProgettoClasse:
+                ProgettiClasse.Add((clue.clueName, clue.clueDescription));
+                inventoryLoad.AddItem(clue.clueName, clue.clueDescription, clue.clueType);
+                break;
+
 
                 /*
             case Clue.ClueType.Oggetto:
@@ -120,6 +132,7 @@ public class Inventario : MonoBehaviour
     public void PickUpObject(OggettoEscapeValue oggetto)
     {
         oggetti.Add(oggetto);
-        inventoryLoad.AddItem(oggetto.objectName, "", Clue.ClueType.Oggetto);
+        //inventoryLoad.AddItem(oggetto.objectName, oggetto.description, Clue.ClueType.Oggetto);
+        inventoryLoad.AddObject(oggetto);
     }
 }

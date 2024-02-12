@@ -1,6 +1,8 @@
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
+
 [CustomEditor(typeof(BlockLoader))]
 public class BlockLoaderEditor : Editor
 {
@@ -61,6 +63,9 @@ public class BlockLoaderEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+
+#endif
+
 public class BlockLoader : MonoBehaviour
 {
     public GameObject[] prefabs;
