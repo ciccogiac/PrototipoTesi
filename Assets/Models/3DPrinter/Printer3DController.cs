@@ -42,11 +42,13 @@ public class Printer3DController : Interactable
         pos = new Vector3(pos.x, pos.y, pos.z);
         var objectSpawned = Instantiate(ToSpawn, pos, Quaternion.identity);
         var meshMaterials= FindObjectOfType<ClassDictionary>().GetMeshMaterials(DatiPersistenti.istanza.className);
+        OggettoEscape oggetto = null;   //aggiunta
         if (meshMaterials != (null, null))
         {
-            var oggetto = objectSpawned.GetComponent<OggettoEscape>();
+            oggetto = objectSpawned.GetComponent<OggettoEscape>();
             oggetto.SetMeshMaterial(meshMaterials);
             oggetto.oggettoEscapeValue.isMadeByPrinter = true;
+            oggetto.tag = "Untagged";   //aggiunta
             oggetto.oggettoEscapeValue.objectName = DatiPersistenti.istanza.objectName;
             oggetto.oggettoEscapeValue.className = DatiPersistenti.istanza.className;
             oggetto.oggettoEscapeValue.attributes = DatiPersistenti.istanza.attributesValues;
@@ -114,7 +116,11 @@ public class Printer3DController : Interactable
             yield return null;
         }
         alembic.CurrentTime = 0f;
-        gameObject.tag = "Interactable";
+        gameObject.tag = "Interactable"; //Aggiunte
+        if (meshMaterials != (null, null))
+            oggetto.tag = "Interactable";
+
+
     }
     
     private List<Methos> GetObjectMethods()

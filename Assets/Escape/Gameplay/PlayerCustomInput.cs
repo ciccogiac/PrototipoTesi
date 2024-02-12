@@ -56,8 +56,13 @@ public class PlayerCustomInput : MonoBehaviour
             ClassGameStarter cs = oggettoColpito.GetComponent<ClassGameStarter>();
             if (cs != null) { mouseText.text = "Open ClassGame"; return; }
 
+            /*
             ObjectGameStarter os = oggettoColpito.GetComponent<ObjectGameStarter>();
             if (os != null) { mouseText.text = "Open ObjectGame"; return; }
+            */
+
+            Printer3DController os = oggettoColpito.GetComponent<Printer3DController>();
+            if (os != null) { mouseText.text = "3D Printer"; return; }
 
             ReadObject ro = oggettoColpito.GetComponent<ReadObject>();
             if (ro != null) { mouseText.text = "Read"; return; }
