@@ -1,5 +1,6 @@
 using Cinemachine;
 using StarterAssets;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -36,6 +37,8 @@ public class GameManager_Escape : MonoBehaviour
     public Texture2D cursorSwitchCameraPickUpTexture;
     public Texture2D cursorSwitchCameraReadTexture;
 
+    [SerializeField] CinemachineBrain cinemachineBrain;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +46,8 @@ public class GameManager_Escape : MonoBehaviour
         interactionSwitchCameraCanvas.SetActive(false);
         readObjectCanvas.SetActive(false);     
         NewItemCanvas.SetActive(false);
+
+
 
         clues = FindObjectsOfType<Clue>();
 
@@ -64,6 +69,7 @@ public class GameManager_Escape : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
     }
+
 
     private void InstanziaOggetto(OggettoEscapeValue oggettoEscapeValue , ObjectInteraction objectInteraction)
     {
@@ -113,12 +119,23 @@ public class GameManager_Escape : MonoBehaviour
         objectCamera.enabled = false;
         primaryCamera.enabled = true;
 
+
+        if (cinemachineBrain.IsBlending) 
+            StartCoroutine(waitSwitchCamera(cinemachineBrain.ActiveBlend.TimeInBlend));
+        else
+            StartCoroutine(waitSwitchCamera(cinemachineBrain.m_DefaultBlend.m_Time));
+
+
+    }
+
+    IEnumerator waitSwitchCamera(float duration)
+    {
+        yield return new WaitForSeconds(duration);
         input.SwitchCurrentActionMap("Player");
 
         interactionSwitchCameraCanvas.SetActive(false);
         interactionCanvas.SetActive(true);
         isSeeing = false;
-
     }
 
     public void ActivateReadObjectCanvas(string text)
