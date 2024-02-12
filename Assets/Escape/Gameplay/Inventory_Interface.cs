@@ -14,7 +14,7 @@ public class Inventory_Interface : MonoBehaviour
     [SerializeField] GameObject interactionCanvas;
     [SerializeField] GameObject ItemsVisualizerVerticalBox;
     [SerializeField] GameObject ButtonVerticalBox;
-    [SerializeField] Button[] buttons;
+    public Button[] buttons;
     public Color normalColor = Color.white;
 
     [SerializeField] GameObject DescriptionPanel;

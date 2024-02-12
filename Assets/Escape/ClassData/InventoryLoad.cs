@@ -6,6 +6,7 @@ using UnityEngine;
 public class InventoryLoad : MonoBehaviour
 {
     [SerializeField] GameObject InventoryPanel;
+    [SerializeField] Inventory_Interface inventoryInterface;
 
     [SerializeField] TextMeshProUGUI textItems;
     [SerializeField] GameObject ItemsVisualizerVerticalBox;
@@ -212,6 +213,11 @@ public class InventoryLoad : MonoBehaviour
         ClassPanel.SetActive(false);
 
         ItemsVisualizerVerticalBox.SetActive(true);
+
+        foreach(var b in inventoryInterface.buttons)
+        {
+            b.interactable = true;
+        }
 
         switch (s)
         {

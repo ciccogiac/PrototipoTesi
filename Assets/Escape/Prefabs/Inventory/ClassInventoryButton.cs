@@ -14,7 +14,7 @@ public class ClassInventoryButton : MonoBehaviour
 
     public void ShowClassConnections()
     {
-        Debug.Log("Class : " + classValue.className);
+        //Debug.Log("Class : " + classValue.className);
         inventoryLoad.ActivateClassPanel(classValue);
     }
 }
