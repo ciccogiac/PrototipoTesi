@@ -13,11 +13,13 @@ public class ObjectInteraction : Interactable
 
     public int Id=1;
 
+    public bool isObjectPermanent = false;
+
     override public void Interact()
     {
         if (isActive)
         {
-            if (oggetto == null)
+            if (oggetto == null && !isObjectPermanent)
             {
                 objectCollectedCanvas.GetComponent<ObjectCollected_Canvas>().objectInteraction = this;
                 objectCollectedCanvas.SetActive(true);

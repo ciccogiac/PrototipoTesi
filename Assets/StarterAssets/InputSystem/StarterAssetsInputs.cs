@@ -27,6 +27,8 @@ namespace StarterAssets
 		public bool readObject;
 		public bool backCamera;
 
+		public bool skip;
+
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
 		{
@@ -70,6 +72,11 @@ namespace StarterAssets
 		{
 			BackCameraInput(value.isPressed);
 		}
+
+		public void OnSkip(InputValue value)
+		{
+			SkipInput(value.isPressed);
+		}
 #endif
 
 
@@ -103,14 +110,19 @@ namespace StarterAssets
 			inventory = newJumpState;
 		}
 		
-			public void ReadObjectInput(bool newReadObjectState)
+		public void ReadObjectInput(bool newReadObjectState)
 		{
 			readObject = newReadObjectState;
 		}
 		
-				public void BackCameraInput(bool newBackCameraState)
+		public void BackCameraInput(bool newBackCameraState)
 		{
 			backCamera = newBackCameraState;
+		}
+		
+		public void SkipInput(bool newSkipState)
+		{
+			skip = newSkipState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)

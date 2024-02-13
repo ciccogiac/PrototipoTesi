@@ -146,7 +146,7 @@ public class GameManager_ObjectGame : MonoBehaviour
         if (livelloGridTrovato != null)
         {
             // Fai qualcosa con l'oggetto trovato
-            Debug.Log("Livello grid trovato: " + livelloGridTrovato.name);
+            //Debug.Log("Livello grid trovato: " + livelloGridTrovato.name);
 
             attributeGrids = livelloGridTrovato.GetComponentsInChildren<AttributeGrid>(true);
             livelloGridTrovato.gameObject.SetActive(true);

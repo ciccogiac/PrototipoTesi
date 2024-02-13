@@ -162,10 +162,12 @@ public class Printer3DController : Interactable
             }
         }
 
+        /*
         foreach (var tupla in listaDiTupleSenzaDuplicati)
         {
             Debug.Log("MethodName: " + tupla.method.methodName +" MethodType: " + tupla.method.methodType + " Attributes : " + string.Join(", ", tupla.attributes));
         }
+        */
         Methos m_pickup = new Methos(new Method("PickUpObject", Method.MethodType.pickUp), new List<string> { });
         listaDiTupleSenzaDuplicati.Add(m_pickup);
         Methos m_destroy = new Methos(new Method("DestroyObject", Method.MethodType.destroy), new List<string> { });
