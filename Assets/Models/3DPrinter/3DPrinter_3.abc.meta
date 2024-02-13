@@ -1,0 +1,83 @@
+fileFormatVersion: 2
+guid: f54019d9fc161f94a86055fe1a03a873
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Corde/Corde:000:'
+    second: {fileID: 2100000, guid: 4301922f1a86d964fa8014f66fd6fce4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'OvenDisplay/OvenDisplay:000:'
+    second: {fileID: 2100000, guid: 9c8c227a1b31bc9419b45a42516d3247, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'OvenGlass/OvenGlass:000:'
+    second: {fileID: 2100000, guid: 64749185b5dd092438937a70b25aae8e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'OvenLegs/OvenLegs:000:'
+    second: {fileID: 2100000, guid: 1d15f7a0d71f9054db887d619fe6fb86, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'OvenStructure/OvenStructure:000:'
+    second: {fileID: 2100000, guid: deb729539f59d924688c2315b4788896, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Poles/Poles:000:'
+    second: {fileID: 2100000, guid: 5c917985730b79942a06ecd356e9216e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Roller/Roller:000:'
+    second: {fileID: 2100000, guid: 51f7970c13f70ff4f9727ee4f62f03f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'RollerCylinders/RollerCylinders:000:'
+    second: {fileID: 2100000, guid: 2cc9b3b4909283a4eb9b14eb79e78f65, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'RollerStructure/RollerStructure:000:'
+    second: {fileID: 2100000, guid: 0bf35c54ff4d4a94eb6dd5097f8c0c63, type: 2}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: f53f5fc499d31e44b9deee84d28a9ee8, type: 3}
+  rootGameObjectId: 
+  rootGameObjectName: 
+  importerVersion: 1
+  streamSettings:
+    normals: 1
+    tangents: 1
+    cameraAspectRatio: 2
+    importVisibility: 1
+    scaleFactor: 0.6
+    swapHandedness: 1
+    flipFaces: 0
+    interpolateSamples: 1
+    importPointPolygon: 1
+    importLinePolygon: 1
+    importTrianglePolygon: 1
+    importXform: 1
+    importCameras: 1
+    importMeshes: 1
+    importPoints: 0
+    importCurves: 1
+    createCurveRenderers: 0
+  abcStartTime: 5
+  abcEndTime: 7.5
+  startTime: 5
+  endTime: 7.5
+  importWarning: 
+  firstImport: 0
+  isHDF5: 0

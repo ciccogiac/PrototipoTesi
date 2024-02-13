@@ -19,7 +19,7 @@ public class GameManager_Escape : MonoBehaviour
     [SerializeField] GameObject interactionCanvas;
     [SerializeField] GameObject interactionSwitchCameraCanvas;
     [SerializeField] GameObject NewItemCanvas;
-    [SerializeField] GameObject dialogCanvas;
+    [SerializeField] GameObject DialogCanvas;
 
     [SerializeField] TextMeshProUGUI ReadObjectText;
 
@@ -217,15 +217,20 @@ public class GameManager_Escape : MonoBehaviour
 
     }
 
-    public void ActivateDialog()
+    public void ActivateDialogCanvas()
     {
         interactionCanvas.SetActive(false);
-        dialogCanvas.SetActive(true);
-        input.SwitchCurrentActionMap("SwitchCamera");
+        DialogCanvas.SetActive(true);
+
+        input.SwitchCurrentActionMap("Dialog");
     }
 
-    public void DeactivateDialog()
+    public void DeactivateDialogCanvas()
     {
+        interactionCanvas.SetActive(true);
+        DialogCanvas.SetActive(false);
 
+        //input.SwitchCurrentActionMap("Player");
     }
 }
+
