@@ -20,6 +20,7 @@ public class GameManager_Escape : MonoBehaviour
     [SerializeField] GameObject interactionSwitchCameraCanvas;
     [SerializeField] GameObject NewItemCanvas;
     [SerializeField] GameObject DialogCanvas;
+    [SerializeField] private GameObject LongSpeechCanvas;
 
     [SerializeField] TextMeshProUGUI ReadObjectText;
 
@@ -69,6 +70,8 @@ public class GameManager_Escape : MonoBehaviour
         }
 
         Cursor.lockState = CursorLockMode.Locked;
+        
+        ActivateLongSpeechCanvas();
     }
 
 
@@ -231,6 +234,21 @@ public class GameManager_Escape : MonoBehaviour
         DialogCanvas.SetActive(false);
 
         //input.SwitchCurrentActionMap("Player");
+    }
+
+    public void ActivateLongSpeechCanvas()
+    {
+        interactionCanvas.SetActive(false);
+        LongSpeechCanvas.SetActive(true);
+
+        input.SwitchCurrentActionMap("Dialog");
+    }
+
+    public void DeactivateLongSpeechCanvas()
+    {
+        interactionCanvas.SetActive(true);
+        LongSpeechCanvas.SetActive(false);
+        input.SwitchCurrentActionMap("Player");
     }
 }
 
