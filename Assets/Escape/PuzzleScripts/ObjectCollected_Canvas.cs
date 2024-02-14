@@ -85,6 +85,7 @@ public class ObjectCollected_Canvas : MonoBehaviour
             oggettoEscapeValue.ObjectInteractorId = objectInteraction.Id;
             GameObject oggettoIstanziato = Instantiate(objectPrefab, objectInteraction.objectPoint.position, Quaternion.identity);
             oggettoIstanziato.GetComponent<OggettoEscape>().SetOggettoEscapeValue( oggettoEscapeValue);
+            oggettoIstanziato.GetComponent<OggettoEscape>().isActive = false;
 
             oggettoIstanziato.transform.position = objectInteraction.objectPoint.position;
             oggettoIstanziato.transform.SetParent(objectInteraction.gameObject.transform);
