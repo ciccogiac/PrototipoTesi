@@ -32452,11 +32452,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1653921822 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8996919151127297053, guid: dd0f6b7ee357d0742876fe0410fc5d3f, type: 3}
+--- !u!114 &1653921823 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2758477613385192442, guid: dd0f6b7ee357d0742876fe0410fc5d3f, type: 3}
   m_PrefabInstance: {fileID: 297548243983103891}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8136a43a743a8e346ac9ad7f26c32f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1656524660
 GameObject:
   m_ObjectHideFlags: 0
@@ -38366,7 +38372,7 @@ MonoBehaviour:
   interactionSwitchCameraCanvas: {fileID: 394827020}
   NewItemCanvas: {fileID: 1131082319}
   DialogCanvas: {fileID: 1983862579}
-  LongSpeechCanvas: {fileID: 1653921822}
+  IntroSpeechCanvas: {fileID: 1653921823}
   ReadObjectText: {fileID: 371977833}
   input: {fileID: 135756641613574981}
   _input: {fileID: 135756641613574975}
@@ -44323,7 +44329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8996919151127297053, guid: dd0f6b7ee357d0742876fe0410fc5d3f, type: 3}
       propertyPath: m_Name
-      value: LongSpeechCanvas
+      value: IntroSpeechCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 9187405895075820350, guid: dd0f6b7ee357d0742876fe0410fc5d3f, type: 3}
       propertyPath: m_AnchorMax.y
@@ -44939,6 +44945,10 @@ PrefabInstance:
       propertyPath: canvas_ObjectGameInterface
       value: 
       objectReference: {fileID: 783488212}
+    - target: {fileID: 3544234073509783140, guid: 1d29a168a2826e146938120eb39cd0ec, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3796657
+      objectReference: {fileID: 0}
     - target: {fileID: 3928122477629819575, guid: 1d29a168a2826e146938120eb39cd0ec, type: 3}
       propertyPath: m_Mesh
       value: 
