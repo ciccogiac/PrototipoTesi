@@ -9,8 +9,8 @@ public class ClassValue
     public string className;
     public List<AttributeValue> attributes;
 
-    public Mesh mesh;
-    public Material[] material;
+    public GameObject classPrefab;
+    public string objectDescription;
 }
 
 [Serializable]

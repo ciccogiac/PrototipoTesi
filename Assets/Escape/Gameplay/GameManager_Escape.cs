@@ -116,14 +116,12 @@ public class GameManager_Escape : MonoBehaviour
 
     private void InstanziaOggetto(OggettoEscapeValue oggettoEscapeValue , ObjectInteraction objectInteraction)
     {
-        GameObject oggettoIstanziato = Instantiate(objectPrefab, objectInteraction.objectPoint.position, Quaternion.identity);
+        GameObject oggettoIstanziato = Instantiate(oggettoEscapeValue.classPrefab, objectInteraction.objectPoint.position, Quaternion.identity);
         oggettoIstanziato.GetComponent<OggettoEscape>().SetOggettoEscapeValue(oggettoEscapeValue);
 
         oggettoIstanziato.transform.position = objectInteraction.objectPoint.position;
         oggettoIstanziato.transform.SetParent(objectInteraction.gameObject.transform);
 
-        oggettoIstanziato.gameObject.GetComponent<MeshFilter>().mesh = oggettoIstanziato.GetComponent<OggettoEscape>().oggettoEscapeValue.mesh;
-        oggettoIstanziato.gameObject.GetComponent<MeshRenderer>().materials = oggettoIstanziato.GetComponent<OggettoEscape>().oggettoEscapeValue.material;
         float fattoreScala = 0.5f;
         oggettoIstanziato.gameObject.transform.localScale *= fattoreScala;
         oggettoIstanziato.gameObject.SetActive(true);

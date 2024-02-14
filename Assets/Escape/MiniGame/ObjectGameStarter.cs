@@ -24,15 +24,13 @@ public class ObjectGameStarter : Interactable
 
     private void PrintObject()
     {
-        (Mesh , Material[]) meshMaterials= FindObjectOfType<ClassDictionary>().GetMeshMaterials(DatiPersistenti.istanza.className);
 
-        if (meshMaterials != (null, null))
+       // if (meshMaterials != (null, null))
         {
 
             string objectName = DatiPersistenti.istanza.objectName;
             GameObject nuovoOggetto = Instantiate(oggettoDaIstanzare, printingPosition.position, transform.rotation);
             OggettoEscape oggetto = nuovoOggetto.GetComponent<OggettoEscape>();
-            oggetto.SetMeshMaterial(meshMaterials);
             oggetto.oggettoEscapeValue.isMadeByPrinter = true;
             oggetto.oggettoEscapeValue.objectName = DatiPersistenti.istanza.objectName;
             oggetto.oggettoEscapeValue.className = DatiPersistenti.istanza.className;

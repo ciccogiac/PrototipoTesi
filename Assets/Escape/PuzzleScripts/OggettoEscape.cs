@@ -17,7 +17,7 @@ public class OggettoEscape : Interactable
 
     public ObjectCallMethods ObjectCallCanvas;
 
-    public OggettoEscapeValue oggettoEscapeValue;
+    public OggettoEscapeValue oggettoEscapeValue ;
 
     private PlayerCustomInput customInput;
     private GameManager_Escape gameManager;
@@ -38,25 +38,18 @@ public class OggettoEscape : Interactable
         inventoryLoad = FindObjectOfType<InventoryLoad>();
         customInput = FindObjectOfType<PlayerCustomInput>();
         clue = GetComponent<Clue>();
+        if (oggettoEscapeValue.description == "")
+            oggettoEscapeValue.description = clue.clueDescription;
 
         if (!oggettoEscapeValue.isMadeByPrinter)
         {
             SetOggettoEscapeNotPrinted();
-            oggettoEscapeValue.mesh = GetComponent<MeshFilter>().mesh;
-            oggettoEscapeValue.material = GetComponent<MeshRenderer>().materials;
         }
 
 
 
     }
 
-    public void SetMeshMaterial((Mesh, Material[])m)
-    {
-        GetComponent<MeshFilter>().mesh = m.Item1;
-        GetComponent<MeshRenderer>().materials = m.Item2;
-        oggettoEscapeValue.mesh = m.Item1;
-        oggettoEscapeValue.material = m.Item2;
-    }
 
         public void SetOggettoEscapeValue(OggettoEscapeValue oggetto)
     {

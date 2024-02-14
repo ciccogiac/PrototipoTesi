@@ -15,19 +15,18 @@ public class ClassDictionary : MonoBehaviour
     // Start is called before the first frame update
 
 
-    public (Mesh , Material[]) GetMeshMaterials(string _className)
+
+    public (GameObject,string) GetClassPrefab(string _className)
     {
         ClassValue classFound = classi.Find(s => string.Equals(s.className, _className, StringComparison.OrdinalIgnoreCase));
 
         if (classFound != null)
         {
-            //Debug.Log("Classe  '" +  classFound.className +"' trovata" );
-            return (classFound.mesh,classFound.material);
+            return (classFound.classPrefab,classFound.objectDescription);
         }
         else
         {
-            //Debug.Log("Classe  '" + _className + "' non trovata");
-            return (null,null);
+            return ((null,null));
         }
     }
 

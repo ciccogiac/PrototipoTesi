@@ -15,8 +15,7 @@ public class OggettoEscapeValue
 
     public string description;
 
-    public Mesh mesh;
-    public Material[] material;
+    public GameObject classPrefab;
 
     public int ObjectInteractorId = 0;
 }
