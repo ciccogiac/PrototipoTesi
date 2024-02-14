@@ -24,6 +24,7 @@ public class MethodListener : MonoBehaviour
 
     public MethodTube[] methodTubes ;
 
+    public int methodListenerID ;
     
     public virtual void Start()
     {
@@ -109,4 +110,6 @@ public class MethodListener : MonoBehaviour
         className = "";
         ChangeTubeColor("Disconnect");
     }
+
+    public virtual void ApplyMethod() { }
 }

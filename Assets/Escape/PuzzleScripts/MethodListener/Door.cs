@@ -15,7 +15,6 @@ public class Door : MethodListener
     public override void Start()
     {
         base.Start();
-        door = GetComponent<Animator>();
     }
 
     public override void SetClass(string name)
@@ -146,10 +145,16 @@ public class Door : MethodListener
            
         }
 
+        ApplyMethod();
+        return true;
+    }
+
+    public override void ApplyMethod()
+    {
         doorMonitor.SetError("");
 
         ChangeTubeColor("Getter");
         door.SetBool("character_nearby", true);
-        return true;
+        DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);
     }
 }

@@ -37,8 +37,33 @@ public class GameManager_Escape : MonoBehaviour
 
     public Texture2D cursorSwitchCameraPickUpTexture;
     public Texture2D cursorSwitchCameraReadTexture;
+    public Texture2D cursorSwitchCameraInteractTexture;
 
     [SerializeField] CinemachineBrain cinemachineBrain;
+
+
+#if UNITY_EDITOR
+    // Questo metodo viene chiamato solo nell'editor quando si fa clic su "Gestisci valori" nel componente
+    [ContextMenu("Calcola valori id iniziali")]
+     void ImpostaValoriID()
+    {
+        Debug.Log("Calcolo id");
+        int i = 0;
+        foreach (var x in FindObjectsOfType<ObjectInteraction>())
+        {
+            x.Id = i;
+            i++;
+        }
+
+        i = 0;
+        foreach (var x in FindObjectsOfType<MethodListener>())
+        {
+            x.methodListenerID = i;
+            i++;
+        }
+
+    }
+#endif
 
     // Start is called before the first frame update
     void Start()
@@ -59,13 +84,30 @@ public class GameManager_Escape : MonoBehaviour
 
         objectInteractors = FindObjectsOfType<ObjectInteraction>();
 
+
         foreach (var objectInteractor in objectInteractors)
         {
-            OggettoEscapeValue o = Inventario.istanza.oggettiUsed.Find(x => x.ObjectInteractorId !=0 && x.ObjectInteractorId == objectInteractor.Id);
+            OggettoEscapeValue o = Inventario.istanza.oggettiUsed.Find(x => x.ObjectInteractorId == objectInteractor.Id);
             if (o != null)
             {
                 InstanziaOggetto(o, objectInteractor);
             }
+        }
+
+        MethodListener[] methodsListeners = FindObjectsOfType<MethodListener>();
+
+        foreach (var methodListener in DatiPersistenti.istanza.methodsListeners)
+        {
+            
+            foreach(var x in methodsListeners)
+            {
+                if (x.methodListenerID == methodListener)
+                { 
+                    x.ApplyMethod();
+                }
+            }
+
+            
         }
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -103,7 +145,10 @@ public class GameManager_Escape : MonoBehaviour
     public void SwitchCamera(CinemachineVirtualCamera objectCamera)
     {
         isSeeing = true;
-        input.SwitchCurrentActionMap("SwitchCamera");
+        
+        //input.SwitchCurrentActionMap("SwitchCamera");
+        input.enabled = false;
+
 
         primaryCamera.enabled = false;
         objectCamera.enabled = true;
@@ -113,10 +158,13 @@ public class GameManager_Escape : MonoBehaviour
 
         cursorSwitchCameraHotspot = new Vector2(cursorSwitchCameraTexture.width/2, cursorSwitchCameraTexture.height / 2);
         Cursor.SetCursor(cursorSwitchCameraTexture, cursorSwitchCameraHotspot, CursorMode.Auto);
+        input.enabled = true;
+        input.SwitchCurrentActionMap("SwitchCamera");
     }
 
     public void SwitchCameraToPrimary(CinemachineVirtualCamera objectCamera)
     {
+        input.enabled = false;
         objectCamera.enabled = false;
         primaryCamera.enabled = true;
 
@@ -126,12 +174,14 @@ public class GameManager_Escape : MonoBehaviour
         else
             StartCoroutine(waitSwitchCamera(cinemachineBrain.m_DefaultBlend.m_Time));
 
+        
 
     }
 
     IEnumerator waitSwitchCamera(float duration)
     {
         yield return new WaitForSeconds(duration);
+        input.enabled = true;
         input.SwitchCurrentActionMap("Player");
 
         interactionSwitchCameraCanvas.SetActive(false);

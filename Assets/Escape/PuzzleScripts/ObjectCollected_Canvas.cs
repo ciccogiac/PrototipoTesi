@@ -30,9 +30,14 @@ public class ObjectCollected_Canvas : MonoBehaviour
     [SerializeField] private Texture2D cursorTexture;
     private Vector2 cursorHotspot;
 
+    [SerializeField] GameManager_Escape gameManager;
+
+    [SerializeField] GameObject interactSwitchCameraCanvas;
+
     private void OnEnable()
     {
         input.enabled = false;
+        if (objectInteraction.isObjectSee) { interactSwitchCameraCanvas.SetActive(false); gameManager.isSeeing = false; }
         interactCanvas.SetActive(false);
         objectInteraction.isActive = false;
         buttonSelectObject.SetActive(false);
@@ -113,11 +118,20 @@ public class ObjectCollected_Canvas : MonoBehaviour
             Destroy(figlio.gameObject);
         }
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+
         input.enabled = true;
         objectInteraction.isActive = true;
-        interactCanvas.SetActive(true);
+
+        if (objectInteraction.isObjectSee)
+        {
+            Cursor.SetCursor(gameManager.cursorSwitchCameraTexture, new Vector2(gameManager.cursorSwitchCameraTexture.width / 2, gameManager.cursorSwitchCameraTexture.height / 2), CursorMode.Auto);
+            Cursor.visible = true; Cursor.lockState = CursorLockMode.Confined;
+            objectInteraction.gameObject.GetComponent<Outline>().enabled = false;
+            interactSwitchCameraCanvas.SetActive(true); gameManager.isSeeing = true;
+            input.SwitchCurrentActionMap("SwitchCamera");
+        }
+        else { Cursor.visible = false; Cursor.lockState = CursorLockMode.Locked; interactCanvas.SetActive(true); }
+
 
         gameObject.SetActive(false);
       

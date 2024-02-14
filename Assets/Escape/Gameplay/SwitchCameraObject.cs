@@ -41,10 +41,10 @@ public class SwitchCameraObject : Interactable
                 {
                     Outline o = x.gameObject.GetComponent<Outline>();
                     if(o!=null) o.enabled = false;
-                    x.gameObject.GetComponent<SphereCollider>().enabled = false;
+                    x.gameObject.GetComponent<Collider>().enabled = false;
                 }
                 else
-                    x.gameObject.GetComponent<SphereCollider>().enabled = true;
+                    x.gameObject.GetComponent<Collider>().enabled = true;
 
             }
         }
@@ -58,10 +58,10 @@ public class SwitchCameraObject : Interactable
                 {
                     Outline o = x.gameObject.GetComponent<Outline>();
                     if (o != null) o.enabled = false;
-                    x.gameObject.GetComponent<SphereCollider>().enabled = false;
+                    x.gameObject.GetComponent<Collider>().enabled = false;
                 }
                 else
-                    x.gameObject.GetComponent<SphereCollider>().enabled = true;
+                    x.gameObject.GetComponent<Collider>().enabled = true;
             }
         }
 
@@ -74,29 +74,31 @@ public class SwitchCameraObject : Interactable
                 {
                     Outline o = x.gameObject.GetComponent<Outline>();
                     if (o != null) o.enabled = false;
-                    x.gameObject.GetComponent<SphereCollider>().enabled = false;
+                    x.gameObject.GetComponent<Collider>().enabled = false;
                 }
                 else
-                    x.gameObject.GetComponent<SphereCollider>().enabled = true;
+                    x.gameObject.GetComponent<Collider>().enabled = true;
             }
         }
     }
 
     public override void Interact()
     {
-        gameManager.SwitchCamera(objectCamera);
+            GetComponent<Collider>().enabled = false;
+            gameManager.SwitchCamera(objectCamera);
+            
+            isSeeing = true;
+            isActive = false;
 
-        isSeeing = true;
-        isActive = false;
+            Outline outline = gameObject.GetComponent<Outline>();
+            if (outline != null)
+                outline.enabled = false;
 
-        Outline outline = gameObject.GetComponent<Outline>();
-        if (outline!=null)
-            outline.enabled = false;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
 
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
-
-        ChangeObjectActivateState(true);
+            ChangeObjectActivateState(true);
+        
         
         
     }
@@ -111,9 +113,9 @@ public class SwitchCameraObject : Interactable
 
     public void ReturnToPrimaryCamera()
     {
-
-        gameManager.SwitchCameraToPrimary(objectCamera);
         isSeeing = false;
+        gameManager.SwitchCameraToPrimary(objectCamera);
+        
         gameManager._input.backCamera = false;
 
         Cursor.visible = false;
@@ -121,5 +123,7 @@ public class SwitchCameraObject : Interactable
 
         isActive = true;
         ChangeObjectActivateState(false);
+
+        GetComponent<Collider>().enabled = true;
     }
 }

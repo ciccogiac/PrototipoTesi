@@ -19,6 +19,7 @@ public class ObjectCallMethods : MonoBehaviour
 
     public PlayerInput input;
     [SerializeField] GameObject interactCanvas;
+    [SerializeField] GameObject interactSwitchCameraCanvas;
     public ObjectInteraction objectInteraction;
 
     [SerializeField] Color selectedColor;
@@ -34,11 +35,17 @@ public class ObjectCallMethods : MonoBehaviour
     public GameObject InputCanvas;
     public InputMethod inputMethod;
 
+    [SerializeField] private Texture2D cursorTexture;
+    private Vector2 cursorHotspot;
+
+    [SerializeField] GameManager_Escape gameManager;
+
 
 
     private void OnEnable()
     {
         input.enabled = false;
+        if (objectInteraction.isObjectPermanent || objectInteraction.isObjectSee) { interactSwitchCameraCanvas.SetActive(false); gameManager.isSeeing = false; }
         interactCanvas.SetActive(false);
         objectInteraction.isActive = false;
 
@@ -46,6 +53,8 @@ public class ObjectCallMethods : MonoBehaviour
         SetterCanvas.SetActive(false);
 
         buttonCallMethod.SetActive(false);
+        cursorHotspot = new Vector2(0f, 0f);
+        Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
 
@@ -118,13 +127,23 @@ public class ObjectCallMethods : MonoBehaviour
             Destroy(figlio.gameObject);
         }
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+
         input.enabled = true;
         objectInteraction.isActive = true;
 
         CallerCanvas.SetActive(false);
-        interactCanvas.SetActive(true);
+        
+
+        if (objectInteraction.isObjectPermanent || objectInteraction.isObjectSee) 
+        {
+            Cursor.SetCursor(gameManager.cursorSwitchCameraTexture, new Vector2(gameManager.cursorSwitchCameraTexture.width / 2, gameManager.cursorSwitchCameraTexture.height / 2), CursorMode.Auto);
+            Cursor.visible = true; Cursor.lockState = CursorLockMode.Confined;
+            objectInteraction.gameObject.GetComponent<Outline>().enabled = false;
+            interactSwitchCameraCanvas.SetActive(true); gameManager.isSeeing = true;
+            input.SwitchCurrentActionMap("SwitchCamera");
+        }
+        else{ Cursor.visible = false; Cursor.lockState = CursorLockMode.Locked; interactCanvas.SetActive(true); }
+
         gameObject.SetActive(false);
 
 

@@ -46,20 +46,17 @@ public class PlayerCustomInput : MonoBehaviour
 
     private void setMouseText(GameObject oggettoColpito)
     {
-
-            Clue c = oggettoColpito.GetComponent<Clue>();
-            if (c != null) { mouseText.text = "Pick Up"; return; }
-
             ObjectInteraction o = oggettoColpito.GetComponent<ObjectInteraction>();
             if (o != null) { mouseText.text = "Interact"; return; }
+
+            Clue c = oggettoColpito.GetComponent<Clue>();
+            if (c != null && c.isActive) { mouseText.text = "Pick Up"; return; }
+
+           
 
             ClassGameStarter cs = oggettoColpito.GetComponent<ClassGameStarter>();
             if (cs != null) { mouseText.text = "Open ClassGame"; return; }
 
-            /*
-            ObjectGameStarter os = oggettoColpito.GetComponent<ObjectGameStarter>();
-            if (os != null) { mouseText.text = "Open ObjectGame"; return; }
-            */
 
             Printer3DController os = oggettoColpito.GetComponent<Printer3DController>();
             if (os != null) { mouseText.text = "3D Printer"; return; }
@@ -68,7 +65,7 @@ public class PlayerCustomInput : MonoBehaviour
             if (ro != null) { mouseText.text = "Read"; return; }
 
             SwitchCameraObject sco = oggettoColpito.GetComponent<SwitchCameraObject>();
-            if (sco != null) { mouseText.text = "See"; return; }
+            if (sco != null) { mouseText.text = "Interact"; return; }
         
 
 
@@ -76,9 +73,14 @@ public class PlayerCustomInput : MonoBehaviour
 
     private void setMouseSwitchCameraText(GameObject oggettoColpito)
     {
+        ObjectInteraction o = oggettoColpito.GetComponent<ObjectInteraction>();
+        if (o != null) { Cursor.SetCursor(gameManager.cursorSwitchCameraInteractTexture, new Vector2(gameManager.cursorSwitchCameraInteractTexture.width / 2, gameManager.cursorSwitchCameraInteractTexture.height / 2), CursorMode.ForceSoftware); return; }
+
+        OggettoEscape oe = oggettoColpito.GetComponent<OggettoEscape>();
+        if (oe != null && oe.isActive) { Cursor.SetCursor(gameManager.cursorSwitchCameraPickUpTexture, new Vector2(gameManager.cursorSwitchCameraPickUpTexture.width / 2, gameManager.cursorSwitchCameraPickUpTexture.height / 2), CursorMode.ForceSoftware); return; }
 
         Clue c = oggettoColpito.GetComponent<Clue>();
-        if (c != null) { Cursor.SetCursor(gameManager.cursorSwitchCameraPickUpTexture, new Vector2(gameManager.cursorSwitchCameraPickUpTexture.width / 2, gameManager.cursorSwitchCameraPickUpTexture.height / 2), CursorMode.ForceSoftware); return; }
+        if (c != null && c.isActive) { Cursor.SetCursor(gameManager.cursorSwitchCameraPickUpTexture, new Vector2(gameManager.cursorSwitchCameraPickUpTexture.width / 2, gameManager.cursorSwitchCameraPickUpTexture.height / 2), CursorMode.ForceSoftware); return; }
 
         ReadObject ro = oggettoColpito.GetComponent<ReadObject>();
         if (ro != null) { Cursor.SetCursor(gameManager.cursorSwitchCameraReadTexture, new Vector2(gameManager.cursorSwitchCameraReadTexture.width / 2, gameManager.cursorSwitchCameraReadTexture.height / 2), CursorMode.ForceSoftware); return; }

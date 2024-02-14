@@ -14,6 +14,7 @@ public class ObjectInteraction : Interactable
     public int Id=1;
 
     public bool isObjectPermanent = false;
+    public bool isObjectSee = false;
 
     override public void Interact()
     {

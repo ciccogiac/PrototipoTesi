@@ -5,7 +5,6 @@ using UnityEngine;
 public class Cassaforte : MethodListener
 {
     [SerializeField] Animator door;
-    [SerializeField] SwitchCameraObject cameraSwitch;
 
     public override bool Method(List<(string, string)> objectValue)
     {
@@ -28,9 +27,15 @@ public class Cassaforte : MethodListener
 
         }
 
-        Debug.Log("CassaforteAperta");
-        cameraSwitch.Interact();
-        door.SetBool("character_nearby", true);
+        ApplyMethod();
         return true;
+    }
+
+    public override void ApplyMethod()
+    {
+        Debug.Log("CassaforteAperta");
+        door.SetBool("character_nearby", true);
+        DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);
+
     }
 }

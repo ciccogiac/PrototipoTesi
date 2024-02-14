@@ -29,8 +29,9 @@ public class Interactable : MonoBehaviour
 
     public void RaycastExit()
     {
-        if (isActive) 
+        if ( isActive) 
         { 
+
             gameObject.GetComponent<Outline>().enabled = false;
         }
     }

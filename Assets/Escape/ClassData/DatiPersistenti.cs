@@ -8,6 +8,9 @@ public class DatiPersistenti : MonoBehaviour
 
     public Vector3 lastCharacterEscapePosition;
 
+    public HashSet<int> methodsListeners = new HashSet<int>();
+
+
     [Header("ClassGame")]
     public string className;
     public Dictionary<string, (bool visibility,List<Method>)> coppie;
