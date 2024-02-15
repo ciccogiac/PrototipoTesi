@@ -160,7 +160,7 @@ public class GameManager_ObjectGame : MonoBehaviour
         if (livelloInventoryTrovato != null)
         {
             // Fai qualcosa con l'oggetto trovato
-            Debug.Log("Livello inventory trovato: " + livelloInventoryTrovato.name);
+            //Debug.Log("Livello inventory trovato: " + livelloInventoryTrovato.name);
 
             attributeInventory = livelloInventoryTrovato.GetComponentsInChildren<AttributeInventory>(true);
             livelloInventoryTrovato.gameObject.SetActive(true);
