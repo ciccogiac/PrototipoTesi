@@ -45275,7 +45275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1102944410547913216, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.290815
+      value: 9.375
       objectReference: {fileID: 0}
     - target: {fileID: 1102944410547913216, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -45348,6 +45348,22 @@ PrefabInstance:
     - target: {fileID: 7013712188833926715, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: Messages.Array.data[2].MessageText
       value: Anche io bene grazie. A presto!
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715396244351729934, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
+      propertyPath: m_Size.x
+      value: 1.8414302
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715396244351729934, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
+      propertyPath: m_Size.z
+      value: 0.4860754
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715396244351729934, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
+      propertyPath: m_Center.x
+      value: -0.36071515
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715396244351729934, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
+      propertyPath: m_Center.z
+      value: 0.48173666
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

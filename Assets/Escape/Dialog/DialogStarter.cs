@@ -18,7 +18,7 @@ public class DialogStarter : MonoBehaviour
     [SerializeField] private TMP_Text CharacterName;
     [SerializeField] private Image CharacterImage;
 
-    private int _counter;
+    private int _counter = -1;
     private bool _dialogUsed;
     private bool _dialogOpen;
     private bool _clickTriggered;
@@ -35,10 +35,10 @@ public class DialogStarter : MonoBehaviour
     {
         if (other.CompareTag("Player") && !_dialogUsed)
         {
-            SetupDialogCanvasWithMessage(Messages[_counter]);
             _gameManager.ActivateDialogCanvas();
             DialogCamera.enabled = true;
             _dialogOpen = true;
+            NextMessage();
         }
     }
 
@@ -61,6 +61,7 @@ public class DialogStarter : MonoBehaviour
 
             if (_input.skip)
             {
+                _input.skip = false;
                 EndDialog();
             }
         }

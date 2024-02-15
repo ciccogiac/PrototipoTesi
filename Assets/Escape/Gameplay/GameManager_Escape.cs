@@ -120,7 +120,8 @@ public class GameManager_Escape : MonoBehaviour
 
     public void SwitchCameraToPrimary(CinemachineVirtualCamera objectCamera)
     {
-        objectCamera.enabled = false;
+        if (objectCamera != null)
+            objectCamera.enabled = false;
         primaryCamera.enabled = true;
 
 
@@ -232,11 +233,10 @@ public class GameManager_Escape : MonoBehaviour
     {
         interactionCanvas.SetActive(true);
         DialogCanvas.SetActive(false);
-
         //input.SwitchCurrentActionMap("Player");
     }
 
-    public void ActivateLongSpeechCanvas(GameObject longSpeech)
+    private void ActivateLongSpeechCanvas(GameObject longSpeech)
     {
         interactionCanvas.SetActive(false);
         longSpeech.SetActive(true);

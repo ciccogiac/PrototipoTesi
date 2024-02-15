@@ -12,7 +12,7 @@ public class LongSpeech : MonoBehaviour
     [SerializeField] private TMP_Text CampoTesto;
     [SerializeField][TextArea(5, 20)] private string[] Testi;
     private bool _clickTriggered;
-    private int _counter;
+    private int _counter = -1;
     private bool _typing;
     private IEnumerator _typingCoroutine;
     private void Start()
@@ -23,8 +23,8 @@ public class LongSpeech : MonoBehaviour
 
     private void OnEnable()
     {
-        _counter = 0;
-        SetupLongSpeechCanvasWithSpeech(Testi[_counter]);
+        _counter = -1;
+        NextLongSpeech();
     }
 
     private void Update()
@@ -44,6 +44,7 @@ public class LongSpeech : MonoBehaviour
 
         if (_input.skip)
         {
+            _input.skip = false;
             EndLongSpeech();
         }
     }
@@ -67,6 +68,7 @@ public class LongSpeech : MonoBehaviour
     private void EndLongSpeech()
     {
         _gameManager.DeactivateLongSpeechCanvas(gameObject);
+        
     }
     private void SetupLongSpeechCanvasWithSpeech(string speech)
     {
