@@ -135,4 +135,16 @@ public class Inventario : MonoBehaviour
         //inventoryLoad.AddItem(oggetto.objectName, oggetto.description, Clue.ClueType.Oggetto);
         inventoryLoad.AddObject(oggetto);
     }
+
+    public void SvuotaInventario()
+    {
+        methods = new List<(string, string)>();
+        attributes = new List<(string, string)>();
+        ProgettiClasse = new List<(string, string)>();
+        methodsAttributesUsed = new List<(string, string)>();
+        classi = new List<ClassValue>();
+        oggetti = new List<OggettoEscapeValue>();
+        oggettiUsed = new List<OggettoEscapeValue>();
+
+    }
 }

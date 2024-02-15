@@ -38,4 +38,10 @@ public class DatiPersistenti : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void SvuotaDatiPersistenti()
+    {
+        methodsListeners = new HashSet<int>();
+        isFirstSceneOpening = true;
+    }
 }

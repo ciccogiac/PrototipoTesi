@@ -20,6 +20,9 @@ public class PlayerCustomInput : MonoBehaviour
 
     private GameManager_Escape gameManager;
 
+    [SerializeField] GameObject canvasExit;
+    private bool exitState = false;
+
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager_Escape>();
@@ -44,6 +47,26 @@ public class PlayerCustomInput : MonoBehaviour
         }
     }
 
+    private void checkExitInput()
+    {
+        if (_input.exit == true)
+        {
+            _input.exit = false;
+            exitState = !exitState;
+
+
+
+            Cursor.visible = exitState;
+            if (exitState)
+                Cursor.lockState = CursorLockMode.Confined;
+            else
+                Cursor.lockState = CursorLockMode.Locked;
+
+            canvasExit.SetActive(exitState);
+        }
+    }
+
+
     private void setMouseText(GameObject oggettoColpito)
     {
             ObjectInteraction o = oggettoColpito.GetComponent<ObjectInteraction>();
@@ -55,7 +78,7 @@ public class PlayerCustomInput : MonoBehaviour
            
 
             ClassGameStarter cs = oggettoColpito.GetComponent<ClassGameStarter>();
-            if (cs != null) { mouseText.text = "Open ClassGame"; return; }
+            if (cs != null) { mouseText.text = "Class Creator"; return; }
 
 
             Printer3DController os = oggettoColpito.GetComponent<Printer3DController>();
@@ -196,10 +219,13 @@ public class PlayerCustomInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        checkInventoryInput();
-        if(!inventoryState)
-            PlayerRaycast();
+        checkExitInput();
+        if (!exitState)
+        {
+            checkInventoryInput();
+            if (!inventoryState)
+                PlayerRaycast();
+        }
        
     }
 }

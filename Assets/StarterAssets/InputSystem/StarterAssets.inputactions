@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "522e8632-a985-4d1a-bbe1-f434b6723194",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -258,6 +267,17 @@
                     "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5be1a034-f70a-48d9-9ffc-7e37530497da",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -428,6 +448,34 @@
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Exit",
+            "id": "2fd5807e-9540-4ece-954d-8fe916950095",
+            "actions": [
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "3263b5b0-e2e2-4f39-90cb-f2dd4d5658c4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "41fb5802-efb9-428f-b421-cf371a66d033",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Exit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

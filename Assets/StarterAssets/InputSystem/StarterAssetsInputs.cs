@@ -29,6 +29,8 @@ namespace StarterAssets
 
 		public bool skip;
 
+		public bool exit;
+
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
 		{
@@ -77,6 +79,11 @@ namespace StarterAssets
 		{
 			SkipInput(value.isPressed);
 		}
+		
+			public void OnExit(InputValue value)
+		{
+			ExitInput(value.isPressed);
+		}
 #endif
 
 
@@ -123,6 +130,11 @@ namespace StarterAssets
 		public void SkipInput(bool newSkipState)
 		{
 			skip = newSkipState;
+		}
+
+		public void ExitInput(bool newExitState)
+		{
+			exit = newExitState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)

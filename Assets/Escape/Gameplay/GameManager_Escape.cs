@@ -4,8 +4,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class GameManager_Escape : MonoBehaviour
 {
@@ -44,6 +47,7 @@ public class GameManager_Escape : MonoBehaviour
 
     public Printer3DController printer;
 
+    private SaveManager saveManager;
 
 #if UNITY_EDITOR
     // Questo metodo viene chiamato solo nell'editor quando si fa clic su "Gestisci valori" nel componente
@@ -68,15 +72,19 @@ public class GameManager_Escape : MonoBehaviour
     }
 #endif
 
+
     // Start is called before the first frame update
     void Start()
     {
+
+
         interactionCanvas.SetActive(true);
         interactionSwitchCameraCanvas.SetActive(false);
         readObjectCanvas.SetActive(false);     
         NewItemCanvas.SetActive(false);
 
-        printer=FindObjectOfType<Printer3DController>();
+        saveManager = FindObjectOfType<SaveManager>();
+        printer =FindObjectOfType<Printer3DController>();
 
         clues = FindObjectsOfType<Clue>();
 
@@ -118,6 +126,7 @@ public class GameManager_Escape : MonoBehaviour
         if (DatiPersistenti.istanza.isFirstSceneOpening)
         {
             DatiPersistenti.istanza.isFirstSceneOpening = false;
+            saveManager.Save(SceneManager.GetActiveScene().buildIndex);
             ActivateLongSpeechCanvas(IntroSpeechCanvas.gameObject);
         }
         
