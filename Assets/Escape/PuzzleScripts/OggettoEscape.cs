@@ -51,7 +51,7 @@ public class OggettoEscape : Interactable
     }
 
 
-        public void SetOggettoEscapeValue(OggettoEscapeValue oggetto)
+     public void SetOggettoEscapeValue(OggettoEscapeValue oggetto)
     {
         oggettoEscapeValue = oggetto;
         //SetOggettoEscapeNotPrinted();
@@ -70,6 +70,9 @@ public class OggettoEscape : Interactable
     {
         if (isActive)
         {
+            if(oggettoEscapeValue.isMadeByPrinter)
+                gameManager.printer.gameObject.tag = "Interactable"; //Aggiunte
+
             customInput.CanvasInteract.SetActive(false);
 
             gameObject.SetActive(false);

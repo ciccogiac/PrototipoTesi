@@ -7,8 +7,11 @@ public class DatiPersistenti : MonoBehaviour
     public static DatiPersistenti istanza;
 
     public Vector3 lastCharacterEscapePosition;
+    public Quaternion lastCharacterEscapeRotation;
 
     public HashSet<int> methodsListeners = new HashSet<int>();
+
+    public bool isFirstSceneOpening = true;
 
 
     [Header("ClassGame")]

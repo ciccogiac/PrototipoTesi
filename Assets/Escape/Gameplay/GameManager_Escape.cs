@@ -42,6 +42,8 @@ public class GameManager_Escape : MonoBehaviour
 
     [SerializeField] CinemachineBrain cinemachineBrain;
 
+    public Printer3DController printer;
+
 
 #if UNITY_EDITOR
     // Questo metodo viene chiamato solo nell'editor quando si fa clic su "Gestisci valori" nel componente
@@ -74,7 +76,7 @@ public class GameManager_Escape : MonoBehaviour
         readObjectCanvas.SetActive(false);     
         NewItemCanvas.SetActive(false);
 
-
+        printer=FindObjectOfType<Printer3DController>();
 
         clues = FindObjectsOfType<Clue>();
 
@@ -112,7 +114,13 @@ public class GameManager_Escape : MonoBehaviour
         }
 
         Cursor.lockState = CursorLockMode.Locked;
-        ActivateLongSpeechCanvas(IntroSpeechCanvas.gameObject);
+
+        if (DatiPersistenti.istanza.isFirstSceneOpening)
+        {
+            DatiPersistenti.istanza.isFirstSceneOpening = false;
+            ActivateLongSpeechCanvas(IntroSpeechCanvas.gameObject);
+        }
+        
     }
 
 

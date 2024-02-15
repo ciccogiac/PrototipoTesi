@@ -15,6 +15,7 @@ public class ReloadEscapeData : MonoBehaviour
 
         player.GetComponent<CharacterController>().enabled = false;
         player.transform.position =DatiPersistenti.istanza.lastCharacterEscapePosition;
+        player.transform.rotation = DatiPersistenti.istanza.lastCharacterEscapeRotation;
         player.GetComponent<CharacterController>().enabled = true;
 
         Inventario.istanza.inventoryLoad = inventoryLoad;

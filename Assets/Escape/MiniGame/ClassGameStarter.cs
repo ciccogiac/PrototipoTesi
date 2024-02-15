@@ -12,6 +12,7 @@ public class ClassGameStarter : Interactable
     override public void Interact()
     {
                 DatiPersistenti.istanza.lastCharacterEscapePosition = player.transform.position;
+                DatiPersistenti.istanza.lastCharacterEscapeRotation = player.transform.rotation;
 
                 canvas_ClassGameInterface.SetActive(true);
                 Cursor.visible = true;

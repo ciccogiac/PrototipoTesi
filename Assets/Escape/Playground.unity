@@ -243,6 +243,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastCharacterEscapePosition: {x: 0, y: 0, z: 0}
+  lastCharacterEscapeRotation: {x: 0, y: 0, z: 0, w: 0}
+  isFirstSceneOpening: 1
   className: 
   isObjectToPrint: 0
   objectName: 
@@ -900,7 +902,7 @@ MonoBehaviour:
   buttonCallMethod: {fileID: 357546899}
   input: {fileID: 135756641613574981}
   interactCanvas: {fileID: 1262278961}
-  interactSwitchCameraCanvas: {fileID: 0}
+  interactSwitchCameraCanvas: {fileID: 394827020}
   objectInteraction: {fileID: 0}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.39215687}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -910,7 +912,7 @@ MonoBehaviour:
   InputCanvas: {fileID: 1356223477}
   inputMethod: {fileID: 1356223480}
   cursorTexture: {fileID: 0}
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 1882206670}
 --- !u!1001 &55319434
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2324,7 +2326,7 @@ MonoBehaviour:
   objectPoint: {fileID: 1251287357}
   oggetto: {fileID: 0}
   methodListener: {fileID: 1543965868}
-  Id: 1
+  Id: 0
   isObjectPermanent: 0
   isObjectSee: 0
 --- !u!136 &119170305
@@ -2900,7 +2902,7 @@ MonoBehaviour:
   objectPoint: {fileID: 1886252249}
   oggetto: {fileID: 0}
   methodListener: {fileID: 1173819205}
-  Id: 2
+  Id: 1
   isObjectPermanent: 0
   isObjectSee: 0
 --- !u!1 &133346092
@@ -15181,7 +15183,7 @@ MonoBehaviour:
   methodTubes:
   - {fileID: 24236747}
   - {fileID: 638450016}
-  methodListenerID: 0
+  methodListenerID: 1
   attributeValueMonitor_prefab: {fileID: 6674831499766437521, guid: acc7d097bc8b69f45b7e0777919dcd56, type: 3}
   attributeBox: {fileID: 1074410694}
   text_ClassName: {fileID: 1698718779}
@@ -18457,8 +18459,8 @@ MonoBehaviour:
   objectInteraction: {fileID: 0}
   inventoryLoad: {fileID: 34505544}
   cursorTexture: {fileID: 2800000, guid: c088c041e51b75842b57a46f46fba36d, type: 3}
-  gameManager: {fileID: 0}
-  interactSwitchCameraCanvas: {fileID: 0}
+  gameManager: {fileID: 1882206670}
+  interactSwitchCameraCanvas: {fileID: 394827020}
 --- !u!114 &895669675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18927,7 +18929,7 @@ MonoBehaviour:
       - methodName: IsStudenteLaureato()
         methodType: 2
     classPrefab: {fileID: 3499384753043533812, guid: 42c7ea3f2d27885428dc791fdb8c0999, type: 3}
-    objectDescription: 
+    objectDescription: Serve per tagliare un foglio
   - className: Professore
     attributes:
     - attribute: Nome
@@ -19254,9 +19256,9 @@ MonoBehaviour:
   objectPoint: {fileID: 150698423}
   oggetto: {fileID: 0}
   methodListener: {fileID: 936181663}
-  Id: 0
+  Id: 2
   isObjectPermanent: 0
-  isObjectSee: 0
+  isObjectSee: 1
 --- !u!135 &936181662
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -19296,7 +19298,7 @@ MonoBehaviour:
     value: 
   className: 
   methodTubes: []
-  methodListenerID: 0
+  methodListenerID: 2
   paper: {fileID: 936181659}
   m: {fileID: 2100000, guid: 51d587eafcd13384bafd060c5bc7cb82, type: 2}
 --- !u!1 &937556313
@@ -20652,7 +20654,7 @@ MonoBehaviour:
   methodTubes:
   - {fileID: 2087367424}
   - {fileID: 1418074248}
-  methodListenerID: 0
+  methodListenerID: 3
   attributeValueMonitor_prefab: {fileID: 6674831499766437521, guid: acc7d097bc8b69f45b7e0777919dcd56, type: 3}
   attributeBox: {fileID: 859054571}
   text_ClassName: {fileID: 1619902933}
@@ -23059,7 +23061,7 @@ MonoBehaviour:
   className: 
   methodTubes:
   - {fileID: 201265276}
-  methodListenerID: 0
+  methodListenerID: 4
   door: {fileID: 1173819204}
   methodsListenerToRead:
   - {fileID: 1593998273}
@@ -29740,7 +29742,7 @@ MonoBehaviour:
   - {fileID: 1108379116}
   - {fileID: 656882999}
   - {fileID: 1972966206}
-  methodListenerID: 0
+  methodListenerID: 5
   attributeValueMonitor_prefab: {fileID: 6674831499766437521, guid: acc7d097bc8b69f45b7e0777919dcd56, type: 3}
   attributeBox: {fileID: 398950452}
   text_ClassName: {fileID: 1212605890}
@@ -30550,7 +30552,7 @@ MonoBehaviour:
   - {fileID: 925474131}
   - {fileID: 707370718}
   - {fileID: 722219297}
-  methodListenerID: 0
+  methodListenerID: 6
   attributeValueMonitor_prefab: {fileID: 6674831499766437521, guid: acc7d097bc8b69f45b7e0777919dcd56, type: 3}
   attributeBox: {fileID: 444954534}
   text_ClassName: {fileID: 2013077278}
@@ -33172,7 +33174,7 @@ MonoBehaviour:
     value: 2345
   className: Cassaforte
   methodTubes: []
-  methodListenerID: 0
+  methodListenerID: 7
   door: {fileID: 1667394443}
 --- !u!114 &1722229688
 MonoBehaviour:
@@ -35694,7 +35696,7 @@ MonoBehaviour:
   - {fileID: 553682052}
   - {fileID: 1169687119}
   - {fileID: 236667300}
-  methodListenerID: 0
+  methodListenerID: 8
   attributeValueMonitor_prefab: {fileID: 6674831499766437521, guid: acc7d097bc8b69f45b7e0777919dcd56, type: 3}
   attributeBox: {fileID: 675906218}
   text_ClassName: {fileID: 217659322}
@@ -36484,8 +36486,9 @@ MonoBehaviour:
   cursorSwitchCameraTexture: {fileID: 2800000, guid: a0c67fd873c5258478adf2a80c66455e, type: 3}
   cursorSwitchCameraPickUpTexture: {fileID: 2800000, guid: 72a1d5a11b282ea49addd0ea5be9158f, type: 3}
   cursorSwitchCameraReadTexture: {fileID: 2800000, guid: d08457292ca14e94cbd99cadc6ca7c5d, type: 3}
-  cursorSwitchCameraInteractTexture: {fileID: 0}
+  cursorSwitchCameraInteractTexture: {fileID: 2800000, guid: 5df4cc55070338b4b95d4419f38f8544, type: 3}
   cinemachineBrain: {fileID: 1004397799}
+  printer: {fileID: 0}
 --- !u!4 &1882206671
 Transform:
   m_ObjectHideFlags: 0
@@ -38153,7 +38156,7 @@ MonoBehaviour:
   attributeValueListener: []
   className: 
   methodTubes: []
-  methodListenerID: 0
+  methodListenerID: 9
 --- !u!1 &1972966201
 GameObject:
   m_ObjectHideFlags: 0
@@ -39167,7 +39170,7 @@ MonoBehaviour:
   className: 
   methodTubes:
   - {fileID: 471889588}
-  methodListenerID: 0
+  methodListenerID: 10
   door: {fileID: 2013663130}
   methodsListenerToRead:
   - {fileID: 1841847452}
@@ -41033,6 +41036,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1747296836455091972, guid: 1d29a168a2826e146938120eb39cd0ec, type: 3}
       propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2290027109960703381, guid: 1d29a168a2826e146938120eb39cd0ec, type: 3}
+      propertyPath: ToSpawn
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2290027109960703381, guid: 1d29a168a2826e146938120eb39cd0ec, type: 3}
