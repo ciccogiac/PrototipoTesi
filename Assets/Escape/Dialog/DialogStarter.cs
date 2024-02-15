@@ -85,6 +85,7 @@ public class DialogStarter : MonoBehaviour
 
     private void EndDialog()
     {
+        _input.interact = false;
         _gameManager.DeactivateDialogCanvas();
         _gameManager.SwitchCameraToPrimary(DialogCamera);
         _dialogUsed = true;

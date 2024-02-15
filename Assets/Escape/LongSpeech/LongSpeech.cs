@@ -67,8 +67,8 @@ public class LongSpeech : MonoBehaviour
     
     private void EndLongSpeech()
     {
+        _input.interact = false;
         _gameManager.DeactivateLongSpeechCanvas(gameObject);
-        
     }
     private void SetupLongSpeechCanvasWithSpeech(string speech)
     {
