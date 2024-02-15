@@ -119,6 +119,18 @@ public class Printer3DController : Interactable
             yield return null;
         }
         timer = 0f;
+        var isBack = false;
+        IEnumerator TakeBackRullo()
+        {
+            while (alembic.CurrentTime > 0f)
+            {
+                alembic.CurrentTime -= Time.deltaTime;
+                yield return null;
+            }
+            alembic.CurrentTime = 0f;
+            isBack = true;
+        }
+        StartCoroutine(TakeBackRullo());
         while (timer < 0.8f)
         {
             timer += Time.deltaTime;
@@ -126,12 +138,7 @@ public class Printer3DController : Interactable
             yield return null;
         }
         objectSpawned.transform.position = SpawnPos3.position;
-        while (alembic.CurrentTime > 0f)
-        {
-            alembic.CurrentTime -= Time.deltaTime;
-            yield return null;
-        }
-        alembic.CurrentTime = 0f;
+        yield return new WaitUntil(() => isBack);
 
         gameObject.tag = "Interactable"; //Aggiunte
         if (ToSpawn != null)
