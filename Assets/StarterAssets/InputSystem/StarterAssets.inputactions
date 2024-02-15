@@ -400,9 +400,9 @@
                 },
                 {
                     "name": "Skip",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "cb60049b-30da-423f-a7c1-2e45600a2a42",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

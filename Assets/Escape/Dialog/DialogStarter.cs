@@ -1,53 +1,113 @@
+using System;
 using Cinemachine;
 using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class DialogStarter : MonoBehaviour
 {
-    private GameManager_Escape gameManager;
-    public StarterAssetsInputs _input;
-    [SerializeField] CinemachineVirtualCamera dialogCamera;
+    private GameManager_Escape _gameManager;
+    private StarterAssetsInputs _input;
+    [SerializeField] private CinemachineVirtualCamera DialogCamera; 
+    [SerializeField] private Message[] Messages;
+    [SerializeField] private TMP_Text MessageText;
+    [SerializeField] private TMP_Text CharacterName;
+    [SerializeField] private Image CharacterImage;
 
-    private int i = 0;
-    private bool dialogUsed = false;
-    private bool dialogOpen = false;
-
-    // Start is called before the first frame update
-    void Start()
+    private int _counter = -1;
+    private bool _dialogUsed;
+    private bool _dialogOpen;
+    private bool _clickTriggered;
+    private bool _typing;
+    private IEnumerator _typingCoroutine;
+    
+    private void Start()
     {
-        gameManager = FindObjectOfType<GameManager_Escape>();
+        _gameManager = FindObjectOfType<GameManager_Escape>();
         _input = FindObjectOfType<StarterAssetsInputs>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !dialogUsed)
+        if (other.CompareTag("Player") && !_dialogUsed)
         {
-            gameManager.ActivateDialogCanvas();
-            dialogCamera.enabled = true;
-            dialogOpen = true;
+            _gameManager.ActivateDialogCanvas();
+            DialogCamera.enabled = true;
+            _dialogOpen = true;
+            NextMessage();
         }
     }
 
     private void Update()
     {
-        if (dialogOpen)
+        if (_dialogOpen)
         {
-            if (_input.interact)
+            if (_input.interact && !_clickTriggered)
             {
-                Debug.Log("Dialogo n " + i);
-                i++;
+                _clickTriggered = true;
+                if (_typing)
+                    ForceMessage();
+                else 
+                    NextMessage();
+            }
+            if (!_input.interact && _clickTriggered)
+            {
+                _clickTriggered = false;
             }
 
             if (_input.skip)
             {
-                gameManager.DeactivateDialogCanvas();
-                gameManager.SwitchCameraToPrimary(dialogCamera);
-                dialogUsed = true;
-                dialogOpen = false;
+                _input.skip = false;
+                EndDialog();
             }
         }
+    }
+
+    private void ForceMessage()
+    {
+        StopCoroutine(_typingCoroutine);
+        MessageText.text = Messages[_counter].GetMessageText();
+        _typing = false;
+    }
+
+    private void NextMessage()
+    {
+        _counter++;
+        if (_counter < Messages.Length)
+            SetupDialogCanvasWithMessage(Messages[_counter]);
+        else
+            EndDialog();
+    }
+
+    private void EndDialog()
+    {
+        _gameManager.DeactivateDialogCanvas();
+        _gameManager.SwitchCameraToPrimary(DialogCamera);
+        _dialogUsed = true;
+        _dialogOpen = false;
+    }
+
+    private void SetupDialogCanvasWithMessage(Message m)
+    {
+        _typingCoroutine = TypeSentence(m.GetMessageText());
+        StartCoroutine(_typingCoroutine);
+        CharacterName.text = m.GetCharacter().GetName();
+        CharacterImage.sprite = m.GetCharacter().GetImage();
+    }
+
+    private IEnumerator TypeSentence(string sentence)
+    {
+        _typing = true;
+        MessageText.text = "";
+        foreach (var letter in sentence.ToCharArray())
+        {
+            MessageText.text += letter;
+            yield return null;
+        }
+        _typing = false;
     }
 }

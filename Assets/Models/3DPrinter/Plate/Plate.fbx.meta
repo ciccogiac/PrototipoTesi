@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fb4e663b65f03df4cbc64dfd6d95c6be
+guid: da3bd5e3bbbcc5e479b164c19a309fe6
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Teleport
-    second: {fileID: 2100000, guid: 2d659af0734969d469636bc7dd2e33ca, type: 2}
+      name: Plate
+    second: {fileID: 2100000, guid: add80e5e4e9945b4bb3c7c7a6cc3757d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PlateBase
+    second: {fileID: 2100000, guid: 4b6258a8e7c037741adeb91c221308cf, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -40,7 +45,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.1
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -95,7 +100,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.001
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
