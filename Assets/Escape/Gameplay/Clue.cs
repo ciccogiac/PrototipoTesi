@@ -38,4 +38,5 @@ public class Clue : Interactable
         gameManager.ActivateNewItemCanvas(clueType.ToString(),clueName,clueDescription);
         Destroy(this);
     }
+
  }

@@ -20,7 +20,7 @@ public class GameManager_Escape : MonoBehaviour
 
     [SerializeField] GameObject readObjectCanvas;
     [SerializeField] GameObject interactionCanvas;
-    [SerializeField] GameObject interactionSwitchCameraCanvas;
+    public GameObject interactionSwitchCameraCanvas;
     [SerializeField] GameObject NewItemCanvas;
     [SerializeField] GameObject DialogCanvas;
     [SerializeField] private LongSpeech IntroSpeechCanvas;
@@ -92,6 +92,7 @@ public class GameManager_Escape : MonoBehaviour
         {
             if (Inventario.istanza.IsCluePickedUp(clue) || Inventario.istanza.IsClueUsed(clue) ) { Destroy(clue.gameObject); }
         }
+
 
         objectInteractors = FindObjectsOfType<ObjectInteraction>();
 
@@ -208,6 +209,7 @@ public class GameManager_Escape : MonoBehaviour
 
     public void ActivateReadObjectCanvas(string text)
     {
+        input.enabled = true;
         input.SwitchCurrentActionMap("ReadObject");
 
         Cursor.visible = false;
@@ -246,6 +248,7 @@ public class GameManager_Escape : MonoBehaviour
 
     public void ActivateNewItemCanvas(string type, string name, string description)
     {
+        input.enabled = true;
         input.SwitchCurrentActionMap("ReadObject");
         itemCanvasScript.InitializeItemCanvas(type, name, description);
 
@@ -289,6 +292,7 @@ public class GameManager_Escape : MonoBehaviour
         interactionCanvas.SetActive(false);
         DialogCanvas.SetActive(true);
 
+        input.enabled = true;
         input.SwitchCurrentActionMap("Dialog");
     }
 
@@ -305,6 +309,7 @@ public class GameManager_Escape : MonoBehaviour
         interactionCanvas.SetActive(false);
         longSpeech.SetActive(true);
 
+        input.enabled = true;
         input.SwitchCurrentActionMap("Dialog");
     }
 

@@ -18,6 +18,8 @@ public class SwitchCameraObject : Interactable
 
     [SerializeField] GameObject padre;
 
+    public bool isInteractable = true;
+
     
     private void Start()
     {
@@ -84,9 +86,11 @@ public class SwitchCameraObject : Interactable
 
     public override void Interact()
     {
+        if (isInteractable)
+        {
             GetComponent<Collider>().enabled = false;
             gameManager.SwitchCamera(objectCamera);
-            
+
             isSeeing = true;
             isActive = false;
 
@@ -98,6 +102,7 @@ public class SwitchCameraObject : Interactable
             Cursor.lockState = CursorLockMode.Confined;
 
             ChangeObjectActivateState(true);
+        }
         
         
         

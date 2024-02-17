@@ -24,11 +24,15 @@ public class DialogStarter : MonoBehaviour
     private bool _clickTriggered;
     private bool _typing;
     private IEnumerator _typingCoroutine;
+
+    [SerializeField] LevelManager _levelManager;
+    [SerializeField] bool _isActivationObjectDialog;
     
     private void Start()
     {
         _gameManager = FindObjectOfType<GameManager_Escape>();
         _input = FindObjectOfType<StarterAssetsInputs>();
+        _levelManager = FindObjectOfType<LevelManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -90,6 +94,9 @@ public class DialogStarter : MonoBehaviour
         _gameManager.SwitchCameraToPrimary(DialogCamera);
         _dialogUsed = true;
         _dialogOpen = false;
+
+        if (_isActivationObjectDialog)
+            _levelManager.ActivateObjects();
     }
 
     private void SetupDialogCanvasWithMessage(Message m)
