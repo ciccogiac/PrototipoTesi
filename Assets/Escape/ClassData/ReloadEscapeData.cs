@@ -9,13 +9,17 @@ public class ReloadEscapeData : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        //Get player e setta la posizione all'ultima avuto in modalità di escape. Bisogna disabilitare temporaneamente il charactercontroller altrimenti non fuzniona
+        //Get player e setta la posizione all'ultima avuto in modalitï¿½ di escape. Bisogna disabilitare temporaneamente il charactercontroller altrimenti non fuzniona
         player=GameObject.FindWithTag("Player");
         inventoryLoad = FindObjectOfType<InventoryLoad>();
 
         player.GetComponent<CharacterController>().enabled = false;
-        player.transform.position =DatiPersistenti.istanza.lastCharacterEscapePosition;
-        player.transform.rotation = DatiPersistenti.istanza.lastCharacterEscapeRotation;
+        if (!DatiPersistenti.istanza.isFirstSceneOpening)
+        {
+            player.transform.position = DatiPersistenti.istanza.lastCharacterEscapePosition;
+            player.transform.rotation = DatiPersistenti.istanza.lastCharacterEscapeRotation;
+        }
+
         player.GetComponent<CharacterController>().enabled = true;
 
         Inventario.istanza.inventoryLoad = inventoryLoad;
