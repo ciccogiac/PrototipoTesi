@@ -102,15 +102,15 @@ public class Door : MethodListener
 
                         else
                         {
-                            Debug.Log("Attributo : " + value.attribute + "Non accessibile perchè private");
-                            doorMonitor.SetError("Attributo : " + value.attribute + "Non accessibile perchè private");
+                            Debug.Log("Attributo : " + value.attribute + "Non accessibile perchï¿½ private");
+                            doorMonitor.SetError("Attributo : " + value.attribute + "Non accessibile perchï¿½ private");
                             ChangeTubeColor("Error");
                             correctValue = false;
                             continue;
                         }
                     }
 
-                    else //è un attrbiuteNotPrinted
+                    else //ï¿½ un attrbiuteNotPrinted
                     {
                         (string, string) tupla = m.objectAttributeValue.Find(x => x.Item1 == value.attribute && x.Item2 == value.value);
                         if (tupla != (null, null))
@@ -155,6 +155,7 @@ public class Door : MethodListener
 
         ChangeTubeColor("Getter");
         door.SetBool("character_nearby", true);
+        
         DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);
     }
 }
