@@ -304,8 +304,8 @@ public class GameManager_ObjectGame : MonoBehaviour
                 //In maniera temporanea gestisco la vittoria creando direttamente nell'inventario l'oggetto desiderato
                 //Inventario.istanza.oggetti.Add(objectName);
 
-                SceneManager.LoadScene("Playground"); }
-            else { SceneManager.LoadScene("Playground"); }
+                SceneManager.LoadScene(DatiPersistenti.istanza.sceneIndex); }
+            else { SceneManager.LoadScene(DatiPersistenti.istanza.sceneIndex); }
         }
     }
 

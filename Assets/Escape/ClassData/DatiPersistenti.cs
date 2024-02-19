@@ -13,6 +13,7 @@ public class DatiPersistenti : MonoBehaviour
 
     public bool isFirstSceneOpening = true;
 
+    public int sceneIndex;
 
     [Header("ClassGame")]
     public string className;

@@ -333,7 +333,7 @@ public class GameManager_Escape : MonoBehaviour
         longSpeech.SetActive(false);
         input.SwitchCurrentActionMap("Player");
 
-        if (_levelHint != null)
+        if (_levelHint != null && _levelHint.hint.Length >0) 
             _levelHint.StartHintCounter();
     }
 }

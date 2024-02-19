@@ -9,7 +9,7 @@ public class LevelHint : MonoBehaviour
     [SerializeField] GameObject HintBox;
     [SerializeField] TextMeshProUGUI hintText;
 
-    [SerializeField] Hint[] hint;
+    public Hint[] hint;
 
     public int hintCounter = 0;
     [SerializeField] int hintDuration = 10;
