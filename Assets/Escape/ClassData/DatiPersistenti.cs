@@ -10,10 +10,12 @@ public class DatiPersistenti : MonoBehaviour
     public Quaternion lastCharacterEscapeRotation;
 
     public HashSet<int> methodsListeners = new HashSet<int>();
+    public HashSet<int> dialogUsed = new HashSet<int>();
 
     public bool isFirstSceneOpening = true;
 
     public int sceneIndex;
+    public int hintCounter;
 
     [Header("ClassGame")]
     public string className;
@@ -43,6 +45,7 @@ public class DatiPersistenti : MonoBehaviour
     public void SvuotaDatiPersistenti()
     {
         methodsListeners = new HashSet<int>();
+        dialogUsed = new HashSet<int>();
         isFirstSceneOpening = true;
     }
 }

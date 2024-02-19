@@ -36,6 +36,8 @@ public class ObjectGame_Interface : MonoBehaviour
 
     [SerializeField] PlayerInput input;
 
+    [SerializeField] LevelHint _levelHint;
+
     private void OnEnable()
     {
         input.enabled = false;
@@ -133,6 +135,7 @@ public class ObjectGame_Interface : MonoBehaviour
             DatiPersistenti.istanza.className = className;
             DatiPersistenti.istanza.objectName = inputField.text;
             DatiPersistenti.istanza.sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            DatiPersistenti.istanza.hintCounter = _levelHint.hintCounter;
             //DatiPersistenti.istanza.coppie = FindObjectOfType<ClassDictionary>().FindClass(className);
        
             SceneManager.LoadScene("ObjectGame");

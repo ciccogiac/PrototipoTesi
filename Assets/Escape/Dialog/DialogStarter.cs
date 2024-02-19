@@ -19,7 +19,7 @@ public class DialogStarter : MonoBehaviour
     [SerializeField] private Image CharacterImage;
 
     private int _counter = -1;
-    private bool _dialogUsed;
+    public bool _dialogUsed;
     private bool _dialogOpen;
     private bool _clickTriggered;
     private bool _typing;
@@ -31,6 +31,8 @@ public class DialogStarter : MonoBehaviour
     [SerializeField] bool _isTeoryDialog = false;
     [SerializeField] bool _isHintDialog = false;
     [SerializeField] int _hintNumber;
+
+    public int _dialogID;
     
     private void Start()
     {
@@ -117,6 +119,7 @@ public class DialogStarter : MonoBehaviour
         if (_isHintDialog && _levelHint != null)
             _levelHint.nextHint(_hintNumber);
 
+        DatiPersistenti.istanza.dialogUsed.Add(_dialogID);
     }
 
     public void GetTeory()

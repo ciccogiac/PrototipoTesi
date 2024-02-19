@@ -34,6 +34,7 @@ public class Telecomando : MethodListener
 
         }
 
+
         ApplyMethod();
         return true;
     }

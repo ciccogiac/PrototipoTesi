@@ -73,6 +73,13 @@ public class GameManager_Escape : MonoBehaviour
             i++;
         }
 
+        i = 0;
+        foreach (var x in FindObjectsOfType<DialogStarter>())
+        {
+            x._dialogID = i;
+            i++;
+        }
+
     }
 #endif
 
@@ -110,6 +117,21 @@ public class GameManager_Escape : MonoBehaviour
                 InstanziaOggetto(o, objectInteractor);
             }
         }
+
+        DialogStarter[] dialogs = FindObjectsOfType<DialogStarter>();
+
+        foreach (var dialog in DatiPersistenti.istanza.dialogUsed)
+        {
+
+            foreach (var x in dialogs)
+            {
+                if (x._dialogID == dialog)
+                {
+                    x._dialogUsed = true;
+                }
+            }
+        }
+
 
         MethodListener[] methodsListeners = FindObjectsOfType<MethodListener>();
 
