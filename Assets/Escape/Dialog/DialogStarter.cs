@@ -35,6 +35,16 @@ public class DialogStarter : MonoBehaviour
         _levelManager = FindObjectOfType<LevelManager>();
     }
 
+    public bool GetDialogOpen()
+    {
+        return _dialogOpen;
+    }
+
+    public bool GetDialogUsed()
+    {
+        return _dialogUsed;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !_dialogUsed)
