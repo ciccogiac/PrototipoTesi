@@ -5,6 +5,8 @@ using UnityEngine;
 public class DoorLevel1 : MethodListener
 {
     [SerializeField] string classValueListener;
+    [SerializeField] LevelHint _levelHint;
+    [SerializeField] int _hintNumber;
     public override bool Method(List<(string, string)> objectValue)
     {
         if (className != classValueListener)
@@ -17,5 +19,7 @@ public class DoorLevel1 : MethodListener
         Debug.Log("Porta aperta");
         
         DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);
+
+        _levelHint.nextHint(_hintNumber);
     }
 }

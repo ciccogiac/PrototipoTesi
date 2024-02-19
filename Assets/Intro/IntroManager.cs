@@ -32,7 +32,8 @@ public class IntroManager : MonoBehaviour
 
     public void LoadSave()
     {
-        level = saveManager.LoadSave();
+        level = saveManager.LoadSave().Item1;
+        Inventario.istanza.teoria = saveManager.LoadSave().Item2;
 
         if (level == 0 || level == 1)
         {
@@ -56,6 +57,7 @@ public class IntroManager : MonoBehaviour
     public void NewGame()
     {
         level = 1;
+        Inventario.istanza.teoria = new List<(string, string)>();
         SceneManager.LoadScene(level, LoadSceneMode.Single);
     }
 

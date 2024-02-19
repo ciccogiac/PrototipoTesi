@@ -26,13 +26,19 @@ public class DialogStarter : MonoBehaviour
     private IEnumerator _typingCoroutine;
 
     [SerializeField] LevelManager _levelManager;
-    [SerializeField] bool _isActivationObjectDialog;
+    [SerializeField] LevelHint _levelHint;
+    [SerializeField] bool _isActivationObjectDialog = false;
+    [SerializeField] bool _isTeoryDialog = false;
+    [SerializeField] bool _isHintDialog = false;
+    [SerializeField] int _hintNumber;
     
     private void Start()
     {
         _gameManager = FindObjectOfType<GameManager_Escape>();
         _input = FindObjectOfType<StarterAssetsInputs>();
         _levelManager = FindObjectOfType<LevelManager>();
+        if (_isHintDialog)
+            _levelHint = FindObjectOfType<LevelHint>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -91,12 +97,35 @@ public class DialogStarter : MonoBehaviour
     {
         _input.interact = false;
         _gameManager.DeactivateDialogCanvas();
-        _gameManager.SwitchCameraToPrimary(DialogCamera);
+        //_gameManager.SwitchCameraToPrimary(DialogCamera);
         _dialogUsed = true;
         _dialogOpen = false;
 
         if (_isActivationObjectDialog)
             _levelManager.ActivateObjects();
+
+        if (_isTeoryDialog)
+        {
+            _gameManager.DialogCamera = DialogCamera;
+            GetTeory();
+        }
+     
+        else
+            _gameManager.SwitchCameraToPrimary(DialogCamera);
+
+
+        if (_isHintDialog && _levelHint != null)
+            _levelHint.nextHint(_hintNumber);
+
+    }
+
+    public void GetTeory()
+    {
+        Clue teoria = GetComponentInChildren<Clue>();
+        if(teoria != null && teoria.clueType == Clue.ClueType.Teoria)
+        {
+            teoria.Interact();
+        }
     }
 
     private void SetupDialogCanvasWithMessage(Message m)

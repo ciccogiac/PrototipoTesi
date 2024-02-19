@@ -69,7 +69,7 @@ public class SwitchCameraObject : Interactable
 
         foreach (var x in clues)
         {
-            if (x != null)
+            if (x != null && x.clueType!= Clue.ClueType.Teoria)
             {
                 x.isActive = state;
                 if (!state)
