@@ -62,6 +62,7 @@ public class ObjectCollected_Canvas : MonoBehaviour
                 oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = oggetto.objectName;
                 oggettoIstanziato.GetComponent<Button>().onClick.AddListener(() => SelectObjectOnCanvas(oggettoIstanziato));
                 oggettoIstanziato.transform.SetParent(ObjectBox.transform);
+                oggettoIstanziato.transform.localScale = Vector3.one;
             }
 
         }
@@ -92,6 +93,7 @@ public class ObjectCollected_Canvas : MonoBehaviour
 
             oggettoIstanziato.transform.position = objectInteraction.objectPoint.position;
             oggettoIstanziato.transform.SetParent(objectInteraction.gameObject.transform);
+            oggettoIstanziato.transform.localScale = Vector3.one;
 
             //oggettoIstanziato.gameObject.GetComponent<MeshFilter>().mesh = oggettoIstanziato.GetComponent<OggettoEscape>().oggettoEscapeValue.mesh;
             //oggettoIstanziato.gameObject.GetComponent<MeshRenderer>().materials = oggettoIstanziato.GetComponent<OggettoEscape>().oggettoEscapeValue.material;

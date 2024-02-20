@@ -26,6 +26,7 @@ public class InputMethod : MonoBehaviour
     {
         GameObject oggettoIstanziato = Instantiate(prefab_methodInput, transform.position, Quaternion.identity);
         oggettoIstanziato.transform.SetParent(box_methodInput.transform);
+        oggettoIstanziato.transform.localScale = Vector3.one;
         oggettoIstanziato.GetComponent<InputMethodInitializer>().SetInputMethodValue(name,value);
 
     }
@@ -66,13 +67,13 @@ public class InputMethod : MonoBehaviour
                 case "int":
                     if (int.TryParse(tupla.Item2, out int result))
                     {
-                        Debug.Log("La stringa è un numero intero.");
+                        Debug.Log("La stringa ï¿½ un numero intero.");
                         break;
                     }
                     else
                     {
-                        Debug.Log("Il valore di " + tupla.Item1 + " non è un numero intero.");
-                        error_text.text = "Il valore di " + tupla.Item1 + " non è un numero intero.";
+                        Debug.Log("Il valore di " + tupla.Item1 + " non ï¿½ un numero intero.");
+                        error_text.text = "Il valore di " + tupla.Item1 + " non ï¿½ un numero intero.";
                         hint_text.text = "Prova ad inserire una numero intero , senza virgola o altri caratteri aggiuntivi";
                         ShowInputError();
                         return;
@@ -81,13 +82,13 @@ public class InputMethod : MonoBehaviour
                 case "bool":
                     if (string.Equals(tupla.Item2, "true", StringComparison.OrdinalIgnoreCase) || string.Equals(tupla.Item2, "false", StringComparison.OrdinalIgnoreCase))
                     {
-                        Debug.Log("La stringa è un booleano.");
+                        Debug.Log("La stringa ï¿½ un booleano.");
                         break;
                     }
                     else
                     {
-                        Debug.Log("Il valore di " + tupla.Item1 + " non è un booleano.");
-                        error_text.text = "Il valore di " + tupla.Item1 + " non è un booleano.";
+                        Debug.Log("Il valore di " + tupla.Item1 + " non ï¿½ un booleano.");
+                        error_text.text = "Il valore di " + tupla.Item1 + " non ï¿½ un booleano.";
                         hint_text.text = "Prova ad inserire un valore true o false , senza altri caratteri aggiuntivi";
                         ShowInputError();
                         return;

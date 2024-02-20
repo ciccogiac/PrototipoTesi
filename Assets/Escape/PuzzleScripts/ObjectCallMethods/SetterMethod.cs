@@ -15,6 +15,7 @@ public class SetterMethod : MonoBehaviour
     {
             GameObject oggettoIstanziato = Instantiate(prefab_AttributeSetter, transform.position, Quaternion.identity);
             oggettoIstanziato.transform.SetParent(box_AttribbuteSetter.transform);
+            oggettoIstanziato.transform.localScale = Vector3.one;
             oggettoIstanziato.GetComponent<AttributeInitializer>().SetAttributeValue(name,value);
 
     }

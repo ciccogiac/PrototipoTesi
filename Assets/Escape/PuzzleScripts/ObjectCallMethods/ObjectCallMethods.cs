@@ -66,6 +66,7 @@ public class ObjectCallMethods : MonoBehaviour
             //setta i testi dell'attributo
             oggettoIstanziato.GetComponent<AttributeInitializer>().SetAttributeValue(attributo.attributeName,attributo.attributeValue);
             oggettoIstanziato.transform.SetParent(attributeBox.transform);
+            oggettoIstanziato.transform.localScale = Vector3.one;
         }
 
         foreach (var metodo in objectInteraction.oggetto.oggettoEscapeValue.methods)
@@ -75,6 +76,7 @@ public class ObjectCallMethods : MonoBehaviour
             oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = metodo.method.methodName;
             oggettoIstanziato.GetComponent<Button>().onClick.AddListener(() => SelectMethod(oggettoIstanziato));
             oggettoIstanziato.transform.SetParent(methodBox.transform);
+            oggettoIstanziato.transform.localScale = Vector3.one;
         }
         
 
@@ -91,6 +93,7 @@ public class ObjectCallMethods : MonoBehaviour
             //setta i testi dell'attributo
             oggettoIstanziato.GetComponent<AttributeInitializer>().SetAttributeValue(attributo.attributeName, attributo.attributeValue);
             oggettoIstanziato.transform.SetParent(attributeBox.transform);
+            oggettoIstanziato.transform.localScale = Vector3.one;
         }
     }
 
