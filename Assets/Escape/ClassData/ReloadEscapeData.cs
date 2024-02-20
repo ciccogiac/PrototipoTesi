@@ -20,15 +20,18 @@ public class ReloadEscapeData : MonoBehaviour
         {
             player.transform.position = DatiPersistenti.istanza.lastCharacterEscapePosition;
             player.transform.rotation = DatiPersistenti.istanza.lastCharacterEscapeRotation;
-            levelHint.hintCounter = 0;
+            levelHint.hintCounter = DatiPersistenti.istanza.hintCounter;
+            levelHint.StartHintCounter();
+            
         }
+
 
         player.GetComponent<CharacterController>().enabled = true;
 
         Inventario.istanza.inventoryLoad = inventoryLoad;
 
         
-        levelHint.hintCounter = DatiPersistenti.istanza.hintCounter;
+       
     }
 
     

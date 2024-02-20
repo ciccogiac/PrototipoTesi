@@ -86,10 +86,9 @@ public class Door : MethodListener
                                 continue;
                             }
 
-                            else
-                            {
-                                tupla = m.objectAttributeValue.Find(x => x.Item1 == value.attribute && x.Item2 != value.value);
-                                if (tupla != (null, null))
+                           
+
+                            else if (tupla.Item1 != null)
                                 {
                                     doorMonitor.SetError("Attributo : " + value.attribute + " ha un valore errato");
                                     ChangeTubeColor("Error");
@@ -97,8 +96,16 @@ public class Door : MethodListener
                                     correctValue = false;
                                     continue;
                                 }
-                            }
-                        }
+                                else
+                                {
+                                    doorMonitor.SetError("Non riesco a leggere il valore di : " + value.attribute + " . Si prega di chiamare il metodo corretto");
+                                    ChangeTubeColor("Error");
+                                    found = false;
+                                    correctValue = false;
+                                    continue;
+                                }
+                         }
+                        
 
                         else
                         {

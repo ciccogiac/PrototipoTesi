@@ -14,22 +14,26 @@ public class LevelHint : MonoBehaviour
     public int hintCounter = 0;
     [SerializeField] int hintDuration = 10;
 
+    [SerializeField] bool _IsHintActive ;
+
     public void StartHintCounter()
     {
-        StartCoroutine(CheckHint(hint[hintCounter].hintTimer));
+        if(_IsHintActive)
+            StartCoroutine(CheckHint(hint[hintCounter].hintTimer));
     }
 
     public void nextHint(int hintNumber)
     {
-       
-        StopAllCoroutines();
-        HintBox.SetActive(false);
 
-        if(hintNumber >= hintCounter)
+        if (hintNumber > hintCounter && _IsHintActive)
+        {
+            StopAllCoroutines();
+            HintBox.SetActive(false);
             hintCounter = hintNumber;
 
-        if(hintCounter < hint.Length && hint[hintCounter].hintText != "")
-            StartCoroutine(CheckHint(hint[hintCounter].hintTimer));
+            if (hintCounter < hint.Length && hint[hintCounter].hintText != "")
+                StartCoroutine(CheckHint(hint[hintCounter].hintTimer));
+        }
     }
 
     IEnumerator CheckHint(int duration)

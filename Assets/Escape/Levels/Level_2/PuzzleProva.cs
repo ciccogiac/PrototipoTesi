@@ -7,6 +7,11 @@ public class PuzzleProva : MethodListener
     [SerializeField] Printer3DController _printer3D;
     [SerializeField] GameManager_Escape gameManager;
 
+    [SerializeField] LevelHint _levelHint;
+    [SerializeField] int _hintNumber;
+
+    [SerializeField] Clue teoria;
+
     public override bool Method(List<(string, string)> objectValue)
     {
         Debug.Log("Fai partire il puzzle");
@@ -19,5 +24,10 @@ public class PuzzleProva : MethodListener
         DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);
         _printer3D.gameObject.SetActive(true);
         gameManager.printer = _printer3D;
+
+        _levelHint.nextHint(_hintNumber);
+
+        teoria.isActive = true;
+
     }
 }
