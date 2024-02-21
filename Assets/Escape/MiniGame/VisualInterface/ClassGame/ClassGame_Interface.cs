@@ -48,6 +48,7 @@ public class ClassGame_Interface : MonoBehaviour
 
     private bool modifyOpen = false;
 
+    [SerializeField] LevelHint _levelHint;
 
     private void OnEnable()
     {
@@ -172,6 +173,8 @@ public class ClassGame_Interface : MonoBehaviour
                 if (b == (null,null)) { StartCoroutine(ShowCluesError(secondsToShowError)); return; }
             }
         }
+        DatiPersistenti.istanza.sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        DatiPersistenti.istanza.hintCounter = _levelHint.hintCounter;
 
         SceneManager.LoadScene("ClassGame");
     }

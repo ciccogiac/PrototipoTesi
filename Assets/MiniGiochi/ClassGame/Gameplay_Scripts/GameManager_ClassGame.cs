@@ -279,12 +279,12 @@ public class GameManager_ClassGame : MonoBehaviour
                     
                 }
             }
-           
 
-                SceneManager.LoadScene("Playground"); 
+
+            SceneManager.LoadScene(DatiPersistenti.istanza.sceneIndex);
         }
-        else { SceneManager.LoadScene("Playground"); }
-        
+        else { SceneManager.LoadScene(DatiPersistenti.istanza.sceneIndex); }
+
     }
 
 

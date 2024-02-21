@@ -17190,6 +17190,7 @@ MonoBehaviour:
   interactCanvas: {fileID: 1296973294}
   input: {fileID: 173326897}
   cursorTexture: {fileID: 2800000, guid: c088c041e51b75842b57a46f46fba36d, type: 3}
+  _levelHint: {fileID: 1761341411}
 --- !u!114 &1064502003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28043,7 +28044,7 @@ MonoBehaviour:
     hintTimer: 10
   hintCounter: 0
   hintDuration: 10
-  _IsHintActive: 0
+  _IsHintActive: 1
 --- !u!1 &1764050530
 GameObject:
   m_ObjectHideFlags: 0
