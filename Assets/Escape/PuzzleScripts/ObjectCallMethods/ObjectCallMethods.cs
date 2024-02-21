@@ -144,16 +144,6 @@ public class ObjectCallMethods : MonoBehaviour
             objectInteraction.gameObject.GetComponent<Outline>().enabled = false;
             interactSwitchCameraCanvas.SetActive(true); gameManager.isSeeing = true;
             input.SwitchCurrentActionMap("SwitchCamera");
-
-           
-
-            Clue[] teoria = objectInteraction.GetComponentsInChildren<Clue>();
-            foreach(var x in teoria) 
-                if (x != null && x.isActive== true && x.clueType == Clue.ClueType.Teoria)
-                {
-                    x.Interact();
-                    x.isActive = false;
-                }
         }
         else{ Cursor.visible = false; Cursor.lockState = CursorLockMode.Locked; interactCanvas.SetActive(true); }
 

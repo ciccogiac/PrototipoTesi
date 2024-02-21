@@ -8,6 +8,8 @@ public class Telecomando : MethodListener
     [SerializeField] private Animator TVAnimator;
     [SerializeField] private GameObject Chiave;
     private static readonly int OpenPanel = Animator.StringToHash("OpenPanel");
+    [SerializeField] private int _hintNumber;
+    [SerializeField] private LevelHint LevelHint;
 
     public override bool Method(List<(string, string)> objectValue)
     {
@@ -40,6 +42,7 @@ public class Telecomando : MethodListener
     {
         OpenPanelAnimation();
         DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);
+        LevelHint.nextHint(_hintNumber);
     }
 
     private void OpenPanelAnimation()
@@ -49,9 +52,14 @@ public class Telecomando : MethodListener
         TVAnimator.SetBool(OpenPanel, true);
         IEnumerator ActivateChiave()
         {
-            yield return new WaitUntil(() => TVAnimator.GetCurrentAnimatorStateInfo(0).IsName("SchermoAnimator"));
+            yield return new WaitUntil(() => TVAnimator.GetCurrentAnimatorStateInfo(0).IsName("SchermoOpening"));
             yield return new WaitUntil(() => TVAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1);
             TVAnimator.enabled = false;
+            if (Teoria != null)
+            {
+                Teoria.isActive = true;
+                Teoria.Interact();
+            }
         }
         StartCoroutine(ActivateChiave());
     }

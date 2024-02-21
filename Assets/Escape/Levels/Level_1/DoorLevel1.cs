@@ -12,6 +12,8 @@ namespace Escape.Levels.Level_1
         private static readonly int LockOpen = Animator.StringToHash("LockOpen");
         private static readonly int DoorOpen = Animator.StringToHash("DoorOpen");
         [SerializeField] private GameObject LockDoor;
+        [SerializeField] private int _hintNumber;
+        [SerializeField] private LevelHint LevelHint;
 
         public override bool Method(List<(string, string)> objectValue)
         {
@@ -49,6 +51,7 @@ namespace Escape.Levels.Level_1
             }
             StartCoroutine(WaitForLockToBeOpenedAndOpenDoor());
             DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);
+            LevelHint.nextHint(_hintNumber);
         }
     }
 }

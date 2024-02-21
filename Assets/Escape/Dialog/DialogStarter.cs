@@ -39,8 +39,8 @@ public class DialogStarter : MonoBehaviour
         _gameManager = FindObjectOfType<GameManager_Escape>();
         _input = FindObjectOfType<StarterAssetsInputs>();
         _levelManager = FindObjectOfType<LevelManager>();
-        if (_isHintDialog)
-            _levelHint = FindObjectOfType<LevelHint>();
+	    if (_isHintDialog)
+                _levelHint = FindObjectOfType<LevelHint>();
     }
 
     public bool GetDialogOpen()
@@ -115,7 +115,6 @@ public class DialogStarter : MonoBehaviour
 
         if (_isActivationObjectDialog)
             _levelManager.ActivateObjects();
-
         if (_isTeoryDialog)
         {
             _gameManager.DialogCamera = DialogCamera;
@@ -140,7 +139,6 @@ public class DialogStarter : MonoBehaviour
             teoria.Interact();
         }
     }
-
     private void SetupDialogCanvasWithMessage(Message m)
     {
         _typingCoroutine = TypeSentence(m.GetMessageText());
