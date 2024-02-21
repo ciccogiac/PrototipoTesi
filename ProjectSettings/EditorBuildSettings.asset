@@ -12,11 +12,11 @@ EditorBuildSettings:
     path: Assets/Intro/Intro.unity
     guid: d71e0f2d8b5ae864087beabea991fde6
   - enabled: 1
-    path: Assets/Escape/Levels/Level_1/Stanza1.unity
-    guid: 41c970dfdb8fc2b409b8955e331c27e9
+    path: Assets/Escape/Prison.unity
+    guid: 8e3c173ed0fc3bc4ea990d75cd74b6e8
   - enabled: 1
-    path: Assets/Escape/Playground.unity
-    guid: 707acc8dffb72b144bb1ffbe1c965f3d
+    path: Assets/Escape/Mensa.unity
+    guid: 982fc648f76ec994993cb896fef70bbd
   - enabled: 1
     path: Assets/Intro/Intro2.unity
     guid: 5d74401d5aafb014c84f43701b862acc

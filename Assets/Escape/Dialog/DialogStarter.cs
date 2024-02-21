@@ -19,20 +19,28 @@ public class DialogStarter : MonoBehaviour
     [SerializeField] private Image CharacterImage;
 
     private int _counter = -1;
-    private bool _dialogUsed;
+    public bool _dialogUsed;
     private bool _dialogOpen;
     private bool _clickTriggered;
     private bool _typing;
     private IEnumerator _typingCoroutine;
 
     [SerializeField] LevelManager _levelManager;
-    [SerializeField] bool _isActivationObjectDialog;
+    [SerializeField] LevelHint _levelHint;
+    [SerializeField] bool _isActivationObjectDialog = false;
+    [SerializeField] bool _isTeoryDialog = false;
+    [SerializeField] bool _isHintDialog = false;
+    [SerializeField] int _hintNumber;
+
+    public int _dialogID;
     
     private void Start()
     {
         _gameManager = FindObjectOfType<GameManager_Escape>();
         _input = FindObjectOfType<StarterAssetsInputs>();
         _levelManager = FindObjectOfType<LevelManager>();
+        if (_isHintDialog)
+            _levelHint = FindObjectOfType<LevelHint>();
     }
 
     public bool GetDialogOpen()
@@ -101,12 +109,36 @@ public class DialogStarter : MonoBehaviour
     {
         _input.interact = false;
         _gameManager.DeactivateDialogCanvas();
-        _gameManager.SwitchCameraToPrimary(DialogCamera);
+        //_gameManager.SwitchCameraToPrimary(DialogCamera);
         _dialogUsed = true;
         _dialogOpen = false;
 
         if (_isActivationObjectDialog)
             _levelManager.ActivateObjects();
+
+        if (_isTeoryDialog)
+        {
+            _gameManager.DialogCamera = DialogCamera;
+            GetTeory();
+        }
+     
+        else
+            _gameManager.SwitchCameraToPrimary(DialogCamera);
+
+
+        if (_isHintDialog && _levelHint != null)
+            _levelHint.nextHint(_hintNumber);
+
+        DatiPersistenti.istanza.dialogUsed.Add(_dialogID);
+    }
+
+    public void GetTeory()
+    {
+        Clue teoria = GetComponentInChildren<Clue>();
+        if(teoria != null && teoria.clueType == Clue.ClueType.Teoria)
+        {
+            teoria.Interact();
+        }
     }
 
     private void SetupDialogCanvasWithMessage(Message m)

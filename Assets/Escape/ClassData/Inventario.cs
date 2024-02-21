@@ -147,4 +147,5 @@ public class Inventario : MonoBehaviour
         oggettiUsed = new List<OggettoEscapeValue>();
 
     }
+
 }

@@ -49,6 +49,10 @@ public class GameManager_Escape : MonoBehaviour
 
     private SaveManager saveManager;
 
+    public CinemachineVirtualCamera DialogCamera = null;
+
+    private LevelHint _levelHint;
+
 #if UNITY_EDITOR
     // Questo metodo viene chiamato solo nell'editor quando si fa clic su "Gestisci valori" nel componente
     [ContextMenu("Calcola valori id iniziali")]
@@ -69,6 +73,13 @@ public class GameManager_Escape : MonoBehaviour
             i++;
         }
 
+        i = 0;
+        foreach (var x in FindObjectsOfType<DialogStarter>())
+        {
+            x._dialogID = i;
+            i++;
+        }
+
     }
 #endif
 
@@ -85,6 +96,7 @@ public class GameManager_Escape : MonoBehaviour
 
         saveManager = FindObjectOfType<SaveManager>();
         printer =FindObjectOfType<Printer3DController>();
+        _levelHint = FindObjectOfType<LevelHint>();
 
         clues = FindObjectsOfType<Clue>();
 
@@ -105,6 +117,21 @@ public class GameManager_Escape : MonoBehaviour
                 InstanziaOggetto(o, objectInteractor);
             }
         }
+
+        DialogStarter[] dialogs = FindObjectsOfType<DialogStarter>();
+
+        foreach (var dialog in DatiPersistenti.istanza.dialogUsed)
+        {
+
+            foreach (var x in dialogs)
+            {
+                if (x._dialogID == dialog)
+                {
+                    x._dialogUsed = true;
+                }
+            }
+        }
+
 
         MethodListener[] methodsListeners = FindObjectsOfType<MethodListener>();
 
@@ -127,7 +154,7 @@ public class GameManager_Escape : MonoBehaviour
         if (DatiPersistenti.istanza.isFirstSceneOpening)
         {
             DatiPersistenti.istanza.isFirstSceneOpening = false;
-            saveManager.Save(SceneManager.GetActiveScene().buildIndex);
+            saveManager.Save(SceneManager.GetActiveScene().buildIndex, Inventario.istanza.teoria);
             ActivateLongSpeechCanvas(IntroSpeechCanvas.gameObject);
         }
         
@@ -269,19 +296,28 @@ public class GameManager_Escape : MonoBehaviour
 
         NewItemCanvas.SetActive(false);
 
-        if (isSeeing)
+        if (DialogCamera == null)
         {
-            input.SwitchCurrentActionMap("SwitchCamera");
-            interactionSwitchCameraCanvas.SetActive(true);
+            if (isSeeing)
+            {
+                input.SwitchCurrentActionMap("SwitchCamera");
+                interactionSwitchCameraCanvas.SetActive(true);
 
-            Cursor.SetCursor(cursorSwitchCameraTexture, new Vector2(cursorSwitchCameraTexture.width / 2, cursorSwitchCameraTexture.height / 2), CursorMode.Auto);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
+                Cursor.SetCursor(cursorSwitchCameraTexture, new Vector2(cursorSwitchCameraTexture.width / 2, cursorSwitchCameraTexture.height / 2), CursorMode.Auto);
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+            }
+            else
+            {
+                input.SwitchCurrentActionMap("Player");
+                interactionCanvas.SetActive(true);
+            }
         }
+
         else
         {
-            input.SwitchCurrentActionMap("Player");
-            interactionCanvas.SetActive(true);
+            SwitchCameraToPrimary(DialogCamera);
+            DialogCamera = null;
         }
             
 
@@ -318,6 +354,9 @@ public class GameManager_Escape : MonoBehaviour
         interactionCanvas.SetActive(true);
         longSpeech.SetActive(false);
         input.SwitchCurrentActionMap("Player");
+
+        if (_levelHint != null && _levelHint.hint.Length >0) 
+            _levelHint.StartHintCounter();
     }
 }
 
