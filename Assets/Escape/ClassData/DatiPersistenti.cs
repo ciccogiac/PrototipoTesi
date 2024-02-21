@@ -13,6 +13,7 @@ public class DatiPersistenti : MonoBehaviour
     public HashSet<int> dialogUsed = new HashSet<int>();
 
     public bool isFirstSceneOpening = true;
+    public bool isSecondSceneOpening = true;
 
     public int sceneIndex;
     public int hintCounter;
