@@ -19628,7 +19628,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.74
   m_Center: {x: 0, y: 0, z: 0}
@@ -19728,6 +19728,7 @@ MonoBehaviour:
   objectCallMethodsCanvas: {fileID: 1394900117}
   objectPoint: {fileID: 0}
   Rotation: {x: 0, y: 0, z: 0, w: 0}
+  Scale: 1
   oggetto: {fileID: 1008377848}
   methodListener: {fileID: 1008377846}
   Id: 0
@@ -20412,6 +20413,7 @@ MonoBehaviour:
   input: {fileID: 173326897}
   cursorTexture: {fileID: 2800000, guid: c088c041e51b75842b57a46f46fba36d, type: 3}
   _levelHint: {fileID: 0}
+  isClassModify: 1
 --- !u!114 &1064502003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20905,6 +20907,7 @@ MonoBehaviour:
   objectCallMethodsCanvas: {fileID: 1394900117}
   objectPoint: {fileID: 1280432184}
   Rotation: {x: 0, y: 0, z: 0, w: 0}
+  Scale: 1
   oggetto: {fileID: 0}
   methodListener: {fileID: 1611106265}
   Id: 1
@@ -27927,9 +27930,11 @@ MonoBehaviour:
   lastCharacterEscapePosition: {x: 0, y: 0, z: 0}
   lastCharacterEscapeRotation: {x: 0, y: 0, z: 0, w: 0}
   isFirstSceneOpening: 1
+  isSecondSceneOpening: 1
   sceneIndex: 0
   hintCounter: 0
   className: 
+  isNewClassCreated: 0
   isObjectToPrint: 0
   objectName: 
   attributesValues: []
@@ -51375,6 +51380,7 @@ MonoBehaviour:
   objectCallMethodsCanvas: {fileID: 1394900117}
   objectPoint: {fileID: 1972897027}
   Rotation: {x: 0.49999997, y: 0.49999997, z: -0.49999997, w: 0.49999997}
+  Scale: 1
   oggetto: {fileID: 0}
   methodListener: {fileID: 5564319381860499345}
   Id: 2

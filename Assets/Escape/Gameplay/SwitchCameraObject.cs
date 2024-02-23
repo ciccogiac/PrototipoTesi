@@ -15,6 +15,7 @@ public class SwitchCameraObject : Interactable
     private List<OggettoEscape> oggetti;
     private List<ReadObject> oggettiRead;
     private List<Clue> clues;
+    private List<ObjectInteraction> objectInteraction;
 
     [SerializeField] GameObject padre;
 
@@ -26,6 +27,7 @@ public class SwitchCameraObject : Interactable
         gameManager = FindObjectOfType<GameManager_Escape>();
         oggetti = padre.GetComponentsInChildren<OggettoEscape>().ToList();
         oggettiRead = padre.GetComponentsInChildren<ReadObject>().ToList();
+        objectInteraction = padre.GetComponentsInChildren<ObjectInteraction>().ToList();
         //clues = padre.GetComponentsInChildren<Clue>().ToList();
         clues = padre.GetComponentsInChildren<Clue>().Where(clue => clue.GetComponent<OggettoEscape>() == null).ToList();
 
@@ -36,7 +38,7 @@ public class SwitchCameraObject : Interactable
     {
         foreach(var x in oggetti)
         {
-            if (x != null && x.methodListener==null)
+            if (x != null && x.methodListener==null )
             {
                 x.isActive = state;
                 if (!state) 
@@ -70,6 +72,22 @@ public class SwitchCameraObject : Interactable
         foreach (var x in clues)
         {
             if (x != null && x.clueType!= Clue.ClueType.Teoria)
+            {
+                x.isActive = state;
+                if (!state)
+                {
+                    Outline o = x.gameObject.GetComponent<Outline>();
+                    if (o != null) o.enabled = false;
+                    x.gameObject.GetComponent<Collider>().enabled = false;
+                }
+                else
+                    x.gameObject.GetComponent<Collider>().enabled = true;
+            }
+        }
+
+        foreach (var x in objectInteraction)
+        {
+            if (x != null)
             {
                 x.isActive = state;
                 if (!state)
