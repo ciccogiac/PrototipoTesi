@@ -8,6 +8,7 @@ public class ObjectInteraction : Interactable
     [SerializeField] GameObject objectCallMethodsCanvas;
     public Transform objectPoint;
     [SerializeField] public Quaternion Rotation = Quaternion.identity;
+    [SerializeField] public float Scale = 1f;
 
     public OggettoEscape oggetto;
     public MethodListener methodListener;

@@ -93,12 +93,12 @@ public class ObjectCollected_Canvas : MonoBehaviour
 
             oggettoIstanziato.transform.position = objectInteraction.objectPoint.position;
             oggettoIstanziato.transform.SetParent(objectInteraction.gameObject.transform);
-            oggettoIstanziato.transform.localScale = Vector3.one;
+            oggettoIstanziato.transform.localScale = objectInteraction.Scale * Vector3.one;
 
             //oggettoIstanziato.gameObject.GetComponent<MeshFilter>().mesh = oggettoIstanziato.GetComponent<OggettoEscape>().oggettoEscapeValue.mesh;
             //oggettoIstanziato.gameObject.GetComponent<MeshRenderer>().materials = oggettoIstanziato.GetComponent<OggettoEscape>().oggettoEscapeValue.material;
-            float fattoreScala = 0.5f;
-            oggettoIstanziato.gameObject.transform.localScale *= fattoreScala;
+            //float fattoreScala = 0.5f;
+            //oggettoIstanziato.gameObject.transform.localScale *= fattoreScala;
             oggettoIstanziato.gameObject.SetActive(true);
             
             //oggettoIstanziato.GetComponent<OggettoEscape>().SetObjectValue();
