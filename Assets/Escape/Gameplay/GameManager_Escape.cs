@@ -119,25 +119,10 @@ public class GameManager_Escape : MonoBehaviour
 
     private void ReloadObjectScene()
     {
-        clues = FindObjectsOfType<Clue>();
-
-        foreach (var clue in clues)
-        {
-            if (Inventario.istanza.IsCluePickedUp(clue) || Inventario.istanza.IsClueUsed(clue)) { Destroy(clue.gameObject); }
-        }
+        
 
 
-        objectInteractors = FindObjectsOfType<ObjectInteraction>();
-
-
-        foreach (var objectInteractor in objectInteractors)
-        {
-            OggettoEscapeValue o = Inventario.istanza.oggettiUsed.Find(x => x.ObjectInteractorId == objectInteractor.Id);
-            if (o != null)
-            {
-                InstanziaOggetto(o, objectInteractor);
-            }
-        }
+       
 
         DialogStarter[] dialogs = FindObjectsOfType<DialogStarter>();
 
@@ -170,18 +155,40 @@ public class GameManager_Escape : MonoBehaviour
 
         }
 
+        clues = FindObjectsOfType<Clue>();
+
+        foreach (var clue in clues)
+        {
+            if (Inventario.istanza.IsCluePickedUp(clue) || Inventario.istanza.IsClueUsed(clue)) { Destroy(clue.gameObject); }
+        }
+
+        objectInteractors = FindObjectsOfType<ObjectInteraction>();
+
+
+        foreach (var objectInteractor in objectInteractors)
+        {
+            OggettoEscapeValue o = Inventario.istanza.oggettiUsed.Find(x => x.ObjectInteractorId == objectInteractor.Id);
+            if (o != null)
+            {
+                InstanziaOggetto(o, objectInteractor);
+            }
+        }
+
     }
 
     private void InstanziaOggetto(OggettoEscapeValue oggettoEscapeValue , ObjectInteraction objectInteraction)
     {
-        GameObject oggettoIstanziato = Instantiate(oggettoEscapeValue.classPrefab, objectInteraction.objectPoint.position, Quaternion.identity);
+        GameObject oggettoIstanziato = Instantiate(oggettoEscapeValue.classPrefab, objectInteraction.objectPoint.position, objectInteraction.Rotation);
         oggettoIstanziato.GetComponent<OggettoEscape>().SetOggettoEscapeValue(oggettoEscapeValue);
+        oggettoIstanziato.GetComponent<OggettoEscape>().isActive = false;
+        oggettoIstanziato.GetComponent<Collider>().enabled = false;
 
         oggettoIstanziato.transform.position = objectInteraction.objectPoint.position;
         oggettoIstanziato.transform.SetParent(objectInteraction.gameObject.transform);
 
-        float fattoreScala = 0.5f;
-        oggettoIstanziato.gameObject.transform.localScale *= fattoreScala;
+        //float fattoreScala = 4f;
+        //oggettoIstanziato.gameObject.transform.localScale *= fattoreScala;
+        oggettoIstanziato.transform.localScale = objectInteraction.Scale * Vector3.one;
         oggettoIstanziato.gameObject.SetActive(true);
 
         //oggettoIstanziato.GetComponent<OggettoEscape>().SetObjectValue();

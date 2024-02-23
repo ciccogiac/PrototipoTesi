@@ -7378,7 +7378,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 1.63
   m_Center: {x: 5.9742792e-15, y: -7.121896e-22, z: 0.42040262}
@@ -12811,7 +12811,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 1.63
   m_Center: {x: 5.9742792e-15, y: -7.121896e-22, z: 0.42040262}
@@ -25367,6 +25367,7 @@ MonoBehaviour:
   sceneIndex: 0
   hintCounter: 0
   className: 
+  isNewClassCreated: 0
   isObjectToPrint: 0
   objectName: 
   attributesValues: []
@@ -30526,7 +30527,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 1.63
   m_Center: {x: 5.9742792e-15, y: -7.121896e-22, z: 0.42040262}
@@ -44521,7 +44522,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 1.63
   m_Center: {x: 5.9742792e-15, y: -7.121896e-22, z: 0.42040262}
@@ -52461,7 +52462,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 1.63
   m_Center: {x: 5.9742792e-15, y: -7.121896e-22, z: 0.42040262}
@@ -83003,7 +83004,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -91971,6 +91972,7 @@ MonoBehaviour:
   input: {fileID: 1549908499}
   cursorTexture: {fileID: 2800000, guid: c088c041e51b75842b57a46f46fba36d, type: 3}
   _levelHint: {fileID: 0}
+  isClassModify: 1
 --- !u!114 &2042002104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99947,7 +99949,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 1.63
   m_Center: {x: 5.9742792e-15, y: -7.121896e-22, z: 0.42040262}

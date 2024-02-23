@@ -36,7 +36,7 @@ public class SwitchCameraObject : Interactable
     {
         foreach(var x in oggetti)
         {
-            if (x != null)
+            if (x != null && x.methodListener==null)
             {
                 x.isActive = state;
                 if (!state) 
