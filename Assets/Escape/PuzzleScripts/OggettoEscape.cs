@@ -55,6 +55,8 @@ public class OggettoEscape : Interactable
     {
         oggettoEscapeValue = oggetto;
         //SetOggettoEscapeNotPrinted();
+        OggettoEscapeChild[] o = GetComponentsInChildren<OggettoEscapeChild>();
+        foreach (var x in o) x.AssigneObject();
     }
 
     public void SetOggettoEscapeNotPrinted()

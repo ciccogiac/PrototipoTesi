@@ -14,7 +14,19 @@ public class ClassDictionary : MonoBehaviour
     [SerializeField] public Dictionary<string, (bool, List<Method>)> coppie;
     // Start is called before the first frame update
 
+    public string GetClassDescription(string _className)
+    {
+        ClassValue classFound = classi.Find(s => string.Equals(s.className, _className, StringComparison.OrdinalIgnoreCase));
 
+        if (classFound != null)
+        {
+            return classFound.objectDescription;
+        }
+        else
+        {
+            return "";
+        }
+    }
 
     public (GameObject,string) GetClassPrefab(string _className)
     {

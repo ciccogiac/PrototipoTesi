@@ -64,6 +64,7 @@ public class Monitor : MethodListener
             Destroy(figlio.gameObject);
         }
 
+        classBox.SetActive(true);
         text_Error.gameObject.SetActive(true);
         text_Error.text = error;
     }

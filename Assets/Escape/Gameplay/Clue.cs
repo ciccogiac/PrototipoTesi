@@ -29,6 +29,7 @@ public class Clue : Interactable
         gameManager = FindObjectOfType<GameManager_Escape>();
     }
 
+
     override public void Interact()
     {
         customInput.CanvasInteract.SetActive(false);

@@ -45,6 +45,7 @@ public class GameManager_ClassGame : MonoBehaviour
     [SerializeField] GameObject buttonCompile;
     [SerializeField] GameObject boxCompilation;
 
+    private bool isVisibilityLevel;
 
     // Start is called before the first frame update
     void Start()
@@ -94,7 +95,7 @@ public class GameManager_ClassGame : MonoBehaviour
             if (mi != null)
             {
                 mi.attribute_name = attributes[i];
-                mi.initialize();
+                mi.initialize(isVisibilityLevel);
             }
             oggettoIstanziato.transform.SetParent(VerticalBox_Attributes.transform);
             oggettoIstanziato.transform.localScale = Vector3.one;
@@ -117,7 +118,9 @@ public class GameManager_ClassGame : MonoBehaviour
         {
             // Fai qualcosa con l'oggetto trovato
             //Debug.Log("Livello trovato: " + livelloTrovato.name);
-            tempoIniziale = livelloTrovato.GetComponent<LevelTimer>().timer;
+            LevelTimer level = livelloTrovato.GetComponent<LevelTimer>();
+            tempoIniziale = level.timer;
+            isVisibilityLevel = level.isVisibilityLevel;
             livelloTrovato.gameObject.SetActive(true);
         }
         else
@@ -280,9 +283,11 @@ public class GameManager_ClassGame : MonoBehaviour
                 }
             }
 
-
+            DatiPersistenti.istanza.isNewClassCreated = true;
             SceneManager.LoadScene(DatiPersistenti.istanza.sceneIndex);
         }
+        
+        
         else { SceneManager.LoadScene(DatiPersistenti.istanza.sceneIndex); }
 
     }

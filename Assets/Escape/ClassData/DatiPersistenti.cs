@@ -21,6 +21,7 @@ public class DatiPersistenti : MonoBehaviour
     [Header("ClassGame")]
     public string className;
     public Dictionary<string, (bool visibility,List<Method>)> coppie;
+    public bool isNewClassCreated = false;
 
     [Header("ObjectGame")]
     public bool isObjectToPrint=false;

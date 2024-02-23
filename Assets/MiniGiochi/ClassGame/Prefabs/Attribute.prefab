@@ -506,6 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attribute_name: 
+  visibilityButton: {fileID: 2178881330356253982}
 --- !u!114 &2863396757619815010
 MonoBehaviour:
   m_ObjectHideFlags: 0

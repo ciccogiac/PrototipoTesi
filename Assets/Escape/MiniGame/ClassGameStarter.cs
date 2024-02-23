@@ -8,7 +8,25 @@ public class ClassGameStarter : Interactable
 {
     [SerializeField] GameObject player;
     [SerializeField] GameObject canvas_ClassGameInterface;
-    
+
+    private ClassDictionary dizionario;
+    private GameManager_Escape gameManager;
+
+    private void Start()
+    {
+       
+        if (DatiPersistenti.istanza.isNewClassCreated)
+        {
+            DatiPersistenti.istanza.isNewClassCreated = false;
+
+            dizionario = FindObjectOfType<ClassDictionary>();
+            gameManager = FindObjectOfType<GameManager_Escape>();
+
+
+            gameManager.ActivateNewItemCanvas(Clue.ClueType.Classe.ToString(), DatiPersistenti.istanza.className, dizionario.GetClassDescription(DatiPersistenti.istanza.className));
+
+        }
+    }
     override public void Interact()
     {
                 DatiPersistenti.istanza.lastCharacterEscapePosition = player.transform.position;

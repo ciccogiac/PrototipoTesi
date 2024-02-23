@@ -22,7 +22,7 @@ public class SaveManager : MonoBehaviour
         formatter.Serialize(fileStream, saveData);
         fileStream.Close();
 
-        Debug.Log("Salvataggio completato. Nuovo numero salvato: " + numberToSave);
+        //Debug.Log("Salvataggio completato. Nuovo numero salvato: " + numberToSave);
     }
 
     public (int, List<(string, string)> ) LoadSave()

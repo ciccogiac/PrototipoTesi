@@ -98,11 +98,32 @@ public class GameManager_Escape : MonoBehaviour
         printer =FindObjectOfType<Printer3DController>();
         _levelHint = FindObjectOfType<LevelHint>();
 
+        Cursor.lockState = CursorLockMode.Locked;
+
+        if (DatiPersistenti.istanza.isFirstSceneOpening)
+        {
+            DatiPersistenti.istanza.isFirstSceneOpening = false;
+            saveManager.Save(SceneManager.GetActiveScene().buildIndex, Inventario.istanza.teoria);
+            ActivateLongSpeechCanvas(IntroSpeechCanvas.gameObject);
+
+            StarterObjectsInitialize s = GetComponent<StarterObjectsInitialize>();
+            if (s != null)
+                s.Initializeobjects();
+        }
+
+
+
+        ReloadObjectScene();
+        
+    }
+
+    private void ReloadObjectScene()
+    {
         clues = FindObjectsOfType<Clue>();
 
-        foreach(var clue in clues)
+        foreach (var clue in clues)
         {
-            if (Inventario.istanza.IsCluePickedUp(clue) || Inventario.istanza.IsClueUsed(clue) ) { Destroy(clue.gameObject); }
+            if (Inventario.istanza.IsCluePickedUp(clue) || Inventario.istanza.IsClueUsed(clue)) { Destroy(clue.gameObject); }
         }
 
 
@@ -137,29 +158,19 @@ public class GameManager_Escape : MonoBehaviour
 
         foreach (var methodListener in DatiPersistenti.istanza.methodsListeners)
         {
-            
-            foreach(var x in methodsListeners)
+
+            foreach (var x in methodsListeners)
             {
                 if (x.methodListenerID == methodListener)
-                { 
+                {
                     x.ApplyMethod();
                 }
             }
 
-            
+
         }
 
-        Cursor.lockState = CursorLockMode.Locked;
-
-        if (DatiPersistenti.istanza.isFirstSceneOpening)
-        {
-            DatiPersistenti.istanza.isFirstSceneOpening = false;
-            saveManager.Save(SceneManager.GetActiveScene().buildIndex, Inventario.istanza.teoria);
-            ActivateLongSpeechCanvas(IntroSpeechCanvas.gameObject);
-        }
-        
     }
-
 
     private void InstanziaOggetto(OggettoEscapeValue oggettoEscapeValue , ObjectInteraction objectInteraction)
     {

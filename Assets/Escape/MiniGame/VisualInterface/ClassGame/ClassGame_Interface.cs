@@ -50,6 +50,8 @@ public class ClassGame_Interface : MonoBehaviour
 
     [SerializeField] LevelHint _levelHint;
 
+    [SerializeField] bool isClassModify = true;
+
     private void OnEnable()
     {
         input.enabled = false;
@@ -142,7 +144,11 @@ public class ClassGame_Interface : MonoBehaviour
 
             button_creaClasse.gameObject.SetActive(false);
             button_eliminaClasse.gameObject.SetActive(true);
-            button_modificaClasse.gameObject.SetActive(true);
+
+            if(isClassModify)
+                button_modificaClasse.gameObject.SetActive(true);
+            else
+                button_modificaClasse.gameObject.SetActive(false);
         }
         else
         {   /*

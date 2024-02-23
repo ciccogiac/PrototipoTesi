@@ -83,6 +83,7 @@ public class MethodListener : MonoBehaviour
 
     public virtual bool MethodInput(List<(string, string)> objectValue, List<(string, string)> inputValue)
     {
+        /*
         Debug.Log("AttributeValue");
         foreach(var a in objectValue)
         {
@@ -94,7 +95,7 @@ public class MethodListener : MonoBehaviour
         {
             Debug.Log(a.Item1 + " " + a.Item2);
         }
-
+        */
         return false;
     }
 

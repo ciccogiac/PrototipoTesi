@@ -94,6 +94,21 @@ public class InputMethod : MonoBehaviour
                         return;
                     }
                     break;
+                case "Char":
+                    if (tupla.Item2.Length==1)
+                    {
+                        Debug.Log("La stringa � un char.");
+                        break;
+                    }
+                    else
+                    {
+                        Debug.Log("Il valore di " + tupla.Item1 + " non � un char.");
+                        error_text.text = "Il valore di " + tupla.Item1 + " non e' un char.";
+                        hint_text.text = "Prova ad inserire un carattere alfanumerico , senza altri caratteri aggiuntivi";
+                        ShowInputError();
+                        return;
+                    }
+                    break;
                 default:
                     break;
             }

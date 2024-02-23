@@ -6082,14 +6082,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8413193328767778472, guid: 23330fc4b5ba00a4fa921a7f62d587d1, type: 3}
       propertyPath: clueName
-      value: Oggetti
+      value: Oggetti di Programmazzione
       objectReference: {fileID: 0}
     - target: {fileID: 8413193328767778472, guid: 23330fc4b5ba00a4fa921a7f62d587d1, type: 3}
       propertyPath: clueDescription
       value: Gli oggetti di programmazione sono strumenti che servono ad interagire
-        con il mondo esterno. Sono caratterizzati da una classe e dai suoi metodi
-        e attributi. I metodi sono lo strumento che permette di interagire con il
-        mondo , sfruttando i valori degli attributi a cui fanno riferimento.
+        con il mondo esterno. Sono costruiti a partire da una classe e sfruttano
+        i suoi metodi e attributi. I metodi sono lo strumento che permette di interagire
+        con il mondo , ti basta richiamarli , e loro eseguieranno azioni specifiche
+        , leggendo i valori degli attribbuti a cui fanno riferimento.
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6352244801360670307, guid: 23330fc4b5ba00a4fa921a7f62d587d1, type: 3}
@@ -26926,7 +26927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8413193328767778472, guid: 23330fc4b5ba00a4fa921a7f62d587d1, type: 3}
       propertyPath: clueName
-      value: Nuovo indizio teoria
+      value: Usare gli oggetti
       objectReference: {fileID: 0}
     - target: {fileID: 8413193328767778472, guid: 23330fc4b5ba00a4fa921a7f62d587d1, type: 3}
       propertyPath: isActive
@@ -26934,7 +26935,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8413193328767778472, guid: 23330fc4b5ba00a4fa921a7f62d587d1, type: 3}
       propertyPath: clueDescription
-      value: Terzo indizio teoria
+      value: "Gli oggetti possono essere raccolti nel mondo di gioco e usati in luoghi
+        appositi, dove \xE8 possibile richiamarne i metodi giusti per fare avvenire
+        delle interazioni."
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6352244801360670307, guid: 23330fc4b5ba00a4fa921a7f62d587d1, type: 3}
@@ -32967,12 +32970,13 @@ MonoBehaviour:
   hint:
   - hintText: Sembra ci sia un rumore provenire dalla porta
     hintTimer: 10
-  - hintText: 
-    hintTimer: 0
-  - hintText: Questa chiave potrebbe aprire la porta della prigione
-    hintTimer: 30
+  - hintText: "Il vecchio ha detto che l'orologio \xE8 senza batterie , chissa perche'
+      ..."
+    hintTimer: 80
+  - hintText: Questa chiave potrebbe aprire la cella della prigione
+    hintTimer: 10
   hintCounter: 0
-  hintDuration: 10
+  hintDuration: 15
   _IsHintActive: 1
 --- !u!1 &1764050530
 GameObject:
@@ -34652,11 +34656,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 373147971107869599, guid: e9ce2d988684a5547b1a56e5e71b9fda, type: 3}
       propertyPath: clueName
-      value: Chiave
+      value: ChiavePorta
+      objectReference: {fileID: 0}
+    - target: {fileID: 373147971107869599, guid: e9ce2d988684a5547b1a56e5e71b9fda, type: 3}
+      propertyPath: clueDescription
+      value: Oggetto utile ad aprire la serrattura di una porta.
       objectReference: {fileID: 0}
     - target: {fileID: 3683877368798373139, guid: e9ce2d988684a5547b1a56e5e71b9fda, type: 3}
       propertyPath: oggettoEscapeValue.objectName
-      value: Chiave
+      value: ChiavePorta
       objectReference: {fileID: 0}
     - target: {fileID: 3683877368798373139, guid: e9ce2d988684a5547b1a56e5e71b9fda, type: 3}
       propertyPath: oggettoEscapeValue.classPrefab
