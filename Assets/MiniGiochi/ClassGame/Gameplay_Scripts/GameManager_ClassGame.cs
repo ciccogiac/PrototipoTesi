@@ -46,6 +46,8 @@ public class GameManager_ClassGame : MonoBehaviour
     [SerializeField] GameObject boxCompilation;
 
     private bool isVisibilityLevel;
+    private bool isPrivateNonVisibilityLevel;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -95,7 +97,7 @@ public class GameManager_ClassGame : MonoBehaviour
             if (mi != null)
             {
                 mi.attribute_name = attributes[i];
-                mi.initialize(isVisibilityLevel);
+                mi.initialize(isVisibilityLevel, isPrivateNonVisibilityLevel);
             }
             oggettoIstanziato.transform.SetParent(VerticalBox_Attributes.transform);
             oggettoIstanziato.transform.localScale = Vector3.one;
@@ -121,6 +123,7 @@ public class GameManager_ClassGame : MonoBehaviour
             LevelTimer level = livelloTrovato.GetComponent<LevelTimer>();
             tempoIniziale = level.timer;
             isVisibilityLevel = level.isVisibilityLevel;
+            isPrivateNonVisibilityLevel = level.isPrivateNonVisibilityLevel;
             livelloTrovato.gameObject.SetActive(true);
         }
         else

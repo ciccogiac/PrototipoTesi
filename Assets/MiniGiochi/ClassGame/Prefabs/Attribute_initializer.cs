@@ -10,12 +10,23 @@ public class Attribute_initializer : MonoBehaviour
     public Button visibilityButton;
 
     // Inizializzi i valori dell'attributo in attribute_connection
-    public void initialize(bool visibility)
+    public void initialize(bool visibility , bool isPrivateNonVisibilityLevel)
     {
         Attribute_Connection ac = GetComponentInChildren<Attribute_Connection>();
         ac.attribute_name = attribute_name;
-        ac.is_public = !visibility;
-        visibilityButton.interactable = visibility;
 
+        if (isPrivateNonVisibilityLevel)
+        {
+            ac.is_public = false;
+            visibilityButton.interactable = false;
+        }
+
+        else
+        {
+            ac.is_public = !visibility;
+            visibilityButton.interactable = visibility;
+        }
+       
+        
     }
 }
