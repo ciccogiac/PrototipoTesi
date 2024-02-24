@@ -13058,6 +13058,10 @@ MonoBehaviour:
         methodType: 2
       attributes:
       - Codice
+    - method:
+        methodName: ChiudiArmadietto()
+        methodType: 0
+      attributes: []
     description: 
     classPrefab: {fileID: 0}
     ObjectInteractorId: 0
@@ -47846,7 +47850,7 @@ Transform:
   m_GameObject: {fileID: 1178643839}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.29404032, z: 0, w: 0.955793}
-  m_LocalPosition: {x: -6.38, y: 0.37, z: 2.63}
+  m_LocalPosition: {x: -4.283, y: 0.37, z: 7.957}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ReloadEscapeData : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class ReloadEscapeData : MonoBehaviour
         player.GetComponent<CharacterController>().enabled = false;
         levelHint = FindObjectOfType<LevelHint>();
 
-        if (!DatiPersistenti.istanza.isFirstSceneOpening && DatiPersistenti.istanza.sceneIndex != 2)
+        if (!DatiPersistenti.istanza.isFirstSceneOpening && SceneManager.GetActiveScene().buildIndex != 2)
         {
             player.transform.position = DatiPersistenti.istanza.lastCharacterEscapePosition;
             player.transform.rotation = DatiPersistenti.istanza.lastCharacterEscapeRotation;
@@ -26,8 +27,9 @@ public class ReloadEscapeData : MonoBehaviour
 
         }
 
-        if (!DatiPersistenti.istanza.isSecondSceneOpening && DatiPersistenti.istanza.sceneIndex == 2)
+        if (!DatiPersistenti.istanza.isSecondSceneOpening && SceneManager.GetActiveScene().buildIndex == 2)
         {
+           
             player.transform.position = DatiPersistenti.istanza.lastCharacterEscapePosition;
             player.transform.rotation = DatiPersistenti.istanza.lastCharacterEscapeRotation;
             levelHint.hintCounter = DatiPersistenti.istanza.hintCounter;

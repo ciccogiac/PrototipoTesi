@@ -10,6 +10,11 @@ namespace Escape.Levels.Level2
         [SerializeField] private GameObject Contained;
         private static readonly int Open = Animator.StringToHash("open");
 
+        public override void Getter(List<(string, string)> objectValue)
+        {
+            Sportello.SetBool(Open, false);
+            StartCoroutine(WaitForSportelloToBeClosedAndDeactivateContained());
+        }
         public override bool Method(List<(string, string)> objectValue)
         {
             foreach (var value in attributeValueListener)
