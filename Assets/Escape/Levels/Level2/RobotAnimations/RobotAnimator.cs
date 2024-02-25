@@ -28,13 +28,13 @@ public class RobotAnimator : MonoBehaviour
         {
             _isTalking = false;
             _animator.SetBool(Talking, false);
-            transform.Rotate(Vector3.up, -84.35f);
+            transform.rotation = Quaternion.Euler(0, 90, 0);
             _animator.SetBool(Walking, true);
             IEnumerator WaitForRobotToBeInPosition()
             {
-                yield return new WaitUntil(() => transform.position.x >= 14.64f);
+                yield return new WaitUntil(() => transform.position.x >= 14.7f);
                 _animator.SetBool(Walking, false);
-                transform.Rotate(Vector3.up, 84.35f);
+                transform.rotation = Quaternion.Euler(0, 180, 0);
                 SecondDialog.SetActive(true);
             }
             StartCoroutine(WaitForRobotToBeInPosition());
