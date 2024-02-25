@@ -1,5 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Escape.Levels.Level2
 {
@@ -11,6 +14,10 @@ namespace Escape.Levels.Level2
         [SerializeField] private int HintNumber;
         [SerializeField] private Clue Teoria;
         [SerializeField] private GameObject PuzzleCanvas;
+        [SerializeField] private PlayerInput Input;
+        [SerializeField] private SwitchCameraObject SwitchCameraObject;
+        [SerializeField] private GameObject ObjectCallMethodCanvas;
+
 
         public override bool Method(List<(string, string)> objectValue)
         {
@@ -20,12 +27,22 @@ namespace Escape.Levels.Level2
 
         public override void ApplyMethod()
         {
-            DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);
-            Printer3D.gameObject.SetActive(true);
-            GameManager.printer = Printer3D;
-            LevelHint.nextHint(HintNumber);
-            Teoria.isActive = true;
+            //DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);
+            //Printer3D.gameObject.SetActive(true);
+            //GameManager.printer = Printer3D;
+            //LevelHint.nextHint(HintNumber);
+            //Teoria.isActive = true;
             PuzzleCanvas.SetActive(true);
+
+            IEnumerator WaitForCallMethodCanvasToDeactivate()
+            {
+                yield return new WaitUntil(() => !ObjectCallMethodCanvas.activeSelf);
+                GameManager.isSeeing = false;
+                Input.enabled = true;
+                Input.SwitchCurrentActionMap("Puzzle");
+            }
+
+            StartCoroutine(WaitForCallMethodCanvasToDeactivate());
         }
     }
 }
