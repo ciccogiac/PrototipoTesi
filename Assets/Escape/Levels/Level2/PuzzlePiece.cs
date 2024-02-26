@@ -14,7 +14,6 @@ namespace Escape.Levels.Level2
         private RectTransform _rectTransform;
         private Image _image;
         private PuzzleManager _manager;
-        private Vector3 _lastPosition;
 
         private void Awake()
         {
@@ -42,9 +41,10 @@ namespace Escape.Levels.Level2
             if (dimensions.y % 2 == 0) yPos += sectionY / 2; 
             _targetPosition = new Vector3(xPos, yPos, 0f);
         }
-        public void SetPosition(Vector3 pos)
+        public Vector3 SetPosition(Vector3 pos)
         {
             _rectTransform.localPosition = pos;
+            return transform.localPosition;
         }
         public void GenerateTexture(Texture2D puzzleTexture, int sectionX, int sectionY, int row, int col)
         {
@@ -61,7 +61,7 @@ namespace Escape.Levels.Level2
         [UsedImplicitly]
         public void BeginDrag(BaseEventData data)
         {
-            _lastPosition = transform.localPosition;
+            transform.SetAsLastSibling();
         }
         [UsedImplicitly]
         public void PieceDrag(BaseEventData data)
@@ -72,20 +72,22 @@ namespace Escape.Levels.Level2
                 pointerData.position,
                 _manager.GetComponent<Canvas>().worldCamera,
                 out var position);
-            transform.position = _manager.gameObject.transform.TransformPoint(position);
+            transform.localPosition = position;
         }
         [UsedImplicitly]
         public void PieceDrop(BaseEventData data)
         {
-            _manager.EndDrag(this);
+            var pointerData = (PointerEventData)data;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                (RectTransform)_manager.gameObject.transform,
+                pointerData.position,
+                _manager.GetComponent<Canvas>().worldCamera,
+                out var position);
+            _manager.EndDrag(this, position);
         }
         public void DisableDragging()
         {
             Destroy(gameObject.GetComponent<EventTrigger>());
-        }
-        public void ResetToLastPosition()
-        {
-            transform.localPosition = _lastPosition;
         }
     }
 }

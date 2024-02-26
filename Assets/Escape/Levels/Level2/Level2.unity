@@ -12439,8 +12439,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ee9bea8cd2e8240a5495d8c8cf72d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Difficulty: 2
-  Puzzle: {fileID: 2800000, guid: e5cac37eb011ce9499754e8b9812fe43, type: 3}
+  Difficulty: 3
+  Puzzle: {fileID: 2800000, guid: 58840bd63692b37458cb01d3c025668e, type: 3}
   GameHolder: {fileID: 334915166}
   PiecePrefab: {fileID: 7343945140380452165, guid: f45637af2a1876b4b8d2379c37fb17c4, type: 3}
   GameManager: {fileID: 305866903}

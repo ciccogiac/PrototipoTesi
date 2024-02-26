@@ -25,33 +25,27 @@ namespace Escape.Levels.Level2
         private Vector2Int _dimensions;
         private int _piecesCorrect;
 
-        public void EndDrag(PuzzlePiece pieceDragged)
+        public void EndDrag(PuzzlePiece pieceDragged, Vector3 releasePoint)
         {
-            Snap(pieceDragged);
+            Snap(pieceDragged, releasePoint);
         }
-        private void Snap(PuzzlePiece piece)
+        private void Snap(PuzzlePiece piece, Vector3 releasePoint)
         {
-            var piecePosition = piece.transform.localPosition;
-            piecePosition = new Vector3((int) Math.Round(piecePosition.x / _sectionX) * _sectionX,
-                (int) Math.Round(piecePosition.y / _sectionY) * _sectionY, 0f);
+            var piecePosition = new Vector3((int) Math.Round(releasePoint.x / _sectionX) * _sectionX,
+                (int) Math.Round(releasePoint.y / _sectionY) * _sectionY, 0f);
             if (_dimensions.x % 2 == 0)
             {
                 // ReSharper disable once PossibleLossOfFraction
-                piecePosition.x += _sectionX / 2 * (piece.transform.localPosition.x < 0 ? -1 : 1);
+                piecePosition.x += _sectionX / 2 * (releasePoint.x < 0 ? -1 : 1);
             }
 
             if (_dimensions.y % 2 == 0)
             {
                 // ReSharper disable once PossibleLossOfFraction
-                piecePosition.y += _sectionY / 2 * (piece.transform.localPosition.y < 0 ? -1 : 1);
+                piecePosition.y += _sectionY / 2 * (releasePoint.y < 0 ? -1 : 1);
             }
-            if (_pieces.Find(x => x.transform.localPosition == piecePosition))
-            {
-                piece.ResetToLastPosition();
-                return;
-            }
-            piece.transform.localPosition = piecePosition;
-            if (piece.transform.localPosition == piece.GetTargetPosition())
+            var newPosition = piece.SetPosition(piecePosition);
+            if (newPosition == piece.GetTargetPosition())
             {
                 piece.DisableDragging();
                 _piecesCorrect++;
@@ -60,6 +54,7 @@ namespace Escape.Levels.Level2
                     PuzzleCompleted();
                 }
             }
+            piece.transform.SetAsFirstSibling();
         }
         private void PuzzleCompleted()
         {
