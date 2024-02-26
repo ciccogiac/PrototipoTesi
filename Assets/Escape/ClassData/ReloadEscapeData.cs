@@ -12,11 +12,13 @@ public class ReloadEscapeData : MonoBehaviour
     private void Start()
     {
         //Get player e setta la posizione all'ultima avuto in modalit� di escape. Bisogna disabilitare temporaneamente il charactercontroller altrimenti non fuzniona
-        player = GameObject.FindWithTag("Player");
+       
         inventoryLoad = FindObjectOfType<InventoryLoad>();
+       
 
+        /*
         player.GetComponent<CharacterController>().enabled = false;
-        levelHint = FindObjectOfType<LevelHint>();
+        
 
         if (!DatiPersistenti.istanza.isFirstSceneOpening)
         {
@@ -28,11 +30,30 @@ public class ReloadEscapeData : MonoBehaviour
 
 
         player.GetComponent<CharacterController>().enabled = true;
+        */
 
         Inventario.istanza.inventoryLoad = inventoryLoad;
 
         
        
+    }
+
+    public void ReloadPosition()
+    {
+        player = GameObject.FindWithTag("Player");
+        levelHint = FindObjectOfType<LevelHint>();
+
+        if (!DatiPersistenti.istanza.isFirstSceneOpening)
+        {
+            player.GetComponent<CharacterController>().enabled = false;
+
+            player.transform.position = DatiPersistenti.istanza.lastCharacterEscapePosition;
+            player.transform.rotation = DatiPersistenti.istanza.lastCharacterEscapeRotation;
+            levelHint.hintCounter = DatiPersistenti.istanza.hintCounter;
+            levelHint.StartHintCounter();
+
+            player.GetComponent<CharacterController>().enabled = true;
+        }
     }
 
     
