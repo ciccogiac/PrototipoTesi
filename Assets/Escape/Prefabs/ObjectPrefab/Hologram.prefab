@@ -75,7 +75,7 @@ MonoBehaviour:
   oggettoEscapeValue:
     isMadeByPrinter: 0
     objectName: ologramma
-    className: OlogrammaCreatore
+    className: Ologramma
     attributes:
     - attributeName: Nome
       attributeValue: Giovanni

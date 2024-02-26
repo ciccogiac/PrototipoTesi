@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager_ClassGame : MonoBehaviour
 {
@@ -47,7 +48,12 @@ public class GameManager_ClassGame : MonoBehaviour
 
     private bool isVisibilityLevel;
     private bool isPrivateNonVisibilityLevel;
-    
+
+    [SerializeField] GameObject tutorialCanvas;
+    [SerializeField] GameObject upBox;
+    [SerializeField] Image backgroundPlayImage;
+
+    private Transform livelloTrovato;
 
     // Start is called before the first frame update
     void Start()
@@ -109,11 +115,45 @@ public class GameManager_ClassGame : MonoBehaviour
 
         tempoRimanente = tempoIniziale; // Imposta il tempo rimanente al valore iniziale
 
+        //ActivateTutorial();
+
+        if (className == "Valvola" && !DatiPersistenti.istanza.isTutorialStarted_CG)
+        {
+            DatiPersistenti.istanza.isTutorialStarted_CG = true;
+            ActivateTutorial();
+        }
+
+    }
+
+    private void ActivateTutorial()
+    {
+        useTimer = false;
+
+        livelloTrovato.gameObject.SetActive(false);
+        //livelloInventoryTrovato.gameObject.SetActive(false);
+        VerticalBox_Methods.transform.parent.gameObject.SetActive(false);
+        VerticalBox_Attributes.transform.parent.gameObject.SetActive(false);
+        upBox.SetActive(false);
+        backgroundPlayImage.enabled = false;
+        tutorialCanvas.SetActive(true);
+    }
+
+    public void EndTutorial()
+    {
+        tutorialCanvas.SetActive(false);
+        livelloTrovato.gameObject.SetActive(true);
+        //livelloInventoryTrovato.gameObject.SetActive(true);
+        VerticalBox_Methods.transform.parent.gameObject.SetActive(true);
+        VerticalBox_Attributes.transform.parent.gameObject.SetActive(true);
+        upBox.SetActive(true);
+        backgroundPlayImage.enabled = true;
+        useTimer = true;
+
     }
 
     private void LoadLevel()
     {
-        Transform livelloTrovato = levels.transform.Find(className);
+        livelloTrovato = levels.transform.Find(className);
         
 
         if (livelloTrovato != null)

@@ -40,7 +40,7 @@ public class ObjectCallMethods : MonoBehaviour
 
     [SerializeField] GameManager_Escape gameManager;
 
-
+    public bool isTutorialStarted = false;
 
     private void OnEnable()
     {
@@ -131,12 +131,13 @@ public class ObjectCallMethods : MonoBehaviour
         }
 
 
-        input.enabled = true;
-        objectInteraction.isActive = true;
-
-        CallerCanvas.SetActive(false);
         
+        objectInteraction.isActive = true;
+        CallerCanvas.SetActive(false);
 
+        if (isTutorialStarted) { isTutorialStarted = false; gameObject.SetActive(false); return; }
+
+        input.enabled = true;
         if (objectInteraction.isObjectPermanent || objectInteraction.isObjectSee) 
         {
             Cursor.SetCursor(gameManager.cursorSwitchCameraTexture, new Vector2(gameManager.cursorSwitchCameraTexture.width / 2, gameManager.cursorSwitchCameraTexture.height / 2), CursorMode.Auto);

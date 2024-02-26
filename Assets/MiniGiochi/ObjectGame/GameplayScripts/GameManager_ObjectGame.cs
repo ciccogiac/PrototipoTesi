@@ -62,6 +62,11 @@ public class GameManager_ObjectGame : MonoBehaviour
     [SerializeField] GameObject gridLevels;
     [SerializeField] GameObject inventoryLevels;
 
+    [SerializeField] GameObject tutorialCanvas;
+
+    Transform livelloGridTrovato ;
+    Transform livelloInventoryTrovato;
+
     private void ReadLevel()
     {
 
@@ -140,8 +145,8 @@ public class GameManager_ObjectGame : MonoBehaviour
 
     private void LoadLevel()
     {
-        Transform livelloGridTrovato = gridLevels.transform.Find(className);
-        Transform livelloInventoryTrovato = inventoryLevels.transform.Find(className);
+         livelloGridTrovato = gridLevels.transform.Find(className);
+         livelloInventoryTrovato = inventoryLevels.transform.Find(className);
 
         if (livelloGridTrovato != null)
         {
@@ -174,6 +179,20 @@ public class GameManager_ObjectGame : MonoBehaviour
 
     }
 
+    private void ActivateTutorial()
+    {
+        livelloGridTrovato.gameObject.SetActive(false);
+        livelloInventoryTrovato.gameObject.SetActive(false);
+        tutorialCanvas.SetActive(true);
+    }
+
+    public void EndTutorial()
+    {
+        tutorialCanvas.SetActive(false);
+        livelloGridTrovato.gameObject.SetActive(true);
+        livelloInventoryTrovato.gameObject.SetActive(true);
+
+    }
 
     private void Start()
     {
@@ -193,6 +212,16 @@ public class GameManager_ObjectGame : MonoBehaviour
 
         LoadLevel();
         LoadAttributeGame();
+
+        //ActivateTutorial();
+
+        if (className == "Operatore" && !DatiPersistenti.istanza.isTutorialStarted_OG)
+        {
+            DatiPersistenti.istanza.isTutorialStarted_OG = true;
+            ActivateTutorial();
+        }
+           
+
     }
 
     public void CalculateAttributeValue(int value) { attributeIntValue += value; attributeValue_text.text = attributeIntValue.ToString(); }

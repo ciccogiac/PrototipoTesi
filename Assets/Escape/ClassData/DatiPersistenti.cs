@@ -21,11 +21,13 @@ public class DatiPersistenti : MonoBehaviour
     public string className;
     public Dictionary<string, (bool visibility,List<Method>)> coppie;
     public bool isNewClassCreated = false;
+    public bool isTutorialStarted_CG = false;
 
     [Header("ObjectGame")]
     public bool isObjectToPrint=false;
     public string objectName;
     public List<Attribute> attributesValues;
+    public bool isTutorialStarted_OG = false;
 
     //Rappresenta l'istanza unica dei dati che si condividono tra le varie scene. Tra cui i valori dell'inventario , il dizionario di ogni minigioco classe, ecc..
 
