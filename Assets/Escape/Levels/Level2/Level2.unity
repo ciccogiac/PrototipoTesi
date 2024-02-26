@@ -7684,7 +7684,7 @@ MonoBehaviour:
     value: 1572
   className: Pinpad
   methodTubes: []
-  methodListenerID: 1
+  methodListenerID: 0
   OpeningSound: {fileID: 8300000, guid: b99c19c2cfa5bf747bbbca44a512a454, type: 3}
   ClosingSound: {fileID: 8300000, guid: 0f516a33740df2d43bba6bfc52d29209, type: 3}
   WrongCodeSound: {fileID: 8300000, guid: c46bfb2f297c520459f11487b32b629e, type: 3}
@@ -12530,7 +12530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ee9bea8cd2e8240a5495d8c8cf72d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Difficulty: 3
+  Difficulty: 2
   Puzzle: {fileID: 2800000, guid: 58840bd63692b37458cb01d3c025668e, type: 3}
   GameHolder: {fileID: 334915166}
   PiecePrefab: {fileID: 7343945140380452165, guid: f45637af2a1876b4b8d2379c37fb17c4, type: 3}
@@ -12538,7 +12538,13 @@ MonoBehaviour:
   Input: {fileID: 1549908499}
   Printer3D: {fileID: 761062366}
   PuzzleSulBancone: {fileID: 833516358}
+  SwitchCameraObject: {fileID: 1424398443}
   ObjectCallMethodsCanvas: {fileID: 1246205084}
+  Teoria: {fileID: 1442408172158948203}
+  PuzzleMethodListener: {fileID: 833516357}
+  LevelHint: {fileID: 830005624}
+  HintNumber: 2
+  SecondDialog: {fileID: 1809006853}
 --- !u!1 &295309913
 GameObject:
   m_ObjectHideFlags: 0
@@ -13566,7 +13572,7 @@ MonoBehaviour:
     value: 2682
   className: Pinpad
   methodTubes: []
-  methodListenerID: 2
+  methodListenerID: 1
   OpeningSound: {fileID: 8300000, guid: b99c19c2cfa5bf747bbbca44a512a454, type: 3}
   ClosingSound: {fileID: 8300000, guid: 0f516a33740df2d43bba6bfc52d29209, type: 3}
   WrongCodeSound: {fileID: 8300000, guid: c46bfb2f297c520459f11487b32b629e, type: 3}
@@ -26966,7 +26972,6 @@ MonoBehaviour:
   lastCharacterEscapePosition: {x: 0, y: 0, z: 0}
   lastCharacterEscapeRotation: {x: 0, y: 0, z: 0, w: 0}
   isFirstSceneOpening: 1
-  isSecondSceneOpening: 1
   sceneIndex: 0
   hintCounter: 0
   className: 
@@ -32250,7 +32255,7 @@ MonoBehaviour:
     value: 6289
   className: Pinpad
   methodTubes: []
-  methodListenerID: 3
+  methodListenerID: 2
   OpeningSound: {fileID: 8300000, guid: b99c19c2cfa5bf747bbbca44a512a454, type: 3}
   ClosingSound: {fileID: 8300000, guid: 0f516a33740df2d43bba6bfc52d29209, type: 3}
   WrongCodeSound: {fileID: 8300000, guid: c46bfb2f297c520459f11487b32b629e, type: 3}
@@ -35271,7 +35276,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7715396244351729934, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: m_Size.x
-      value: 3.8886216
+      value: 13.697348
       objectReference: {fileID: 0}
     - target: {fileID: 7715396244351729934, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: m_Size.y
@@ -35279,11 +35284,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7715396244351729934, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: m_Size.z
-      value: 5.819036
+      value: 15.963146
       objectReference: {fileID: 0}
     - target: {fileID: 7715396244351729934, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: m_Center.x
-      value: -0.58017886
+      value: 4.3241925
       objectReference: {fileID: 0}
     - target: {fileID: 7715396244351729934, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: m_Center.y
@@ -35291,7 +35296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7715396244351729934, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: m_Center.z
-      value: 1.083677
+      value: 3.8898714
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35478,16 +35483,13 @@ MonoBehaviour:
   attributeValueListener: []
   className: 
   methodTubes: []
-  methodListenerID: 0
-  Printer3D: {fileID: 2104436447}
+  methodListenerID: 3
   GameManager: {fileID: 305866903}
-  LevelHint: {fileID: 830005624}
-  HintNumber: 2
-  Teoria: {fileID: 1442408172158948203}
   PuzzleCanvas: {fileID: 294973201}
   Input: {fileID: 1549908499}
   SwitchCameraObject: {fileID: 1424398443}
   ObjectCallMethodCanvas: {fileID: 1246205082}
+  Printer3D: {fileID: 761062366}
 --- !u!65 &833516358
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48578,7 +48580,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7013712188833926715, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
   m_PrefabInstance: {fileID: 832895765}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1809006853}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8a940c083071de49ae15e11975121a6, type: 3}
@@ -68734,7 +68736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 839919524701217279, guid: 1d29a168a2826e146938120eb39cd0ec, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 916151219316984717, guid: 1d29a168a2826e146938120eb39cd0ec, type: 3}
       propertyPath: m_Mesh
@@ -68795,6 +68797,10 @@ PrefabInstance:
     - target: {fileID: 5303277050992866849, guid: 1d29a168a2826e146938120eb39cd0ec, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5303277050992866849, guid: 1d29a168a2826e146938120eb39cd0ec, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6152083291954812249, guid: 1d29a168a2826e146938120eb39cd0ec, type: 3}
       propertyPath: m_Mesh
@@ -76745,6 +76751,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1809006853 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2380689407233361850, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
+  m_PrefabInstance: {fileID: 832895765}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1809154164
 GameObject:
   m_ObjectHideFlags: 0
@@ -98300,17 +98311,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102773112}
   m_Mesh: {fileID: 5060444177187149915, guid: 7f845c42d5fa3924a89e277ebe15f07b, type: 3}
---- !u!114 &2104436447 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2290027109960703381, guid: 1d29a168a2826e146938120eb39cd0ec, type: 3}
-  m_PrefabInstance: {fileID: 1610373842}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761062366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41eac7b0b1e9204489e2b93628db10e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2104509651
 GameObject:
   m_ObjectHideFlags: 0

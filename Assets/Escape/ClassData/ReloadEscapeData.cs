@@ -18,18 +18,8 @@ public class ReloadEscapeData : MonoBehaviour
         player.GetComponent<CharacterController>().enabled = false;
         levelHint = FindObjectOfType<LevelHint>();
 
-        if (!DatiPersistenti.istanza.isFirstSceneOpening && SceneManager.GetActiveScene().buildIndex != 2)
+        if (!DatiPersistenti.istanza.isFirstSceneOpening)
         {
-            player.transform.position = DatiPersistenti.istanza.lastCharacterEscapePosition;
-            player.transform.rotation = DatiPersistenti.istanza.lastCharacterEscapeRotation;
-            levelHint.hintCounter = DatiPersistenti.istanza.hintCounter;
-            levelHint.StartHintCounter();
-
-        }
-
-        if (!DatiPersistenti.istanza.isSecondSceneOpening && SceneManager.GetActiveScene().buildIndex == 2)
-        {
-           
             player.transform.position = DatiPersistenti.istanza.lastCharacterEscapePosition;
             player.transform.rotation = DatiPersistenti.istanza.lastCharacterEscapeRotation;
             levelHint.hintCounter = DatiPersistenti.istanza.hintCounter;

@@ -18,7 +18,12 @@ namespace Escape.Levels.Level2
         [SerializeField] private PlayerInput Input;
         [SerializeField] private GameObject Printer3D;
         [SerializeField] private BoxCollider PuzzleSulBancone;
+        [SerializeField] private SwitchCameraObject SwitchCameraObject;
         [SerializeField] private ObjectCallMethods ObjectCallMethodsCanvas;
+        [SerializeField] private MethodListener PuzzleMethodListener;
+        [SerializeField] private LevelHint LevelHint;
+        [SerializeField] private int HintNumber;
+        [SerializeField] private GameObject SecondDialog;
         private List<PuzzlePiece> _pieces;
         private int _sectionX;
         private int _sectionY;
@@ -65,10 +70,16 @@ namespace Escape.Levels.Level2
             GameManager.isSeeing = true;
             Input.enabled = true;
             Input.SwitchCurrentActionMap("Player");
-            Printer3D.SetActive(true);
-            PuzzleSulBancone.enabled = false;
-            gameObject.SetActive(false);
             ObjectCallMethodsCanvas.CloseInterface();
+            SwitchCameraObject.ReturnToPrimaryCamera();
+            SwitchCameraObject.isInteractable = false;
+            SwitchCameraObject.isActive = false;
+            gameObject.SetActive(false);
+            DatiPersistenti.istanza.methodsListeners.Add(PuzzleMethodListener.methodListenerID);
+            Printer3D.SetActive(true);
+            GameManager.printer = Printer3D.GetComponent<Printer3DController>();
+            LevelHint.nextHint(HintNumber);
+            SecondDialog.SetActive(true);
         }
         private void OnEnable()
         {

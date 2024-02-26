@@ -8,15 +8,12 @@ namespace Escape.Levels.Level2
 {
     public class Puzzle : MethodListener
     {
-        [SerializeField] private Printer3DController Printer3D;
         [SerializeField] private GameManager_Escape GameManager;
-        [SerializeField] private LevelHint LevelHint;
-        [SerializeField] private int HintNumber;
-        [SerializeField] private Clue Teoria;
         [SerializeField] private GameObject PuzzleCanvas;
         [SerializeField] private PlayerInput Input;
         [SerializeField] private SwitchCameraObject SwitchCameraObject;
         [SerializeField] private GameObject ObjectCallMethodCanvas;
+        [SerializeField] private GameObject Printer3D;
 
 
         public override bool Method(List<(string, string)> objectValue)
@@ -27,11 +24,15 @@ namespace Escape.Levels.Level2
 
         public override void ApplyMethod()
         {
-            //DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);
-            //Printer3D.gameObject.SetActive(true);
-            //GameManager.printer = Printer3D;
-            //LevelHint.nextHint(HintNumber);
-            //Teoria.isActive = true;
+            if (DatiPersistenti.istanza.methodsListeners.Contains(methodListenerID))
+            {
+                Printer3D.SetActive(true);
+                SwitchCameraObject.isInteractable = false;
+                SwitchCameraObject.isActive = false;
+                GameManager.printer = Printer3D.GetComponent<Printer3DController>();
+                return;
+            }
+            
             PuzzleCanvas.SetActive(true);
 
             IEnumerator WaitForCallMethodCanvasToDeactivate()

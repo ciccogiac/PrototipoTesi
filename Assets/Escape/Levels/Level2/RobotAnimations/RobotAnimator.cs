@@ -20,41 +20,70 @@ public class RobotAnimator : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
+        if (!DatiPersistenti.istanza.isFirstSceneOpening)
+        {
+            var transform1 = transform;
+            var position = transform1.position;
+            position = new Vector3(14.7f, position.y, position.z);
+            transform1.position = position;
+        }
     }
 
     private void Update()
     {
-        if (Dialog.GetDialogOpen() && !_isTalking)
+        if (DatiPersistenti.istanza.isFirstSceneOpening)
         {
-            _isTalking = true;
-            _animator.SetBool(Talking, true);
-            _audioSource.clip = RobotTalkingSound;
-            _audioSource.Play();
-        }
-        else if (_isTalking && Dialog.GetDialogUsed())
-        {
-            _isTalking = false;
-            _audioSource.clip = RobotNoiseSound;
-            _audioSource.Play();
-            _animator.SetBool(Talking, false);
-            transform.rotation = Quaternion.Euler(0, 90, 0);
-            _animator.SetBool(Walking, true);
-            IEnumerator WaitForRobotToBeInPosition()
+            if (Dialog.GetDialogOpen() && !_isTalking)
             {
-                yield return new WaitUntil(() => transform.position.x >= 14.7f);
-                _animator.SetBool(Walking, false);
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-                SecondDialog.gameObject.SetActive(true);
-                yield return new WaitUntil(() => SecondDialog.GetDialogOpen());
+                _isTalking = true;
                 _animator.SetBool(Talking, true);
                 _audioSource.clip = RobotTalkingSound;
                 _audioSource.Play();
-                yield return new WaitUntil(() => SecondDialog.GetDialogUsed());
+            }
+            else if (_isTalking && Dialog.GetDialogUsed())
+            {
+                _isTalking = false;
                 _audioSource.clip = RobotNoiseSound;
                 _audioSource.Play();
                 _animator.SetBool(Talking, false);
+                transform.rotation = Quaternion.Euler(0, 90, 0);
+                _animator.SetBool(Walking, true);
+
+                IEnumerator WaitForRobotToBeInPosition()
+                {
+                    yield return new WaitUntil(() => transform.position.x >= 14.7f);
+                    _animator.SetBool(Walking, false);
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
+                    yield return new WaitUntil(() => SecondDialog.GetDialogOpen());
+                    _animator.SetBool(Talking, true);
+                    _audioSource.clip = RobotTalkingSound;
+                    _audioSource.Play();
+                    yield return new WaitUntil(() => SecondDialog.GetDialogUsed());
+                    _audioSource.clip = RobotNoiseSound;
+                    _audioSource.Play();
+                    _animator.SetBool(Talking, false);
+                }
+
+                StartCoroutine(WaitForRobotToBeInPosition());
             }
-            StartCoroutine(WaitForRobotToBeInPosition());
+        }
+        else
+        {
+            switch (_isTalking)
+            {
+                case false when SecondDialog.GetDialogOpen():
+                    _isTalking = true;
+                    _animator.SetBool(Talking, true);
+                    _audioSource.clip = RobotTalkingSound;
+                    _audioSource.Play();
+                    break;
+                case true when SecondDialog.GetDialogUsed():
+                    _isTalking = false;
+                    _animator.SetBool(Talking, false);
+                    _audioSource.clip = RobotNoiseSound;
+                    _audioSource.Play();
+                    break;
+            }
         }
     }
 }
