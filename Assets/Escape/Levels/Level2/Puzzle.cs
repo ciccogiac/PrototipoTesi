@@ -15,6 +15,9 @@ namespace Escape.Levels.Level2
         [SerializeField] private GameObject ObjectCallMethodCanvas;
         [SerializeField] private GameObject Printer3D;
 
+        [SerializeField] private Texture2D cursorTexture;
+        private Vector2 cursorHotspot;
+
 
         public override bool Method(List<(string, string)> objectValue)
         {
@@ -41,6 +44,11 @@ namespace Escape.Levels.Level2
                 GameManager.isSeeing = false;
                 Input.enabled = true;
                 Input.SwitchCurrentActionMap("Puzzle");
+
+                cursorHotspot = new Vector2(0f, 0f);
+                Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
             }
 
             StartCoroutine(WaitForCallMethodCanvasToDeactivate());

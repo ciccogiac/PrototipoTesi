@@ -67,6 +67,10 @@ public class GameManager_ObjectGame : MonoBehaviour
     Transform livelloGridTrovato ;
     Transform livelloInventoryTrovato;
 
+    [SerializeField] GameObject UpPanel;
+    [SerializeField] GameObject gamePanel;
+    [SerializeField] GameObject InventoryPanel;
+
     private void ReadLevel()
     {
 
@@ -183,6 +187,9 @@ public class GameManager_ObjectGame : MonoBehaviour
     {
         livelloGridTrovato.gameObject.SetActive(false);
         livelloInventoryTrovato.gameObject.SetActive(false);
+        UpPanel.SetActive(false);
+        gamePanel.SetActive(false);
+        InventoryPanel.SetActive(false);
         tutorialCanvas.SetActive(true);
     }
 
@@ -191,6 +198,9 @@ public class GameManager_ObjectGame : MonoBehaviour
         tutorialCanvas.SetActive(false);
         livelloGridTrovato.gameObject.SetActive(true);
         livelloInventoryTrovato.gameObject.SetActive(true);
+        UpPanel.SetActive(true);
+        gamePanel.SetActive(true);
+        InventoryPanel.SetActive(true);
 
     }
 

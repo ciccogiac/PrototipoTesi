@@ -30,6 +30,7 @@ namespace Escape.Levels.Level2
         private Vector2Int _dimensions;
         private int _piecesCorrect;
 
+      
         public void EndDrag(PuzzlePiece pieceDragged, Vector3 releasePoint)
         {
             Snap(pieceDragged, releasePoint);
@@ -84,6 +85,7 @@ namespace Escape.Levels.Level2
         private void OnEnable()
         {
             StartPuzzle();
+
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
         }
