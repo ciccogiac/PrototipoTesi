@@ -3,11 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AudioSource))]
 public class RobotAnimator : MonoBehaviour
 {
     [SerializeField] private DialogStarter Dialog;
-    [SerializeField] private GameObject SecondDialog; 
+    [SerializeField] private DialogStarter SecondDialog;
+    [SerializeField] private AudioClip RobotNoiseSound;
+    [SerializeField] private AudioClip RobotTalkingSound;
     private Animator _animator;
+    private AudioSource _audioSource;
     private bool _isTalking;
     private static readonly int Talking = Animator.StringToHash("Talking");
     private static readonly int Walking = Animator.StringToHash("Walking");
@@ -15,6 +19,7 @@ public class RobotAnimator : MonoBehaviour
     private void Start()
     {
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -23,10 +28,14 @@ public class RobotAnimator : MonoBehaviour
         {
             _isTalking = true;
             _animator.SetBool(Talking, true);
+            _audioSource.clip = RobotTalkingSound;
+            _audioSource.Play();
         }
         else if (_isTalking && Dialog.GetDialogUsed())
         {
             _isTalking = false;
+            _audioSource.clip = RobotNoiseSound;
+            _audioSource.Play();
             _animator.SetBool(Talking, false);
             transform.rotation = Quaternion.Euler(0, 90, 0);
             _animator.SetBool(Walking, true);
@@ -35,7 +44,15 @@ public class RobotAnimator : MonoBehaviour
                 yield return new WaitUntil(() => transform.position.x >= 14.7f);
                 _animator.SetBool(Walking, false);
                 transform.rotation = Quaternion.Euler(0, 180, 0);
-                SecondDialog.SetActive(true);
+                SecondDialog.gameObject.SetActive(true);
+                yield return new WaitUntil(() => SecondDialog.GetDialogOpen());
+                _animator.SetBool(Talking, true);
+                _audioSource.clip = RobotTalkingSound;
+                _audioSource.Play();
+                yield return new WaitUntil(() => SecondDialog.GetDialogUsed());
+                _audioSource.clip = RobotNoiseSound;
+                _audioSource.Play();
+                _animator.SetBool(Talking, false);
             }
             StartCoroutine(WaitForRobotToBeInPosition());
         }
