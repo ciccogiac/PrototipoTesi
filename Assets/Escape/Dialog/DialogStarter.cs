@@ -53,10 +53,11 @@ public class DialogStarter : MonoBehaviour
         return _dialogUsed;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") && !_dialogUsed)
+        if (other.CompareTag("Player") && !_dialogUsed && _levelHint.hintCounter == _hintNumber)
         {
+            _dialogUsed = true;
             _gameManager.ActivateDialogCanvas();
             DialogCamera.enabled = true;
             _dialogOpen = true;

@@ -26255,6 +26255,7 @@ MonoBehaviour:
   inputMethod: {fileID: 1112169318}
   cursorTexture: {fileID: 2800000, guid: c088c041e51b75842b57a46f46fba36d, type: 3}
   gameManager: {fileID: 534642472}
+  isTutorialStarted: 0
 --- !u!114 &1394900120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27930,14 +27931,15 @@ MonoBehaviour:
   lastCharacterEscapePosition: {x: 0, y: 0, z: 0}
   lastCharacterEscapeRotation: {x: 0, y: 0, z: 0, w: 0}
   isFirstSceneOpening: 1
-  isSecondSceneOpening: 1
   sceneIndex: 0
   hintCounter: 0
   className: 
   isNewClassCreated: 0
+  isTutorialStarted_CG: 0
   isObjectToPrint: 0
   objectName: 
   attributesValues: []
+  isTutorialStarted_OG: 0
 --- !u!4 &1490814430
 Transform:
   m_ObjectHideFlags: 0
@@ -32973,6 +32975,8 @@ MonoBehaviour:
   HintBox: {fileID: 1256700904}
   hintText: {fileID: 1138414691}
   hint:
+  - hintText: 
+    hintTimer: 0
   - hintText: Sembra ci sia un rumore provenire dalla porta
     hintTimer: 10
   - hintText: "Il vecchio ha detto che l'orologio \xE8 senza batterie , chissa perche'

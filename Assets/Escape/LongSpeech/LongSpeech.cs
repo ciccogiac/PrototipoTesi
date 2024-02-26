@@ -15,10 +15,14 @@ public class LongSpeech : MonoBehaviour
     private int _counter = -1;
     private bool _typing;
     private IEnumerator _typingCoroutine;
+
+    [SerializeField] LevelHint _levelHint;
+
     private void Start()
     {
         _gameManager = FindObjectOfType<GameManager_Escape>();
         _input = FindObjectOfType<StarterAssetsInputs>();
+        _levelHint = FindObjectOfType<LevelHint>();
     }
 
     private void OnEnable()
@@ -69,6 +73,8 @@ public class LongSpeech : MonoBehaviour
     {
         _input.interact = false;
         _gameManager.DeactivateLongSpeechCanvas(gameObject);
+        if(_levelHint!=null)
+            _levelHint.hintCounter = 1;
     }
     private void SetupLongSpeechCanvasWithSpeech(string speech)
     {

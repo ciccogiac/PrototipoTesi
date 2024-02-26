@@ -16,21 +16,29 @@ public class RobotAnimator : MonoBehaviour
     private static readonly int Talking = Animator.StringToHash("Talking");
     private static readonly int Walking = Animator.StringToHash("Walking");
 
+    private bool isStart = true;
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
-        if (!DatiPersistenti.istanza.isFirstSceneOpening)
-        {
-            var transform1 = transform;
-            var position = transform1.position;
-            position = new Vector3(14.7f, position.y, position.z);
-            transform1.position = position;
-        }
+
     }
 
     private void Update()
     {
+        if (isStart)
+        {
+            isStart = false;
+            if (!DatiPersistenti.istanza.isFirstSceneOpening)
+            {
+                var transform1 = transform;
+                var position = transform1.position;
+                position = new Vector3(14.7f, position.y, position.z);
+                transform1.position = position;
+            }
+        }
+
         if (DatiPersistenti.istanza.isFirstSceneOpening)
         {
             if (Dialog.GetDialogOpen() && !_isTalking)

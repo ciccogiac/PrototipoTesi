@@ -34658,10 +34658,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HintBox: {fileID: 585943451}
   hintText: {fileID: 1277674352}
-  hint: []
+  hint:
+  - hintText: 
+    hintTimer: 0
+  - hintText: 
+    hintTimer: 0
+  - hintText: 
+    hintTimer: 0
   hintCounter: 0
   hintDuration: 10
-  _IsHintActive: 0
+  _IsHintActive: 1
 --- !u!114 &830005625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35220,7 +35226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2380689407233361850, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2380689407233361850, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -35238,6 +35244,10 @@ PrefabInstance:
       propertyPath: MessageText
       value: 
       objectReference: {fileID: 1610737828}
+    - target: {fileID: 7013712188833926715, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
+      propertyPath: _hintNumber
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7013712188833926715, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: CharacterName
       value: 
@@ -98905,7 +98915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2380689407233361850, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2380689407233361850, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -98919,6 +98929,10 @@ PrefabInstance:
       propertyPath: MessageText
       value: 
       objectReference: {fileID: 1610737828}
+    - target: {fileID: 7013712188833926715, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
+      propertyPath: _hintNumber
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7013712188833926715, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: CharacterName
       value: 
