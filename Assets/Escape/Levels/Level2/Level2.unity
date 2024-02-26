@@ -7622,6 +7622,7 @@ GameObject:
   - component: {fileID: 181442884}
   - component: {fileID: 181442883}
   - component: {fileID: 181442882}
+  - component: {fileID: 181442889}
   m_Layer: 0
   m_Name: PinPad
   m_TagString: Interactable
@@ -7684,6 +7685,9 @@ MonoBehaviour:
   className: Pinpad
   methodTubes: []
   methodListenerID: 1
+  OpeningSound: {fileID: 8300000, guid: b99c19c2cfa5bf747bbbca44a512a454, type: 3}
+  ClosingSound: {fileID: 8300000, guid: 0f516a33740df2d43bba6bfc52d29209, type: 3}
+  WrongCodeSound: {fileID: 8300000, guid: c46bfb2f297c520459f11487b32b629e, type: 3}
   Sportello: {fileID: 2784493938413213041}
   Contained: {fileID: 0}
 --- !u!114 &181442884
@@ -7820,6 +7824,93 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 181442880}
   m_Mesh: {fileID: 6916323138177051649, guid: 6534f19ae82a72648bb08790d697c382, type: 3}
+--- !u!82 &181442889
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181442880}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 5
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.2
+      value: 1
+      inSlope: -5.0019917
+      outSlope: -5.0019917
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &183166108
 GameObject:
   m_ObjectHideFlags: 0
@@ -13413,6 +13504,7 @@ GameObject:
   - component: {fileID: 310351208}
   - component: {fileID: 310351207}
   - component: {fileID: 310351206}
+  - component: {fileID: 310351213}
   m_Layer: 0
   m_Name: PinPad
   m_TagString: Interactable
@@ -13471,10 +13563,13 @@ MonoBehaviour:
   attributeValueListener:
   - className: Pinpad
     attribute: Codice
-    value: 2862
+    value: 2682
   className: Pinpad
   methodTubes: []
   methodListenerID: 2
+  OpeningSound: {fileID: 8300000, guid: b99c19c2cfa5bf747bbbca44a512a454, type: 3}
+  ClosingSound: {fileID: 8300000, guid: 0f516a33740df2d43bba6bfc52d29209, type: 3}
+  WrongCodeSound: {fileID: 8300000, guid: c46bfb2f297c520459f11487b32b629e, type: 3}
   Sportello: {fileID: 9156723411678607525}
   Contained: {fileID: 0}
 --- !u!114 &310351208
@@ -13610,6 +13705,93 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310351204}
   m_Mesh: {fileID: 6916323138177051649, guid: 6534f19ae82a72648bb08790d697c382, type: 3}
+--- !u!82 &310351213
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310351204}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 5
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.2
+      value: 1
+      inSlope: -5.0019917
+      outSlope: -5.0019917
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &314997603
 GameObject:
   m_ObjectHideFlags: 0
@@ -32006,6 +32188,7 @@ GameObject:
   - component: {fileID: 780603963}
   - component: {fileID: 780603962}
   - component: {fileID: 780603961}
+  - component: {fileID: 780603968}
   m_Layer: 0
   m_Name: PinPad
   m_TagString: Interactable
@@ -32068,6 +32251,9 @@ MonoBehaviour:
   className: Pinpad
   methodTubes: []
   methodListenerID: 3
+  OpeningSound: {fileID: 8300000, guid: b99c19c2cfa5bf747bbbca44a512a454, type: 3}
+  ClosingSound: {fileID: 8300000, guid: 0f516a33740df2d43bba6bfc52d29209, type: 3}
+  WrongCodeSound: {fileID: 8300000, guid: c46bfb2f297c520459f11487b32b629e, type: 3}
   Sportello: {fileID: 4521377268067043873}
   Contained: {fileID: 5908358073452557633}
 --- !u!114 &780603963
@@ -32204,6 +32390,93 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 780603959}
   m_Mesh: {fileID: 6916323138177051649, guid: 6534f19ae82a72648bb08790d697c382, type: 3}
+--- !u!82 &780603968
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780603959}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 5
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.2
+      value: 1
+      inSlope: -5.0019917
+      outSlope: -5.0019917
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &781545310
 GameObject:
   m_ObjectHideFlags: 0
@@ -46670,6 +46943,7 @@ GameObject:
   - component: {fileID: 1115640821}
   - component: {fileID: 1115640820}
   - component: {fileID: 1115640819}
+  - component: {fileID: 1115640826}
   m_Layer: 0
   m_Name: PinPad
   m_TagString: Interactable
@@ -46732,6 +47006,9 @@ MonoBehaviour:
   className: Pinpad
   methodTubes: []
   methodListenerID: 4
+  OpeningSound: {fileID: 8300000, guid: b99c19c2cfa5bf747bbbca44a512a454, type: 3}
+  ClosingSound: {fileID: 8300000, guid: 0f516a33740df2d43bba6bfc52d29209, type: 3}
+  WrongCodeSound: {fileID: 8300000, guid: c46bfb2f297c520459f11487b32b629e, type: 3}
   Sportello: {fileID: 6381603201029193218}
   Contained: {fileID: 0}
 --- !u!114 &1115640821
@@ -46868,6 +47145,93 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115640817}
   m_Mesh: {fileID: 6916323138177051649, guid: 6534f19ae82a72648bb08790d697c382, type: 3}
+--- !u!82 &1115640826
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115640817}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 5
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.2
+      value: 1
+      inSlope: -5.0019917
+      outSlope: -5.0019917
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1117467728
 GameObject:
   m_ObjectHideFlags: 0
@@ -55141,6 +55505,7 @@ GameObject:
   - component: {fileID: 1282136489}
   - component: {fileID: 1282136488}
   - component: {fileID: 1282136487}
+  - component: {fileID: 1282136494}
   m_Layer: 0
   m_Name: PinPad
   m_TagString: Interactable
@@ -55203,6 +55568,9 @@ MonoBehaviour:
   className: Pinpad
   methodTubes: []
   methodListenerID: 5
+  OpeningSound: {fileID: 8300000, guid: b99c19c2cfa5bf747bbbca44a512a454, type: 3}
+  ClosingSound: {fileID: 8300000, guid: 0f516a33740df2d43bba6bfc52d29209, type: 3}
+  WrongCodeSound: {fileID: 8300000, guid: c46bfb2f297c520459f11487b32b629e, type: 3}
   Sportello: {fileID: 8112601808269801236}
   Contained: {fileID: 117754071}
 --- !u!114 &1282136489
@@ -55339,6 +55707,93 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1282136485}
   m_Mesh: {fileID: 6916323138177051649, guid: 6534f19ae82a72648bb08790d697c382, type: 3}
+--- !u!82 &1282136494
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282136485}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 5
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.2
+      value: 1
+      inSlope: -5.0019917
+      outSlope: -5.0019917
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1282184700
 GameObject:
   m_ObjectHideFlags: 0
@@ -102754,6 +103209,7 @@ GameObject:
   - component: {fileID: 3822100341508965285}
   - component: {fileID: 3822100341508965284}
   - component: {fileID: 3822100341508965283}
+  - component: {fileID: 3822100341508965288}
   m_Layer: 0
   m_Name: PinPad
   m_TagString: Interactable
@@ -103416,6 +103872,9 @@ MonoBehaviour:
   className: Pinpad
   methodTubes: []
   methodListenerID: 8
+  OpeningSound: {fileID: 8300000, guid: b99c19c2cfa5bf747bbbca44a512a454, type: 3}
+  ClosingSound: {fileID: 8300000, guid: 0f516a33740df2d43bba6bfc52d29209, type: 3}
+  WrongCodeSound: {fileID: 8300000, guid: c46bfb2f297c520459f11487b32b629e, type: 3}
   Sportello: {fileID: 3847471878615657419}
   Contained: {fileID: 0}
 --- !u!114 &3822100341508965285
@@ -103501,6 +103960,93 @@ MonoBehaviour:
   Id: 7
   isObjectPermanent: 1
   isObjectSee: 0
+--- !u!82 &3822100341508965288
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3317508548440957559}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 5
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.2
+      value: 1
+      inSlope: -5.0019917
+      outSlope: -5.0019917
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!33 &3843543234899652160
 MeshFilter:
   m_ObjectHideFlags: 0

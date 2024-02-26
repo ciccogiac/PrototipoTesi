@@ -4,14 +4,31 @@ using UnityEngine;
 
 namespace Escape.Levels.Level2
 {
+    [RequireComponent(typeof(AudioSource))]
     public class Pinpad : MethodListener
     {
+        [SerializeField] private AudioClip OpeningSound;
+        [SerializeField] private AudioClip ClosingSound;
+        [SerializeField] private AudioClip WrongCodeSound;
         [SerializeField] private Animator Sportello;
         [SerializeField] private GameObject Contained;
         private static readonly int Open = Animator.StringToHash("open");
+        private AudioSource _audioSource;
+
+        public override void Start()
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
+
+        private void PlayAudioClip(AudioClip clip)
+        {
+            _audioSource.clip = clip;
+            _audioSource.Play();
+        }
 
         public override void Getter(List<(string, string)> objectValue)
         {
+            if (Sportello.GetBool(Open)) PlayAudioClip(ClosingSound);
             Sportello.SetBool(Open, false);
             StartCoroutine(WaitForSportelloToBeClosedAndDeactivateContained());
         }
@@ -25,6 +42,7 @@ namespace Escape.Levels.Level2
                     if (tupla.Item2 != value.value)
                     {
                         Sportello.SetBool(Open, false);
+                        PlayAudioClip(WrongCodeSound);
                         StartCoroutine(WaitForSportelloToBeClosedAndDeactivateContained());
                         return false;
                     }
@@ -32,6 +50,7 @@ namespace Escape.Levels.Level2
                 else
                 {
                     Sportello.SetBool(Open, false);
+                    PlayAudioClip(WrongCodeSound);
                     StartCoroutine(WaitForSportelloToBeClosedAndDeactivateContained());
                     return false;
                 }
@@ -52,7 +71,8 @@ namespace Escape.Levels.Level2
 
         public override void ApplyMethod()
         {
-            if (Contained != null) Contained.SetActive(true);
+            if (Contained != null && Contained.GetComponent<Clue>() != null) Contained.SetActive(true);
+            if (!Sportello.GetBool(Open)) PlayAudioClip(OpeningSound);
             Sportello.SetBool(Open, true);
             DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);
         }
