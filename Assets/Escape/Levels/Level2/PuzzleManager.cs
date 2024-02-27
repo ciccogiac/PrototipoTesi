@@ -118,7 +118,7 @@ namespace Escape.Levels.Level2
                 Destroy(piece.gameObject);
             }
             GameManager.isSeeing = true;
-            Input.enabled = true;
+            //Input.enabled = true;
             Input.SwitchCurrentActionMap("Player");
             ObjectCallMethodsCanvas.CloseInterface();
             SwitchCameraObject.ReturnToPrimaryCamera();

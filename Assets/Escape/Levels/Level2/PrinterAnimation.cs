@@ -12,11 +12,24 @@ namespace Escape.Levels.Level2
         [SerializeField] private GameObject FlashEffect;
         [SerializeField] private SwitchCameraObject SwitchCameraObject;
         private GameObject _player;
+        private PlayerInput _input;
         public bool PuzzleCompleted;
         private bool _triggered;
+        private bool animationFinished = false;
 
+        private void Start()
+        {
+            _player = GameObject.FindWithTag("Player");
+            _input = _player.GetComponent<PlayerInput>();
+        }
         private void Update()
         {
+            if (!animationFinished)
+            {
+                _input.enabled = false;
+            }
+           
+
             if (!_triggered && PuzzleCompleted && !CinemachineBrain.IsBlending && SwitchCameraObject.GetComponent<BoxCollider>().enabled)
             {
                 _triggered = true;
@@ -27,8 +40,8 @@ namespace Escape.Levels.Level2
         private IEnumerator TurnPlayerAndScalePrinter()
         {
             const double duration = 1.0;
-            _player = GameObject.FindWithTag("Player");
-            _player.GetComponent<PlayerInput>().enabled = false;
+            //_player = GameObject.FindWithTag("Player");
+            _input.enabled = false;
             var startRotation = _player.transform.rotation;
             var targetRotation = Quaternion.LookRotation (transform.position - _player.transform.position);
             for (var timePassed = 0.0f; timePassed < duration; timePassed += Time.deltaTime) 
@@ -50,7 +63,8 @@ namespace Escape.Levels.Level2
             }
             transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             Destroy(obj);
-            _player.GetComponent<PlayerInput>().enabled = true;
+            animationFinished = true;
+            _input.enabled = true;
         }
     }
 }

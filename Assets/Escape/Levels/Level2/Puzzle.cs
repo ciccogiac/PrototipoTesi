@@ -41,11 +41,11 @@ namespace Escape.Levels.Level2
             IEnumerator WaitForCallMethodCanvasToDeactivate()
             {
                 yield return new WaitUntil(() => !ObjectCallMethodCanvas.activeSelf);
-                GameManager.isSeeing = false;
+                //GameManager.isSeeing = false;
                 Input.enabled = true;
-                Input.SwitchCurrentActionMap("Puzzle");
+                Input.SwitchCurrentActionMap("SwitchCamera");
 
-                cursorHotspot = new Vector2(0f, 0f);
+                cursorHotspot = new Vector2(cursorTexture.width/2, cursorTexture.height/2);
                 Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.Confined;
