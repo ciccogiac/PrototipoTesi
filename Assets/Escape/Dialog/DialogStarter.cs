@@ -129,7 +129,7 @@ public class DialogStarter : MonoBehaviour
 
 
         if (_isHintDialog && _levelHint != null)
-            _levelHint.nextHint(_hintNumber);
+            _levelHint.nextHint(_hintNumber + 1 );
 
         DatiPersistenti.istanza.dialogUsed.Add(_dialogID);
     }

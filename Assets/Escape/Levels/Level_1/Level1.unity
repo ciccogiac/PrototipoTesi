@@ -18732,9 +18732,17 @@ PrefabInstance:
       value: SecondoDialogoVecchio
       objectReference: {fileID: 0}
     - target: {fileID: 7013712188833926715, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
+      propertyPath: _levelHint
+      value: 
+      objectReference: {fileID: 1761341411}
+    - target: {fileID: 7013712188833926715, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: MessageText
       value: 
       objectReference: {fileID: 39329341}
+    - target: {fileID: 7013712188833926715, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
+      propertyPath: _hintNumber
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7013712188833926715, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: CharacterName
       value: 
@@ -19654,7 +19662,7 @@ MonoBehaviour:
   Teoria: {fileID: 1467855204}
   TVAnimator: {fileID: 2658529723815790492}
   Chiave: {fileID: 1293756923}
-  _hintNumber: 2
+  _hintNumber: 3
   LevelHint: {fileID: 1761341411}
 --- !u!114 &1008377847
 MonoBehaviour:
@@ -51620,7 +51628,7 @@ MonoBehaviour:
   DoorAnimator: {fileID: 510915492}
   LockAnimator: {fileID: 5336186960055355498}
   LockDoor: {fileID: 919132147508210980}
-  _hintNumber: 3
+  _hintNumber: 4
   LevelHint: {fileID: 1761341411}
 --- !u!65 &5564319381860499346
 BoxCollider:
