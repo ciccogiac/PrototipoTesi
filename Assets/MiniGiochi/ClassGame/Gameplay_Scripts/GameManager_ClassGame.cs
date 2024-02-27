@@ -55,6 +55,9 @@ public class GameManager_ClassGame : MonoBehaviour
 
     private Transform livelloTrovato;
 
+    [SerializeField] Gradient[] connection_Colors;
+    private int lineColor_Counter = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -123,6 +126,14 @@ public class GameManager_ClassGame : MonoBehaviour
             ActivateTutorial();
         }
 
+    }
+
+    public Gradient GetLineColor()
+    {
+        if (lineColor_Counter >= connection_Colors.Length)
+            lineColor_Counter = 0;
+
+        return connection_Colors[lineColor_Counter++];
     }
 
     private void ActivateTutorial()

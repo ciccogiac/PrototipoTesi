@@ -47,8 +47,9 @@ public class Method_initializer : MonoBehaviour
             {
                 mi.method_name = method_name;
                 //mi.lc.setLineStartingPoint(pointLine_start, mi.gameObject.transform);
-                mi.lc.setLineStartingPoint(pointLine_start, mi.lineConnectionPoint);
                 mi.SetConnectionColor();
+                mi.lc.setLineStartingPoint(pointLine_start, mi.lineConnectionPoint);
+                
             }
             if (!button_less.active) { button_less.SetActive(true); }
             if (linee.Count == 4) { button_plus.SetActive(false); }
@@ -69,17 +70,6 @@ public class Method_initializer : MonoBehaviour
         if(linee.Count == 0) { button_less.SetActive(false); }
     }
 
-    private void Define_ConnectionPoints(Transform l)
-    {
-        /*
-        float f = (method_boxImage.rect.height / 3) * ((linee.Count -1) % 4);
-        Vector3 pos = pointArrow_start.position;
-        pos.y = pointArrow_start.position.y + (f );
-        l.transform.position = pos;
-        */
-        
-        l.transform.position = pointArrows_starts[(linee.Count - 1) % 4].position;
-
-    }
+    private void Define_ConnectionPoints(Transform l) { l.transform.position = pointArrows_starts[(linee.Count - 1) % 4].position; }
 
 }

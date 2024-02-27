@@ -14,30 +14,25 @@ public class Drag_Rigidbody : MonoBehaviour
     public string method_name;
 
     private LineRenderer line;
-    private Gradient line_color;
-    [SerializeField] Gradient[] connection_Colors;
-   [SerializeField] Gradient line_connection_color;
+    public Gradient line_connection_color;
     public LineController lc;
 
     public bool isConnected = false;
 
     public Transform lineConnectionPoint;
 
+    //private GameManager_ClassGame gameManager;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         line = GetComponentInChildren<LineRenderer>();
-        line_color = line.colorGradient;
         lc = GetComponentInChildren<LineController>();
 
         transform.Rotate(0f, 0f, 90f);
     }
 
-    public void SetConnectionColor()
-    {
-        int indiceRandom = Random.Range(0, connection_Colors.Length);
-        line_connection_color = connection_Colors[indiceRandom];
-    }
+    public void SetConnectionColor(){ line_connection_color = FindObjectOfType<GameManager_ClassGame>().GetLineColor();}
 
     //Collega il metodo all'attributo , impostando il dragging a false , la posizione della freccia in quella desiderata e cambiando colore.
 
@@ -45,7 +40,7 @@ public class Drag_Rigidbody : MonoBehaviour
     {
         dragging = false;
         transform.position = connection_position;
-        line.colorGradient = line_connection_color ;
+        //line.colorGradient = line_connection_color ;
         isConnected = true;
 
     }
@@ -53,7 +48,7 @@ public class Drag_Rigidbody : MonoBehaviour
     //Disconnette il metodo dall'attributo , basta solo il cambio colore
     public void disconnect()
     {
-        line.colorGradient = line_color;
+        //line.colorGradient = line_color;
         isConnected = false;
     }
     void FixedUpdate()
@@ -77,9 +72,6 @@ public class Drag_Rigidbody : MonoBehaviour
             {
                 rb.MovePosition(posizioneMouse);
             }
-
-            // Applica la forza al Rigidbody2D per muovere l'oggetto
-            //rb.MovePosition(posizioneMouse);
             
         }
         else

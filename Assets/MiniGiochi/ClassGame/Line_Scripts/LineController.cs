@@ -13,7 +13,8 @@ public class LineController : MonoBehaviour
 
     public  List<CreatePointLine> PointLines;
     private int point_counter = 0;
-    
+
+
     public void setLineStartingPoint(Transform pi, Transform pf)
     {
         lr = GetComponent<LineRenderer>();
@@ -22,6 +23,32 @@ public class LineController : MonoBehaviour
         nodes.Insert(0, pi);
         nodes.Insert(1, pf);
         lr.positionCount = 2;
+
+        Color r  = GetComponentInParent<Drag_Rigidbody>().line_connection_color.colorKeys[0].color;
+
+        Gradient gradient = new Gradient();
+
+        // Imposta i colori per il gradiente
+        gradient.colorKeys = new GradientColorKey[]
+        {
+            new GradientColorKey(r, 0f),
+            new GradientColorKey(r, 0.9f),
+            new GradientColorKey(Color.gray, 0.95f),
+            new GradientColorKey(Color.white, 1f)
+        };
+
+        // Imposta i valori alpha per il gradiente
+        gradient.alphaKeys = new GradientAlphaKey[]
+        {
+            new GradientAlphaKey(1f, 0f),
+            new GradientAlphaKey(1f, 1f)
+        };
+
+        // Assegna il gradiente al LineRenderer
+        lr.colorGradient = gradient;
+
+
+
     }
 
     public void setNodes(Transform t,CreatePointLine pl_)
@@ -38,130 +65,6 @@ public class LineController : MonoBehaviour
 
     private bool canDeleteNodes()
     {
-        /*
-        Transform pm3 = nodes[nodes.Count - 3].transform;
-        Transform pm2 = nodes[nodes.Count - 2].transform;
-        Transform pm1 = nodes[nodes.Count - 1].transform;
-        float m = calculate_m(pm2.position, pm1.position);
-
-        Vector2 dir_m = pm2.position - pm1.position;
-        //Debug.Log("m dir = "+dir_m.normalized);
-       // Debug.Log("m= "+ m + " last_m= " + last_m + "  dir_x= " + dir_m.x + "  dir_y= " + dir_m.y);
-        float offset = 0.1f;
-
-        
-        switch (PointLines[point_counter - 1].collider_pos)
-        {
-            case CreatePointLine.position_collider.UP_sx:
-                if (pm3.position.y == pm2.position.y)
-                {
-                    if (dir_m.x < 0)
-                    {
-
-                        if (m > last_m + offset) { break; }     //ok
-                    }
-                    else
-                    {
-                        if (m < last_m - offset) { break; } // on reverse
-                    }
-                }
-                else
-                {
-                    if (dir_m.y < 0) // vado verso sopra
-                    {
-
-                        if (m > last_m + offset) { break; }     //ok
-                    }
-                    else // vado verso sotto
-                    {
-                        if (m < last_m - offset) { break; } // on reverse
-                    }
-                }
-                return false;
-
-            case CreatePointLine.position_collider.UP_dx:
-                if (pm3.position.y == pm2.position.y)
-                {
-                    if (dir_m.x < 0)
-                    {
-
-                        if (m > last_m + offset) { break; }
-                    }
-                    else
-                    {
-                        if (m < last_m - offset) { break; } // on reverse
-                    }
-                }
-                else
-                {
-                    if (dir_m.y < 0)
-                    {
-
-                        if (m > last_m + offset) { break; }
-                    }
-                    else
-                    {
-                        if (m < last_m - offset) { break; } // on reverse
-                    }
-
-                }
-                return false;
-
-
-            case CreatePointLine.position_collider.DW_sx:
-                if (pm3.position.y == pm2.position.y)
-                {
-                    if (dir_m.x < 0)
-                    {
-                        if (m < last_m - offset) { break; }
-                    }
-                    else
-                    {
-                        if (m > last_m + offset) { break; } // on reverse
-                    }
-                }
-                else
-                {
-                    if (dir_m.y < 0)
-                    {
-                        if (m < last_m - offset) { break; }
-                    }
-                    else
-                    {
-                        if (m > last_m + offset) { break; } // on reverse
-                    }
-                }
-                return false;
-
-            case CreatePointLine.position_collider.DW_dx:
-                if (pm3.position.y == pm2.position.y)
-                {
-                    if (dir_m.x < 0)
-                    {
-                        if (m < last_m - offset) { break; }
-                    }
-                    else
-                    {
-                        if (m > last_m + offset) { break; } // on reverse
-                    }
-                }
-                else
-                {
-                    if (dir_m.y < 0)
-                    {
-                        if (m < last_m - offset) { break; }
-                    }
-                    else
-                    {
-                        if (m > last_m + offset) { break; } // on reverse
-                    }
-                }
-                 return false;
-
-         
-        }
-        
-        */
 
         float offset = 0.35f;
         Transform pm2 = nodes[nodes.Count - 2].transform;
@@ -231,8 +134,7 @@ public class LineController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lr.SetPositions(nodes.ConvertAll(n => n.position).ToArray()); 
-
+        lr.SetPositions(nodes.ConvertAll(n => n.position).ToArray());
         if(nodes.Count>2  ) { 
            // if (Input.GetMouseButtonDown(1))
                 deleteNodes();
