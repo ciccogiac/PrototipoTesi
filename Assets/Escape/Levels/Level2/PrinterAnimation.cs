@@ -15,7 +15,7 @@ namespace Escape.Levels.Level2
         private PlayerInput _input;
         public bool PuzzleCompleted;
         private bool _triggered;
-        private bool animationFinished = false;
+        private bool animationFinished = true;
 
         private void Start()
         {
@@ -33,6 +33,7 @@ namespace Escape.Levels.Level2
             if (!_triggered && PuzzleCompleted && !CinemachineBrain.IsBlending && SwitchCameraObject.GetComponent<BoxCollider>().enabled)
             {
                 _triggered = true;
+                animationFinished = false;
                 StartCoroutine(TurnPlayerAndScalePrinter());
             }
         }

@@ -100,7 +100,7 @@ public class GameManager_Escape : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
 
-        ReloadObjectScene();
+        
 
         if (DatiPersistenti.istanza.isFirstSceneOpening)
         {
@@ -119,9 +119,9 @@ public class GameManager_Escape : MonoBehaviour
         }
 
 
+        ReloadObjectScene();
 
-        
-        
+
     }
 
     private void ReloadObjectScene()
