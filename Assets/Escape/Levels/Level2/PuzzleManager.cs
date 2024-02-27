@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -27,6 +28,7 @@ namespace Escape.Levels.Level2
         [SerializeField] private GameObject SecondDialog;
         [SerializeField] private Transform GridRenderer;
         [SerializeField] private GameObject GridLinePrefab;
+        [SerializeField] private PrinterAnimation PrinterAnimation;
         private List<PuzzlePiece> _pieces;
         private int _sectionX;
         private int _sectionY;
@@ -120,6 +122,7 @@ namespace Escape.Levels.Level2
             Input.SwitchCurrentActionMap("Player");
             ObjectCallMethodsCanvas.CloseInterface();
             SwitchCameraObject.ReturnToPrimaryCamera();
+            PrinterAnimation.PuzzleCompleted = true;
             SwitchCameraObject.isInteractable = false;
             SwitchCameraObject.isActive = false;
             gameObject.SetActive(false);
