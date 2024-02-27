@@ -41,6 +41,11 @@ namespace Escape.Levels.Level2
             if (dimensions.y % 2 == 0) yPos += sectionY / 2; 
             _targetPosition = new Vector3(xPos, yPos, 0f);
         }
+
+        public Vector3 GetPosition()
+        {
+            return transform.localPosition;
+        }
         public Vector3 SetPosition(Vector3 pos)
         {
             _rectTransform.localPosition = pos;
@@ -85,8 +90,11 @@ namespace Escape.Levels.Level2
                 out var position);
             _manager.EndDrag(this, position);
         }
-        public void DisableDragging()
+        public void DisableDraggingAndSetAlpha()
         {
+            var color = _image.color;
+            color.a = 1f;
+            _image.color = color;
             Destroy(gameObject.GetComponent<EventTrigger>());
         }
     }

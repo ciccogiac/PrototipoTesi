@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -24,11 +25,14 @@ namespace Escape.Levels.Level2
         [SerializeField] private LevelHint LevelHint;
         [SerializeField] private int HintNumber;
         [SerializeField] private GameObject SecondDialog;
+        [SerializeField] private Transform GridRenderer;
+        [SerializeField] private GameObject GridLinePrefab;
         private List<PuzzlePiece> _pieces;
         private int _sectionX;
         private int _sectionY;
         private Vector2Int _dimensions;
         private int _piecesCorrect;
+        private List<Vector3> _snappingPoints;
 
       
         public void EndDrag(PuzzlePiece pieceDragged, Vector3 releasePoint)
@@ -37,30 +41,73 @@ namespace Escape.Levels.Level2
         }
         private void Snap(PuzzlePiece piece, Vector3 releasePoint)
         {
-            var piecePosition = new Vector3((int) Math.Round(releasePoint.x / _sectionX) * _sectionX,
-                (int) Math.Round(releasePoint.y / _sectionY) * _sectionY, 0f);
-            if (_dimensions.x % 2 == 0)
-            {
-                // ReSharper disable once PossibleLossOfFraction
-                piecePosition.x += _sectionX / 2 * (releasePoint.x < 0 ? -1 : 1);
-            }
-
-            if (_dimensions.y % 2 == 0)
-            {
-                // ReSharper disable once PossibleLossOfFraction
-                piecePosition.y += _sectionY / 2 * (releasePoint.y < 0 ? -1 : 1);
-            }
+            var piecePosition = _snappingPoints.OrderBy(x => Vector3.Distance(releasePoint, x)).First();
             var newPosition = piece.SetPosition(piecePosition);
             if (newPosition == piece.GetTargetPosition())
             {
-                piece.DisableDragging();
+                piece.DisableDraggingAndSetAlpha();
                 _piecesCorrect++;
                 if (_piecesCorrect == _pieces.Count)
                 {
                     PuzzleCompleted();
                 }
             }
-            piece.transform.SetAsFirstSibling();
+            if (_pieces.Find(x =>
+                    x != piece && x.GetPosition() == x.GetTargetPosition() && newPosition == x.GetPosition()))
+            {
+                piece.transform.SetAsLastSibling();
+            }
+            else
+            {
+                piece.transform.SetAsFirstSibling();
+            }
+        }
+
+        private void DrawGrid()
+        {
+            var currX = -Puzzle.width / 2 + _sectionX;
+            while (currX < Puzzle.width / 2)
+            {
+                var line = Instantiate(GridLinePrefab, GridRenderer);
+                var lineRectTransform = (RectTransform) line.transform;
+                lineRectTransform.sizeDelta = new Vector2(5, Puzzle.height);
+                line.transform.localPosition = new Vector3(currX, 0f, 0f);
+                currX += _sectionX;
+            }
+            var currY = -Puzzle.height / 2 + _sectionY;
+            while (currY < Puzzle.height / 2)
+            {
+                var line = Instantiate(GridLinePrefab, GridRenderer);
+                var lineRectTransform = (RectTransform)line.transform;
+                lineRectTransform.sizeDelta = new Vector2(Puzzle.width, 5);
+                line.transform.localPosition = new Vector3(0f, currY, 0f);
+                currY += _sectionY;
+            }
+        }
+        private void ComputeSnappingPoints()
+        {
+            _snappingPoints = new List<Vector3>();
+            var x = -Puzzle.width / 2 + _sectionX / 2;
+            var y = -Puzzle.height / 2 + _sectionY / 2;
+            var xs = new int[_dimensions.x];
+            for (var i = 0; i < _dimensions.x; i++)
+            {
+                xs[i] = x;
+                x += _sectionX;
+            }
+            var ys = new int[_dimensions.y];
+            for (var j = 0; j < _dimensions.y; j++)
+            {
+                ys[j] = y;
+                y += _sectionY;
+            }
+            foreach (var itemX in xs)
+            {
+                foreach (var itemY in ys)
+                {
+                    _snappingPoints.Add(new Vector3(itemX, itemY, 0f));
+                }
+            }
         }
         private void PuzzleCompleted()
         {
@@ -96,7 +143,9 @@ namespace Escape.Levels.Level2
             _dimensions = GetDimensions();
             _piecesCorrect = 0;
             CreatePuzzlePieces();
+            DrawGrid();
             Scatter();
+            ComputeSnappingPoints();
         }
         private Vector2Int GetDimensions()
         {
