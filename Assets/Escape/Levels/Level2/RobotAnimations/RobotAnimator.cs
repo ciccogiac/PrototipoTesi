@@ -10,6 +10,7 @@ public class RobotAnimator : MonoBehaviour
     [SerializeField] private DialogStarter SecondDialog;
     [SerializeField] private AudioClip RobotNoiseSound;
     [SerializeField] private AudioClip RobotTalkingSound;
+    [SerializeField] private LevelHint LevelHint;
     private Animator _animator;
     private AudioSource _audioSource;
     private bool _isTalking;
@@ -30,7 +31,7 @@ public class RobotAnimator : MonoBehaviour
         if (isStart)
         {
             isStart = false;
-            if (!DatiPersistenti.istanza.isFirstSceneOpening)
+            if (LevelHint.hintCounter >= 2)
             {
                 var transform1 = transform;
                 var position = transform1.position;
@@ -39,7 +40,7 @@ public class RobotAnimator : MonoBehaviour
             }
         }
 
-        if (DatiPersistenti.istanza.isFirstSceneOpening)
+        if (LevelHint.hintCounter < 2)
         {
             if (Dialog.GetDialogOpen() && !_isTalking)
             {
@@ -48,7 +49,7 @@ public class RobotAnimator : MonoBehaviour
                 _audioSource.clip = RobotTalkingSound;
                 _audioSource.Play();
             }
-            else if (_isTalking && Dialog.GetDialogUsed())
+            else if (_isTalking && Dialog.GetDialogFinished())
             {
                 _isTalking = false;
                 _audioSource.clip = RobotNoiseSound;
@@ -66,7 +67,7 @@ public class RobotAnimator : MonoBehaviour
                     _animator.SetBool(Talking, true);
                     _audioSource.clip = RobotTalkingSound;
                     _audioSource.Play();
-                    yield return new WaitUntil(() => SecondDialog.GetDialogUsed());
+                    yield return new WaitUntil(() => SecondDialog.GetDialogFinished());
                     _audioSource.clip = RobotNoiseSound;
                     _audioSource.Play();
                     _animator.SetBool(Talking, false);
@@ -85,7 +86,7 @@ public class RobotAnimator : MonoBehaviour
                     _audioSource.clip = RobotTalkingSound;
                     _audioSource.Play();
                     break;
-                case true when SecondDialog.GetDialogUsed():
+                case true when SecondDialog.GetDialogFinished():
                     _isTalking = false;
                     _animator.SetBool(Talking, false);
                     _audioSource.clip = RobotNoiseSound;

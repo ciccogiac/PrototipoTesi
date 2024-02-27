@@ -33,6 +33,7 @@ public class DialogStarter : MonoBehaviour
     [SerializeField] int _hintNumber;
 
     public int _dialogID;
+    private bool _dialogFinished;
     
     private void Start()
     {
@@ -48,9 +49,9 @@ public class DialogStarter : MonoBehaviour
         return _dialogOpen;
     }
 
-    public bool GetDialogUsed()
+    public bool GetDialogFinished()
     {
-        return _dialogUsed;
+        return _dialogFinished;
     }
 
     private void OnTriggerStay(Collider other)
@@ -112,6 +113,7 @@ public class DialogStarter : MonoBehaviour
         _gameManager.DeactivateDialogCanvas();
         //_gameManager.SwitchCameraToPrimary(DialogCamera);
         _dialogUsed = true;
+        _dialogFinished = true;
         _dialogOpen = false;
 
         if (_isActivationObjectDialog)

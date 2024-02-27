@@ -22,8 +22,11 @@ namespace Escape.Levels.Level2
 
         private void PlayAudioClip(AudioClip clip)
         {
-            _audioSource.clip = clip;
-            _audioSource.Play();
+            if (_audioSource != null)
+            {
+                _audioSource.clip = clip;
+                _audioSource.Play();
+            }
         }
 
         public override void Getter(List<(string, string)> objectValue)

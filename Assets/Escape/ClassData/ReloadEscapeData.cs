@@ -51,7 +51,6 @@ public class ReloadEscapeData : MonoBehaviour
             player.transform.rotation = DatiPersistenti.istanza.lastCharacterEscapeRotation;
             levelHint.hintCounter = DatiPersistenti.istanza.hintCounter;
             levelHint.StartHintCounter();
-
             player.GetComponent<CharacterController>().enabled = true;
         }
     }

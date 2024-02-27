@@ -127,6 +127,7 @@ namespace Escape.Levels.Level2
             SwitchCameraObject.isActive = false;
             gameObject.SetActive(false);
             DatiPersistenti.istanza.methodsListeners.Add(PuzzleMethodListener.methodListenerID);
+            Printer3D.transform.localScale = Vector3.zero;
             Printer3D.SetActive(true);
             GameManager.printer = Printer3D.GetComponent<Printer3DController>();
             LevelHint.nextHint(HintNumber);

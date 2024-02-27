@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Escape.Levels.Level2
 {
@@ -9,13 +10,14 @@ namespace Escape.Levels.Level2
     {
         [SerializeField] private CinemachineBrain CinemachineBrain;
         [SerializeField] private GameObject FlashEffect;
+        [SerializeField] private SwitchCameraObject SwitchCameraObject;
         private GameObject _player;
         public bool PuzzleCompleted;
         private bool _triggered;
 
         private void Update()
         {
-            if (!_triggered && PuzzleCompleted && !CinemachineBrain.IsBlending)
+            if (!_triggered && PuzzleCompleted && !CinemachineBrain.IsBlending && SwitchCameraObject.GetComponent<BoxCollider>().enabled)
             {
                 _triggered = true;
                 StartCoroutine(TurnPlayerAndScalePrinter());
@@ -24,8 +26,9 @@ namespace Escape.Levels.Level2
 
         private IEnumerator TurnPlayerAndScalePrinter()
         {
-            _player = GameObject.FindWithTag("Player");
             const double duration = 1.0;
+            _player = GameObject.FindWithTag("Player");
+            _player.GetComponent<PlayerInput>().enabled = false;
             var startRotation = _player.transform.rotation;
             var targetRotation = Quaternion.LookRotation (transform.position - _player.transform.position);
             for (var timePassed = 0.0f; timePassed < duration; timePassed += Time.deltaTime) 
@@ -47,6 +50,7 @@ namespace Escape.Levels.Level2
             }
             transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             Destroy(obj);
+            _player.GetComponent<PlayerInput>().enabled = true;
         }
     }
 }

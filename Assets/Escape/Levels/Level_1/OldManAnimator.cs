@@ -17,14 +17,14 @@ public class OldManAnimator : MonoBehaviour
     }
     private void Update()
     {
-        if (Dialog.GetDialogOpen() && !Dialog.GetDialogUsed())
+        if (Dialog.GetDialogOpen() && !Dialog.GetDialogFinished())
         {
             _animator.SetBool(DialogParameter, true);
         }
         else
         {
             _animator.SetBool(DialogParameter, false);
-            if (Dialog.GetDialogUsed() && _audio.isPlaying)
+            if (Dialog.GetDialogFinished() && _audio.isPlaying)
             {
                 _audio.Stop();
             }
