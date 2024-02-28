@@ -4,9 +4,11 @@ using UnityEngine;
 namespace Escape.Levels.Level2.Door
 {
     [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(AudioSource))]
     public class DoorLevel2 : MethodListener
     {
         private Animator _animator;
+        private AudioSource _audioSource;
         [SerializeField] private List<MethodListener> MethodsListenerToRead;
         [SerializeField] private string ClassValueListener;
         [SerializeField] private MonitorLevel2 DoorMonitor;
@@ -16,6 +18,7 @@ namespace Escape.Levels.Level2.Door
         {
             base.Start();
             _animator = GetComponent<Animator>();
+            _audioSource = GetComponent<AudioSource>();
         }
         public override void SetClass(string nameClass)
         {
@@ -123,7 +126,10 @@ namespace Escape.Levels.Level2.Door
             DoorMonitor.SetError("");
             ChangeTubeColor("Getter");
             _animator.SetBool(Open, true);
-            DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);
+            if (!DatiPersistenti.istanza.methodsListeners.Contains(methodListenerID))
+                _audioSource.Play();
+            else
+                DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);
         }
     }
 }

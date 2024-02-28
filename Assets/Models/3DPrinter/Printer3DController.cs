@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Formats.Alembic.Importer;
-
+[RequireComponent(typeof(AudioSource))]
 public class Printer3DController : Interactable
 {
     [SerializeField] GameObject canvas_ObjectGameInterface;
@@ -15,9 +15,11 @@ public class Printer3DController : Interactable
     [SerializeField] private Transform SpawnPos1;
     [SerializeField] private Transform SpawnPos2;
     [SerializeField] private Transform SpawnPos3;
-    
+    private AudioSource _audioSource;
+
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         if (DatiPersistenti.istanza.isObjectToPrint)
         {
             DatiPersistenti.istanza.isObjectToPrint = false;
@@ -27,6 +29,7 @@ public class Printer3DController : Interactable
 
     private IEnumerator Print()
     {
+        _audioSource.Play();
         gameObject.tag = "Untagged";
         Glows.SetActive(true);
         var toScale1 = new Vector3(0.2f, 0.2f, 0.2f);
@@ -143,7 +146,7 @@ public class Printer3DController : Interactable
         //gameObject.tag = "Interactable"; //Aggiunte
         if (ToSpawn != null)
             objectSpawned.tag = "Interactable";
-
+        _audioSource.Stop();
 
     }
 
