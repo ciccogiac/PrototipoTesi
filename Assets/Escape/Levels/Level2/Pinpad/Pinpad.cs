@@ -12,6 +12,7 @@ namespace Escape.Levels.Level2
         [SerializeField] private AudioClip WrongCodeSound;
         [SerializeField] private Animator Sportello;
         [SerializeField] private GameObject Contained;
+        [SerializeField] private BoxCollider colliderArmadietto;
         private static readonly int Open = Animator.StringToHash("open");
         private AudioSource _audioSource;
 
@@ -69,15 +70,17 @@ namespace Escape.Levels.Level2
         private IEnumerator WaitForSportelloToBeClosedAndDeactivateContained()
         {
             yield return new WaitUntil(() => Sportello.GetCurrentAnimatorStateInfo(0).IsName("SportelloClosed"));
-            if (Contained != null) Contained.SetActive(false);
+            colliderArmadietto.enabled = true;
+            //if (Contained != null) Contained.SetActive(false);
         }
 
         public override void ApplyMethod()
         {
-            if (Contained != null && Contained.GetComponent<Clue>() != null) Contained.SetActive(true);
+            //if (Contained != null && Contained.GetComponent<Clue>() != null) Contained.SetActive(true);
             if (!Sportello.GetBool(Open)) PlayAudioClip(OpeningSound);
             Sportello.SetBool(Open, true);
             DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);
+            colliderArmadietto.enabled = false;
         }
     }
 }
