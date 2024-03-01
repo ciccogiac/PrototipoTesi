@@ -125,9 +125,10 @@ namespace Escape.Levels.Level2.Door
             ChangeTubeColor("Getter");
             _animator.SetBool(Open, true);
             if (!DatiPersistenti.istanza.methodsListeners.Contains(methodListenerID))
+            {
                 _audioSource.Play();
-            else
                 DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);
+            }
         }
     }
 }
