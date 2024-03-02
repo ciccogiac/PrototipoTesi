@@ -114,7 +114,7 @@ public class Door_Valve : MethodListener
         doorMonitor.SetError("");
 
         ChangeTubeColor("Getter");
-        door.SetBool("character_nearby", true);
+        door.SetBool("open", true);
 
         DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);
     }
