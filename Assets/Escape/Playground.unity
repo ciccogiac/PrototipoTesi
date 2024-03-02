@@ -245,10 +245,15 @@ MonoBehaviour:
   lastCharacterEscapePosition: {x: 0, y: 0, z: 0}
   lastCharacterEscapeRotation: {x: 0, y: 0, z: 0, w: 0}
   isFirstSceneOpening: 1
+  sceneIndex: 0
+  hintCounter: 0
   className: 
+  isNewClassCreated: 0
+  isTutorialStarted_CG: 0
   isObjectToPrint: 0
   objectName: 
   attributesValues: []
+  isTutorialStarted_OG: 0
 --- !u!4 &6177502 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8718778828885884488, guid: e5f4daf24146ee040b5a2d7a73b30aa0, type: 3}
@@ -913,6 +918,7 @@ MonoBehaviour:
   inputMethod: {fileID: 1356223480}
   cursorTexture: {fileID: 0}
   gameManager: {fileID: 1882206670}
+  isTutorialStarted: 0
 --- !u!1001 &55319434
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2458,6 +2464,8 @@ MonoBehaviour:
   objectCollectedCanvas: {fileID: 895669673}
   objectCallMethodsCanvas: {fileID: 35552340}
   objectPoint: {fileID: 1251287357}
+  Rotation: {x: 0, y: 0, z: 0, w: 1}
+  Scale: 1
   oggetto: {fileID: 0}
   methodListener: {fileID: 1543965868}
   Id: 0
@@ -3034,6 +3042,8 @@ MonoBehaviour:
   objectCollectedCanvas: {fileID: 895669673}
   objectCallMethodsCanvas: {fileID: 35552340}
   objectPoint: {fileID: 1886252249}
+  Rotation: {x: 0, y: 0, z: 0, w: 1}
+  Scale: 1
   oggetto: {fileID: 0}
   methodListener: {fileID: 1173819205}
   Id: 1
@@ -11476,6 +11486,7 @@ MonoBehaviour:
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 543390553}
   padre: {fileID: 634707801}
+  isInteractable: 1
 --- !u!64 &561209587
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16246,6 +16257,7 @@ MonoBehaviour:
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 1060721012}
   padre: {fileID: 777872343}
+  isInteractable: 1
 --- !u!135 &777872345
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16390,6 +16402,7 @@ MonoBehaviour:
   interactCanvas: {fileID: 1262278961}
   cursorTexture: {fileID: 2800000, guid: c088c041e51b75842b57a46f46fba36d, type: 3}
   input: {fileID: 135756641613574981}
+  _levelHint: {fileID: 0}
 --- !u!1 &783903410
 GameObject:
   m_ObjectHideFlags: 0
@@ -19811,6 +19824,8 @@ MonoBehaviour:
   objectCollectedCanvas: {fileID: 895669673}
   objectCallMethodsCanvas: {fileID: 35552340}
   objectPoint: {fileID: 150698423}
+  Rotation: {x: 0, y: 0, z: 0, w: 1}
+  Scale: 1
   oggetto: {fileID: 0}
   methodListener: {fileID: 936181663}
   Id: 2
@@ -20397,6 +20412,8 @@ MonoBehaviour:
   objectCollectedCanvas: {fileID: 895669673}
   objectCallMethodsCanvas: {fileID: 35552340}
   objectPoint: {fileID: 1123159460}
+  Rotation: {x: 0, y: 0, z: 0, w: 1}
+  Scale: 1
   oggetto: {fileID: 0}
   methodListener: {fileID: 552152472}
   Id: 3
@@ -20898,6 +20915,8 @@ MonoBehaviour:
   objectCollectedCanvas: {fileID: 895669673}
   objectCallMethodsCanvas: {fileID: 35552340}
   objectPoint: {fileID: 2054098459}
+  Rotation: {x: 0, y: 0, z: 0, w: 1}
+  Scale: 1
   oggetto: {fileID: 0}
   methodListener: {fileID: 2013663129}
   Id: 4
@@ -26165,6 +26184,7 @@ MonoBehaviour:
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 559305302}
   padre: {fileID: 57976797}
+  isInteractable: 1
 --- !u!1 &1322046284
 GameObject:
   m_ObjectHideFlags: 0
@@ -29053,6 +29073,8 @@ MonoBehaviour:
   interactCanvas: {fileID: 1262278961}
   input: {fileID: 135756641613574981}
   cursorTexture: {fileID: 2800000, guid: c088c041e51b75842b57a46f46fba36d, type: 3}
+  _levelHint: {fileID: 0}
+  isClassModify: 1
 --- !u!1 &1473630747
 GameObject:
   m_ObjectHideFlags: 0
@@ -31741,6 +31763,8 @@ MonoBehaviour:
   objectCollectedCanvas: {fileID: 895669673}
   objectCallMethodsCanvas: {fileID: 35552340}
   objectPoint: {fileID: 1044907452}
+  Rotation: {x: 0, y: 0, z: 0, w: 1}
+  Scale: 1
   oggetto: {fileID: 0}
   methodListener: {fileID: 1841847452}
   Id: 5
@@ -33281,6 +33305,7 @@ MonoBehaviour:
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 204305410}
   padre: {fileID: 1148686285}
+  isInteractable: 1
 --- !u!4 &1696035110
 Transform:
   m_ObjectHideFlags: 0
@@ -34028,6 +34053,8 @@ MonoBehaviour:
   objectCollectedCanvas: {fileID: 0}
   objectCallMethodsCanvas: {fileID: 35552340}
   objectPoint: {fileID: 0}
+  Rotation: {x: 0, y: 0, z: 0, w: 1}
+  Scale: 1
   oggetto: {fileID: 1722229689}
   methodListener: {fileID: 1722229687}
   Id: 6
@@ -35699,6 +35726,8 @@ MonoBehaviour:
   objectCollectedCanvas: {fileID: 895669673}
   objectCallMethodsCanvas: {fileID: 35552340}
   objectPoint: {fileID: 68788877}
+  Rotation: {x: 0, y: 0, z: 0, w: 1}
+  Scale: 1
   oggetto: {fileID: 0}
   methodListener: {fileID: 1593998273}
   Id: 7
@@ -37403,6 +37432,7 @@ MonoBehaviour:
   cursorSwitchCameraInteractTexture: {fileID: 2800000, guid: 5df4cc55070338b4b95d4419f38f8544, type: 3}
   cinemachineBrain: {fileID: 1004397799}
   printer: {fileID: 0}
+  DialogCamera: {fileID: 0}
 --- !u!4 &1882206671
 Transform:
   m_ObjectHideFlags: 0
@@ -39033,6 +39063,8 @@ MonoBehaviour:
   objectCollectedCanvas: {fileID: 0}
   objectCallMethodsCanvas: {fileID: 35552340}
   objectPoint: {fileID: 0}
+  Rotation: {x: 0, y: 0, z: 0, w: 1}
+  Scale: 1
   oggetto: {fileID: 1971451453}
   methodListener: {fileID: 1971451456}
   Id: 8
@@ -39071,6 +39103,11 @@ MonoBehaviour:
   className: 
   methodTubes: []
   methodListenerID: 9
+  _printer3D: {fileID: 0}
+  gameManager: {fileID: 0}
+  _levelHint: {fileID: 0}
+  _hintNumber: 0
+  teoria: {fileID: 0}
 --- !u!1 &1972966201
 GameObject:
   m_ObjectHideFlags: 0
@@ -41932,6 +41969,7 @@ MonoBehaviour:
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 1962532705}
   padre: {fileID: 2124141160}
+  isInteractable: 1
 --- !u!1001 &2124643931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42016,6 +42054,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8007443999009285212, guid: 1d29a168a2826e146938120eb39cd0ec, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4b6258a8e7c037741adeb91c221308cf, type: 2}
+    - target: {fileID: 8007443999009285212, guid: 1d29a168a2826e146938120eb39cd0ec, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: add80e5e4e9945b4bb3c7c7a6cc3757d, type: 2}
     - target: {fileID: 8632651124180084595, guid: 1d29a168a2826e146938120eb39cd0ec, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -42666,19 +42712,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -10.17
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.375
+      value: 1.541
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 4.49
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7933534
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalRotation.x
@@ -42686,7 +42732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.60876137
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalRotation.z

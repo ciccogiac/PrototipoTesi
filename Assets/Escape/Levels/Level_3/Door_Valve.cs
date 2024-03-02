@@ -9,6 +9,7 @@ using UnityEngine;
 public class Door_Valve : MethodListener
 {
     [SerializeField] Animator door;
+    [SerializeField] private AudioSource AudioSource;
 
     [SerializeField] List<MethodListener> methodsListenerToRead;
     [SerializeField] string classValueListener;
@@ -38,12 +39,6 @@ public class Door_Valve : MethodListener
     {
         base.RemoveObject();
         doorMonitor.RemoveObject();
-    }
-
-    public override void Getter(List<(string, string)> objectValue)
-    {
-        base.Getter(objectValue);
-        //doorMonitor.Getter(objectValue);
     }
 
     public override bool Method(List<(string, string)> objectValue)
@@ -115,7 +110,7 @@ public class Door_Valve : MethodListener
 
         ChangeTubeColor("Getter");
         door.SetBool("open", true);
-
+        AudioSource.Play();
         DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);
     }
 }
