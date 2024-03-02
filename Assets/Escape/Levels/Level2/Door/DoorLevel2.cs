@@ -7,8 +7,8 @@ namespace Escape.Levels.Level2.Door
     [RequireComponent(typeof(AudioSource))]
     public class DoorLevel2 : MethodListener
     {
-        private Animator _animator;
-        private AudioSource _audioSource;
+        [SerializeField] Animator _animator;
+        [SerializeField] AudioSource _audioSource;
         [SerializeField] private List<MethodListener> MethodsListenerToRead;
         [SerializeField] private string ClassValueListener;
         [SerializeField] private MonitorLevel2 DoorMonitor;
@@ -17,8 +17,6 @@ namespace Escape.Levels.Level2.Door
         public override void Start()
         {
             base.Start();
-            _animator = GetComponent<Animator>();
-            _audioSource = GetComponent<AudioSource>();
         }
         public override void SetClass(string nameClass)
         {
@@ -127,9 +125,10 @@ namespace Escape.Levels.Level2.Door
             ChangeTubeColor("Getter");
             _animator.SetBool(Open, true);
             if (!DatiPersistenti.istanza.methodsListeners.Contains(methodListenerID))
+            {
                 _audioSource.Play();
-            else
                 DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);
+            }
         }
     }
 }
