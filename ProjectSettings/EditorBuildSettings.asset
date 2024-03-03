@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Intro/Intro.unity
     guid: d71e0f2d8b5ae864087beabea991fde6
   - enabled: 1
-    path: Assets/Escape/Levels/Level_1/Level1.unity
+    path: Assets/Escape/Levels/Level1/Level1.unity
     guid: 8e3c173ed0fc3bc4ea990d75cd74b6e8
   - enabled: 1
     path: Assets/Escape/Levels/Level2/Level2.unity
