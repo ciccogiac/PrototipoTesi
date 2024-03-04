@@ -18,6 +18,7 @@ namespace Escape.Levels.Level2
         [SerializeField] private Texture2D cursorTexture;
         private Vector2 cursorHotspot;
 
+        
 
         public override bool Method(List<(string, string)> objectValue)
         {

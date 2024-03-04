@@ -17,6 +17,8 @@ namespace Escape.Levels.Level2
         private bool _triggered;
         private bool animationFinished = true;
 
+        [SerializeField] Clue Teoria;
+
         private void Start()
         {
             _player = GameObject.FindWithTag("Player");
@@ -66,6 +68,12 @@ namespace Escape.Levels.Level2
             Destroy(obj);
             animationFinished = true;
             _input.enabled = true;
+
+            if (Teoria != null)
+            {
+                Teoria.isActive = true;
+                Teoria.Interact();
+            }
         }
     }
 }

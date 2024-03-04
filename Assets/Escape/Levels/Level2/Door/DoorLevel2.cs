@@ -14,6 +14,8 @@ namespace Escape.Levels.Level2.Door
         [SerializeField] private MonitorLevel2 DoorMonitor;
         private static readonly int Open = Animator.StringToHash("open");
 
+        [SerializeField] private LevelHint LevelHint;
+
         public override void Start()
         {
             base.Start();
@@ -116,6 +118,7 @@ namespace Escape.Levels.Level2.Door
                     return false;
                 }
             }
+            LevelHint.nextHint(5);
             ApplyMethod();
             return true;
         }

@@ -34,9 +34,12 @@ public class ObjectCollected_Canvas : MonoBehaviour
 
     [SerializeField] GameObject interactSwitchCameraCanvas;
 
+    [SerializeField] PlayerCustomInput playerInput;
+
     private void OnEnable()
     {
         input.enabled = false;
+        playerInput._stopRaycast = true;
         if (objectInteraction.isObjectSee) { interactSwitchCameraCanvas.SetActive(false); gameManager.isSeeing = false; }
         interactCanvas.SetActive(false);
         objectInteraction.isActive = false;
@@ -140,6 +143,7 @@ public class ObjectCollected_Canvas : MonoBehaviour
 
 
         gameObject.SetActive(false);
-      
+        playerInput._stopRaycast = false;
+
     }
 }

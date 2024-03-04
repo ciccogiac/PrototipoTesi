@@ -16,6 +16,8 @@ namespace Escape.Levels.Level2
         private static readonly int Open = Animator.StringToHash("open");
         private AudioSource _audioSource;
 
+        [SerializeField] private LevelHint LevelHint;
+
         public override void Start()
         {
             _audioSource = GetComponent<AudioSource>();
@@ -62,6 +64,9 @@ namespace Escape.Levels.Level2
 
 
             }
+
+            if(LevelHint.hintCounter == 3)
+                LevelHint.nextHint(4);
 
             ApplyMethod();
             return true;

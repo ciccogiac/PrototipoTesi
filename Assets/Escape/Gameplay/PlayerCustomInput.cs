@@ -23,6 +23,8 @@ public class PlayerCustomInput : MonoBehaviour
     [SerializeField] GameObject canvasExit;
     private bool exitState = false;
 
+    public bool _stopRaycast = false;
+
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager_Escape>();
@@ -114,106 +116,109 @@ public class PlayerCustomInput : MonoBehaviour
 
     private void PlayerRaycast()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        // Controlla se il raggio colpisce un oggetto
-        if (Physics.Raycast(ray, out hit, rayLength))
+        if (!_stopRaycast)
         {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-            // Ottieni il collider colpito
-            Collider colliderColpito = hit.collider;
-
-            // Esegui le azioni desiderate, ad esempio, accedi all'oggetto colpito
-            if (colliderColpito != null)
+            // Controlla se il raggio colpisce un oggetto
+            if (Physics.Raycast(ray, out hit, rayLength))
             {
-                GameObject oggettoColpito = colliderColpito.gameObject;
-                //Debug.Log("Oggetto colpito: " + oggettoColpito.name);
-                if (oggettoColpito.CompareTag("Interactable"))
+
+                // Ottieni il collider colpito
+                Collider colliderColpito = hit.collider;
+
+                // Esegui le azioni desiderate, ad esempio, accedi all'oggetto colpito
+                if (colliderColpito != null)
                 {
-                    if (last_InteractableObject == null)
+                    GameObject oggettoColpito = colliderColpito.gameObject;
+                    //Debug.Log("Oggetto colpito: " + oggettoColpito.name);
+                    if (oggettoColpito.CompareTag("Interactable"))
                     {
-                        last_InteractableObject = oggettoColpito.GetComponent<Interactable>();
-                        last_InteractableObject.RaycastEnter();
-                        if (last_InteractableObject.isActive)
+                        if (last_InteractableObject == null)
                         {
-                            if (!gameManager.isSeeing)
+                            last_InteractableObject = oggettoColpito.GetComponent<Interactable>();
+                            last_InteractableObject.RaycastEnter();
+                            if (last_InteractableObject.isActive)
                             {
-                                setMouseText(oggettoColpito);
-                                CanvasInteract.SetActive(true);
-                            }
-                            else
-                            {
-                                setMouseSwitchCameraText(oggettoColpito);
+                                if (!gameManager.isSeeing)
+                                {
+                                    setMouseText(oggettoColpito);
+                                    CanvasInteract.SetActive(true);
+                                }
+                                else
+                                {
+                                    setMouseSwitchCameraText(oggettoColpito);
+                                }
                             }
                         }
-                    }
-                    //else if (last_InteractableObject != oggettoColpito.GetComponent<Interactable>())
-                    else
-                    {
-                        Interactable i = oggettoColpito.GetComponent<Interactable>();
-
-                        if (last_InteractableObject != i)
+                        //else if (last_InteractableObject != oggettoColpito.GetComponent<Interactable>())
+                        else
                         {
-                            last_InteractableObject.RaycastExit();
+                            Interactable i = oggettoColpito.GetComponent<Interactable>();
 
-                            if(!gameManager.isSeeing)
-                                CanvasInteract.SetActive(false);
-                            else
-                                Cursor.SetCursor(gameManager.cursorSwitchCameraTexture, new Vector2(gameManager.cursorSwitchCameraTexture.width / 2, gameManager.cursorSwitchCameraTexture.height / 2), CursorMode.Auto);
+                            if (last_InteractableObject != i)
+                            {
+                                last_InteractableObject.RaycastExit();
+
+                                if (!gameManager.isSeeing)
+                                    CanvasInteract.SetActive(false);
+                                else
+                                    Cursor.SetCursor(gameManager.cursorSwitchCameraTexture, new Vector2(gameManager.cursorSwitchCameraTexture.width / 2, gameManager.cursorSwitchCameraTexture.height / 2), CursorMode.Auto);
+                            }
+
+                            last_InteractableObject = i;
+                            last_InteractableObject.RaycastEnter();
+                            if (last_InteractableObject.isActive)
+                            {
+                                if (!gameManager.isSeeing)
+                                {
+                                    setMouseText(oggettoColpito);
+                                    CanvasInteract.SetActive(true);
+                                }
+                                else
+                                {
+                                    setMouseSwitchCameraText(oggettoColpito);
+                                }
+                            }
                         }
-                        
-                        last_InteractableObject = i;
-                        last_InteractableObject.RaycastEnter();
-                        if (last_InteractableObject.isActive)
+
+                        if (_input.interact == true)
                         {
-                            if (!gameManager.isSeeing)
-                            {
-                                setMouseText(oggettoColpito);
-                                CanvasInteract.SetActive(true);
-                            }
-                            else
-                            {
-                                setMouseSwitchCameraText(oggettoColpito);
-                            }
+                            _input.interact = false;
+                            last_InteractableObject.Interact();
                         }
-                    }
 
-                    if (_input.interact == true)
+                    }
+                    else if (last_InteractableObject != null)
                     {
-                        _input.interact = false;
-                        last_InteractableObject.Interact();
-                    }
+                        last_InteractableObject.RaycastExit();
 
+                        if (!gameManager.isSeeing)
+                            CanvasInteract.SetActive(false);
+                        else
+                            Cursor.SetCursor(gameManager.cursorSwitchCameraTexture, new Vector2(gameManager.cursorSwitchCameraTexture.width / 2, gameManager.cursorSwitchCameraTexture.height / 2), CursorMode.Auto);
+
+                        last_InteractableObject = null;
+                    }
                 }
-                else if (last_InteractableObject != null)
-                {
-                    last_InteractableObject.RaycastExit();
 
-                    if (!gameManager.isSeeing)
-                        CanvasInteract.SetActive(false);
-                    else
-                        Cursor.SetCursor(gameManager.cursorSwitchCameraTexture, new Vector2(gameManager.cursorSwitchCameraTexture.width / 2, gameManager.cursorSwitchCameraTexture.height / 2), CursorMode.Auto);
-
-                    last_InteractableObject = null;
-                }
             }
 
+            else if (last_InteractableObject != null)
+            {
+                last_InteractableObject.RaycastExit();
+
+                if (!gameManager.isSeeing)
+                    CanvasInteract.SetActive(false);
+                else
+                    Cursor.SetCursor(gameManager.cursorSwitchCameraTexture, new Vector2(gameManager.cursorSwitchCameraTexture.width / 2, gameManager.cursorSwitchCameraTexture.height / 2), CursorMode.Auto);
+
+                last_InteractableObject = null;
+            }
+
+            Debug.DrawRay(ray.origin, ray.direction * rayLength, Color.red);
         }
-
-        else if (last_InteractableObject != null)
-        {
-            last_InteractableObject.RaycastExit();
-
-            if (!gameManager.isSeeing)
-                CanvasInteract.SetActive(false);
-            else
-                Cursor.SetCursor(gameManager.cursorSwitchCameraTexture, new Vector2(gameManager.cursorSwitchCameraTexture.width / 2, gameManager.cursorSwitchCameraTexture.height / 2), CursorMode.Auto);
-
-            last_InteractableObject = null;
-        }
-
-        Debug.DrawRay(ray.origin, ray.direction * rayLength, Color.red);
 
     }
     // Update is called once per frame

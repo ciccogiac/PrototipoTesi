@@ -16,6 +16,8 @@ public class NewItem : MonoBehaviour
     private GameManager_Escape gameManager;
     private bool isReading = false;
 
+  
+
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager_Escape>();
@@ -50,6 +52,7 @@ public class NewItem : MonoBehaviour
         }
 
         isReading = true;
+
     }
 
     private void Update()

@@ -53,6 +53,9 @@ public class GameManager_Escape : MonoBehaviour
 
     private LevelHint _levelHint;
 
+    public int _musicSceneIndex = 1;
+    [SerializeField] AudioSource _audioSource;
+
 #if UNITY_EDITOR
     // Questo metodo viene chiamato solo nell'editor quando si fa clic su "Gestisci valori" nel componente
     [ContextMenu("Calcola valori id iniziali")]
@@ -97,6 +100,7 @@ public class GameManager_Escape : MonoBehaviour
         saveManager = FindObjectOfType<SaveManager>();
         printer =FindObjectOfType<Printer3DController>();
         _levelHint = FindObjectOfType<LevelHint>();
+        _audioSource = GetComponent<AudioSource>();
 
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -116,6 +120,7 @@ public class GameManager_Escape : MonoBehaviour
         else
         {
             GetComponent<ReloadEscapeData>().ReloadPosition();
+            PlayMusic.istanza.PlaySong(_musicSceneIndex);
         }
 
 
@@ -300,6 +305,7 @@ public class GameManager_Escape : MonoBehaviour
 
     public void ActivateNewItemCanvas(string type, string name, string description)
     {
+        _audioSource.Play();
         input.enabled = true;
         input.SwitchCurrentActionMap("ReadObject");
         itemCanvasScript.InitializeItemCanvas(type, name, description);
@@ -312,7 +318,9 @@ public class GameManager_Escape : MonoBehaviour
         else
             interactionCanvas.SetActive(false);
 
+        
         NewItemCanvas.SetActive(true);
+       
     }
 
     public void DeactivateNewItemCanvas()

@@ -18,8 +18,8 @@ public class LevelHint : MonoBehaviour
 
     public void StartHintCounter()
     {
-        if(_IsHintActive)
-            StartCoroutine(CheckHint(hint[hintCounter].hintTimer));
+        if (_IsHintActive && hintCounter < hint.Length && hint[hintCounter].hintText != "")
+                StartCoroutine(CheckHint(hint[hintCounter].hintFirstTimer));
     }
 
     public void nextHint(int hintNumber)
@@ -32,13 +32,12 @@ public class LevelHint : MonoBehaviour
             hintCounter = hintNumber;
 
             if (hintCounter < hint.Length && hint[hintCounter].hintText != "")
-                StartCoroutine(CheckHint(hint[hintCounter].hintTimer));
+                StartCoroutine(CheckHint(hint[hintCounter].hintFirstTimer));
         }
     }
 
     IEnumerator CheckHint(int duration)
     {
-
         yield return new WaitForSeconds(duration);
         StartCoroutine(ActivateHint());
 
@@ -46,11 +45,12 @@ public class LevelHint : MonoBehaviour
 
     IEnumerator ActivateHint()
     {
-        HintBox.SetActive(true);
+        if (hintCounter < hint.Length && hint[hintCounter].hintText != "")
+            HintBox.SetActive(true);
         hintText.text = hint[hintCounter].hintText;
         yield return new WaitForSeconds(hintDuration);
         HintBox.SetActive(false);
-        StartCoroutine(CheckHint(hint[hintCounter].hintTimer));
+        StartCoroutine(CheckHint(hint[hintCounter].hintRepeatTimer));
 
     }
 
@@ -64,5 +64,6 @@ public class LevelHint : MonoBehaviour
 public class Hint
 {
     public string hintText;
-    public int hintTimer;
+    public int hintFirstTimer;
+    public int hintRepeatTimer;
 }

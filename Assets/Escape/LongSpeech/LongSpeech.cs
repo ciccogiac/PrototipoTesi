@@ -27,6 +27,7 @@ public class LongSpeech : MonoBehaviour
 
     private void OnEnable()
     {
+        PlayMusic.istanza.PlaySong(0);
         _counter = -1;
         NextLongSpeech();
     }
@@ -72,9 +73,13 @@ public class LongSpeech : MonoBehaviour
     private void EndLongSpeech()
     {
         _input.interact = false;
-        _gameManager.DeactivateLongSpeechCanvas(gameObject);
+        
         if(_levelHint!=null)
             _levelHint.hintCounter = 1;
+
+        _gameManager.DeactivateLongSpeechCanvas(gameObject);
+
+        PlayMusic.istanza.PlaySong(_gameManager._musicSceneIndex);
     }
     private void SetupLongSpeechCanvasWithSpeech(string speech)
     {

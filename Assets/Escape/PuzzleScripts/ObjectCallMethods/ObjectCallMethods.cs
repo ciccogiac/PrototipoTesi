@@ -42,9 +42,12 @@ public class ObjectCallMethods : MonoBehaviour
 
     public bool isTutorialStarted = false;
 
+    [SerializeField] PlayerCustomInput playerInput;
+
     private void OnEnable()
     {
         input.enabled = false;
+        playerInput._stopRaycast = true;
         if (objectInteraction.isObjectPermanent || objectInteraction.isObjectSee) { interactSwitchCameraCanvas.SetActive(false); gameManager.isSeeing = false; }
         interactCanvas.SetActive(false);
         objectInteraction.isActive = false;
@@ -149,7 +152,7 @@ public class ObjectCallMethods : MonoBehaviour
         else{ Cursor.visible = false; Cursor.lockState = CursorLockMode.Locked; interactCanvas.SetActive(true); }
 
         gameObject.SetActive(false);
-
+        playerInput._stopRaycast = false;
 
     }
 }
