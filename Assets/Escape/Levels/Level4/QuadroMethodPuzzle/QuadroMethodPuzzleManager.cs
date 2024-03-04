@@ -19,8 +19,8 @@ namespace Escape.Levels.Level4.QuadroMethodPuzzle
                 outline.enabled = false;
             _level++;
             Levels[_level - 1].SetActive(false);
-            Levels[_level].SetActive(true);
-            if (_level == Levels.Length - 1) PuzzleCompleted();
+            if (_level == Levels.Length) PuzzleCompleted();
+            else Levels[_level].SetActive(true);
         }
 
         private void PuzzleCompleted()

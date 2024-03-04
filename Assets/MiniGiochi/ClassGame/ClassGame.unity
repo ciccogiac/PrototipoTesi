@@ -4305,8 +4305,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Si faccia inoltre attenzione al tempo a disposizione , una volta esaurito
-    l'ia si accorger\xE0 della vostra presenza."
+  m_text: Si faccia inoltre attenzione al tempo a disposizione , una volta esaurito
+    l'ia si accorgera' della vostra presenza.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 220c4f4f8722519438731eccc79c1eb7, type: 2}
   m_sharedMaterial: {fileID: -2851088917311796387, guid: 220c4f4f8722519438731eccc79c1eb7, type: 2}
@@ -5529,15 +5529,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 724104673921727971, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.841601
+      value: 9.841599
       objectReference: {fileID: 0}
     - target: {fileID: 724104673921727971, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00000017881393
+      value: -0.0000009834766
       objectReference: {fileID: 0}
     - target: {fileID: 724104673921727971, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.000005866051
+      value: -0.00005015474
       objectReference: {fileID: 0}
     - target: {fileID: 1080563990580129458, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: localRotation
@@ -5545,27 +5545,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4259042342612154479, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_Positions.Array.data[0].x
-      value: -3.312598
+      value: -3.3125985
       objectReference: {fileID: 0}
     - target: {fileID: 4259042342612154479, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_Positions.Array.data[0].y
-      value: -1.0355626
+      value: -1.0355628
       objectReference: {fileID: 0}
     - target: {fileID: 4259042342612154479, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_Positions.Array.data[0].z
-      value: -0.84846497
+      value: -0.8484726
       objectReference: {fileID: 0}
     - target: {fileID: 4259042342612154479, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_Positions.Array.data[1].x
-      value: -1.6067709
+      value: -1.6067716
       objectReference: {fileID: 0}
     - target: {fileID: 4259042342612154479, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_Positions.Array.data[1].y
-      value: -2.079667
+      value: -2.0796676
       objectReference: {fileID: 0}
     - target: {fileID: 4259042342612154479, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_Positions.Array.data[1].z
-      value: -0.84846497
+      value: -0.8484802
       objectReference: {fileID: 0}
     - target: {fileID: 7918687370820584656, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6685,7 +6685,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Terminati i collegamenti ,  bisogna cliccare sul tasto compile , che verificher\xE0
+  m_text: "Terminati i collegamenti ,  bisogna cliccare sul tasto compile , che verifichera'
     se tutti i collegamenti sono stati eseguiti corretamente. Altrimenti non sar\xE0
     possibile generare la classe."
   m_isRightToLeft: 0
@@ -7945,9 +7945,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Leggendo attentamente le informazioni del progetto di classe , presente
-    nell'inventario , e' possibile dedurre come collegare correttamente tra loro
-    metodi e attributi.
+  m_text: Leggendo attentamente le informazioni del progetto di classe presente nell'inventario
+    , e' possibile dedurre come collegare correttamente tra loro metodi e attributi.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 220c4f4f8722519438731eccc79c1eb7, type: 2}
   m_sharedMaterial: {fileID: -2851088917311796387, guid: 220c4f4f8722519438731eccc79c1eb7, type: 2}

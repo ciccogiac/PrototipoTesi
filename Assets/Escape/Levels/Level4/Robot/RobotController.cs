@@ -10,6 +10,16 @@ namespace Escape.Levels.Level4.Robot
         private bool _dialog1Trigger;
         private static readonly int Talk = Animator.StringToHash("Talk");
 
+        private void Start()
+        {
+            if (Dialog1._dialogUsed)
+            {
+                _dialog1Trigger = true;
+                transform.Rotate(Vector3.up, -20);
+                Animator.SetBool(Talk, false);
+            }
+        }
+
         private void Update()
         {
             if (!_dialog1Trigger)
