@@ -49851,6 +49851,8 @@ MonoBehaviour:
   Ocm: {fileID: 1956049593}
   Ray1: {fileID: 1247824119}
   Ray2: {fileID: 9099925067382817600}
+  ObjectCallCanvas: {fileID: 1956049593}
+  gameManager: {fileID: 1529289457}
 --- !u!1 &1217720937
 GameObject:
   m_ObjectHideFlags: 0

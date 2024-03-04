@@ -90,16 +90,6 @@ public class Door_level4 : MethodListener
                             }
 
 
-                            /*
-                             if (tupla.Item1 != null)
-                            {
-                                doorMonitor.SetError("Attributo : " + value.attribute + " ha un valore errato");
-                                ChangeTubeColor("Error");
-                                found = false;
-                                correctValue = false;
-                                continue;
-                            }
-                            */
                             else
                             {
                                 //doorMonitor.SetError("Non riesco a leggere il valore di : " + value.attribute + " . Si prega di chiamare il metodo corretto");

@@ -26,6 +26,9 @@ namespace Escape.Levels.Level4
         [SerializeField] private GameObject Ray1;
         [SerializeField] private GameObject Ray2;
 
+        [SerializeField] ObjectCallMethods ObjectCallCanvas;
+        [SerializeField] GameManager_Escape gameManager;
+
         public override void SetClass(string nameClass)
         {
             base.SetClass(nameClass);
@@ -43,15 +46,17 @@ namespace Escape.Levels.Level4
             base.RemoveObject();
             DoorMonitor.RemoveObject();
         }
-        public override bool Method(List<(string, string)> objectValue)
+        public override bool  Method(List<(string, string)> objectValue)
         {
             if (className != ClassValueListener)
             {
                 DoorMonitor.SetError("Classe Errata");
                 ChangeTubeColor("Error");
-                return false;
+                 return false;
             }
+
             StartCoroutine(ScanAnimation());
+
             return true;
         }
 
@@ -102,6 +107,8 @@ namespace Escape.Levels.Level4
             Ray2.SetActive(false);
             Ray1.transform.localScale = rayOriginalScale;
             Ray2.transform.localScale = rayOriginalScale;
+
+
             var error = false;
             foreach (var value in attributeValueListener)
             {
@@ -133,7 +140,7 @@ namespace Escape.Levels.Level4
                                 ChangeTubeColor("Error");
                                 found = false;
                                 correctValue = false;
-                                error = true;
+                                continue;
                             }
                             else
                             {
@@ -145,7 +152,7 @@ namespace Escape.Levels.Level4
                                 DoorMonitor.SetError("Attributo : " + value.attribute + " non accessibile perchè private");
                                 ChangeTubeColor("Error");
                                 correctValue = false;
-                                error = true;
+                                continue;
                             }
                         }
 
@@ -155,6 +162,7 @@ namespace Escape.Levels.Level4
                             if (tupla != (null, null))
                             {
                                 found = true;
+                                continue;
                             }
                             else
                             {
@@ -165,7 +173,7 @@ namespace Escape.Levels.Level4
                                     ChangeTubeColor("Error");
                                     found = false;
                                     correctValue = false;
-                                    error = true;
+                                    continue;
                                 }
                             }
                         }
@@ -183,6 +191,10 @@ namespace Escape.Levels.Level4
             }
             if(!error)
                 ApplyMethod();
+
+            if(gameManager.isSeeing)
+                ObjectCallCanvas.CloseInterface();
+
         }
         public void GetTeory()
         {
