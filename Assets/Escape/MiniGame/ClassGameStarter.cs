@@ -21,8 +21,6 @@ public class ClassGameStarter : Interactable
 
             dizionario = FindObjectOfType<ClassDictionary>();
             gameManager = FindObjectOfType<GameManager_Escape>();
-
-
             gameManager.ActivateNewItemCanvas(Clue.ClueType.Classe.ToString(), DatiPersistenti.istanza.className, dizionario.GetClassDescription(DatiPersistenti.istanza.className));
 
         }

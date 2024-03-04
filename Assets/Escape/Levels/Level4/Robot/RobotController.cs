@@ -16,6 +16,7 @@ namespace Escape.Levels.Level4.Robot
             {
                 if (Dialog1.GetDialogFinished())
                 {
+                    transform.Rotate(Vector3.up, -20);
                     Animator.SetBool(Talk, false);
                     _dialog1Trigger = true;
                 }

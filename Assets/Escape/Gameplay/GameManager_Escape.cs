@@ -94,8 +94,8 @@ public class GameManager_Escape : MonoBehaviour
 
         interactionCanvas.SetActive(true);
         interactionSwitchCameraCanvas.SetActive(false);
-        readObjectCanvas.SetActive(false);     
-        NewItemCanvas.SetActive(false);
+        readObjectCanvas.SetActive(false);
+        //NewItemCanvas.SetActive(false);
 
         saveManager = FindObjectOfType<SaveManager>();
         printer =FindObjectOfType<Printer3DController>();
@@ -325,8 +325,6 @@ public class GameManager_Escape : MonoBehaviour
 
     public void DeactivateNewItemCanvas()
     {
-        
-
         NewItemCanvas.SetActive(false);
 
         if (DialogCamera == null)

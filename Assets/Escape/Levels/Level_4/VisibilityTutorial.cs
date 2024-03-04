@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Escape.Levels.Level4;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -18,7 +19,7 @@ public class VisibilityTutorial : MonoBehaviour
     [SerializeField] Button backButton;
     [SerializeField] Button okButton;
 
-    [SerializeField] Door_level4 door;
+    [SerializeField] DoorLevel4 door;
 
    
 

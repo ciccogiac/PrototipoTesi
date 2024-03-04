@@ -1,0 +1,145 @@
+using System;
+using System.Collections.Generic;
+using JetBrains.Annotations;
+using UnityEngine;
+using UnityEngine.Serialization;
+
+namespace Escape.Levels.Level4
+{
+    public class DoorLevel4 : MethodListener
+    {
+        [FormerlySerializedAs("door")] [SerializeField] private Animator DoorAnimator;
+
+        [FormerlySerializedAs("methodsListenerToRead")] [SerializeField] private List<MethodListener> MethodsListenersToRead;
+        [SerializeField] private string ClassValueListener;
+
+        [FormerlySerializedAs("doorMonitor")] [SerializeField] private Monitor DoorMonitor;
+
+        [UsedImplicitly]
+        private bool _isTutorialOpened;
+
+        [SerializeField] private Clue Teoria;
+        [FormerlySerializedAs("tutorialCanvas")] [SerializeField] private GameObject TutorialCanvas;
+        [FormerlySerializedAs("ocm")] [SerializeField] private ObjectCallMethods Ocm;
+        private static readonly int Open = Animator.StringToHash("Open");
+
+        public override void SetClass(string nameClass)
+        {
+            base.SetClass(nameClass);
+            DoorMonitor.SetClass(nameClass);
+            
+            if (className != ClassValueListener)
+            {
+                DoorMonitor.SetError("Classe Errata");
+                ChangeTubeColor("Error");
+            }
+        }
+        
+        public override void RemoveObject()
+        {
+            base.RemoveObject();
+            DoorMonitor.RemoveObject();
+        }
+        public override bool Method(List<(string, string)> objectValue)
+        {
+            if (className != ClassValueListener)
+            {
+                DoorMonitor.SetError("Classe Errata");
+                ChangeTubeColor("Error");
+                return false;
+            }
+            // Animazione scanner
+            foreach (var value in attributeValueListener)
+            {
+                var found = false;
+                var correctValue = true;
+                foreach (var m in MethodsListenersToRead)
+                {
+
+
+                    if (m.objectAttributeValue != null && value.className == m.className)
+                    {
+                        var classValue = Inventario.istanza.classi.Find(x => x.className == m.className);
+
+                        if (classValue != null)
+                        {
+
+                            if (classValue.attributes.Find(x => x.attribute == value.attribute).visibility)
+                            {
+                                
+                                //(string, string) tupla = m.objectAttributeValue.Find(x => x.Item1 == value.attribute && x.Item2 == value.value);
+                                var tupla = m.objectAttributeValue.Find(x => x.Item1 == value.attribute && x.Item2.Equals(value.value, StringComparison.OrdinalIgnoreCase));
+
+                                if (tupla != (null, null))
+                                {
+                                    found = true;
+                                    break;
+                                }
+                                DoorMonitor.SetError("Attributo : " + value.attribute + " ha un valore errato");
+                                ChangeTubeColor("Error");
+                                found = false;
+                                correctValue = false;
+                            }
+                            else
+                            {
+                                if (Teoria != null)
+                                {
+                                    TutorialCanvas.SetActive(true);
+                                    Ocm.isTutorialStarted = true;
+                                }
+                                DoorMonitor.SetError("Attributo : " + value.attribute + " non accessibile perchè private");
+                                ChangeTubeColor("Error");
+                                correctValue = false;
+                            }
+                        }
+
+                        else //� un attrbiuteNotPrinted
+                        {
+                            var tupla = m.objectAttributeValue.Find(x => x.Item1 == value.attribute && x.Item2 == value.value);
+                            if (tupla != (null, null))
+                            {
+                                found = true;
+                            }
+                            else
+                            {
+                                tupla = m.objectAttributeValue.Find(x => x.Item1 == value.attribute && x.Item2 != value.value);
+                                if (tupla != (null, null))
+                                {
+                                    DoorMonitor.SetError("Attributo : " + value.attribute + " ha un valore errato");
+                                    ChangeTubeColor("Error");
+                                    found = false;
+                                    correctValue = false;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (!found)
+                {
+                    if (correctValue) DoorMonitor.SetError("Oggetto della classe  " + value.className + " non trovato");
+                    ChangeTubeColor("Error");
+                    return false;
+                }
+
+
+            }
+
+            ApplyMethod();
+            return true;
+        }
+        public void GetTeory()
+        {
+            Teoria.isActive = true;
+            Teoria.Interact();
+        }
+        public override void ApplyMethod()
+        {
+            DoorMonitor.SetError("");
+
+            ChangeTubeColor("Getter");
+            DoorAnimator.SetBool(Open, true);
+            DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);
+        }
+    }
+}

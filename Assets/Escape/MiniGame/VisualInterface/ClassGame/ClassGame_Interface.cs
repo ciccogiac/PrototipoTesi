@@ -172,7 +172,6 @@ public class ClassGame_Interface : MonoBehaviour
         {
             (string,string) a =Inventario.istanza.attributes.Find(x => x.Item1 == coppia.Key);
             if (a == (null,null)) { StartCoroutine(ShowCluesError(secondsToShowError)); return; }
-
             foreach(var method in coppia.Value.Item2)
             {
                 (string, string) b = Inventario.istanza.methods.Find(x => x.Item1 == method.methodName);
