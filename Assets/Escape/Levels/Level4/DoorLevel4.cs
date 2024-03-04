@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -21,7 +22,9 @@ namespace Escape.Levels.Level4
         [SerializeField] private Clue Teoria;
         [FormerlySerializedAs("tutorialCanvas")] [SerializeField] private GameObject TutorialCanvas;
         [FormerlySerializedAs("ocm")] [SerializeField] private ObjectCallMethods Ocm;
-        private static readonly int Open = Animator.StringToHash("Open");
+        private static readonly int Open = Animator.StringToHash("open");
+        [SerializeField] private GameObject Ray1;
+        [SerializeField] private GameObject Ray2;
 
         public override void SetClass(string nameClass)
         {
@@ -48,7 +51,58 @@ namespace Escape.Levels.Level4
                 ChangeTubeColor("Error");
                 return false;
             }
-            // Animazione scanner
+            StartCoroutine(ScanAnimation());
+            return true;
+        }
+
+        private IEnumerator ScanAnimation()
+        {
+            var rayOriginalScale = Ray1.transform.localScale;
+            Ray1.transform.localScale = Vector3.zero;
+            Ray2.transform.localScale = Vector3.zero;
+            Ray1.SetActive(true);
+            Ray2.SetActive(true);
+            var elapsedTime = 0.0f;
+            while (elapsedTime < 0.5f)
+            {
+                Ray1.transform.localScale =
+                    Vector3.Lerp(Ray1.transform.localScale, rayOriginalScale, elapsedTime / 0.5f);
+                Ray2.transform.localScale =
+                    Vector3.Lerp(Ray2.transform.localScale, rayOriginalScale, elapsedTime / 0.5f);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            Ray1.transform.localScale = rayOriginalScale;
+            Ray2.transform.localScale = rayOriginalScale;
+            elapsedTime = 0.0f;
+            while (elapsedTime < 1.0f)
+            {
+                Ray1.transform.Rotate(0f, 0f, -1f);
+                Ray2.transform.Rotate(0f, 0f, -1f);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            elapsedTime = 0.0f;
+            while (elapsedTime < 1.0f)
+            {
+                Ray1.transform.Rotate(0f, 0f, 1f);
+                Ray2.transform.Rotate(0f, 0f, 1f);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            elapsedTime = 0.0f;
+            while (elapsedTime < 0.5f)
+            {
+                Ray1.transform.localScale = Vector3.Lerp(Ray1.transform.localScale, Vector3.zero, elapsedTime / 0.5f);
+                Ray2.transform.localScale = Vector3.Lerp(Ray2.transform.localScale, Vector3.zero, elapsedTime / 0.5f);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            Ray1.SetActive(false);
+            Ray2.SetActive(false);
+            Ray1.transform.localScale = rayOriginalScale;
+            Ray2.transform.localScale = rayOriginalScale;
+            var error = false;
             foreach (var value in attributeValueListener)
             {
                 var found = false;
@@ -79,6 +133,7 @@ namespace Escape.Levels.Level4
                                 ChangeTubeColor("Error");
                                 found = false;
                                 correctValue = false;
+                                error = true;
                             }
                             else
                             {
@@ -90,6 +145,7 @@ namespace Escape.Levels.Level4
                                 DoorMonitor.SetError("Attributo : " + value.attribute + " non accessibile perchè private");
                                 ChangeTubeColor("Error");
                                 correctValue = false;
+                                error = true;
                             }
                         }
 
@@ -109,6 +165,7 @@ namespace Escape.Levels.Level4
                                     ChangeTubeColor("Error");
                                     found = false;
                                     correctValue = false;
+                                    error = true;
                                 }
                             }
                         }
@@ -119,14 +176,13 @@ namespace Escape.Levels.Level4
                 {
                     if (correctValue) DoorMonitor.SetError("Oggetto della classe  " + value.className + " non trovato");
                     ChangeTubeColor("Error");
-                    return false;
+                    error = true;
                 }
 
 
             }
-
-            ApplyMethod();
-            return true;
+            if(!error)
+                ApplyMethod();
         }
         public void GetTeory()
         {
@@ -136,7 +192,10 @@ namespace Escape.Levels.Level4
         public override void ApplyMethod()
         {
             DoorMonitor.SetError("");
-
+            foreach (Transform child in transform)
+            {
+                child.parent = null;
+            }
             ChangeTubeColor("Getter");
             DoorAnimator.SetBool(Open, true);
             DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);

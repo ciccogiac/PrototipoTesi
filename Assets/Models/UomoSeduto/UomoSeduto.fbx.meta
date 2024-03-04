@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: LaptopMaterial
+    second: {fileID: 2100000, guid: 686be19918e257a4c9e3fba825e42586, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: StatueMaterial
     second: {fileID: 2100000, guid: cd08c5e1b4162ec48bcbd6ee4392d91a, type: 2}
   materials:
