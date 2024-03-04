@@ -9489,7 +9489,7 @@ MonoBehaviour:
   Scale: 1
   oggetto: {fileID: 0}
   methodListener: {fileID: 1952136582}
-  Id: 1
+  Id: 0
   isObjectPermanent: 0
   isObjectSee: 1
 --- !u!1 &162712218
@@ -37997,7 +37997,7 @@ MonoBehaviour:
   cursorTexture: {fileID: 2800000, guid: c088c041e51b75842b57a46f46fba36d, type: 3}
   gameManager: {fileID: 1529289457}
   interactSwitchCameraCanvas: {fileID: 393389852}
-  playerInput: {fileID: 0}
+  playerInput: {fileID: 687090584}
 --- !u!114 &859863361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50989,6 +50989,7 @@ MonoBehaviour:
   backButton: {fileID: 707210286}
   okButton: {fileID: 1034949581}
   door: {fileID: 1215267298}
+  gameManager: {fileID: 1529289457}
 --- !u!114 &1286753996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57620,7 +57621,7 @@ MonoBehaviour:
   printer: {fileID: 1115701279}
   DialogCamera: {fileID: 0}
   _musicSceneIndex: 1
-  _audioSource: {fileID: 0}
+  _audioSource: {fileID: 1529289463}
 --- !u!114 &1529289458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71751,7 +71752,7 @@ MonoBehaviour:
   Scale: 1
   oggetto: {fileID: 1871283330}
   methodListener: {fileID: 1871283328}
-  Id: 2
+  Id: 1
   isObjectPermanent: 1
   isObjectSee: 0
 --- !u!65 &1871283332
@@ -78574,7 +78575,7 @@ MonoBehaviour:
       attributes: []
     description: 
     classPrefab: {fileID: 0}
-    ObjectInteractorId: 0
+    ObjectInteractorId: 2
 --- !u!114 &1912406021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78596,7 +78597,7 @@ MonoBehaviour:
   Scale: 1
   oggetto: {fileID: 1912406020}
   methodListener: {fileID: 1215267298}
-  Id: 0
+  Id: 2
   isObjectPermanent: 1
   isObjectSee: 0
 --- !u!1 &1915537149
@@ -84682,7 +84683,7 @@ MonoBehaviour:
   cursorTexture: {fileID: 2800000, guid: c088c041e51b75842b57a46f46fba36d, type: 3}
   gameManager: {fileID: 1529289457}
   isTutorialStarted: 0
-  playerInput: {fileID: 0}
+  playerInput: {fileID: 687090584}
 --- !u!114 &1956049594
 MonoBehaviour:
   m_ObjectHideFlags: 0

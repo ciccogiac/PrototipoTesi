@@ -138,7 +138,7 @@ public class ObjectCallMethods : MonoBehaviour
         objectInteraction.isActive = true;
         CallerCanvas.SetActive(false);
 
-        if (isTutorialStarted) { isTutorialStarted = false; gameObject.SetActive(false); return; }
+        if (isTutorialStarted) { isTutorialStarted = false; playerInput._stopRaycast = false; gameObject.SetActive(false); return; }
 
         input.enabled = true;
         if (objectInteraction.isObjectPermanent || objectInteraction.isObjectSee) 

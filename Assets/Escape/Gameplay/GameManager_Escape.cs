@@ -91,8 +91,8 @@ public class GameManager_Escape : MonoBehaviour
     void Start()
     {
 
-
-        interactionCanvas.SetActive(true);
+        if(!NewItemCanvas.activeSelf)
+            interactionCanvas.SetActive(true);
         interactionSwitchCameraCanvas.SetActive(false);
         readObjectCanvas.SetActive(false);
         //NewItemCanvas.SetActive(false);

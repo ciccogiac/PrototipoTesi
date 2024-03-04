@@ -21,6 +21,7 @@ public class VisibilityTutorial : MonoBehaviour
 
     [SerializeField] DoorLevel4 door;
 
+    [SerializeField] GameManager_Escape gameManager;
    
 
     private void OnEnable()
@@ -35,6 +36,8 @@ public class VisibilityTutorial : MonoBehaviour
 
         i = 0;
         items[i].SetActive(true);
+
+       
     }
 
     public void PreviousItem()
@@ -72,7 +75,8 @@ public class VisibilityTutorial : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);  
+            gameObject.SetActive(false);
+            gameManager.isSeeing = true;
             door.GetTeory();
         }
     }
