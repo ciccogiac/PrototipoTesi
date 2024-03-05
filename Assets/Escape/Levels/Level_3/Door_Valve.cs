@@ -16,6 +16,7 @@ public class Door_Valve : MethodListener
 
     [SerializeField] Monitor doorMonitor;
 
+    [SerializeField] private LevelHint LevelHint;
 
     // Start is called before the first frame update
     public override void Start()
@@ -99,7 +100,7 @@ public class Door_Valve : MethodListener
 
 
         }
-
+        LevelHint.nextHint(5);
         ApplyMethod();
         return true;
     }

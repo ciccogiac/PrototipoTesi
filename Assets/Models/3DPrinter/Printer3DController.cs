@@ -17,6 +17,10 @@ public class Printer3DController : Interactable
     [SerializeField] private Transform SpawnPos3;
     private AudioSource _audioSource;
 
+    [SerializeField] bool isHintClass = false;
+    [SerializeField] LevelHint levelHint;
+    [SerializeField] int hintNumber;
+
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -24,6 +28,9 @@ public class Printer3DController : Interactable
         {
             DatiPersistenti.istanza.isObjectToPrint = false;
             StartCoroutine(Print());
+
+            if (isHintClass)
+                levelHint.nextHint(hintNumber);
         }
     }
 

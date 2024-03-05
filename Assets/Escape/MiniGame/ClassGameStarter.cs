@@ -12,6 +12,10 @@ public class ClassGameStarter : Interactable
     private ClassDictionary dizionario;
     private GameManager_Escape gameManager;
 
+    [SerializeField] bool isHintClass = false;
+    [SerializeField] LevelHint levelHint;
+    [SerializeField] int hintNumber;
+
     private void Start()
     {
        
@@ -22,6 +26,9 @@ public class ClassGameStarter : Interactable
             dizionario = FindObjectOfType<ClassDictionary>();
             gameManager = FindObjectOfType<GameManager_Escape>();
             gameManager.ActivateNewItemCanvas(Clue.ClueType.Classe.ToString(), DatiPersistenti.istanza.className, dizionario.GetClassDescription(DatiPersistenti.istanza.className));
+
+            if (isHintClass)
+                levelHint.nextHint(hintNumber);
 
         }
     }

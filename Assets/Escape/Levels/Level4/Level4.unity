@@ -46551,6 +46551,9 @@ MonoBehaviour:
   SpawnPos1: {fileID: 863542732}
   SpawnPos2: {fileID: 1770587354}
   SpawnPos3: {fileID: 1565365987}
+  isHintClass: 0
+  levelHint: {fileID: 0}
+  hintNumber: 0
 --- !u!65 &1115701280
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57668,6 +57671,9 @@ MonoBehaviour:
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   player: {fileID: 961232788}
   canvas_ClassGameInterface: {fileID: 571601743}
+  isHintClass: 0
+  levelHint: {fileID: 0}
+  hintNumber: 0
 --- !u!65 &1505018505
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -66693,7 +66699,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8413193328767778472, guid: 23330fc4b5ba00a4fa921a7f62d587d1, type: 3}
       propertyPath: clueDescription
-      value: attribbuti possono essere private o public
+      value: "Gli attribbuti possono essere private cio\xE8 solo l'oggetto stesso
+        li pu\xF2 leggere , oppure Public , cioe' tutti gli oggetti possono leggerli.
+        Per cambiare visibilita' di un attributi bisogna recarsi al classCreator
+        ed accedere alla sezione modifica della classe specifica."
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6352244801360670307, guid: 23330fc4b5ba00a4fa921a7f62d587d1, type: 3}
