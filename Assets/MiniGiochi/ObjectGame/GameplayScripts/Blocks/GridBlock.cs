@@ -79,6 +79,9 @@ public class GridBlock : MonoBehaviour
                 image.color = temporaryConnectionColor;
 
             gameManager.SelectBlock(this);
+
+            gameManager._audioSource.clip = gameManager.selectSound;
+            gameManager._audioSource.Play();
         }
     }
 

@@ -21,7 +21,7 @@ public class TemporaryBlock : MonoBehaviour
     private TrashTemporaryItem trash;
     public EmptyBlock emptyBlock;
 
-
+    private GameManager_ObjectGame gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +30,7 @@ public class TemporaryBlock : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         image = GetComponent<SpriteRenderer>();
         trash = FindObjectOfType<TrashTemporaryItem>();
+        gameManager = FindObjectOfType<GameManager_ObjectGame>();
 
         switch ( inventoryReference.direction)
         {
@@ -79,7 +80,11 @@ public class TemporaryBlock : MonoBehaviour
     private void OnMouseDown()
     {
         if(trash.isOnTrash) { trash.canDelete = true; }
-        else if(emptyBlock!=null) { emptyBlock.canSelect = true; }
+        else if(emptyBlock!=null) { 
+            emptyBlock.canSelect = true;
+            gameManager._audioSource.clip = gameManager.selectSound2;
+            gameManager._audioSource.Play();
+        }
     }
 
     private void OnDestroy()

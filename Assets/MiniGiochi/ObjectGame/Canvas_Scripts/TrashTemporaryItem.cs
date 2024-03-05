@@ -8,15 +8,12 @@ public class TrashTemporaryItem : MonoBehaviour
     public bool isOnTrash = false;
     public bool canDelete = false;
 
-    private Image image;
-    private Color imageColor;
+    [SerializeField] Image image;
+    [SerializeField] Color imageColor;
     [SerializeField] Color temporaryColor;
 
-    private void Start()
-    {
-        image = GetComponent<Image>();
-        imageColor = image.color;
-    }
+    [SerializeField] GameManager_ObjectGame gameManager;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("TemporaryItem"))
@@ -46,13 +43,18 @@ public class TrashTemporaryItem : MonoBehaviour
 
                 canDelete = false;
                 isOnTrash = false;
-                gameObject.SetActive(false); }
+                gameManager._audioSource.clip = gameManager.deleteSound;
+                gameManager._audioSource.Play();
+                gameObject.SetActive(false); 
+            }
         }
 
     }
 
-    private void OnMouseDown()
+    private void OnEnable()
     {
-       // if (isOnTrash) {  canDelete = true;  }
+        gameManager._audioSource.clip = gameManager.selectSound;
+        gameManager._audioSource.Play();
     }
+
 }

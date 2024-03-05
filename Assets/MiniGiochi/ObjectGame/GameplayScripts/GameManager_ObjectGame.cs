@@ -16,6 +16,7 @@ public class GameManager_ObjectGame : MonoBehaviour
     [SerializeField] GameObject ButtonRemoveBlock;
     [SerializeField] GameObject ButtonsRotation;
 
+    
     public enum AttributeType
     {
         intero,
@@ -71,6 +72,16 @@ public class GameManager_ObjectGame : MonoBehaviour
     [SerializeField] GameObject gamePanel;
     [SerializeField] GameObject InventoryPanel;
 
+
+    public AudioSource _audioSource;
+
+    [SerializeField] AudioClip rotationSound;
+    public AudioClip deleteSound;
+    [SerializeField] AudioClip resetSound;
+    public AudioClip selectSound;
+    [SerializeField] AudioClip closeSound;
+    public AudioClip selectSound2;
+    [SerializeField] AudioClip completeSound;
     private void ReadLevel()
     {
 
@@ -214,7 +225,6 @@ public class GameManager_ObjectGame : MonoBehaviour
         className_text.text = className;
         objectName_text.text = objectName;
 
-        trash = FindObjectOfType<TrashTemporaryItem>().gameObject;
         trash.SetActive(false);
 
         Cursor.visible = true;
@@ -260,13 +270,21 @@ public class GameManager_ObjectGame : MonoBehaviour
     public void Left_BlockRotation()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        if (isABlockSelected) { selectedBlock.RotateBlock(true); }
+        if (isABlockSelected) {
+            selectedBlock.RotateBlock(true);
+            _audioSource.clip = rotationSound;
+            _audioSource.Play();
+        }
     }
 
     public void Right_BlockRotation()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        if (isABlockSelected) { selectedBlock.RotateBlock(false); }
+        if (isABlockSelected) { 
+            selectedBlock.RotateBlock(false);
+            _audioSource.clip = rotationSound;
+            _audioSource.Play();
+        }
     }
 
     public void SelectBlock(GridBlock block)
@@ -290,6 +308,7 @@ public class GameManager_ObjectGame : MonoBehaviour
         ButtonDeselectBlock.SetActive(false);
         ButtonsRotation.SetActive(false);
         ButtonRemoveBlock.SetActive(false);
+
     }
 
     public void ResetPath()
@@ -308,6 +327,9 @@ public class GameManager_ObjectGame : MonoBehaviour
             ButtonDeselectBlock.SetActive(false);
             ButtonRemoveBlock.SetActive(false);
             ButtonsRotation.SetActive(false);
+
+            _audioSource.clip = resetSound;
+            _audioSource.Play();
         }
     }
 
@@ -326,6 +348,9 @@ public class GameManager_ObjectGame : MonoBehaviour
         ButtonDeselectBlock.SetActive(false);
         ButtonRemoveBlock.SetActive(false);
         ButtonsRotation.SetActive(false);
+
+        _audioSource.clip = deleteSound;
+        _audioSource.Play();
     }
     public void CloseGame()
     {
@@ -344,7 +369,12 @@ public class GameManager_ObjectGame : MonoBehaviour
                 //Inventario.istanza.oggetti.Add(objectName);
 
                 SceneManager.LoadScene(DatiPersistenti.istanza.sceneIndex); }
-            else { SceneManager.LoadScene(DatiPersistenti.istanza.sceneIndex); }
+            else {
+                _audioSource.clip = closeSound;
+                _audioSource.Play();
+                SceneManager.LoadScene(DatiPersistenti.istanza.sceneIndex);
+               
+            }
         }
     }
 
@@ -357,6 +387,8 @@ public class GameManager_ObjectGame : MonoBehaviour
     {
         attributeGrids[attributeGamelevel - 1].gameObject.SetActive(false);
         canvas_AttributeComplete.SetActive(true);
+        _audioSource.clip = completeSound;
+        _audioSource.Play();
         yield return new WaitForSeconds(time);
 
         canvas_AttributeComplete.SetActive(false);
