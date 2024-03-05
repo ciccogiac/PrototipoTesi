@@ -53034,10 +53034,10 @@ MonoBehaviour:
   _audioSource: {fileID: 1363628695}
   clips:
   - {fileID: 8300000, guid: 404df797a72d5b04d9c7c381dc29b275, type: 3}
-  - {fileID: 8300000, guid: fd156f39b5a28c6448e8bc0a2f293fe1, type: 3}
-  - {fileID: 8300000, guid: d4ef7803bdb643b498ffc5d2e0391457, type: 3}
   - {fileID: 8300000, guid: 196c93d7289941641ba772bc008775fe, type: 3}
+  - {fileID: 8300000, guid: d4ef7803bdb643b498ffc5d2e0391457, type: 3}
   - {fileID: 8300000, guid: 63f9bedcf13cd0f43975b5048d2717d1, type: 3}
+  - {fileID: 8300000, guid: c64d1216ea7faf34a9c513631fe1631f, type: 3}
 --- !u!82 &1363628695
 AudioSource:
   m_ObjectHideFlags: 0
@@ -58032,7 +58032,7 @@ MonoBehaviour:
   cinemachineBrain: {fileID: 1166632981}
   printer: {fileID: 1115701279}
   DialogCamera: {fileID: 0}
-  _musicSceneIndex: 1
+  _musicSceneIndex: 4
   _audioSource: {fileID: 1529289463}
 --- !u!114 &1529289458
 MonoBehaviour:

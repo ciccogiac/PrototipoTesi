@@ -182,7 +182,6 @@ public class ClassGame_Interface : MonoBehaviour
         DatiPersistenti.istanza.hintCounter = _levelHint.hintCounter;
 
         SceneManager.LoadScene("ClassGame");
-        PlayMusic.istanza.PlaySong(2);
     }
 
     IEnumerator ShowCluesError(float time)

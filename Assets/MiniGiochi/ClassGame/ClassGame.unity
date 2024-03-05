@@ -3383,11 +3383,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 724104673921727971, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0000008940697
+      value: 0.0000020116568
       objectReference: {fileID: 0}
     - target: {fileID: 724104673921727971, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.000005866051
+      value: 0.00005015474
       objectReference: {fileID: 0}
     - target: {fileID: 2322118997252820702, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_Enabled
@@ -3395,27 +3395,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4259042342612154479, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_Positions.Array.data[0].x
-      value: 2.9318576
+      value: 2.931858
       objectReference: {fileID: 0}
     - target: {fileID: 4259042342612154479, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_Positions.Array.data[0].y
-      value: -0.23556264
+      value: -0.23556267
       objectReference: {fileID: 0}
     - target: {fileID: 4259042342612154479, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_Positions.Array.data[0].z
-      value: -0.84846497
+      value: -0.8484726
       objectReference: {fileID: 0}
     - target: {fileID: 4259042342612154479, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_Positions.Array.data[1].x
-      value: 1.2260301
+      value: 1.2260298
       objectReference: {fileID: 0}
     - target: {fileID: 4259042342612154479, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_Positions.Array.data[1].y
-      value: -1.2796674
+      value: -1.2796671
       objectReference: {fileID: 0}
     - target: {fileID: 4259042342612154479, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_Positions.Array.data[1].z
-      value: -0.84846497
+      value: -0.8484802
       objectReference: {fileID: 0}
     - target: {fileID: 7918687370820584656, guid: 228c2c621b1a5f24faa41a3f0f3a5d8c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5167,6 +5167,7 @@ MonoBehaviour:
   gameoverAudio: {fileID: 8300000, guid: a75a8c00a4c6aea45912153733eec8f1, type: 3}
   compileAudio: {fileID: 8300000, guid: 22af4ec1147451b47bb55a35c6b3093a, type: 3}
   wrongCompileAudio: {fileID: 8300000, guid: d783adc40d0f3174696da6d79b379b1b, type: 3}
+  closeAudio: {fileID: 8300000, guid: a608535f692c9b64390f0bec5869965d, type: 3}
 --- !u!4 &1155770832
 Transform:
   m_ObjectHideFlags: 0

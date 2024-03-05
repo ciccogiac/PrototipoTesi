@@ -62,6 +62,7 @@ public class GameManager_ClassGame : MonoBehaviour
     [SerializeField] AudioClip gameoverAudio;
     [SerializeField] AudioClip compileAudio;
     [SerializeField] AudioClip wrongCompileAudio;
+    [SerializeField] AudioClip closeAudio;
 
     // Start is called before the first frame update
     void Start()
@@ -354,7 +355,10 @@ public class GameManager_ClassGame : MonoBehaviour
         }
         
         
-        else { SceneManager.LoadScene(DatiPersistenti.istanza.sceneIndex); }
+        else {
+            audio.clip = closeAudio;
+            audio.Play(); 
+            SceneManager.LoadScene(DatiPersistenti.istanza.sceneIndex); }
 
     }
 

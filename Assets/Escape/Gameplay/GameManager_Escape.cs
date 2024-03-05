@@ -120,7 +120,6 @@ public class GameManager_Escape : MonoBehaviour
         else
         {
             GetComponent<ReloadEscapeData>().ReloadPosition();
-            PlayMusic.istanza.PlaySong(_musicSceneIndex);
         }
 
 

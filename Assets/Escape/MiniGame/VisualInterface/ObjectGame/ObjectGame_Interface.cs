@@ -139,7 +139,6 @@ public class ObjectGame_Interface : MonoBehaviour
             //DatiPersistenti.istanza.coppie = FindObjectOfType<ClassDictionary>().FindClass(className);
        
             SceneManager.LoadScene("ObjectGame");
-            PlayMusic.istanza.PlaySong(1);
         }
     }
 

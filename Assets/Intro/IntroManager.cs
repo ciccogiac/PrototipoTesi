@@ -20,6 +20,8 @@ public class IntroManager : MonoBehaviour
 
     private void Start()
     {
+        if (PlayMusic.istanza != null) { Destroy(PlayMusic.istanza.gameObject); }
+
         saveManager = FindObjectOfType<SaveManager>();
 
         cursorHotspot = new Vector2(0, 0);
