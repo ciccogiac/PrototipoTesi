@@ -21,6 +21,9 @@ public class Drag_Rigidbody : MonoBehaviour
 
     public Transform lineConnectionPoint;
 
+    private AudioSource audio;
+    [SerializeField] AudioClip connectLineAudio;
+    [SerializeField] AudioClip discconnectLineAudio;
     //private GameManager_ClassGame gameManager;
 
     void Start()
@@ -28,6 +31,7 @@ public class Drag_Rigidbody : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         line = GetComponentInChildren<LineRenderer>();
         lc = GetComponentInChildren<LineController>();
+        audio = GetComponent<AudioSource>();
 
         transform.Rotate(0f, 0f, 90f);
     }
@@ -43,6 +47,11 @@ public class Drag_Rigidbody : MonoBehaviour
         //line.colorGradient = line_connection_color ;
         isConnected = true;
 
+
+        audio.clip = connectLineAudio;
+        audio.Play();
+
+
     }
 
     //Disconnette il metodo dall'attributo , basta solo il cambio colore
@@ -50,6 +59,11 @@ public class Drag_Rigidbody : MonoBehaviour
     {
         //line.colorGradient = line_color;
         isConnected = false;
+
+        audio.clip = discconnectLineAudio;
+        audio.Play();
+
+
     }
     void FixedUpdate()
     {

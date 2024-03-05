@@ -14,6 +14,10 @@ public class LineController : MonoBehaviour
     public  List<CreatePointLine> PointLines;
     private int point_counter = 0;
 
+    [SerializeField] AudioSource audio;
+    [SerializeField] AudioClip connectLineAudio;
+    [SerializeField] AudioClip discconnectLineAudio;
+
 
     public void setLineStartingPoint(Transform pi, Transform pf)
     {
@@ -53,6 +57,7 @@ public class LineController : MonoBehaviour
 
     public void setNodes(Transform t,CreatePointLine pl_)
     {
+
         nodes.Insert(nodes.Count-1,t);
         lr.positionCount= lr.positionCount + 1;
         Transform p1 = nodes[nodes.Count - 3].transform;
@@ -61,6 +66,9 @@ public class LineController : MonoBehaviour
 
         point_counter++;
         PointLines.Insert(point_counter - 1, pl_);
+
+        audio.clip = connectLineAudio;
+        audio.Play();
     }
 
     private bool canDeleteNodes()
@@ -111,6 +119,9 @@ public class LineController : MonoBehaviour
                 Transform p2 = nodes[nodes.Count - 2].transform;
                 last_m = calculate_m(p1.position, p2.position);
             }
+
+            audio.clip = discconnectLineAudio;
+            audio.Play();
         }
     }
 

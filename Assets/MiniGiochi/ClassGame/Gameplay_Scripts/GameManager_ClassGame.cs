@@ -58,6 +58,11 @@ public class GameManager_ClassGame : MonoBehaviour
     [SerializeField] Gradient[] connection_Colors;
     private int lineColor_Counter = 0;
 
+    [SerializeField] AudioSource audio;
+    [SerializeField] AudioClip gameoverAudio;
+    [SerializeField] AudioClip compileAudio;
+    [SerializeField] AudioClip wrongCompileAudio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -231,6 +236,10 @@ public class GameManager_ClassGame : MonoBehaviour
                         buttonCompile.SetActive(false);
                         boxCompilation.SetActive(true);
                         compilationResult_UI.Compile(false);
+
+                        audio.clip = wrongCompileAudio;
+                        audio.Play();
+
                         return;
                           }
 
@@ -242,6 +251,9 @@ public class GameManager_ClassGame : MonoBehaviour
         buttonCompile.SetActive(false);
         boxCompilation.SetActive(true);
         compilationResult_UI.Compile(true);
+
+        audio.clip = compileAudio;
+        audio.Play();
     }
 
     private bool VerifyMethodList(List<Method> dictionary_list , List<string> attribute_list)
@@ -354,6 +366,9 @@ public class GameManager_ClassGame : MonoBehaviour
 
     IEnumerator GameoverCoroutine(float time)
     {
+        audio.clip = gameoverAudio;
+        audio.Play();
+
         canvas_Game.SetActive(false);
         canvas_Gameover.SetActive(true);
         yield return new WaitForSeconds(time);

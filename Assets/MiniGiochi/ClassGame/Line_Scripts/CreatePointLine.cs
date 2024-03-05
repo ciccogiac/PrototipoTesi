@@ -7,6 +7,10 @@ public class CreatePointLine : MonoBehaviour
     [SerializeField] LineController lc;
     public List<LineController> lines;
 
+    [SerializeField] ParticleSystem particle;
+
+    [SerializeField] Color particleConnectColor;
+    [SerializeField] Color particleDisconnectColor;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Line")) {
@@ -21,7 +25,8 @@ public class CreatePointLine : MonoBehaviour
 
                 lc.setNodes(node.transform, this);
 
-
+                particle.gameObject.transform.localScale = new Vector3(1, 1, 1);
+                particle.startColor = particleConnectColor;
             }
         }
     }
@@ -42,7 +47,8 @@ public class CreatePointLine : MonoBehaviour
 
                 lc.setNodes(node.transform, this);
 
-
+                particle.gameObject.transform.localScale = new Vector3(1,1,1);
+                particle.startColor = particleConnectColor;
             }
         }
     }
@@ -52,6 +58,12 @@ public class CreatePointLine : MonoBehaviour
         if (lines.Contains(linea))
         {
             lines.Remove(linea);
+
+            if (lines.Count <= 0)
+            {
+                particle.gameObject.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
+                particle.startColor = particleDisconnectColor;
+            }
         }
     }
    

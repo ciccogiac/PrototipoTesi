@@ -26,6 +26,10 @@ public class Method_initializer : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI methodNameText;
 
+    [SerializeField] AudioSource audio;
+    [SerializeField] AudioClip connectLineAudio;
+    [SerializeField] AudioClip discconnectLineAudio;
+
     // Start is called before the first frame update
     public void initialize()
     {
@@ -53,6 +57,9 @@ public class Method_initializer : MonoBehaviour
             }
             if (!button_less.active) { button_less.SetActive(true); }
             if (linee.Count == 4) { button_plus.SetActive(false); }
+
+            audio.clip = connectLineAudio;
+            audio.Play();
         }
 
     }
@@ -68,6 +75,9 @@ public class Method_initializer : MonoBehaviour
             if (!button_plus.active) { button_plus.SetActive(true); }
         }
         if(linee.Count == 0) { button_less.SetActive(false); }
+
+        audio.clip = discconnectLineAudio;
+        audio.Play();
     }
 
     private void Define_ConnectionPoints(Transform l) { l.transform.position = pointArrows_starts[(linee.Count - 1) % 4].position; }
