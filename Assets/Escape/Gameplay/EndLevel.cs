@@ -15,11 +15,26 @@ public class EndLevel : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             if (IsLastScene)
+            {
                 CaricamentoTesto.text = LastLevelText;
-            EndLevelCanvas.SetActive(true);
-            Inventario.istanza.SvuotaInventario();
-            DatiPersistenti.istanza.SvuotaDatiPersistenti();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Single);
+                StartCoroutine(WaitForDurationThenExit(2));
+            }
+            else
+            {
+                EndLevelCanvas.SetActive(true);
+                Inventario.istanza.SvuotaInventario();
+                DatiPersistenti.istanza.SvuotaDatiPersistenti();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Single);
+            }
         }
+    }
+
+    private IEnumerator WaitForDurationThenExit(float duration)
+    {
+        EndLevelCanvas.SetActive(true);
+        yield return new WaitForSeconds(duration);
+        Inventario.istanza.SvuotaInventario();
+        DatiPersistenti.istanza.SvuotaDatiPersistenti();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Single);
     }
 }

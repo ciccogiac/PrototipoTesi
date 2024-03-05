@@ -325,8 +325,8 @@ Transform:
   m_GameObject: {fileID: 7430174}
   serializedVersion: 2
   m_LocalRotation: {x: 0.50000024, y: 0.5000003, z: 0.49999955, w: -0.49999994}
-  m_LocalPosition: {x: -4.1193333, y: -5.06, z: 3.0500007}
-  m_LocalScale: {x: 0.20000002, y: 3.3795283, z: 0.20000002}
+  m_LocalPosition: {x: -4.4519, y: -5.06, z: 3.05}
+  m_LocalScale: {x: 0.20000002, y: 3.7120738, z: 0.20000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1952136585}
@@ -8584,7 +8584,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 46a317ee71810a24eb06c75a55c762d0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b452e27b99b468a4b9a9abc58b2b87a3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -51134,9 +51134,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Un attribbuto pu\xF2 essere public , cio\xE8 il valore dell'attribbuto
-    dell'oggetto pu\xF2 essere letto da altri oggetti. O private , cio\xE8 il valore
-    dell'attribbutto pu\xF2 essere letto solo dai metodi dell'oggetto stesso."
+  m_text: "Un attributo pu\xF2 essere public , cio\xE8 il valore dell'attributo dell'oggetto
+    pu\xF2 essere letto da altri oggetti. O private , cio\xE8 il valore dell'attributto
+    pu\xF2 essere letto solo dai metodi dell'oggetto stesso."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 220c4f4f8722519438731eccc79c1eb7, type: 2}
   m_sharedMaterial: {fileID: -2851088917311796387, guid: 220c4f4f8722519438731eccc79c1eb7, type: 2}
@@ -55635,7 +55635,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Per modificare la visibilit\xE0 degli attribbuti di una classe , bisogna
+  m_text: "Per modificare la visibilit\xE0 degli attributi di una classe , bisogna
     selezionare il progetto di classe nel ClassCreator . Se la classe \xE8 stata
     creata \xE8 possibile accedere alla sezione modifica classe."
   m_isRightToLeft: 0
@@ -66699,8 +66699,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8413193328767778472, guid: 23330fc4b5ba00a4fa921a7f62d587d1, type: 3}
       propertyPath: clueDescription
-      value: "Gli attribbuti possono essere private cio\xE8 solo l'oggetto stesso
-        li pu\xF2 leggere , oppure Public , cioe' tutti gli oggetti possono leggerli.
+      value: "Gli attributi possono essere Private cio\xE8 solo l'oggetto stesso
+        li puo' leggere , oppure Public , cioe' tutti gli oggetti possono leggerli.
         Per cambiare visibilita' di un attributi bisogna recarsi al classCreator
         ed accedere alla sezione modifica della classe specifica."
       objectReference: {fileID: 0}
@@ -70128,8 +70128,8 @@ Transform:
   m_GameObject: {fileID: 1785129654}
   serializedVersion: 2
   m_LocalRotation: {x: 0.50000024, y: 0.5000003, z: 0.49999955, w: -0.49999994}
-  m_LocalPosition: {x: 1.6173339, y: -5.06, z: 3.0499985}
-  m_LocalScale: {x: 0.20000002, y: 0.8827271, z: 0.20000002}
+  m_LocalPosition: {x: 1.2863, y: -5.06, z: 3.05}
+  m_LocalScale: {x: 0.20000002, y: 0.5517044, z: 0.20000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2021763309}
@@ -90295,7 +90295,7 @@ Transform:
   m_GameObject: {fileID: 2122221787}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.47, y: 2.288, z: 2.01}
+  m_LocalPosition: {x: 21.47, y: 2.288, z: 2.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

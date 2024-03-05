@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -204,7 +205,8 @@ namespace Escape.Levels.Level4
         public override void ApplyMethod()
         {
             DoorMonitor.SetError("");
-            foreach (Transform child in transform)
+            var children = transform.Cast<Transform>().ToList();
+            foreach (var child in children)
             {
                 child.parent = null;
             }
