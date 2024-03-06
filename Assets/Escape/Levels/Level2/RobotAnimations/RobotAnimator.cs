@@ -35,7 +35,7 @@ public class RobotAnimator : MonoBehaviour
             {
                 var transform1 = transform;
                 var position = transform1.position;
-                position = new Vector3(14.7f, position.y, position.z);
+                position = new Vector3(14.7f, position.y, 9.21f);
                 transform1.position = position;
             }
         }
@@ -55,7 +55,7 @@ public class RobotAnimator : MonoBehaviour
                 _audioSource.clip = RobotNoiseSound;
                 _audioSource.Play();
                 _animator.SetBool(Talking, false);
-                transform.rotation = Quaternion.Euler(0, 90, 0);
+                transform.rotation = Quaternion.Euler(0, 93, 0);
                 _animator.SetBool(Walking, true);
 
                 IEnumerator WaitForRobotToBeInPosition()
