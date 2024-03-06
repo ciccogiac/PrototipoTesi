@@ -11,6 +11,9 @@ public class Telecomando : MethodListener
     [SerializeField] private int _hintNumber;
     [SerializeField] private LevelHint LevelHint;
 
+    [SerializeField] SphereCollider telecomandoCollider;
+    [SerializeField] SwitchCameraObject inputSwitchCamera;
+
     public override bool Method(List<(string, string)> objectValue)
     {
         foreach (var value in attributeValueListener)
@@ -32,6 +35,12 @@ public class Telecomando : MethodListener
 
 
 
+        }
+
+        if (Teoria != null)
+        {
+            telecomandoCollider.enabled = false;
+            inputSwitchCamera.isSeeing = false;
         }
 
         ApplyMethod();
@@ -59,6 +68,9 @@ public class Telecomando : MethodListener
             {
                 Teoria.isActive = true;
                 Teoria.Interact();
+                telecomandoCollider.enabled = true;
+                FindObjectOfType<GameManager_Escape>()._input.backCamera = false;
+                inputSwitchCamera.isSeeing = true;
             }
         }
         StartCoroutine(ActivateChiave());

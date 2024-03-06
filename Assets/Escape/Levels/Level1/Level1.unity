@@ -14875,6 +14875,7 @@ MonoBehaviour:
   isActive: 1
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 1044517604}
+  isSeeing: 0
   padre: {fileID: 718095558}
   isInteractable: 1
 --- !u!136 &718095561
@@ -20156,6 +20157,8 @@ MonoBehaviour:
   Chiave: {fileID: 1293756923}
   _hintNumber: 3
   LevelHint: {fileID: 1761341411}
+  telecomandoCollider: {fileID: 1008377845}
+  inputSwitchCamera: {fileID: 1147496966}
 --- !u!114 &1008377847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23071,6 +23074,7 @@ MonoBehaviour:
   isActive: 1
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 1756268016}
+  isSeeing: 0
   padre: {fileID: 1106193543696245977}
   isInteractable: 1
 --- !u!1 &1148582844
@@ -25359,6 +25363,7 @@ MonoBehaviour:
   isActive: 1
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 124292449}
+  isSeeing: 0
   padre: {fileID: 1304494865}
   isInteractable: 1
 --- !u!65 &1304494868
@@ -32115,6 +32120,7 @@ MonoBehaviour:
   isActive: 1
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 1992705891}
+  isSeeing: 0
   padre: {fileID: 1705748873}
   isInteractable: 1
 --- !u!135 &1705748876
@@ -32254,6 +32260,7 @@ MonoBehaviour:
   isActive: 1
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 1315474845}
+  isSeeing: 0
   padre: {fileID: 1714569868}
   isInteractable: 1
 --- !u!65 &1714569870
@@ -34928,6 +34935,7 @@ MonoBehaviour:
   isActive: 1
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 441109751}
+  isSeeing: 0
   padre: {fileID: 1807741614}
   isInteractable: 1
 --- !u!65 &1807741617
@@ -39485,6 +39493,7 @@ MonoBehaviour:
   isActive: 1
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 973211704}
+  isSeeing: 0
   padre: {fileID: 2023784403}
   isInteractable: 1
 --- !u!65 &2023784406
