@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -395,12 +396,19 @@ public class GameManager_ObjectGame : MonoBehaviour
         LoadAttributeGame();
     }
 
+#if UNITY_EDITOR
     //Cheat
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+    
+        if (EditorApplication.isPlaying)
         {
-            StartCoroutine(AttributeCompletedCoroutine(1f));
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                StartCoroutine(AttributeCompletedCoroutine(1f));
+            }
+
         }
     }
+#endif
 }
