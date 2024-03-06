@@ -138,7 +138,7 @@ public class ObjectCallMethods : MonoBehaviour
         objectInteraction.isActive = true;
         CallerCanvas.SetActive(false);
 
-        if (isTutorialStarted) { isTutorialStarted = false; playerInput._stopRaycast = false; gameObject.SetActive(false); return; }
+        if (isTutorialStarted) { playerInput._stopRaycast = false; gameObject.SetActive(false); return; }
 
         input.enabled = true;
         if (objectInteraction.isObjectPermanent || objectInteraction.isObjectSee) 
@@ -146,7 +146,8 @@ public class ObjectCallMethods : MonoBehaviour
             Cursor.SetCursor(gameManager.cursorSwitchCameraTexture, new Vector2(gameManager.cursorSwitchCameraTexture.width / 2, gameManager.cursorSwitchCameraTexture.height / 2), CursorMode.Auto);
             Cursor.visible = true; Cursor.lockState = CursorLockMode.Confined;
             objectInteraction.gameObject.GetComponent<Outline>().enabled = false;
-            interactSwitchCameraCanvas.SetActive(true); gameManager.isSeeing = true;
+            interactSwitchCameraCanvas.SetActive(true);
+            gameManager.isSeeing = true;
             input.SwitchCurrentActionMap("SwitchCamera");
         }
         else{ Cursor.visible = false; Cursor.lockState = CursorLockMode.Locked; interactCanvas.SetActive(true); }

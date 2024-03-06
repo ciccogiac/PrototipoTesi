@@ -991,6 +991,7 @@ MonoBehaviour:
   isActive: 1
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 1136945917}
+  isSeeing: 0
   padre: {fileID: 36789263}
   isInteractable: 1
 --- !u!135 &36789266
@@ -26755,6 +26756,7 @@ MonoBehaviour:
   isActive: 1
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 332544665}
+  isSeeing: 0
   padre: {fileID: 523812778}
   isInteractable: 1
 --- !u!114 &523812782
@@ -36001,6 +36003,7 @@ MonoBehaviour:
   isActive: 1
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 42661898}
+  isSeeing: 0
   padre: {fileID: 663034368}
   isInteractable: 1
 --- !u!65 &663034373
@@ -52828,6 +52831,8 @@ MonoBehaviour:
   Ray2: {fileID: 9099925067382817600}
   ObjectCallCanvas: {fileID: 1956049593}
   gameManager: {fileID: 1529289457}
+  switchCamera: {fileID: 6975999807204024556}
+  colliderPulsante: {fileID: 1912406018}
 --- !u!1 &1217720937
 GameObject:
   m_ObjectHideFlags: 0
@@ -54371,6 +54376,8 @@ MonoBehaviour:
   okButton: {fileID: 1034949581}
   door: {fileID: 1215267298}
   gameManager: {fileID: 1529289457}
+  ocm: {fileID: 1956049593}
+  pulsanteCollider: {fileID: 1912406018}
 --- !u!114 &1286753996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72480,6 +72487,7 @@ MonoBehaviour:
   isActive: 1
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 1961591789}
+  isSeeing: 0
   padre: {fileID: 1771159672}
   isInteractable: 1
 --- !u!65 &1771159675
@@ -90780,6 +90788,7 @@ MonoBehaviour:
   isActive: 1
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 1028601524}
+  isSeeing: 0
   padre: {fileID: 2038557932}
   isInteractable: 1
 --- !u!65 &2038557935
@@ -92447,6 +92456,7 @@ MonoBehaviour:
   isActive: 1
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 1819680639}
+  isSeeing: 0
   padre: {fileID: 2101093651}
   isInteractable: 1
 --- !u!136 &2101093654
@@ -94811,6 +94821,7 @@ MonoBehaviour:
   isActive: 1
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 1632347578}
+  isSeeing: 0
   padre: {fileID: 2123025872}
   isInteractable: 1
 --- !u!65 &2123025875
@@ -96598,6 +96609,7 @@ MonoBehaviour:
   isActive: 1
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 1220972266}
+  isSeeing: 0
   padre: {fileID: 919132148472443178}
   isInteractable: 1
 --- !u!65 &3469287838274036791
@@ -96943,6 +96955,7 @@ MonoBehaviour:
   isActive: 1
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 1727372312}
+  isSeeing: 0
   padre: {fileID: 847074233769027125}
   isInteractable: 1
 --- !u!65 &3973690817873130284
@@ -96989,6 +97002,7 @@ MonoBehaviour:
   isActive: 1
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 1909678309}
+  isSeeing: 0
   padre: {fileID: 347524346608272154}
   isInteractable: 1
 --- !u!65 &4050614806424425991
@@ -99733,6 +99747,7 @@ MonoBehaviour:
   isActive: 1
   outlineColor: {r: 1, g: 0, b: 1, a: 1}
   objectCamera: {fileID: 1074770047}
+  isSeeing: 0
   padre: {fileID: 6641597672076195316}
   isInteractable: 1
 --- !u!65 &6975999807204024557

@@ -30,6 +30,8 @@ namespace Escape.Levels.Level4
         [SerializeField] ObjectCallMethods ObjectCallCanvas;
         [SerializeField] GameManager_Escape gameManager;
 
+        [SerializeField] SwitchCameraObject switchCamera;
+        [SerializeField] SphereCollider colliderPulsante;
         public override void SetClass(string nameClass)
         {
             base.SetClass(nameClass);
@@ -49,7 +51,9 @@ namespace Escape.Levels.Level4
         }
         public override bool  Method(List<(string, string)> objectValue)
         {
-            if (className != ClassValueListener)
+            colliderPulsante.enabled = false;
+
+                if (className != ClassValueListener)
             {
                 DoorMonitor.SetError("Classe Errata");
                 ChangeTubeColor("Error");
@@ -193,8 +197,14 @@ namespace Escape.Levels.Level4
             if(!error)
                 ApplyMethod();
 
-            if(gameManager.isSeeing)
+            if (gameManager.isSeeing && !Ocm.isTutorialStarted)
+            {
+                switchCamera.isSeeing = false;
                 ObjectCallCanvas.CloseInterface();
+                switchCamera.ReturnToPrimaryCamera();
+
+            }
+                
 
         }
         public void GetTeory()

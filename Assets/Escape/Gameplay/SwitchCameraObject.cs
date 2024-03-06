@@ -10,7 +10,7 @@ public class SwitchCameraObject : Interactable
     [SerializeField] CinemachineVirtualCamera objectCamera;
 
     private GameManager_Escape gameManager;
-    private bool isSeeing = false;
+    public bool isSeeing = false;
 
     private List<OggettoEscape> oggetti;
     private List<ReadObject> oggettiRead;
@@ -34,7 +34,7 @@ public class SwitchCameraObject : Interactable
         ChangeObjectActivateState(false);
     }
 
-    private void ChangeObjectActivateState(bool state)
+    public void ChangeObjectActivateState(bool state)
     {
         foreach(var x in oggetti)
         {

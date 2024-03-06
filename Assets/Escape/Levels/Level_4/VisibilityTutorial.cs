@@ -22,7 +22,10 @@ public class VisibilityTutorial : MonoBehaviour
     [SerializeField] DoorLevel4 door;
 
     [SerializeField] GameManager_Escape gameManager;
-   
+
+    [SerializeField] ObjectCallMethods ocm;
+
+    [SerializeField] SphereCollider pulsanteCollider;
 
     private void OnEnable()
     {
@@ -76,8 +79,13 @@ public class VisibilityTutorial : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
-            gameManager.isSeeing = true;
+            //gameManager.isSeeing = true;
+            if (gameManager.isSeeing)
+                pulsanteCollider.enabled = true;
+
+            ocm.isTutorialStarted = false;
             door.GetTeory();
+           
         }
     }
 }
