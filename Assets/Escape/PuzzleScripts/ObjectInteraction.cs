@@ -1,14 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[Serializable]
+public class ObjectInstantiatorValues
+{
+    [SerializeField] public string ClassName;
+    [SerializeField] public Quaternion Rotation;
+    [SerializeField] public float Scale;
+}
 
 public class ObjectInteraction : Interactable
 {
     [SerializeField] GameObject objectCollectedCanvas;
     [SerializeField] GameObject objectCallMethodsCanvas;
     public Transform objectPoint;
-    [SerializeField] public Quaternion Rotation = Quaternion.identity;
-    [SerializeField] public float Scale = 1f;
+    [SerializeField] public List<ObjectInstantiatorValues> ObjectInstantiatorValuesList;
 
     public OggettoEscape oggetto;
     public MethodListener methodListener;

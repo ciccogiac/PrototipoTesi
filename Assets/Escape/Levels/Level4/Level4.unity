@@ -11027,8 +11027,10 @@ MonoBehaviour:
   objectCollectedCanvas: {fileID: 859863358}
   objectCallMethodsCanvas: {fileID: 1956049591}
   objectPoint: {fileID: 433962310}
-  Rotation: {x: 0, y: 0, z: 0, w: 1}
-  Scale: 8
+  ObjectInstantiatorValuesList:
+  - ClassName: Ologramma
+    Rotation: {x: 0, y: 0, z: 0, w: 0}
+    Scale: 8
   oggetto: {fileID: 0}
   methodListener: {fileID: 1952136582}
   Id: 0
@@ -75305,8 +75307,7 @@ MonoBehaviour:
   objectCollectedCanvas: {fileID: 0}
   objectCallMethodsCanvas: {fileID: 1956049591}
   objectPoint: {fileID: 0}
-  Rotation: {x: 0, y: 0, z: 0, w: 1}
-  Scale: 1
+  ObjectInstantiatorValuesList: []
   oggetto: {fileID: 1871283330}
   methodListener: {fileID: 1871283328}
   Id: 1
@@ -82150,8 +82151,7 @@ MonoBehaviour:
   objectCollectedCanvas: {fileID: 0}
   objectCallMethodsCanvas: {fileID: 1956049591}
   objectPoint: {fileID: 0}
-  Rotation: {x: 0, y: 0, z: 0, w: 1}
-  Scale: 1
+  ObjectInstantiatorValuesList: []
   oggetto: {fileID: 1912406020}
   methodListener: {fileID: 1215267298}
   Id: 2
@@ -97166,8 +97166,10 @@ MonoBehaviour:
   objectCollectedCanvas: {fileID: 859863358}
   objectCallMethodsCanvas: {fileID: 1956049591}
   objectPoint: {fileID: 1267967629}
-  Rotation: {x: 0, y: 0, z: 0, w: 1}
-  Scale: 8
+  ObjectInstantiatorValuesList:
+  - ClassName: Ologramma
+    Rotation: {x: 0, y: 0, z: 0, w: 0}
+    Scale: 8
   oggetto: {fileID: 0}
   methodListener: {fileID: 2021763306}
   Id: 3
@@ -98780,8 +98782,7 @@ MonoBehaviour:
   objectCollectedCanvas: {fileID: 0}
   objectCallMethodsCanvas: {fileID: 1956049591}
   objectPoint: {fileID: 0}
-  Rotation: {x: 0, y: 0, z: 0, w: 1}
-  Scale: 1
+  ObjectInstantiatorValuesList: []
   oggetto: {fileID: 4466941433625247046}
   methodListener: {fileID: 4466941433625247048}
   Id: 4

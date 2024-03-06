@@ -189,7 +189,9 @@ public class GameManager_Escape : MonoBehaviour
 
     private void InstanziaOggetto(OggettoEscapeValue oggettoEscapeValue , ObjectInteraction objectInteraction)
     {
-        GameObject oggettoIstanziato = Instantiate(oggettoEscapeValue.classPrefab, objectInteraction.objectPoint.position, objectInteraction.Rotation);
+        var objectInstantiatorValues =
+            objectInteraction.ObjectInstantiatorValuesList.Find(x => x.ClassName == oggettoEscapeValue.className);
+        GameObject oggettoIstanziato = Instantiate(oggettoEscapeValue.classPrefab, objectInteraction.objectPoint.position, objectInstantiatorValues.Rotation);
         oggettoIstanziato.GetComponent<OggettoEscape>().SetOggettoEscapeValue(oggettoEscapeValue);
         oggettoIstanziato.GetComponent<OggettoEscape>().isActive = false;
         oggettoIstanziato.GetComponent<Collider>().enabled = false;
@@ -199,7 +201,7 @@ public class GameManager_Escape : MonoBehaviour
 
         //float fattoreScala = 4f;
         //oggettoIstanziato.gameObject.transform.localScale *= fattoreScala;
-        oggettoIstanziato.transform.localScale = objectInteraction.Scale * Vector3.one;
+        oggettoIstanziato.transform.localScale = objectInstantiatorValues.Scale * Vector3.one;
         oggettoIstanziato.gameObject.SetActive(true);
 
         //oggettoIstanziato.GetComponent<OggettoEscape>().SetObjectValue();

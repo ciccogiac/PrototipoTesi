@@ -86,9 +86,11 @@ public class ObjectCollected_Canvas : MonoBehaviour
         if (objectInteraction.oggetto == null)
         {
             OggettoEscapeValue oggettoEscapeValue = Inventario.istanza.oggetti.Find(x => x.objectName == objectName);
+            var objectInstantiatorValues =
+                objectInteraction.ObjectInstantiatorValuesList.Find(x => x.ClassName == oggettoEscapeValue.className);
             oggettoEscapeValue.ObjectInteractorId = objectInteraction.Id;
             //GameObject oggettoIstanziato = Instantiate(objectPrefab, objectInteraction.objectPoint.position, Quaternion.identity);
-            GameObject oggettoIstanziato = Instantiate(oggettoEscapeValue.classPrefab, objectInteraction.objectPoint.position, objectInteraction.Rotation);
+            GameObject oggettoIstanziato = Instantiate(oggettoEscapeValue.classPrefab, objectInteraction.objectPoint.position, objectInstantiatorValues.Rotation);
             oggettoIstanziato.GetComponent<OggettoEscape>().SetOggettoEscapeValue( oggettoEscapeValue);
             oggettoIstanziato.GetComponent<OggettoEscape>().isActive = false;
 
@@ -96,7 +98,7 @@ public class ObjectCollected_Canvas : MonoBehaviour
 
             oggettoIstanziato.transform.position = objectInteraction.objectPoint.position;
             oggettoIstanziato.transform.SetParent(objectInteraction.gameObject.transform);
-            oggettoIstanziato.transform.localScale = objectInteraction.Scale * Vector3.one;
+            oggettoIstanziato.transform.localScale = objectInstantiatorValues.Scale * Vector3.one;
 
             //oggettoIstanziato.gameObject.GetComponent<MeshFilter>().mesh = oggettoIstanziato.GetComponent<OggettoEscape>().oggettoEscapeValue.mesh;
             //oggettoIstanziato.gameObject.GetComponent<MeshRenderer>().materials = oggettoIstanziato.GetComponent<OggettoEscape>().oggettoEscapeValue.material;

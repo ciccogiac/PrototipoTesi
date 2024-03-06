@@ -20230,8 +20230,7 @@ MonoBehaviour:
   objectCollectedCanvas: {fileID: 0}
   objectCallMethodsCanvas: {fileID: 1394900117}
   objectPoint: {fileID: 0}
-  Rotation: {x: 0, y: 0, z: 0, w: 0}
-  Scale: 1
+  ObjectInstantiatorValuesList: []
   oggetto: {fileID: 1008377848}
   methodListener: {fileID: 1008377846}
   Id: 0
@@ -21409,8 +21408,7 @@ MonoBehaviour:
   objectCollectedCanvas: {fileID: 581235237}
   objectCallMethodsCanvas: {fileID: 1394900117}
   objectPoint: {fileID: 1280432184}
-  Rotation: {x: 0, y: 0, z: 0, w: 0}
-  Scale: 1
+  ObjectInstantiatorValuesList: []
   oggetto: {fileID: 0}
   methodListener: {fileID: 1611106265}
   Id: 1
@@ -51980,8 +51978,10 @@ MonoBehaviour:
   objectCollectedCanvas: {fileID: 581235237}
   objectCallMethodsCanvas: {fileID: 1394900117}
   objectPoint: {fileID: 1972897027}
-  Rotation: {x: 0.49999997, y: 0.49999997, z: -0.49999997, w: 0.49999997}
-  Scale: 1
+  ObjectInstantiatorValuesList:
+  - ClassName: Chiavi
+    Rotation: {x: 0.49999997, y: 0.49999997, z: -0.49999997, w: 0.49999997}
+    Scale: 0.75
   oggetto: {fileID: 0}
   methodListener: {fileID: 5564319381860499345}
   Id: 2
