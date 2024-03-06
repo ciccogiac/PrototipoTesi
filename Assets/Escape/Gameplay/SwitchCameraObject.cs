@@ -21,6 +21,7 @@ public class SwitchCameraObject : Interactable
 
     public bool isInteractable = true;
 
+    private CharacterController character;
     
     private void Start()
     {
@@ -30,6 +31,8 @@ public class SwitchCameraObject : Interactable
         objectInteraction = padre.GetComponentsInChildren<ObjectInteraction>().ToList();
         //clues = padre.GetComponentsInChildren<Clue>().ToList();
         clues = padre.GetComponentsInChildren<Clue>().Where(clue => clue.GetComponent<OggettoEscape>() == null).ToList();
+
+        character = FindObjectOfType<CharacterController>();
 
         ChangeObjectActivateState(false);
     }
@@ -106,6 +109,7 @@ public class SwitchCameraObject : Interactable
     {
         if (isInteractable)
         {
+            character.enabled = false;
             GetComponent<Collider>().enabled = false;
             gameManager.SwitchCamera(objectCamera);
 
@@ -148,5 +152,6 @@ public class SwitchCameraObject : Interactable
         ChangeObjectActivateState(false);
 
         GetComponent<Collider>().enabled = true;
+        character.enabled = true;
     }
 }
