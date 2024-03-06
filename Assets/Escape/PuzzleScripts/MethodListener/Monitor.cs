@@ -40,6 +40,7 @@ public class Monitor : MethodListener
             oggettoIstanziato.GetComponent<AttributeValueMonitor>().SetAttributeValueMonitor(attribute.Item1,attribute.Item2);
             oggettoIstanziato.transform.SetParent(attributeBox.transform);
             oggettoIstanziato.transform.rotation = new Quaternion(0f,0f,0f,0f);
+            oggettoIstanziato.transform.localScale = new Vector3(-1, 1, 1);
         }
 
     }
