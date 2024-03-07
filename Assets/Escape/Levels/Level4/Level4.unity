@@ -35228,7 +35228,7 @@ MonoBehaviour:
   m_Spacing: 20
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 1
+  m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
@@ -48418,8 +48418,8 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 0
   m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
@@ -53871,8 +53871,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Un attributo pu\xF2 essere public , cio\xE8 il valore dell'attributo dell'oggetto
-    pu\xF2 essere letto da altri oggetti. O private , cio\xE8 il valore dell'attributto
+  m_text: "Un attributo puo' essere public , cio\xE8 il valore dell'attributo dell'oggetto
+    puo' essere letto da altri oggetti, O private , cio\xE8 il valore dell'attributo
     pu\xF2 essere letto solo dai metodi dell'oggetto stesso."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 220c4f4f8722519438731eccc79c1eb7, type: 2}
@@ -58357,8 +58357,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Per modificare la visibilit\xE0 degli attributi di una classe , bisogna
-    selezionare il progetto di classe nel ClassCreator . Se la classe \xE8 stata
-    creata \xE8 possibile accedere alla sezione modifica classe."
+    selezionare il progetto di classe nel ClassCreator . Se la classe e' stata creata
+    e' possibile accedere alla sezione modifica classe."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 220c4f4f8722519438731eccc79c1eb7, type: 2}
   m_sharedMaterial: {fileID: -2851088917311796387, guid: 220c4f4f8722519438731eccc79c1eb7, type: 2}
@@ -61997,8 +61997,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2403737347614437334, guid: 4cf0b4d1332f45445b3736ce3bca2aaf, type: 3}
       propertyPath: clueDescription
-      value: Progetto utile alla creazione della classe OlogrammaCreatore, costituita
-        dal nome del creatore e due metodi che leggono e settano il nome
+      value: Progetto utile alla creazione della classe Ologramma, costituita dal
+        nome dell'ologramma e due metodi che leggono e settano il nome
       objectReference: {fileID: 0}
     - target: {fileID: 2504407118144839365, guid: 4cf0b4d1332f45445b3736ce3bca2aaf, type: 3}
       propertyPath: m_Name
@@ -63834,10 +63834,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 522181100}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1500, y: 400}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -7.1368}
+  m_SizeDelta: {x: 650, y: -96.5948}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1657082042
 CanvasRenderer:
@@ -63898,7 +63898,7 @@ MonoBehaviour:
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 20
+  m_fontSizeMin: 19
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -69420,10 +69420,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8413193328767778472, guid: 23330fc4b5ba00a4fa921a7f62d587d1, type: 3}
       propertyPath: clueDescription
-      value: "Gli attributi possono essere Private cio\xE8 solo l'oggetto stesso
-        li puo' leggere , oppure Public , cioe' tutti gli oggetti possono leggerli.
-        Per cambiare visibilita' di un attributi bisogna recarsi al classCreator
-        ed accedere alla sezione modifica della classe specifica."
+      value: "Gli attributi possono avere due livelli di visibilit\xE0 :  Private
+        cio\xE8 solo l'oggetto stesso li puo' leggere ; oppure Public , cioe' tutti
+        gli oggetti possono leggerli. Per cambiare visibilita' di un attributo bisogna
+        recarsi al classCreator ed accedere alla sezione modifica della classe specifica."
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6352244801360670307, guid: 23330fc4b5ba00a4fa921a7f62d587d1, type: 3}

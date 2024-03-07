@@ -10994,6 +10994,7 @@ MonoBehaviour:
   - {fileID: 718095560}
   - {fileID: 1807741616}
   - {fileID: 1705748875}
+  - {fileID: 1304494867}
   objectInteractions:
   - {fileID: 5336186960055355496}
 --- !u!114 &534642475
@@ -11201,10 +11202,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1805043685}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1500, y: 400}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -7.1368103}
+  m_SizeDelta: {x: 650, y: -96.5948}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &544531012
 CanvasRenderer:
@@ -11234,7 +11235,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Gli oggetti di programmazione sono strumenti che servono ad interagire
+    con il mondo esterno, sono costituiti da metodi e attributi. I metodi eseguono
+    azioni specifiche , leggendo o impostando  i valori degli attribbuti a cui fanno
+    riferimento . Per eseguire un'azione , una volta selezionato il metodo dall'interfaccia
+    del'oggetto , bisogna cliccare sul tasto CallMethod per attivarlo .
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 220c4f4f8722519438731eccc79c1eb7, type: 2}
   m_sharedMaterial: {fileID: -2851088917311796387, guid: 220c4f4f8722519438731eccc79c1eb7, type: 2}
@@ -11261,11 +11266,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 19
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 20
+  m_fontSizeMin: 19
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -22086,7 +22091,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1088199203
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24198,8 +24203,8 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 0
   m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
@@ -26642,7 +26647,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 810, y: -215}
+  m_AnchoredPosition: {x: 810, y: -340}
   m_SizeDelta: {x: 1620, y: 430}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1388029741
@@ -27465,9 +27470,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8413193328767778472, guid: 23330fc4b5ba00a4fa921a7f62d587d1, type: 3}
       propertyPath: clueDescription
-      value: "Gli oggetti possono essere raccolti nel mondo di gioco e usati in luoghi
-        appositi, dove \xE8 possibile richiamarne i metodi giusti per fare avvenire
-        delle interazioni."
+      value: Gli oggetti possono essere raccolti nel mondo di gioco e usati in luoghi
+        appositi, dove e' possibile richiamarne i metodi giusti per fare avvenire
+        delle interazioni.
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6352244801360670307, guid: 23330fc4b5ba00a4fa921a7f62d587d1, type: 3}
@@ -33584,15 +33589,16 @@ MonoBehaviour:
   - hintText: Sembra ci sia un rumore provenire dalla porta
     hintFirstTimer: 20
     hintRepeatTimer: 10
-  - hintText: "Il vecchio ha detto che l'orologio non cambia pi\xF9 la sua ora ,
-      chissa perche' ..."
-    hintFirstTimer: 30
-    hintRepeatTimer: 15
+  - hintText: "Il vecchio ha detto che l\u2019ultimo prigioniero guardava sempre
+      lo stesso canale e che ha lasciato l\u2019orologio ad un\u2019ora fissa, chissa\u2019
+      perche\u2019 ..."
+    hintFirstTimer: 60
+    hintRepeatTimer: 45
   - hintText: Questa chiave potrebbe aprire la cella della prigione
-    hintFirstTimer: 10
-    hintRepeatTimer: 15
+    hintFirstTimer: 60
+    hintRepeatTimer: 45
   hintCounter: 0
-  hintDuration: 15
+  hintDuration: 20
   _IsHintActive: 1
 --- !u!1 &1764050530
 GameObject:
@@ -34594,7 +34600,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1805043685
 RectTransform:
   m_ObjectHideFlags: 0

@@ -65,6 +65,7 @@ public class ObjectGame_Interface : MonoBehaviour
                 oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = classe.className;
                 oggettoIstanziato.GetComponent<Button>().onClick.AddListener(() => ActiveNameObjectBox(classe.className, oggettoIstanziato));
                 oggettoIstanziato.transform.SetParent(Box_Classes.transform);
+                oggettoIstanziato.transform.localScale = Vector3.one;
             }
             
         }

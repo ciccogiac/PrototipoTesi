@@ -81,6 +81,7 @@ public class InventoryLoad : MonoBehaviour
             oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x.Item1;
             oggettoIstanziato.GetComponent<DescriptionInventoryButton>().InitializeDescriptionInventory(Clue.ClueType.Metodo, x.Item1, x.Item2, this);
             oggettoIstanziato.transform.SetParent(Box_Methods.transform);
+            oggettoIstanziato.transform.localScale = Vector3.one;
 
         }
 
@@ -90,6 +91,7 @@ public class InventoryLoad : MonoBehaviour
             oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x.Item1;
             oggettoIstanziato.GetComponent<DescriptionInventoryButton>().InitializeDescriptionInventory(Clue.ClueType.Attributo, x.Item1, x.Item2, this);
             oggettoIstanziato.transform.SetParent(Box_Attributes.transform);
+            oggettoIstanziato.transform.localScale = Vector3.one;
 
         }
 
@@ -99,6 +101,7 @@ public class InventoryLoad : MonoBehaviour
             oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x.Item1;
             oggettoIstanziato.GetComponent<DescriptionInventoryButton>().InitializeDescriptionInventory(Clue.ClueType.Attributo, x.Item1, x.Item2, this);
             oggettoIstanziato.transform.SetParent(Box_progettoClasse.transform);
+            oggettoIstanziato.transform.localScale = Vector3.one;
 
         }
 
@@ -108,6 +111,7 @@ public class InventoryLoad : MonoBehaviour
             oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x.className;
             oggettoIstanziato.GetComponent<ClassInventoryButton>().InitializeClassInventoryVisualization(x.className,this);
             oggettoIstanziato.transform.SetParent(Box_Classi.transform);
+            oggettoIstanziato.transform.localScale = Vector3.one;
 
         }
 
@@ -117,6 +121,7 @@ public class InventoryLoad : MonoBehaviour
             oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x.objectName;
             oggettoIstanziato.GetComponent<ObjectInventoryButton>().InitializeObjectInventory(x, this);
             oggettoIstanziato.transform.SetParent(Box_Oggetti.transform);
+            oggettoIstanziato.transform.localScale = Vector3.one;
 
         }
 
@@ -126,6 +131,7 @@ public class InventoryLoad : MonoBehaviour
             oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = x.Item1;
             oggettoIstanziato.GetComponent<DescriptionInventoryButton>().InitializeDescriptionInventory(Clue.ClueType.Teoria, x.Item1, x.Item2, this);
             oggettoIstanziato.transform.SetParent(Box_Teoria.transform);
+            oggettoIstanziato.transform.localScale = Vector3.one;
 
         }
     }
@@ -170,6 +176,7 @@ public class InventoryLoad : MonoBehaviour
         GameObject oggettoIstanziato = Instantiate(Prefab, transform.position, Quaternion.identity);
         oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = clueText;
         oggettoIstanziato.transform.SetParent(Box.transform);
+        oggettoIstanziato.transform.localScale = Vector3.one;
 
         if (clueType == Clue.ClueType.Classe)
         {
@@ -191,7 +198,7 @@ public class InventoryLoad : MonoBehaviour
         GameObject oggettoIstanziato = Instantiate(oggetto_Prefab, transform.position, Quaternion.identity);
         oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = oggetto.objectName;
         oggettoIstanziato.transform.SetParent(Box_Oggetti.transform);
-
+        oggettoIstanziato.transform.localScale = Vector3.one;
         oggettoIstanziato.GetComponent<ObjectInventoryButton>().InitializeObjectInventory(oggetto, this);
         
     }
@@ -271,10 +278,10 @@ public class InventoryLoad : MonoBehaviour
             //oggettoIstanziato.GetComponentInChildren<ClassValueInventory>().SetClassValue(attribute.attribute, attribute.visibility, attribute.methods);
             oggettoIstanziato.GetComponentInChildren<AttributeInventoryInitializer>().SetAttributeValue(attribute.attribute, attribute.visibility== true ? "Public" : "Private");
             oggettoIstanziato.transform.SetParent(ClassAttributiBox.transform);
+            oggettoIstanziato.transform.localScale = Vector3.one;
 
-           
 
-                foreach (var x in attribute.methods)
+            foreach (var x in attribute.methods)
                 {
                     if (d.ContainsKey(x.methodName))
                     {
@@ -295,9 +302,9 @@ public class InventoryLoad : MonoBehaviour
             GameObject oggettoIstanziato = Instantiate(classMetodi_prefab, transform.position, Quaternion.identity);
             //oggettoIstanziato.GetComponentInChildren<ClassValueInventory>().SetClassValue(attribute.attribute, attribute.visibility, attribute.methods);
             oggettoIstanziato.GetComponentInChildren<MethodInventoryInitializer>().SetAttributeValue(method.Key);
-            
             oggettoIstanziato.transform.SetParent(ClassMetodiBox.transform);
-            if(method.Value!=null)
+            oggettoIstanziato.transform.localScale = Vector3.one;
+            if (method.Value!=null)
                 oggettoIstanziato.GetComponent<LineControllerClassPanel>().SetPointLine( method.Value);
         }
 
@@ -331,6 +338,7 @@ public class InventoryLoad : MonoBehaviour
             GameObject oggettoIstanziato = Instantiate(attributePrefab, transform.position, Quaternion.identity);
             oggettoIstanziato.GetComponent<AttributeInventoryInitializer>().SetAttributeValue(attributo.attributeName, attributo.attributeValue);
             oggettoIstanziato.transform.SetParent(attributeBox.transform);
+            oggettoIstanziato.transform.localScale = Vector3.one;
         }
 
         foreach (var metodo in oggetto.methods)
@@ -338,6 +346,7 @@ public class InventoryLoad : MonoBehaviour
             GameObject oggettoIstanziato = Instantiate(methodPrefab, transform.position, Quaternion.identity);
             oggettoIstanziato.GetComponentInChildren<MethodInventoryInitializer>().SetAttributeValue(metodo.method.methodName);
             oggettoIstanziato.transform.SetParent(methodBox.transform);
+            oggettoIstanziato.transform.localScale = Vector3.one;
         }
         
 
