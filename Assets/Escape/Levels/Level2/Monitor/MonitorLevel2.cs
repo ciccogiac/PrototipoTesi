@@ -29,6 +29,7 @@ namespace Escape.Levels.Level2
                 objInstantiated.GetComponent<AttributeValueMonitor>()
                     .SetAttributeValueMonitor(attribute.Item1, attribute.Item2);
                 objInstantiated.transform.SetParent(AttributeBox.transform);
+                objInstantiated.transform.localScale = new Vector3(-1, 1, 1);
                 objInstantiated.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
             }
         }
