@@ -4980,7 +4980,7 @@ MonoBehaviour:
   - Nome
   className: Classe di Prova
   compilationResult_UI: {fileID: 1134486335}
-  secondToShowGameover: 5
+  secondToShowGameover: 3.5
   canvas_Gameover: {fileID: 123247836}
   canvas_Game: {fileID: 1822139918}
   tempoIniziale: 60

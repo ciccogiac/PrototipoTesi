@@ -6486,10 +6486,11 @@ PrefabInstance:
     - target: {fileID: 8413193328767778472, guid: 23330fc4b5ba00a4fa921a7f62d587d1, type: 3}
       propertyPath: clueDescription
       value: Gli oggetti di programmazione sono strumenti che servono ad interagire
-        con il mondo esterno. Sono costruiti a partire da una classe e sfruttano
-        i suoi metodi e attributi. I metodi sono lo strumento che permette di interagire
-        con il mondo , ti basta richiamarli , e loro eseguieranno azioni specifiche
-        , leggendo i valori degli attribbuti a cui fanno riferimento.
+        con il mondo esterno, sono costituiti da metodi e attributi. I metodi eseguono
+        azioni specifiche , leggendo o impostando  i valori degli attribbuti a cui
+        fanno riferimento . Per eseguire un'azione , una volta selezionato il metodo
+        dall'interfaccia del'oggetto , bisogna cliccare sul tasto CallMethod per
+        attivarlo .
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6352244801360670307, guid: 23330fc4b5ba00a4fa921a7f62d587d1, type: 3}
@@ -31856,7 +31857,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 180}
+  m_SizeDelta: {x: 800, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1702231758
 MonoBehaviour:
