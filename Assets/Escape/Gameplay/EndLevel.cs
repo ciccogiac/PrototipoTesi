@@ -8,7 +8,7 @@ public class EndLevel : MonoBehaviour
 {
     [SerializeField] private GameObject EndLevelCanvas;
     [SerializeField] private TMP_Text CaricamentoTesto;
-    private const string LastLevelText = "Per ora e' tutto!";
+    private const string LastLevelText = "To be continued...";
     [SerializeField] private bool IsLastScene;
     private void OnTriggerEnter(Collider other)
     {

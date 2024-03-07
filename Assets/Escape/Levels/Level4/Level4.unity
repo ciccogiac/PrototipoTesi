@@ -16873,6 +16873,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7013712188833926715, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
+      propertyPath: BackButtonImg
+      value: 
+      objectReference: {fileID: 1701832421}
+    - target: {fileID: 7013712188833926715, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: CharacterName
       value: 
       objectReference: {fileID: 1815082893}
@@ -69997,6 +70001,11 @@ RectTransform:
 --- !u!1 &1701832420 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3161574163372823260, guid: 2568070ddb46a14478f616e1ecd5c091, type: 3}
+  m_PrefabInstance: {fileID: 1701832418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1701832421 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8715905230185263237, guid: 2568070ddb46a14478f616e1ecd5c091, type: 3}
   m_PrefabInstance: {fileID: 1701832418}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1704577463

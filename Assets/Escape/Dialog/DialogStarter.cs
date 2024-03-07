@@ -22,6 +22,7 @@ public class DialogStarter : MonoBehaviour
     public bool _dialogUsed;
     private bool _dialogOpen;
     private bool _clickTriggered;
+    private bool _backClickTriggered;
     private bool _typing;
     private IEnumerator _typingCoroutine;
 
@@ -31,6 +32,7 @@ public class DialogStarter : MonoBehaviour
     [SerializeField] bool _isTeoryDialog = false;
     [SerializeField] bool _isHintDialog = false;
     [SerializeField] int _hintNumber;
+    [SerializeField] private GameObject BackButtonImg;
 
     public int _dialogID;
     private bool _dialogFinished;
@@ -88,6 +90,29 @@ public class DialogStarter : MonoBehaviour
                 _input.skip = false;
                 EndDialog();
             }
+
+            if (_counter > 0)
+            {
+                if (!BackButtonImg.activeSelf)
+                {
+                    BackButtonImg.SetActive(true);
+                }
+                if (_input.back && !_backClickTriggered)
+                {
+                    _backClickTriggered = true;
+                    PreviousMessage();
+                }
+
+                if (!_input.back && _backClickTriggered)
+                {
+                    _backClickTriggered = false;
+                }
+            }
+            else
+            {
+                _backClickTriggered = false;
+                BackButtonImg.SetActive(false);
+            }
         }
     }
 
@@ -105,6 +130,14 @@ public class DialogStarter : MonoBehaviour
             SetupDialogCanvasWithMessage(Messages[_counter]);
         else
             EndDialog();
+    }
+
+    private void PreviousMessage()
+    {
+        if (_typing)
+            ForceMessage();
+        _counter--;
+        SetupDialogCanvasWithMessage(Messages[_counter]);
     }
 
     private void EndDialog()

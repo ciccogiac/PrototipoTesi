@@ -28,6 +28,7 @@ namespace StarterAssets
 		public bool backCamera;
 
 		public bool skip;
+		public bool back;
 
 		public bool exit;
 
@@ -78,6 +79,11 @@ namespace StarterAssets
 		public void OnSkip(InputValue value)
 		{
 			SkipInput(value.isPressed);
+		}
+
+		public void OnBack(InputValue value)
+		{
+			BackInput(value.isPressed);
 		}
 		
 			public void OnExit(InputValue value)
@@ -130,6 +136,11 @@ namespace StarterAssets
 		public void SkipInput(bool newSkipState)
 		{
 			skip = newSkipState;
+		}
+
+		public void BackInput(bool newBackState)
+		{
+			back = newBackState;
 		}
 
 		public void ExitInput(bool newExitState)
