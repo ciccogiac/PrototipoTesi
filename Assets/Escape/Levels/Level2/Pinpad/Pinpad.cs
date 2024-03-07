@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Escape.Levels.Level2
 {
@@ -11,7 +12,7 @@ namespace Escape.Levels.Level2
         [SerializeField] private AudioClip ClosingSound;
         [SerializeField] private AudioClip WrongCodeSound;
         [SerializeField] private Animator Sportello;
-        [SerializeField] private GameObject Contained;
+        [FormerlySerializedAs("Contained")] [SerializeField] private GameObject ContainedReadObject;
         [SerializeField] private BoxCollider colliderArmadietto;
         private static readonly int Open = Animator.StringToHash("open");
         private AudioSource _audioSource;
@@ -76,12 +77,12 @@ namespace Escape.Levels.Level2
         {
             yield return new WaitUntil(() => Sportello.GetCurrentAnimatorStateInfo(0).IsName("SportelloClosed"));
             colliderArmadietto.enabled = true;
-            //if (Contained != null) Contained.SetActive(false);
+            if (ContainedReadObject != null) ContainedReadObject.SetActive(false);
         }
 
         public override void ApplyMethod()
         {
-            //if (Contained != null && Contained.GetComponent<Clue>() != null) Contained.SetActive(true);
+            if (ContainedReadObject != null) ContainedReadObject.SetActive(true);
             if (!Sportello.GetBool(Open)) PlayAudioClip(OpeningSound);
             Sportello.SetBool(Open, true);
             DatiPersistenti.istanza.methodsListeners.Add(methodListenerID);

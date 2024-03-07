@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78724989be1a9d468a9083abd755966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Protagonista
-  Image: {fileID: 21300090, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
+  Name: Prigioniero n. 46
+  Image: {fileID: 21300000, guid: ca272159f8195e847810007fa8b9e142, type: 3}

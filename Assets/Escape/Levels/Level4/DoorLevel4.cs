@@ -21,6 +21,7 @@ namespace Escape.Levels.Level4
         private bool _isTutorialOpened;
 
         [SerializeField] private Clue Teoria;
+        [SerializeField] private AudioSource AudioSource;
         [FormerlySerializedAs("tutorialCanvas")] [SerializeField] private GameObject TutorialCanvas;
         [FormerlySerializedAs("ocm")] [SerializeField] private ObjectCallMethods Ocm;
         private static readonly int Open = Animator.StringToHash("open");
@@ -215,6 +216,7 @@ namespace Escape.Levels.Level4
         public override void ApplyMethod()
         {
             DoorMonitor.SetError("");
+            AudioSource.Play();
             var children = transform.Cast<Transform>().ToList();
             foreach (var child in children)
             {

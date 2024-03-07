@@ -22,9 +22,17 @@ namespace Escape.Levels.Level3.Robot2
             _animator = GetComponent<Animator>();
             _animator.SetBool(Talking, true);
             _startingRotation = transform.localRotation;
-            transform.LookAt(SwitchCamera, Vector3.up);
-            if (ClassDesignCollider != null)
-                ClassDesignCollider.enabled = false;
+            if (!Dialog._dialogUsed)
+            {
+                transform.LookAt(SwitchCamera, Vector3.up);
+                if (ClassDesignCollider != null)
+                    ClassDesignCollider.enabled = false;
+            }
+            else
+            {
+                _doneWithFirstDialogStuff = true;
+                _animator.SetBool(Talking, false);
+            }
         }
         private void Update()
         {

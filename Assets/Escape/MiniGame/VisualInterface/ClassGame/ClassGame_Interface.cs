@@ -87,6 +87,7 @@ public class ClassGame_Interface : MonoBehaviour
                 oggettoIstanziato.GetComponentInChildren<TextMeshProUGUI>().text = progettoClasse.Item1;
                 oggettoIstanziato.GetComponent<Button>().onClick.AddListener(() => OpenClass(progettoClasse.Item1));
                 oggettoIstanziato.transform.SetParent(BoxClassStarter.transform);
+                oggettoIstanziato.transform.localScale = Vector3.one;
             }
 
         }
@@ -229,8 +230,7 @@ public class ClassGame_Interface : MonoBehaviour
             GameObject oggettoIstanziato = Instantiate(prefab_AttributeChangeVisibility, transform.position, Quaternion.identity);
             oggettoIstanziato.GetComponentInChildren<AttributeChangeVisibility>().InitializeAttribute(a.attribute,a.visibility);
             oggettoIstanziato.transform.SetParent(panel_classModify.transform);
-
-            
+            oggettoIstanziato.transform.localScale = Vector3.one;
         }
         
     }
