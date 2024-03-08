@@ -98,7 +98,7 @@ public class Drag_Rigidbody : MonoBehaviour
     private void OnMouseDown()
     {
         dragging = true;
-        Debug.Log("click");
+
     }
 
     private void OnMouseUp()

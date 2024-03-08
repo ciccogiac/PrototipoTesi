@@ -63,6 +63,14 @@ public class GameManager_ClassGame : MonoBehaviour
     [SerializeField] AudioClip compileAudio;
     [SerializeField] AudioClip wrongCompileAudio;
     [SerializeField] AudioClip closeAudio;
+    [SerializeField] AudioClip clickPCbutton_Audio;
+
+    [SerializeField] TextMeshProUGUI progettoClasseText;
+    [SerializeField] GameObject textClass;
+    private bool progettoClasse_State = false;
+    [SerializeField] Button progettoClasse_Button;
+    [SerializeField] Color pc_color1;
+    [SerializeField] Color pc_color2;
 
     // Start is called before the first frame update
     void Start()
@@ -78,7 +86,10 @@ public class GameManager_ClassGame : MonoBehaviour
         {
 
             methods = Inventario.istanza.methods.Select(tuple => tuple.Item1).ToList(); ;
-            attributes = Inventario.istanza.attributes.Select(tuple => tuple.Item1).ToList(); ;
+            attributes = Inventario.istanza.attributes.Select(tuple => tuple.Item1).ToList();
+
+            string d = Inventario.istanza.ProgettiClasse.Find(x => x.Item1 == className).Item2;
+            progettoClasseText.text = d;
         }
 
         LoadLevel();
@@ -132,6 +143,25 @@ public class GameManager_ClassGame : MonoBehaviour
             ActivateTutorial();
         }
 
+    }
+
+    public void SetProgettoClassePanel()
+    {
+        progettoClasse_Button.interactable = false;
+
+        audio.clip = clickPCbutton_Audio;
+        audio.Play();
+
+        progettoClasse_State = !progettoClasse_State;
+
+        progettoClasseText.gameObject.SetActive(progettoClasse_State);
+        text_className.gameObject.SetActive(!progettoClasse_State);
+        textClass.SetActive(!progettoClasse_State);
+
+        progettoClasse_Button.image.color = progettoClasse_State ? pc_color2 : pc_color1;
+
+
+        progettoClasse_Button.interactable = true;
     }
 
     public Gradient GetLineColor()
@@ -248,6 +278,8 @@ public class GameManager_ClassGame : MonoBehaviour
         }
 
         //Bisogna gestire cosa si ritorna come oggetto e impostare il valore di visibilità degli attributi definito nel minigioco
+
+        useTimer = false;
 
         buttonCompile.SetActive(false);
         boxCompilation.SetActive(true);
