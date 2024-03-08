@@ -27,6 +27,7 @@ namespace Escape.Levels.Level3.Armadio
             if (_currentlyOpen)
             {
                 PlayAudioClip(ClosingSound);
+                DatiPersistenti.istanza.methodsListeners.Remove(methodListenerID);
                 StartCoroutine(AnimateAnte(false));
             }
         }

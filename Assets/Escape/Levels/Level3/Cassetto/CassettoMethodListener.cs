@@ -24,6 +24,7 @@ namespace Escape.Levels.Level3.Cassetto
         {
             if (CassettoAnimator.GetBool(Open)) PlayAudioClip(ClosingSound);
             CassettoAnimator.SetBool(Open, false);
+            DatiPersistenti.istanza.methodsListeners.Remove(methodListenerID);
             StartCoroutine(WaitForCassettoToBeClosedAndDeactivateContained());
         }
 

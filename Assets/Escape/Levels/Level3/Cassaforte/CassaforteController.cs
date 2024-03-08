@@ -27,6 +27,7 @@ namespace Escape.Levels.Level3.Cassaforte
         {
             if (Animator.GetBool(Open)) PlayAudioClip(ClosingSound);
             Animator.SetBool(Open, false);
+            DatiPersistenti.istanza.methodsListeners.Remove(methodListenerID);
         }
         public override bool Method(List<(string, string)> objectValue)
         {

@@ -37,6 +37,7 @@ namespace Escape.Levels.Level2
         {
             if (Sportello.GetBool(Open)) PlayAudioClip(ClosingSound);
             Sportello.SetBool(Open, false);
+            DatiPersistenti.istanza.methodsListeners.Remove(methodListenerID);
             StartCoroutine(WaitForSportelloToBeClosedAndDeactivateContained());
         }
         public override bool Method(List<(string, string)> objectValue)
