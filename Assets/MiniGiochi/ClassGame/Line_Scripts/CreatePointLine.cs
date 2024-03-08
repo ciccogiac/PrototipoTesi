@@ -66,5 +66,10 @@ public class CreatePointLine : MonoBehaviour
             }
         }
     }
-   
+
+    private void Start()
+    {
+        GetComponent<CircleCollider2D>().layerOverridePriority = 0;
+    }
+
 }

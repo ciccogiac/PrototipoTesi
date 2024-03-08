@@ -29,6 +29,7 @@ public class Method_initializer : MonoBehaviour
     [SerializeField] AudioSource audio;
     [SerializeField] AudioClip connectLineAudio;
     [SerializeField] AudioClip discconnectLineAudio;
+    private CreatePointLine[] snodi;
 
     // Start is called before the first frame update
     public void initialize()
@@ -36,6 +37,7 @@ public class Method_initializer : MonoBehaviour
         methodNameText.text = method_name;
         linee = new List<GameObject>();
         button_less.SetActive(false);
+        snodi = FindObjectsOfType<CreatePointLine>();
     }
 
     //Crea una nuova linea dal box del metodo
@@ -67,6 +69,19 @@ public class Method_initializer : MonoBehaviour
     //Rimuove l'ultima linea creata dal box del metodo
     public void RemoveLine()
     {
+
+        foreach(var x in snodi)
+        {
+            GameObject g = linee[linee.Count - 1];
+            if (g != null)
+            {
+                LineController l = g.GetComponentInChildren<LineController>();
+                if (l != null)
+                    x.RemoveLine(l);
+            }
+        }
+
+
         if (linee.Count > 0)
         {
             GameObject g = linee[linee.Count - 1];
@@ -75,6 +90,8 @@ public class Method_initializer : MonoBehaviour
             if (!button_plus.active) { button_plus.SetActive(true); }
         }
         if(linee.Count == 0) { button_less.SetActive(false); }
+
+
 
         audio.clip = discconnectLineAudio;
         audio.Play();
