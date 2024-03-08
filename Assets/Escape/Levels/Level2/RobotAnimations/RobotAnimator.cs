@@ -11,6 +11,7 @@ public class RobotAnimator : MonoBehaviour
     [SerializeField] private AudioClip RobotNoiseSound;
     [SerializeField] private AudioClip RobotTalkingSound;
     [SerializeField] private LevelHint LevelHint;
+    private bool _longSpeechVisible;
     private Animator _animator;
     private AudioSource _audioSource;
     private bool _isTalking;
@@ -28,6 +29,12 @@ public class RobotAnimator : MonoBehaviour
 
     private void Update()
     {
+        if (_longSpeechVisible != LongSpeech.LongSpeechOnScreen)
+        {
+            _longSpeechVisible = LongSpeech.LongSpeechOnScreen;
+            if (_longSpeechVisible) _audioSource.Stop();
+            else _audioSource.Play();
+        }
         if (isStart)
         {
             isStart = false;

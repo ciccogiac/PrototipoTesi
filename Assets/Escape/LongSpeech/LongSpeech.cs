@@ -15,6 +15,7 @@ public class LongSpeech : MonoBehaviour
     private int _counter = -1;
     private bool _typing;
     private IEnumerator _typingCoroutine;
+    public static bool LongSpeechOnScreen;
 
     [SerializeField] LevelHint _levelHint;
 
@@ -27,6 +28,7 @@ public class LongSpeech : MonoBehaviour
 
     private void OnEnable()
     {
+        LongSpeechOnScreen = true;
         PlayMusic.istanza.PlaySong(0);
         _counter = -1;
         NextLongSpeech();
@@ -80,6 +82,7 @@ public class LongSpeech : MonoBehaviour
         _gameManager.DeactivateLongSpeechCanvas(gameObject);
 
         PlayMusic.istanza.PlaySong(_gameManager._musicSceneIndex);
+        LongSpeechOnScreen = false;
     }
     private void SetupLongSpeechCanvasWithSpeech(string speech)
     {

@@ -3680,6 +3680,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8616685848737228382, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -6481,13 +6485,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8413193328767778472, guid: 23330fc4b5ba00a4fa921a7f62d587d1, type: 3}
       propertyPath: clueName
-      value: Oggetti di Programmazzione
+      value: Oggetti di Programmazione
       objectReference: {fileID: 0}
     - target: {fileID: 8413193328767778472, guid: 23330fc4b5ba00a4fa921a7f62d587d1, type: 3}
       propertyPath: clueDescription
       value: Gli oggetti di programmazione sono strumenti che servono ad interagire
         con il mondo esterno, sono costituiti da metodi e attributi. I metodi eseguono
-        azioni specifiche , leggendo o impostando  i valori degli attribbuti a cui
+        azioni specifiche , leggendo o impostando  i valori degli attributi a cui
         fanno riferimento . Per eseguire un'azione , una volta selezionato il metodo
         dall'interfaccia del'oggetto , bisogna cliccare sul tasto CallMethod per
         attivarlo .
@@ -18098,8 +18102,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941717271}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.1564345, z: 0, w: 0.98768836}
-  m_LocalPosition: {x: 12.7, y: 0.37, z: -9.38}
+  m_LocalRotation: {x: -0, y: -0.52249926, z: -0, w: 0.8526398}
+  m_LocalPosition: {x: 16.792, y: 0.37, z: -9.285}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18107,7 +18111,7 @@ Transform:
   - {fileID: 471708845}
   - {fileID: 1641621533}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -18, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -63, z: 0}
 --- !u!114 &941717273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19430,6 +19434,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1102944410547913216, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
   m_PrefabInstance: {fileID: 992898906}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &992898908 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7013712188833926715, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
+  m_PrefabInstance: {fileID: 992898906}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a940c083071de49ae15e11975121a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &993611384
 GameObject:
   m_ObjectHideFlags: 0
@@ -30761,19 +30776,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.50553
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.669
+      value: 1.375
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.077529
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7771459
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalRotation.x
@@ -30781,7 +30796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.62932044
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalRotation.z
@@ -46556,7 +46571,7 @@ Animator:
   m_GameObject: {fileID: 1578957402420166342}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 24bdc0486307eb340b52a8281f7125c7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9e21fece5f833f1489dc8facde1784a2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -46580,6 +46595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dialog: {fileID: 1857356360}
+  SecondDialog: {fileID: 992898908}
 --- !u!82 &2207403496218190975
 AudioSource:
   m_ObjectHideFlags: 0
@@ -46592,7 +46608,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 782f6aed553ae554aaabd7d27cea7857, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -46612,31 +46628,31 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.3041649
-      inSlope: -1.3473694
-      outSlope: -1.3473694
+      value: 0.40472794
+      inSlope: -0.4955198
+      outSlope: -0.4955198
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.3133613
+      outWeight: 0.30478087
     - serializedVersion: 3
-      time: 0.30892813
-      value: 0.122787476
-      inSlope: -0.26103586
-      outSlope: -0.26103586
+      time: 0.31306326
+      value: 0.24771118
+      inSlope: -0.4496129
+      outSlope: -0.4496129
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.3528123
+      outWeight: 0.23274003
     - serializedVersion: 3
-      time: 0.6754656
-      value: 0.05783081
-      inSlope: -0.15732293
-      outSlope: -0.15732293
+      time: 0.8162432
+      value: 0.030395508
+      inSlope: -0.34260502
+      outSlope: -0.34260502
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.3984641
+      outWeight: 0.3825217
     - serializedVersion: 3
       time: 1
       value: 0
@@ -52365,7 +52381,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1979c3ce2f3374a43b891f62f8d42daf, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -52374,9 +52390,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 10
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -52384,23 +52400,32 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.1
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.021289796
+      outSlope: -0.021289796
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0.1944782
+    - serializedVersion: 3
+      time: 0.9697693
+      value: 0.99645996
+      inSlope: 0.0005281432
+      outSlope: 0.0005281432
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.12918733
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.10003988
+      outSlope: -0.10003988
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -55699,7 +55724,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bea37e2f1d9209440aac9a3d03a16787, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.05
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -55719,13 +55744,22 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.8016739
-      inSlope: -1.8221703
-      outSlope: -1.8221703
+      value: 0.79862976
+      inSlope: -0.42725322
+      outSlope: -0.42725322
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.070393376
+      outWeight: 0.5630023
+    - serializedVersion: 3
+      time: 0.18708286
+      value: 0.74803597
+      inSlope: -0.1780644
+      outSlope: -0.1780644
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.13730879
     - serializedVersion: 3
       time: 1
       value: 0
