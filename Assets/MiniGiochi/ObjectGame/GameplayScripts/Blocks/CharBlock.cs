@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharBlock : GridBlock
 {
     [SerializeField] char value;
-    [SerializeField] TextMeshProUGUI attributeValue_text;
+    [SerializeField] TextMeshPro attributeValue_text;
 
     [SerializeField] GameObject gameObject_Value;
 
