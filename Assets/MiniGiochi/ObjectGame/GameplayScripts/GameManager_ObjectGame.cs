@@ -83,6 +83,9 @@ public class GameManager_ObjectGame : MonoBehaviour
     [SerializeField] AudioClip closeSound;
     public AudioClip selectSound2;
     [SerializeField] AudioClip completeSound;
+
+    [SerializeField] GameObject commandPanel1;
+    [SerializeField] GameObject commandPanel2;
     private void ReadLevel()
     {
 
@@ -120,6 +123,7 @@ public class GameManager_ObjectGame : MonoBehaviour
     }
     private void LoadAttributeGame()
     {
+
         if (attributeGamelevel >= attributeGrids.Length) { is_game_won = true; CloseGame(); }
         else
         {
@@ -387,12 +391,16 @@ public class GameManager_ObjectGame : MonoBehaviour
     IEnumerator AttributeCompletedCoroutine(float time)
     {
         attributeGrids[attributeGamelevel - 1].gameObject.SetActive(false);
+        attributeValue_text.text = attributeTarget_text.text;
+        commandPanel1.SetActive(false);
+        commandPanel2.SetActive(false);
         canvas_AttributeComplete.SetActive(true);
         _audioSource.clip = completeSound;
         _audioSource.Play();
         yield return new WaitForSeconds(time);
 
         canvas_AttributeComplete.SetActive(false);
+        commandPanel2.SetActive(true);
         LoadAttributeGame();
     }
 

@@ -89,7 +89,7 @@ public class InventorySelection : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!gameManager.isTemporaryItemDragging && itemCount > 0)
+        if (!gameManager.isTemporaryItemDragging && !gameManager.isABlockSelected && itemCount > 0)
         {
             itemCount --;
             itemCount_text.text = itemCount.ToString();
@@ -106,7 +106,7 @@ public class InventorySelection : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (!gameManager.isTemporaryItemDragging)
+        if (!gameManager.isTemporaryItemDragging && !gameManager.isABlockSelected)
         {
             image.color = temporaryColor;
         }
@@ -114,7 +114,7 @@ public class InventorySelection : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (!gameManager.isTemporaryItemDragging)
+        if (!gameManager.isTemporaryItemDragging && !gameManager.isABlockSelected)
         {
             image.color = imageColor;
         }
