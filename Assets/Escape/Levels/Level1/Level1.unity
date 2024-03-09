@@ -10974,6 +10974,15 @@ MonoBehaviour:
   DialogCamera: {fileID: 0}
   _musicSceneIndex: 1
   _audioSource: {fileID: 0}
+  cursorSwitchCameraPickUpTexture_fhd: {fileID: 2800000, guid: 5b81374cb70a3d54a80aba1f1b2e04a1, type: 3}
+  cursorSwitchCameraReadTexture_fhd: {fileID: 2800000, guid: 7f396c561b40b174192d4962c941e066, type: 3}
+  cursorSwitchCameraInteractTexture_fhd: {fileID: 2800000, guid: 09e97349584150c4aa60c3511a1d3cd2, type: 3}
+  cursorSwitchCameraPickUpTexture_2k: {fileID: 2800000, guid: 969a4ae9f577a3844ae60b36fa35b87d, type: 3}
+  cursorSwitchCameraReadTexture_2k: {fileID: 2800000, guid: 66c9faea8d29df342bb56cc181f2c651, type: 3}
+  cursorSwitchCameraInteractTexture_2k: {fileID: 2800000, guid: 1a753ef975baa3144b0f685d4e9f7dbe, type: 3}
+  cursorSwitchCameraPickUpTexture_4k: {fileID: 2800000, guid: 7618d63d9a9025b43b26a046f6c06247, type: 3}
+  cursorSwitchCameraReadTexture_4k: {fileID: 2800000, guid: 4ba4c32b27197a843ae00147278d3fa5, type: 3}
+  cursorSwitchCameraInteractTexture_4k: {fileID: 2800000, guid: a4cccb71170f11748a3cf2f2cac91454, type: 3}
 --- !u!4 &534642473
 Transform:
   m_ObjectHideFlags: 0

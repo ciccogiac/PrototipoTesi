@@ -56,6 +56,20 @@ public class GameManager_Escape : MonoBehaviour
     public int _musicSceneIndex = 1;
     [SerializeField] AudioSource _audioSource;
 
+    [Header("CursoSwitchCamera_Size")]
+
+    public Texture2D cursorSwitchCameraPickUpTexture_fhd;
+    public Texture2D cursorSwitchCameraReadTexture_fhd;
+    public Texture2D cursorSwitchCameraInteractTexture_fhd;
+
+    public Texture2D cursorSwitchCameraPickUpTexture_2k;
+    public Texture2D cursorSwitchCameraReadTexture_2k;
+    public Texture2D cursorSwitchCameraInteractTexture_2k;
+
+    public Texture2D cursorSwitchCameraPickUpTexture_4k;
+    public Texture2D cursorSwitchCameraReadTexture_4k;
+    public Texture2D cursorSwitchCameraInteractTexture_4k;
+
 #if UNITY_EDITOR
     // Questo metodo viene chiamato solo nell'editor quando si fa clic su "Gestisci valori" nel componente
     [ContextMenu("Calcola valori id iniziali")]
@@ -115,6 +129,35 @@ public class GameManager_Escape : MonoBehaviour
             StarterObjectsInitialize s = GetComponent<StarterObjectsInitialize>();
             if (s != null)
                 s.Initializeobjects();
+
+
+            switch (Screen.height)
+            {
+                case 1080:
+                    cursorSwitchCameraPickUpTexture = cursorSwitchCameraPickUpTexture_fhd;
+                    cursorSwitchCameraReadTexture = cursorSwitchCameraReadTexture_fhd;
+                    cursorSwitchCameraInteractTexture = cursorSwitchCameraInteractTexture_fhd;
+                    break;
+
+                case 1440:
+                    cursorSwitchCameraPickUpTexture = cursorSwitchCameraPickUpTexture_2k;
+                    cursorSwitchCameraReadTexture = cursorSwitchCameraReadTexture_2k;
+                    cursorSwitchCameraInteractTexture = cursorSwitchCameraInteractTexture_2k;
+                    break;
+
+                case 2160:
+                    cursorSwitchCameraPickUpTexture = cursorSwitchCameraPickUpTexture_4k;
+                    cursorSwitchCameraReadTexture = cursorSwitchCameraReadTexture_4k;
+                    cursorSwitchCameraInteractTexture = cursorSwitchCameraInteractTexture_4k;
+                    break;
+
+                default:
+                    cursorSwitchCameraPickUpTexture = cursorSwitchCameraPickUpTexture_fhd;
+                    cursorSwitchCameraReadTexture = cursorSwitchCameraReadTexture_fhd;
+                    cursorSwitchCameraInteractTexture = cursorSwitchCameraInteractTexture_fhd;
+                    break;
+
+            }
         }
 
         else
