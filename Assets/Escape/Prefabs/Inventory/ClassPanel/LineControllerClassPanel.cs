@@ -46,7 +46,7 @@ public class LineControllerClassPanel : MonoBehaviour
             {
                 Image nuovaImmagine = Instantiate(lineImage[0]); // Duplica l'immagine
                 nuovaImmagine.transform.SetParent(transform); // Imposta il genitore dell'immagine duplicata
-
+                nuovaImmagine.transform.localScale = Vector3.one;
                 // Modifica le dimensioni dell'immagine duplicata
                 RectTransform rectTransform = nuovaImmagine.GetComponent<RectTransform>();
                 rectTransform.position = lineImage[0].rectTransform.position;
@@ -73,12 +73,12 @@ public class LineControllerClassPanel : MonoBehaviour
             {
                 e = t;
 
-
                 endPosition = e.InverseTransformPoint(lineImage[i].rectTransform.position);
                 SetImagePosition(i);
 
                 i++;
             }
+            canStart = false;
         }
 
 

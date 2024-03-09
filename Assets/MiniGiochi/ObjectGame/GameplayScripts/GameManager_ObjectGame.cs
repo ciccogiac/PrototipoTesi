@@ -131,7 +131,7 @@ public class GameManager_ObjectGame : MonoBehaviour
             ButtonsRotation.SetActive(false);
             ButtonRemoveBlock.SetActive(false);
             isTemporaryItemDragging = false;
-            isABlockSelected = false;
+            
 
             ReadLevel();
             blocks = null;
@@ -158,6 +158,8 @@ public class GameManager_ObjectGame : MonoBehaviour
 
             Attribute tupla = new Attribute (attributeName_text.text, attributeTarget_text.text);
             attributesValues.Add(tupla);
+
+            isABlockSelected = false;
 
         }
       
@@ -390,6 +392,7 @@ public class GameManager_ObjectGame : MonoBehaviour
 
     IEnumerator AttributeCompletedCoroutine(float time)
     {
+        isABlockSelected = true;
         attributeGrids[attributeGamelevel - 1].gameObject.SetActive(false);
         attributeValue_text.text = attributeTarget_text.text;
         commandPanel1.SetActive(false);

@@ -131,33 +131,7 @@ public class GameManager_Escape : MonoBehaviour
                 s.Initializeobjects();
 
 
-            switch (Screen.height)
-            {
-                case 1080:
-                    cursorSwitchCameraPickUpTexture = cursorSwitchCameraPickUpTexture_fhd;
-                    cursorSwitchCameraReadTexture = cursorSwitchCameraReadTexture_fhd;
-                    cursorSwitchCameraInteractTexture = cursorSwitchCameraInteractTexture_fhd;
-                    break;
-
-                case 1440:
-                    cursorSwitchCameraPickUpTexture = cursorSwitchCameraPickUpTexture_2k;
-                    cursorSwitchCameraReadTexture = cursorSwitchCameraReadTexture_2k;
-                    cursorSwitchCameraInteractTexture = cursorSwitchCameraInteractTexture_2k;
-                    break;
-
-                case 2160:
-                    cursorSwitchCameraPickUpTexture = cursorSwitchCameraPickUpTexture_4k;
-                    cursorSwitchCameraReadTexture = cursorSwitchCameraReadTexture_4k;
-                    cursorSwitchCameraInteractTexture = cursorSwitchCameraInteractTexture_4k;
-                    break;
-
-                default:
-                    cursorSwitchCameraPickUpTexture = cursorSwitchCameraPickUpTexture_fhd;
-                    cursorSwitchCameraReadTexture = cursorSwitchCameraReadTexture_fhd;
-                    cursorSwitchCameraInteractTexture = cursorSwitchCameraInteractTexture_fhd;
-                    break;
-
-            }
+            
         }
 
         else
@@ -167,8 +141,40 @@ public class GameManager_Escape : MonoBehaviour
 
 
         ReloadObjectScene();
+        SetCursorSwitchDimension();
 
 
+    }
+
+    private void SetCursorSwitchDimension()
+    {
+        switch (Screen.height)
+        {
+            case 1080:
+                cursorSwitchCameraPickUpTexture = cursorSwitchCameraPickUpTexture_fhd;
+                cursorSwitchCameraReadTexture = cursorSwitchCameraReadTexture_fhd;
+                cursorSwitchCameraInteractTexture = cursorSwitchCameraInteractTexture_fhd;
+                break;
+
+            case 1440:
+                cursorSwitchCameraPickUpTexture = cursorSwitchCameraPickUpTexture_2k;
+                cursorSwitchCameraReadTexture = cursorSwitchCameraReadTexture_2k;
+                cursorSwitchCameraInteractTexture = cursorSwitchCameraInteractTexture_2k;
+                break;
+
+            case 2160:
+                cursorSwitchCameraPickUpTexture = cursorSwitchCameraPickUpTexture_4k;
+                cursorSwitchCameraReadTexture = cursorSwitchCameraReadTexture_4k;
+                cursorSwitchCameraInteractTexture = cursorSwitchCameraInteractTexture_4k;
+                break;
+
+            default:
+                cursorSwitchCameraPickUpTexture = cursorSwitchCameraPickUpTexture_fhd;
+                cursorSwitchCameraReadTexture = cursorSwitchCameraReadTexture_fhd;
+                cursorSwitchCameraInteractTexture = cursorSwitchCameraInteractTexture_fhd;
+                break;
+
+        }
     }
 
     private void ReloadObjectScene()
