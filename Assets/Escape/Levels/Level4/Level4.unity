@@ -16919,7 +16919,7 @@ PrefabInstance:
     - target: {fileID: 7013712188833926715, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: Messages.Array.data[6].Character
       value: 
-      objectReference: {fileID: 5774261944701878538, guid: a8daa5695dc33e0489f1ad36c2928b84, type: 3}
+      objectReference: {fileID: 6935667024053453575, guid: cb565648d270f3642a67e1fefa28c26c, type: 3}
     - target: {fileID: 7013712188833926715, guid: fe475d6808a960a408c9ef42ed4620f3, type: 3}
       propertyPath: Messages.Array.data[0].MessageText
       value: 'Eccoti qua!

@@ -6493,7 +6493,7 @@ PrefabInstance:
         con il mondo esterno, sono costituiti da metodi e attributi. I metodi eseguono
         azioni specifiche , leggendo o impostando  i valori degli attributi a cui
         fanno riferimento . Per eseguire un'azione , una volta selezionato il metodo
-        dall'interfaccia del'oggetto , bisogna cliccare sul tasto CallMethod per
+        dall'interfaccia dell'oggetto , bisogna cliccare sul tasto CallMethod per
         attivarlo .
       objectReference: {fileID: 0}
     m_RemovedComponents:
