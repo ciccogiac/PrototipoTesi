@@ -44,6 +44,7 @@ public class RobotAnimator : MonoBehaviour
                 var position = transform1.position;
                 position = new Vector3(14.7f, position.y, 9.21f);
                 transform1.position = position;
+                GetComponent<CapsuleCollider>().center = new Vector3(0,90,45);
             }
         }
 
@@ -68,6 +69,7 @@ public class RobotAnimator : MonoBehaviour
                 IEnumerator WaitForRobotToBeInPosition()
                 {
                     yield return new WaitUntil(() => transform.position.x >= 14.7f);
+                    GetComponent<CapsuleCollider>().center = new Vector3(0, 90, 45);
                     _animator.SetBool(Walking, false);
                     transform.rotation = Quaternion.Euler(0, 180, 0);
                     yield return new WaitUntil(() => SecondDialog.GetDialogOpen());

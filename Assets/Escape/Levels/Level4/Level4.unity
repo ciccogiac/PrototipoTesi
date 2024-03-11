@@ -15737,7 +15737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attributeValueListener: []
-  className: 
+  className: Pulsante
   methodTubes: []
   methodListenerID: 0
   attributeValueMonitor_prefab: {fileID: 6674831499766437521, guid: acc7d097bc8b69f45b7e0777919dcd56, type: 3}
@@ -55516,7 +55516,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ClassName
+  m_text: Pulsante
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 220c4f4f8722519438731eccc79c1eb7, type: 2}
   m_sharedMaterial: {fileID: -2851088917311796387, guid: 220c4f4f8722519438731eccc79c1eb7, type: 2}

@@ -203,6 +203,7 @@ public class PlayerCustomInput : MonoBehaviour
                     }
                 }
 
+               
             }
 
             else if (last_InteractableObject != null)
@@ -215,6 +216,14 @@ public class PlayerCustomInput : MonoBehaviour
                     Cursor.SetCursor(gameManager.cursorSwitchCameraTexture, new Vector2(gameManager.cursorSwitchCameraTexture.width / 2, gameManager.cursorSwitchCameraTexture.height / 2), CursorMode.Auto);
 
                 last_InteractableObject = null;
+            }
+
+            else
+            {
+                if (!gameManager.isSeeing && CanvasInteract.activeSelf)
+                    CanvasInteract.SetActive(false);
+                //else
+                //    Cursor.SetCursor(gameManager.cursorSwitchCameraTexture, new Vector2(gameManager.cursorSwitchCameraTexture.width / 2, gameManager.cursorSwitchCameraTexture.height / 2), CursorMode.Auto);
             }
 
             Debug.DrawRay(ray.origin, ray.direction * rayLength, Color.red);
