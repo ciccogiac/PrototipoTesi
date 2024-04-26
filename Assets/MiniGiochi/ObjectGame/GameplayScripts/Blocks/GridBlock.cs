@@ -71,13 +71,13 @@ public class GridBlock : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!gameManager.isTemporaryItemDragging && !isStartingBlock && !isEndingBlock && !isSelected && !gameManager.isABlockSelected)
+        if (!gameManager.isTemporaryItemDragging && !isStartingBlock && !isEndingBlock && !isSelected)// && !gameManager.isABlockSelected)
         {
             if (!isConnected)
                 image.color = temporaryColor;
             else
                 image.color = temporaryConnectionColor;
-
+            gameManager.DeselectBlock();
             gameManager.SelectBlock(this);
 
             gameManager._audioSource.clip = gameManager.selectSound;

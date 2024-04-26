@@ -50,7 +50,7 @@ public class ObjectCollected_Canvas : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
 
-        buttonSelectObject.GetComponent<Button>().onClick.AddListener(() => SelectObjectOnGame());
+        //buttonSelectObject.GetComponent<Button>().onClick.AddListener(() => SelectObjectOnGame());
 
         if (Inventario.istanza.oggetti.Count == 0) { noObjectAvailable_text.SetActive(true); ObjectBox.SetActive(false); }
         else
@@ -79,6 +79,9 @@ public class ObjectCollected_Canvas : MonoBehaviour
         previousObjectButton = button;
         objectName = button.GetComponentInChildren<TextMeshProUGUI>().text;
         button.GetComponent<Image>().color = selectedColor;
+        
+        //Aggiunta
+        SelectObjectOnGame();
     }
 
     private void SelectObjectOnGame()

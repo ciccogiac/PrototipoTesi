@@ -28,7 +28,7 @@ public class InputMethod : MonoBehaviour
         oggettoIstanziato.transform.SetParent(box_methodInput.transform);
         oggettoIstanziato.transform.localScale = Vector3.one;
         oggettoIstanziato.GetComponent<InputMethodInitializer>().SetInputMethodValue(name,value);
-
+        oggettoIstanziato.GetComponent<InputMethodInitializer>().EnableInput(ConfirmInputMethod);
     }
 
 
@@ -108,6 +108,8 @@ public class InputMethod : MonoBehaviour
                         ShowInputError();
                         return;
                     }
+                    break;
+                case "string":
                     break;
                 default:
                     break;

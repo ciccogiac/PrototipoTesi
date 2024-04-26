@@ -70,28 +70,23 @@ public class RuotaValvola : OggettoEscapeChild
         }
     }
 
-    public (string,string) Ruota(char verso)
+    public (string,string) Ruota(char verso, int quantity)
     {
         //transform.eulerAngles = new Vector3(0f , transform.eulerAngles.y + 90f, 0f);
         if (verso == '+')
             //transform.Rotate(new Vector3(0f, 0f, transform.rotation.z - 90f));
-            transform.Rotate(new Vector3(0f, transform.rotation.y - 90f, 0f));
+            transform.Rotate(new Vector3(0f, transform.rotation.y - 90f * quantity, 0f));
         else if(verso == '-')
             //transform.Rotate(new Vector3(0f, 0f, transform.rotation.z + 90f));
-            transform.Rotate(new Vector3(0f, transform.rotation.y + 90f, 0f));
+            transform.Rotate(new Vector3(0f, transform.rotation.y + 90f * quantity, 0f));
         OggettoEscape o = GetComponentInParent<OggettoEscape>();
         string s = o.oggettoEscapeValue.attributes.Find(x => x.attributeName == "Valore").attributeValue;
 
-        int i=0;
-        if (verso == '+')
-             i = int.Parse(s) + 1;
-        else if (verso == '-')
-             i = int.Parse(s) - 1;
+        var i = int.Parse(s) + quantity;
 
-        if (i == 10)
-            i = 0;
-        if (i == -1)
-            i = 9;
+        i %= 10;
+        if (i < 0)
+            i += 10;
 
         s = i.ToString();
         o.oggettoEscapeValue.attributes.Find(x => x.attributeName == "Valore").attributeValue = s;

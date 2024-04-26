@@ -167,6 +167,7 @@ public class OggettoEscape : Interactable
                     {
                         string[] a = x.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                         ObjectCallCanvas.inputMethod.CreateMethodInput(a[0],a[1]);
+                        
                     }
                        
                 }

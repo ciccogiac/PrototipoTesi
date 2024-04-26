@@ -15,8 +15,6 @@ public class ObjectCallMethods : MonoBehaviour
     [SerializeField] GameObject attributeBox;
     [SerializeField] GameObject methodBox;
 
-    [SerializeField] GameObject buttonCallMethod;
-
     public PlayerInput input;
     [SerializeField] GameObject interactCanvas;
     [SerializeField] GameObject interactSwitchCameraCanvas;
@@ -55,7 +53,6 @@ public class ObjectCallMethods : MonoBehaviour
         CallerCanvas.SetActive(true);
         SetterCanvas.SetActive(false);
 
-        buttonCallMethod.SetActive(false);
         cursorHotspot = new Vector2(0f, 0f);
         Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);
         Cursor.visible = true;
@@ -101,15 +98,16 @@ public class ObjectCallMethods : MonoBehaviour
     }
 
     private void SelectMethod(GameObject button) {
-        buttonCallMethod.SetActive(true);
         methodCaller = button.GetComponentInChildren<TextMeshProUGUI>().text;
 
         //if (previousObjectButton != null) { previousObjectButton.GetComponent<Image>().color = normalColor; }
         previousObjectButton = button;
         //button.GetComponent<Image>().color = selectedColor;
+
+        CallMethod();
     }
 
-    public void CallMethod()
+    private void CallMethod()
     {
         //Debug.Log("MethodCalled");
         objectInteraction.oggetto.ObjectCallCanvas = this;

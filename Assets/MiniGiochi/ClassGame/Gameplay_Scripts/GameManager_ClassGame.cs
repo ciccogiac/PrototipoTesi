@@ -172,7 +172,7 @@ public class GameManager_ClassGame : MonoBehaviour
         return connection_Colors[lineColor_Counter++];
     }
 
-    private void ActivateTutorial()
+    public void ActivateTutorial()
     {
         useTimer = false;
 
@@ -202,6 +202,7 @@ public class GameManager_ClassGame : MonoBehaviour
     {
         livelloTrovato = levels.transform.Find(className);
         
+        if (livelloTrovato == null) livelloTrovato = levels.transform.Find("Classe di Prova");
 
         if (livelloTrovato != null)
         {
@@ -228,7 +229,7 @@ public class GameManager_ClassGame : MonoBehaviour
     {
 
 
-        // Controlla se il timer è scaduto
+        // Controlla se il timer ï¿½ scaduto
         if (tempoRimanente < 0f)
         {
             tempoRimanente = 0f; // Imposta il timer a zero per evitare valori negativi
@@ -277,7 +278,7 @@ public class GameManager_ClassGame : MonoBehaviour
             }
         }
 
-        //Bisogna gestire cosa si ritorna come oggetto e impostare il valore di visibilità degli attributi definito nel minigioco
+        //Bisogna gestire cosa si ritorna come oggetto e impostare il valore di visibilitï¿½ degli attributi definito nel minigioco
 
         useTimer = false;
 

@@ -12,8 +12,6 @@ public class GameManager_ObjectGame : MonoBehaviour
     public GridBlock selectedBlock;
     public bool isABlockSelected = false;
     [SerializeField] GameObject emptyBlock;
-
-    [SerializeField] GameObject ButtonDeselectBlock;
     [SerializeField] GameObject ButtonRemoveBlock;
     [SerializeField] GameObject ButtonsRotation;
 
@@ -127,7 +125,6 @@ public class GameManager_ObjectGame : MonoBehaviour
         if (attributeGamelevel >= attributeGrids.Length) { is_game_won = true; CloseGame(); }
         else
         {
-            ButtonDeselectBlock.SetActive(false);
             ButtonsRotation.SetActive(false);
             ButtonRemoveBlock.SetActive(false);
             isTemporaryItemDragging = false;
@@ -201,7 +198,7 @@ public class GameManager_ObjectGame : MonoBehaviour
 
     }
 
-    private void ActivateTutorial()
+    public void ActivateTutorial()
     {
         livelloGridTrovato.gameObject.SetActive(false);
         livelloInventoryTrovato.gameObject.SetActive(false);
@@ -260,15 +257,15 @@ public class GameManager_ObjectGame : MonoBehaviour
         
         switch (attributeType) {
             case AttributeType.intero:
-                if (attributeIntValue == AttributeIntTarget) { Debug.Log("Raggiunto il valore target"); AttributeComplete(); }
+                if (attributeIntValue == AttributeIntTarget) { AttributeComplete(); }
                 break;
 
             case AttributeType.booleano:
-                if (attributeBoolValue == AttributeBoolTarget) { Debug.Log("Raggiunto il valore target"); AttributeComplete(); }
+                if (attributeBoolValue == AttributeBoolTarget) { AttributeComplete(); }
                 break;
 
             case AttributeType.stringa:
-                if (attributeStringValue == AttributeStringTarget) { Debug.Log("Raggiunto il valore target"); AttributeComplete(); }
+                if (attributeStringValue == AttributeStringTarget) { AttributeComplete(); }
                 break;
 
         }
@@ -300,7 +297,6 @@ public class GameManager_ObjectGame : MonoBehaviour
         isABlockSelected = true;
         block.SelectBlock();
 
-        ButtonDeselectBlock.SetActive(true);  
         ButtonsRotation.SetActive(true);
         if(!selectedBlock.isStationary)
             ButtonRemoveBlock.SetActive(true);
@@ -308,11 +304,11 @@ public class GameManager_ObjectGame : MonoBehaviour
 
     public void DeselectBlock()
     {
-        selectedBlock.DeselectBlock();
+        if (selectedBlock != null)
+            selectedBlock.DeselectBlock();
         selectedBlock = null;
         isABlockSelected = false;
        
-        ButtonDeselectBlock.SetActive(false);
         ButtonsRotation.SetActive(false);
         ButtonRemoveBlock.SetActive(false);
 
@@ -331,7 +327,6 @@ public class GameManager_ObjectGame : MonoBehaviour
             selectedBlock = null;
             isABlockSelected = false;
 
-            ButtonDeselectBlock.SetActive(false);
             ButtonRemoveBlock.SetActive(false);
             ButtonsRotation.SetActive(false);
 
@@ -352,7 +347,6 @@ public class GameManager_ObjectGame : MonoBehaviour
         selectedBlock = null;
         isABlockSelected = false;
 
-        ButtonDeselectBlock.SetActive(false);
         ButtonRemoveBlock.SetActive(false);
         ButtonsRotation.SetActive(false);
 
@@ -365,8 +359,8 @@ public class GameManager_ObjectGame : MonoBehaviour
         {
             Cursor.visible = false;
             if (is_game_won) {
-                //Non devo eliminare la classe dall'inventario , anche perchè posso creare più oggetti della stessa classe
-                //Non genero qui l'oggetto perchè viene inserito nell'inventario quando raccolto dalla stampante
+                //Non devo eliminare la classe dall'inventario , anche perchï¿½ posso creare piï¿½ oggetti della stessa classe
+                //Non genero qui l'oggetto perchï¿½ viene inserito nell'inventario quando raccolto dalla stampante
                 //Qui devo dare l'input alla stampante per avviare l'animazione di stampa e stampare il relativo oggetto
                 DatiPersistenti.istanza.isObjectToPrint = true;
                 DatiPersistenti.istanza.attributesValues = attributesValues ;

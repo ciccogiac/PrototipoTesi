@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class CloseGameCanvas : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class CloseGameCanvas : MonoBehaviour
     [SerializeField] PlayerInput input;
 
     [SerializeField] GameObject interactionCanvas;
+
+    [SerializeField] private GameObject CommandsPanel;
+    [SerializeField] private GameObject PausePanel;
 
     private void OnEnable()
     {
@@ -32,11 +36,28 @@ public class CloseGameCanvas : MonoBehaviour
     public void CloseGame()
     {
 #if UNITY_EDITOR
-        // Questa parte verrà eseguita solo nell'Editor Unity
+        // Questa parte verrï¿½ eseguita solo nell'Editor Unity
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        // Questa parte verrà eseguita durante l'esecuzione standalone
+        // Questa parte verrï¿½ eseguita durante l'esecuzione standalone
         Application.Quit();
 #endif
+    }
+
+    public void ShowCommands()
+    {
+        PausePanel.SetActive(false);
+        CommandsPanel.SetActive(true);
+    }
+
+    public void HideCommands()
+    {
+        CommandsPanel.SetActive(false);
+        PausePanel.SetActive(true);
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("Intro/Intro2", LoadSceneMode.Single);
     }
 }

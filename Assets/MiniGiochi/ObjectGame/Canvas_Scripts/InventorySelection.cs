@@ -89,7 +89,7 @@ public class InventorySelection : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!gameManager.isTemporaryItemDragging && !gameManager.isABlockSelected && itemCount > 0)
+        if (!gameManager.isTemporaryItemDragging && itemCount > 0)
         {
             itemCount --;
             itemCount_text.text = itemCount.ToString();
@@ -101,6 +101,7 @@ public class InventorySelection : MonoBehaviour
 
             GameObject g= Instantiate(temporaryItem);
             g.GetComponent<TemporaryBlock>().inventoryReference = this;
+            gameManager.DeselectBlock();
         }
     }
 

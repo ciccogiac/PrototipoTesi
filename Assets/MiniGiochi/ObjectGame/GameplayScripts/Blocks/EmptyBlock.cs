@@ -67,7 +67,7 @@ public class EmptyBlock : MonoBehaviour
                 g.transform.parent = transform.parent;
                 g.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
                 g.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-
+                gameManager.SelectBlock(g.GetComponent<GridBlock>());
 
                 gameManager.trash.SetActive(false);
                 Destroy(this.gameObject);

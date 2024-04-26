@@ -17,7 +17,7 @@ public class SetterMethod : MonoBehaviour
             oggettoIstanziato.transform.SetParent(box_AttribbuteSetter.transform);
             oggettoIstanziato.transform.localScale = Vector3.one;
             oggettoIstanziato.GetComponent<AttributeInitializer>().SetAttributeValue(name,value);
-
+            oggettoIstanziato.GetComponent<AttributeInitializer>().EnableInput(ConfirmSetMethod);
     }
 
     public void ConfirmSetMethod()

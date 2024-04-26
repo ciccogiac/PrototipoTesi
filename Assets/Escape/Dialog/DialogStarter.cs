@@ -17,6 +17,7 @@ public class DialogStarter : MonoBehaviour
     [SerializeField] private TMP_Text MessageText;
     [SerializeField] private TMP_Text CharacterName;
     [SerializeField] private Image CharacterImage;
+    [SerializeField] private float CameraSwitchDuration = 1f;
 
     private int _counter = -1;
     public bool _dialogUsed;
@@ -25,6 +26,7 @@ public class DialogStarter : MonoBehaviour
     private bool _backClickTriggered;
     private bool _typing;
     private IEnumerator _typingCoroutine;
+    private CinemachineBlendDefinition _previousCinemachineBlendDefinition;
 
     [SerializeField] LevelManager _levelManager;
     [SerializeField] LevelHint _levelHint;
@@ -61,6 +63,13 @@ public class DialogStarter : MonoBehaviour
         if (other.CompareTag("Player") && !_dialogUsed && _levelHint.hintCounter == _hintNumber)
         {
             _dialogUsed = true;
+            _previousCinemachineBlendDefinition =
+                Camera.main!.transform.GetComponent<CinemachineBrain>().m_DefaultBlend;
+            if (Math.Abs(_previousCinemachineBlendDefinition.m_Time - CameraSwitchDuration) > .1f)
+            {
+                Camera.main!.transform.GetComponent<CinemachineBrain>().m_DefaultBlend =
+                    new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.EaseInOut, CameraSwitchDuration);
+            }
             _gameManager.ActivateDialogCanvas();
             DialogCamera.enabled = true;
             _dialogOpen = true;
@@ -165,6 +174,18 @@ public class DialogStarter : MonoBehaviour
             _levelHint.nextHint(_hintNumber + 1 );
 
         DatiPersistenti.istanza.dialogUsed.Add(_dialogID);
+
+        if (Math.Abs(_previousCinemachineBlendDefinition.m_Time - CameraSwitchDuration) > .1f)
+        {
+            IEnumerator ResetCinemachineBlendDefinitionAfterDuration()
+            {
+                yield return new WaitForSeconds(CameraSwitchDuration);
+                Camera.main!.transform.GetComponent<CinemachineBrain>().m_DefaultBlend =
+                    _previousCinemachineBlendDefinition;
+            }
+
+            StartCoroutine(ResetCinemachineBlendDefinitionAfterDuration());
+        }
     }
 
     public void GetTeory()

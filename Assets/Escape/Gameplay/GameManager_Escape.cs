@@ -303,6 +303,12 @@ public class GameManager_Escape : MonoBehaviour
 
     }
 
+    private void OnDestroy()
+    {
+        DatiPersistenti.istanza.lastCharacterEscapePosition = LastKnownPositionPlayer.LastKnownPosition;
+        DatiPersistenti.istanza.lastCharacterEscapeRotation = LastKnownPositionPlayer.LastKnownRotation;
+    }
+
     IEnumerator waitSwitchCamera(float duration)
     {
         yield return new WaitForSeconds(duration);
