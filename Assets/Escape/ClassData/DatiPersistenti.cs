@@ -1,9 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DatiPersistenti : MonoBehaviour
 {
+
+    public static string IDCurrentSessionEsperimento;
+    public static string LOGFilePath;
+    public static bool LogFileUploaded;
+    
     public static DatiPersistenti istanza;
 
     public Vector3 lastCharacterEscapePosition;
@@ -42,6 +50,26 @@ public class DatiPersistenti : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    public static void InitLog()
+    {
+        LOGFilePath = Path.Combine(Application.dataPath, "BuildLogs", $"{IDCurrentSessionEsperimento}_log.escapeia");
+        Directory.CreateDirectory(Path.GetDirectoryName(LOGFilePath)!);
+        LogMessage("Log iniziato");
+    }
+
+    public static void LogMessage(string message)
+    {
+        File.AppendAllText(LOGFilePath, DateTime.Now + "\t" + message + Environment.NewLine);
+    }
+
+    private void OnApplicationQuit()
+    {
+        if (!LogFileUploaded)
+        {
+            StartCoroutine(ServerUploader.ServerUploader.UploadToServer());
         }
     }
 

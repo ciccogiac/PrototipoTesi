@@ -21,8 +21,9 @@ public class SaveManager : MonoBehaviour
 
         formatter.Serialize(fileStream, saveData);
         fileStream.Close();
-
+        
         //Debug.Log("Salvataggio completato. Nuovo numero salvato: " + numberToSave);
+        DatiPersistenti.LogMessage($"Iniziato nuovo livello: {numberToSave}");
     }
 
     public (int, List<(string, string)> ) LoadSave()

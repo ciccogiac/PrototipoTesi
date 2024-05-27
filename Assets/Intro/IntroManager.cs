@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,11 +10,17 @@ public class IntroManager : MonoBehaviour
 
     private SaveManager saveManager;
 
+    [SerializeField] private bool GameEnded;
+
     [SerializeField] GameObject button_NewGame;
     [SerializeField] GameObject button_ContinueGame;
 
     [SerializeField] GameObject Vbox;
     [SerializeField] GameObject Vbox_NewGame;
+
+    [SerializeField] private TMP_InputField ID_InputField;
+    [SerializeField] private GameObject ConfirmID;
+    [SerializeField] private GameObject IDPrompt;
 
     private int level;
 
@@ -30,6 +36,31 @@ public class IntroManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
 
         LoadSave();
+        if (!GameEnded)
+        {
+            ID_InputField.Select();
+            ID_InputField.ActivateInputField();
+        }
+        else
+        {
+            StartCoroutine(ServerUploader.ServerUploader.UploadToServer());
+        }
+    }
+
+    public void ID_InputValueChanged()
+    {
+        var value = ID_InputField.text;
+        if (value != null && value.Trim() != "" && !ConfirmID.activeSelf)
+            ConfirmID.SetActive(true);
+        if (ConfirmID.activeSelf && (value == null || value.Trim() == ""))
+            ConfirmID.SetActive(false);
+    }
+
+    public void ID_Submit()
+    {
+        IDPrompt.SetActive(false);
+        DatiPersistenti.IDCurrentSessionEsperimento = ID_InputField.text.Trim();
+        DatiPersistenti.InitLog();
     }
 
     public void LoadSave()
@@ -71,10 +102,10 @@ public class IntroManager : MonoBehaviour
     public void ExitGame()
     {
 #if UNITY_EDITOR
-        // Questa parte verrà eseguita solo nell'Editor Unity
+        // Questa parte verrï¿½ eseguita solo nell'Editor Unity
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        // Questa parte verrà eseguita durante l'esecuzione standalone
+        // Questa parte verrï¿½ eseguita durante l'esecuzione standalone
         Application.Quit();
 #endif
     }

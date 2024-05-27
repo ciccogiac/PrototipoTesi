@@ -2175,10 +2175,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: c088c041e51b75842b57a46f46fba36d, type: 3}
+  GameEnded: 1
   button_NewGame: {fileID: 1716650068}
   button_ContinueGame: {fileID: 316466679}
   Vbox: {fileID: 129585956}
   Vbox_NewGame: {fileID: 1750011959}
+  ID_InputField: {fileID: 0}
+  ConfirmID: {fileID: 0}
+  IDPrompt: {fileID: 0}
 --- !u!1 &1826729327
 GameObject:
   m_ObjectHideFlags: 0
