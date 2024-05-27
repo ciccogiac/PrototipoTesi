@@ -10,7 +10,6 @@ public class DatiPersistenti : MonoBehaviour
 
     public static string IDCurrentSessionEsperimento;
     public static string LOGFilePath;
-    public static bool LogFileUploaded;
     
     public static DatiPersistenti istanza;
 
@@ -45,6 +44,7 @@ public class DatiPersistenti : MonoBehaviour
         if (istanza == null)
         {
             istanza = this;
+            InitLog();
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -55,7 +55,7 @@ public class DatiPersistenti : MonoBehaviour
 
     public static void InitLog()
     {
-        LOGFilePath = Path.Combine(Application.dataPath, "BuildLogs", $"{IDCurrentSessionEsperimento}_log.escapeia");
+        LOGFilePath = Path.Combine(Application.dataPath, "BuildLogs", $"{IDCurrentSessionEsperimento}.escapeia");
         Directory.CreateDirectory(Path.GetDirectoryName(LOGFilePath)!);
         LogMessage("Log iniziato");
     }
@@ -63,14 +63,7 @@ public class DatiPersistenti : MonoBehaviour
     public static void LogMessage(string message)
     {
         File.AppendAllText(LOGFilePath, DateTime.Now + "\t" + message + Environment.NewLine);
-    }
-
-    private void OnApplicationQuit()
-    {
-        if (!LogFileUploaded)
-        {
-            StartCoroutine(ServerUploader.ServerUploader.UploadToServer());
-        }
+        istanza.StartCoroutine(ServerUploader.ServerUploader.UploadToServer());
     }
 
     public void SvuotaDatiPersistenti()

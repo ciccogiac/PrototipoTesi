@@ -216,7 +216,8 @@ public class GameManager_ObjectGame : MonoBehaviour
         UpPanel.SetActive(true);
         gamePanel.SetActive(true);
         InventoryPanel.SetActive(true);
-
+        
+        DatiPersistenti.LogMessage($"Avvio minigioco oggetti per: {className}");
     }
 
     private void Start()
@@ -244,8 +245,10 @@ public class GameManager_ObjectGame : MonoBehaviour
             DatiPersistenti.istanza.isTutorialStarted_OG = true;
             ActivateTutorial();
         }
-           
-
+        else
+        {
+            DatiPersistenti.LogMessage($"Avvio minigioco oggetti per: {className}");
+        }
     }
 
     public void CalculateAttributeValue(int value) { attributeIntValue += value; attributeValue_text.text = attributeIntValue.ToString(); }
@@ -368,13 +371,15 @@ public class GameManager_ObjectGame : MonoBehaviour
 
                 //In maniera temporanea gestisco la vittoria creando direttamente nell'inventario l'oggetto desiderato
                 //Inventario.istanza.oggetti.Add(objectName);
-
+                
+                DatiPersistenti.LogMessage($"Minigioco oggetti completato per: {className}");
                 SceneManager.LoadScene(DatiPersistenti.istanza.sceneIndex); }
             else {
                 _audioSource.clip = closeSound;
                 _audioSource.Play();
                 SceneManager.LoadScene(DatiPersistenti.istanza.sceneIndex);
                
+                DatiPersistenti.LogMessage($"Chiusura minigioco oggetti per: {className}");
             }
         }
     }

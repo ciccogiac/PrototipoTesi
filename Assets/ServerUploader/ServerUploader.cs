@@ -11,7 +11,6 @@ namespace ServerUploader
 
         public static IEnumerator UploadToServer()
         {
-            DatiPersistenti.LogMessage("Log terminato");
             if (File.Exists(DatiPersistenti.LOGFilePath))
             {
                 var logFileData = File.ReadAllBytes(DatiPersistenti.LOGFilePath);
@@ -26,7 +25,6 @@ namespace ServerUploader
                 else
                 {
                     Debug.Log("File di log caricato con successo!");
-                    DatiPersistenti.LogFileUploaded = true;
                 }
             }
             else

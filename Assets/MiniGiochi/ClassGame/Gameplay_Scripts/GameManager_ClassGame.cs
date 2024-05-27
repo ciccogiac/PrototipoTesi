@@ -79,7 +79,6 @@ public class GameManager_ClassGame : MonoBehaviour
         if (DatiPersistenti.istanza != null) { 
             className = DatiPersistenti.istanza.className;
             coppie = DatiPersistenti.istanza.coppie;
-            
         }
 
         if (Inventario.istanza != null)
@@ -142,6 +141,10 @@ public class GameManager_ClassGame : MonoBehaviour
             DatiPersistenti.istanza.isTutorialStarted_CG = true;
             ActivateTutorial();
         }
+        else
+        {
+            DatiPersistenti.LogMessage($"Avvio minigioco classi per: {className}");
+        }
 
     }
 
@@ -195,6 +198,7 @@ public class GameManager_ClassGame : MonoBehaviour
         upBox.SetActive(true);
         backgroundPlayImage.enabled = true;
         useTimer = true;
+        DatiPersistenti.LogMessage($"Avvio minigioco classi per: {className}");
 
     }
 
@@ -384,6 +388,7 @@ public class GameManager_ClassGame : MonoBehaviour
             }
 
             DatiPersistenti.istanza.isNewClassCreated = true;
+            DatiPersistenti.LogMessage($"Minigioco classi completato per: {className}");
             SceneManager.LoadScene(DatiPersistenti.istanza.sceneIndex);
         }
         
@@ -391,6 +396,7 @@ public class GameManager_ClassGame : MonoBehaviour
         else {
             audio.clip = closeAudio;
             audio.Play(); 
+            DatiPersistenti.LogMessage($"Chiusura minigioco classi per: {className}");
             SceneManager.LoadScene(DatiPersistenti.istanza.sceneIndex); }
 
     }

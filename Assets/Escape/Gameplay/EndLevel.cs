@@ -16,6 +16,7 @@ public class EndLevel : MonoBehaviour
         {
             if (IsLastScene)
             {
+                DatiPersistenti.LogMessage("Gioco completato");
                 CaricamentoTesto.text = LastLevelText;
                 StartCoroutine(WaitForDurationThenExit(2));
             }

@@ -635,7 +635,7 @@ MonoBehaviour:
   m_text: 'Per favore, inserisci il tuo identificativo personale seguendo queste
     istruzioni:
 
-    
+
 
     Prima lettera del tuo nome
 
@@ -647,21 +647,21 @@ MonoBehaviour:
     Giorno del compleanno
     di tua madre (due cifre)
 
-    Esempio:
 
-    
+
+    Esempio:
 
     Nome: Tommaso
 
-    Cognome
-    di tua madre: Bianchi
+    Cognome di tua
+    madre: Bianchi
 
-    Data di nascita: 30 agosto 2004
+    Data di nascita: 8 agosto 2004
 
-    Data di nascita
-    di tua madre: 21 novembre 1978
+    Data di nascita di tua
+    madre: 21 novembre 1978
 
-    L''identificativo sara'': TB3021'
+    L''identificativo sara'': TB0821'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 220c4f4f8722519438731eccc79c1eb7, type: 2}
   m_sharedMaterial: {fileID: -2851088917311796387, guid: 220c4f4f8722519438731eccc79c1eb7, type: 2}
@@ -688,7 +688,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.75
+  m_fontSize: 31.25
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

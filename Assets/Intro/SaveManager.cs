@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class SaveManager : MonoBehaviour
 {
-    private string saveFilePath ;
+    private string saveFilePath;
 
     private void Awake()
     {

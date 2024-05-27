@@ -41,10 +41,6 @@ public class IntroManager : MonoBehaviour
             ID_InputField.Select();
             ID_InputField.ActivateInputField();
         }
-        else
-        {
-            StartCoroutine(ServerUploader.ServerUploader.UploadToServer());
-        }
     }
 
     public void ID_InputValueChanged()
@@ -60,7 +56,6 @@ public class IntroManager : MonoBehaviour
     {
         IDPrompt.SetActive(false);
         DatiPersistenti.IDCurrentSessionEsperimento = ID_InputField.text.Trim();
-        DatiPersistenti.InitLog();
     }
 
     public void LoadSave()
